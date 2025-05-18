@@ -1,0 +1,625 @@
+<!DOCTYPE html">
+<html lang="ES">
+<head>
+   <title>FrmProductosTienda</title>
+   <link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/ecwitper/css/portaladmin/salidamercancia/registroventa/registrarProducto/stockProductoVenta.css" />
+   <link rel="stylesheet" type="text/css" href="{PATH_LARGE}/libs/jquery/ui/1.13.1/jquery-ui.min.css" />
+</head>
+<body>
+	<!-- page_41052_frmProductos.html -->
+	<div class="container show-top-margin separate-rows tall-rows" style="font-size:12px;">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title text-uppercase" style="font-weight:bold;color:silver">Registrar Producto</h3>
+			</div> 
+			<div class="panel-body">
+				<!-- BUSCAR PRODUCTO -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div id="divBuscarItem" class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title" style="font-weight:bold;">Buscar Productos de Tienda</h3>
+							</div> 
+							<div class="panel-body">
+								<div class="row show-grid">
+									<div class="col-xs-12">
+										<form id="formBuscarItem" role="form">
+											<div class="panel panel-default">
+												<div class="panel-body">
+													<div class="row" style="padding:5px;">
+														<!--div class="col-md-3"><label style="color:#777;">Rango fecha de búsqueda: </label></div-->
+														<div class="col-md-3">
+															<select id="cboTipoRangoFecha" name="cboTipoRangoFecha" class="form-control">
+																<option value="-1"selected>---Seleccione tipo rango fecha---</option>
+																<option value="0">Rango fecha creación</option>
+																<option value="1">Rango fecha modificacion</option>
+															</select>
+														</div>
+														<div class="col-md-3">
+															<label style="color:#777;" for="dpFecIniBusq">Inicio: </label>
+															<input type="text" id="dpFecIniBusq" name="dpFecIniBusq" readonly />
+														</div>
+														<!--div class="col-md-1"></div-->
+														<div class="col-md-3">
+															<label style="color:#777;" for="dpFecFinBusq">Fin: </label>
+															<input type="text" id="dpFecFinBusq" name="dpFecFinBusq" readonly />
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<!--div class="col-md-1"><label style="color:#777;" for="txtCodItemBusq">Mini Codigo: </label></div-->
+														<div class="col-md-3">
+															<select id="cboTipoCodigo" name="cboTipoCodigo" class="form-control">
+																<option value="-1"selected>---Seleccione tipo de código---</option>
+																<option value="0">Código Producto</option>
+																<option value="1">MiniCódigo Prod.</option>
+																<option value="2">Código Fabricante</option>										
+															</select>
+														</div>
+														<div class="col-md-3">
+															<input type="text" id="txtCodItemBusq" name="txtCodItemBusq" maxlength="6" 1size="20" class="form-control" />
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-3">
+															<select id="cboTipoBusqDesc" name="cboTipoBusqDesc" class="form-control">
+																<option value="-1"selected>---Seleccione tipo descripción---</option>
+																<option value="0">Descripción exacta</option>
+																<option value="1">Descripción incluye</option>
+															</select>
+														</div>
+														<div class="col-md-8">
+															<input type="text" id="txtDescItemBusq" name="txtDescItemBusq" maxlength="45" 1size="50" class="form-control" />
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-1"><label style="color:#777;" for="cboTipoCategoriaBusq">Tipo Categoría: </label></div>
+														<div class="col-md-2">
+															<div id = "divListaTipoCategoriaProdBusq"></div>
+														</div>
+														<div class="col-md-1"><label style="color:#777;" for="cboCategoriaBusq">Categoría: </label></div>
+														<div class="col-md-3">
+															<div id = "divListaCategoriaProdBusq"></div>
+														</div>
+														<div class="col-md-1"><label style="color:#777;" for="cboSubCategoriaBusq">Sub-Categoría: </label></div>
+														<div class="col-md-3">
+															<div id = "divListaSubCategoriaProdBusq"></div>
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-1"><label style="color:#777;" for="cboEstadoProdBusq">Estado Producto: </label></div>
+														<div class="col-md-2">
+															<select id="cboEstadoProdBusq" name="cboEstadoProdBusq" class="form-control">
+																<option value="-1" selected>---Seleccione---</option>
+																<option value="01">Registrado</option>
+																<option value="02">Pendiente</option>
+																<option value="03">Habilitado</option>
+																<option value="04">Suspendido</option>
+																<option value="05">Retirado</option>
+															</select>
+														</div>
+														<div class="col-md-1"><label style="color:#777;" for="cboEstadoAlmacBusq">Estado Almacén: </label></div>
+														<div class="col-md-3">
+															<select id="cboEstadoAlmacBusq" name="cboEstadoAlmacBusq" class="form-control">
+																<option value="-1" selected>---Seleccione---</option>
+																<option value="01">Producto de catálogo</option>
+																<option value="02">Producto ingresado a almacén</option>
+																<option value="03">Producto disponible en almacén</option>
+																<option value="04">Producto pendiente de reposición</option>
+																<option value="05">Producto suspendido</option>
+																<option value="06">Producto retirado</option>
+															</select>
+														</div>
+														<div class="col-md-1"><label style="color:#777;" for="cboEstadoPubliBusq">Estado Publicación: </label></div>
+														<div class="col-md-3">
+															<select id="cboEstadoPubliBusq" name="cboEstadoPubliBusq" class="form-control">
+																<option value="-1" selected>---Seleccione---</option>
+																<!--option value="0">Pendiente</option>
+																<option value="1">Publicado</option>
+																<option value="2">Retirado</option-->
+																<option value="01">Generado</option>
+																<option value="02">Editado</option>
+																<option value="03">Publicado</option>
+																<option value="04">Suspendido</option>
+																<option value="05">Retirado</option>
+															</select>
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-1"><label style="color:#777;" for="cboProveedorBusq">Proveedor: </label></div>
+														<div class="col-md-2">
+															<select id="cboProveedorBusq" name="cboProveedorBusq" class="form-control">
+																<option value="-1" selected>---Seleccione---</option>
+																<option value="20212331377">Deltron</option>
+																<option value="20505970323">Halion</option>
+																<option value="20252011910">Igarashi</option>
+																<option value="20603319151">ImportadoraUniversal</option>
+																<option value="20422561537">Impulso</option>
+																<option value="20608326481">Otro</option>
+															</select>
+														</div>
+														<div class="col-md-1"><label style="color:#777;" for="cboFabricanteBusq">Marca: </label></div>
+														<div class="col-md-3">
+															<div id = "divListaFabricanteBusq"></div>
+														</div>
+														<div class="col-md-1"><label style="color:#777;" for="cboOrdenarBusq">Ordenar resultado: </label></div>
+														<div class="col-md-3">
+															<select id="cboOrdenarBusq" name="cboOrdenarBusq" class="form-control">
+																<option value="-1"selected>---Seleccione---</option>
+																<option value="01">Descripción Producto (+)</option>
+																<option value="02">Descripción Producto (-)</option>
+																<option value="03">Precio venta (+)</option>
+																<option value="04">Precio venta (-)</option>
+																<option value="05">Stock almacén (+)</option>
+																<option value="06">Stock almacén (-)</option>
+																<option value="07">Marca (+)</option>
+																<option value="08">Marca (-)</option>
+																<option value="09">Fecha (+)</option>
+																<option value="10">Fecha (-)</option>
+																<option value="11">Estado (+)</option>
+																<option value="12">Estado (-)</option>
+															</select>
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-3">
+															<input type="checkbox" id="idChkAlmacenProd" onclick="javascript:activarRadiosAlmacenProd()" />
+															<label style="color:#777;" for="idChkAlmacenProd">Ingreso almacén</label>
+														</div>
+														<div class="col-md-3">
+															<input type="radio" id="idRdoAlmacenSI" name="rdoAlmacen" checked disabled />
+															<label style="color:#777;" for="idRdoAlmacenSI">Producto con ingreso almacén</label>
+														</div>
+														<div class="col-md-3">
+															<input type="radio" id="idRdoAlmacenNO" name="rdoAlmacen" disabled>
+															<label style="color:#777;" for="idRdoAlmacenNO">Producto sin ingreso almacén</label>
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-3">
+															<input type="checkbox" id="idChkAlmacenStock" onclick="javascript:activarRadiosAlmacenStock()" />
+															<label style="color:#777;" for="idChkAlmacenStock">Stock almacén</label>
+														</div>
+														<div class="col-md-3">
+															<input type="radio" id="idRdoProdStockSI" name="rdoProdStock" checked disabled />
+															<label style="color:#777;" for="idRdoProdStockSI">Producto con Stock</label>
+														</div>
+														<div class="col-md-3">
+															<input type="radio" id="idRdoProdStockNO" name="rdoProdStock" disabled />
+															<label style="color:#777;" for="idRdoProdStockNO">Producto sin Stock</label>
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-3">
+															<input type="checkbox" id="idChkDestacado">
+															<label style="color:#777;" for="idChkDestacado">Producto destacado</label>
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-3">
+															<input type="checkbox" id="idChkDescuento">
+															<label style="color:#777;" for="idChkDescuento">Producto con descuento</label>
+														</div>
+													</div>
+													<div class="row" style="padding-top:10px;margin: auto;width: 50%;">
+														<div class="col-md-3" >
+															<!-- 20211230 degui: se retira las propiedades modal para que deje de aparecer el mensaje modal repetidamente -->
+															<!--button type="button" id="btnLimpiarBusq" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-block">Limpiar</button-->
+															<button type="button" id="btnLimpiarBusq" class="btn btn-success btn-block">Limpiar</button>
+														</div>
+														<div class="col-md-3">
+															<button type="button" id="btnAceptarBusq" class="btn btn-primary btn-block">Buscar</button>
+														</div>
+														<div class="col-md-3">
+															<button type="button" id="btnRegistrarBusq" class="btn btn-primary btn-block">Registrar</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="row show-grid">
+									<div class="col-xs-12">
+										<fieldset class="fldSet-border">
+											<div class="panel panel-default" >
+												<div class="panel-body">
+													<div id="divListaProductosEncontrados"></div>
+												</div>
+											</div>
+										</fieldset>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- div id="divListarItems" style="border:1px solid silver;padding:20px;margin-top:10px;"></div -->
+					</div>
+				</div>
+				<!-- REGISTRAR PRODUCTO -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div id="divRegistrarItem" class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title" style="font-weight:bold;">Registrar Nuevo Producto</h3>
+							</div> 
+							<div class="panel-body">
+								<div class="row show-grid">
+									<div class="col-xs-4" style="margin-top:20px;">
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<img id="imgProd1Mod" src="https://via.placeholder.com/400x400" class="img-thumbnail" />
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-8">
+										<form id="formRegistrarItem" role="form">
+											<div class="panel panel-default">
+												<div class="panel-body">
+													<input type="hidden" id="txtRutaImgSm" name="txtRutaImgSm" value="https://via.placeholder.com/400x400">
+													<div class="form-group">
+														<label style="color:#777;" for="txtNomProd">Nombre Producto</label>
+														<input type="text" id="txtNomProd" name="txtNomProd" maxlength="150" class="form-control" required>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="cboTipoCategoriaReg">Tipo Categoria</label>
+														<div id = "divListaTipoCategoriaProdReg"></div>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="cboCategoriaReg">Categoria</label>
+														<div id = "divListaCategoriaProdReg"></div>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="cboSubCategoriaReg">Sub Categoria</label>
+														<div id = "divListaSubCategoriaProdReg"></div>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="cboMarcaReg">Marca</label>
+														<div id = "divListaMarcaReg"></div>
+													</div>
+													<div class="form-group" >
+														<input type="hidden" id="hid_codEstadoProdReg" name="hid_codEstadoProdReg" value="01">
+														<label style="color:#777;" for="cboCodEstadoProdReg">Estado Producto</label>
+														<select id="cboCodEstadoProdReg" name="cboCodEstadoProdReg" class="form-control" disabled>
+															<option >---Seleccione---</option>
+															<option selected value="01">Registrado</option>
+															<option value="02">Pendiente</option>
+															<option value="03">Habilitado</option>
+															<option value="04">Suspendido</option>
+															<option value="05">Retirado</option>
+														</select>
+													</div>
+													<div class="form-group">
+														<button type="button" id="btnAceptarReg" class="btn btn-primary btn-block">Registrar</button>
+														<button type="button" id="btnCancelarReg" class="btn btn-success btn-block">Cancelar</button>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- MODIFICAR PRODUCTO -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div id="divModificarItem" class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title" style="font-weight:bold;">Modificar Producto de Tienda</h3>
+							</div> 
+							<div class="panel-body">
+								<div class="row show-grid">
+									<div class="col-xs-4">
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<div style="width: 100%;">
+													<img id="imgProd2Mod" src="" class="img-thumbnail" />
+												</div>
+												<div style="padding:20px;">
+													<!-- [ini] Subir imagen de producto -->
+													<form method="post" action="#" enctype="multipart/form-data" id="formUpload">
+														<div class="card" style="width: 18rem;">
+															<div class="form-group">
+																<input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+																<input type="file" class="form-control-file" name="imageToUpload" id="imageToUpload">
+															</div>
+															<input type="button" class="btn btn-primary upload" value="Subir">
+														</div>
+													</form>
+													<!-- [fin] Subir imagen de producto -->
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-8">
+										<form id="formModificarItem" role="form">
+											<div class="panel panel-default">
+												<div class="panel-body">
+													<input type="hidden" id="hid_codProductoMod" name="hid_codProductoMod" value="">
+													<div class="form-group">
+														<label style="color:#777;" for="txtCodProdMod">Código Producto</label>
+														<input type="text" id="txtCodProdMod" name="txtCodProdMod" maxlength="15" class="form-control" readonly>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="txtMiniCodigoMod">Mini Código</label>
+														<input type="text" id="txtMiniCodigoMod" name="txtMiniCodigoMod" maxlength="6" class="form-control" readonly>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="txtNomProdMod">Nombre Producto</label>
+														<!--textarea id="txtNomProdMod" name="txtNomProdMod" class="form-control" rows="4" maxlength="150" required></textarea-->
+														<input type="text" id="txtNomProdMod" name="txtNomProdMod" maxlength="150" class="form-control" required>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="txtDescProdCortaMod">Descripción Corta</label>
+														<textarea id="txtDescProdCortaMod" name="txtDescProdCortaMod" class="form-control" rows="4" maxlength="400" required></textarea>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="txtDescProdLargaMod">Descripción Larga</label>
+														<textarea id="txtDescProdLargaMod" name="txtDescProdLargaMod" class="form-control" rows="4" maxlength="800" required></textarea>
+													</div>
+													<!--div class="form-group">
+														<label style="color:#777;" for="txtEspecifProdMod">Especificación</label>
+														<textarea id="txtEspecifProdMod" name="txtEspecifProdMod" class="form-control" rows="4" maxlength="20000" required></textarea>
+													</div-->
+													<div class="form-group">
+														<label style="color:#777;" for="cboIndEspecMod">Publicación de Especificaciones</label>
+														<select id="cboIndEspecMod" name="cboIndEspecMod" class="form-control">
+															<option value="0">Pendiente</option>
+															<option value="1">Publicado</option>
+														</select>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="cboIndGaleriaImgMod">Publicación de Galeria</label>
+														<select id="cboIndGaleriaImgMod" name="cboIndGaleriaImgMod" class="form-control">
+															<option value="0">Pendiente</option>
+															<option value="1">Publicado</option>
+														</select>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="txtKeyWordMod">Palabras claves</label>
+														<input type="text" id="txtKeyWordMod" name="txtKeyWordMod" maxlength="50" class="form-control">
+													</div>
+													<div class="form-group" style="border-top:1px solid silver;padding-top:10px;">
+														<label style="color:#777;" for="txtPrecioCompraMod">Precio Compra:</label>&nbsp;&nbsp;
+														<input type="text" id="txtPrecioCompraMod" name="txtPrecioCompraMod" maxlength="8" value="0">
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="txtPrecioNormalMod">Precio Tienda:</label>&nbsp;&nbsp;
+														<input type="text" id="txtPrecioNormalMod" name="txtPrecioNormalMod" maxlength="8" value="0">
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="txtPrecioInterMod">Precio Internet:</label>&nbsp;
+														<input type="text" id="txtPrecioInterMod" name="txtPrecioInterMod" maxlength="8" value="0">
+													</div>
+													<div class="form-group" style="border-top:1px solid silver;padding-top:10px;">
+														<label style="color:#777;" for="txtPrecioDescMod">Precio con Descuento:</label>&nbsp;
+														<input type="text" id="txtPrecioDescMod" name="txtPrecioDescMod" maxlength="8" value="0">
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="dpFecIniDescMod">Fecha ini desccuento: </label>
+														<input type="text" id="dpFecIniDescMod" name="dpFecIniDescMod" />
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="dpFecFinDescMod">Fecha fin desccuento: </label>
+														<input type="text" id="dpFecFinDescMod" name="dpFecFinDescMod" />
+													</div>
+													<div class="form-group" style="border-top:1px solid silver;padding-top:10px;">
+														<input type="checkbox" id="idChkProdAlmacMod" name="chkProdAlmacMod">
+														<label style="color:#777;" for="idChkProdAlmacMod">Producto en Almacén</label>
+													</div>
+													<div class="form-group">
+														<input type="checkbox" id="idChkActivoAlmacMod" name="chkActivoAlmacMod">
+														<label style="color:#777;" for="idChkActivoAlmacMod">Activo en Almacén</label>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="txtStockAlmacMod">Stock Almacén: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<input type="number" id="txtStockAlmacMod" name="txtStockAlmacMod" min="0" max="100" value="0">
+													</div>
+													<div class="form-group" style="border-top:1px solid silver;padding-top:10px;">
+														<label style="color:#777;" for="cboMarcaMod">Marca</label>
+														<div id = "divListaMarcaMod"></div>
+													</div>
+													<div class="form-group" >
+														<label style="color:#777;" for="cboRucProveedorMod">Proveedor</label>
+														<select id="cboRucProveedorMod" name="cboRucProveedorMod" class="form-control">
+															<option selected>---Seleccione---</option>
+															<option value="20212331377">Deltron</option>
+															<option value="20505970323">Halion</option>
+															<option value="20252011910">Igarashi</option>
+															<option value="20603319151">ImportadoraUniversal</option>
+															<option value="20422561537">Impulso</option>
+															<option value="20608326481">Otro</option>
+														</select>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="txtCodProdProvMod">Código Proveedor</label>
+														<input type="text" id="txtCodProdProvMod" name="txtCodProdProvMod" maxlength="45" class="form-control">
+													</div>
+													<!--div class="form-group">
+														<label style="color:#777;" for="txtStockProveMod">Stock Proveedor: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<input type="number" id="txtStockProveMod" name="txtStockProveMod" min="1" max="100" value="1">
+													</div-->
+													<div class="form-group" style="border-top:1px solid silver;padding-top:10px;">
+														<label style="color:#777;" for="cboTipoCategoriaMod">Tipo Categoria</label>
+														<div id = "divListaTipoCategoriaProdMod"></div>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="cboCategoriaMod">Categoria</label>
+														<div id = "divListaCategoriaProdMod"></div>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="cboSubCategoriaMod">SubCategoria</label>
+														<div id = "divListaSubCategoriaProdMod"></div>
+													</div>
+													<div class="form-group" style="border-top:1px solid silver;padding-top:10px;">
+														<label style="color:#777;" for="cboCodEstadoProdMod">Estado Producto</label>
+														<select id="cboCodEstadoProdMod" name="cboCodEstadoProdMod" class="form-control">
+															<option selected>---Seleccione---</option>
+															<option value="01">Registrado</option>
+															<option value="02">Pendiente</option>
+															<option value="03">Habilitado</option>
+															<option value="04">Suspendido</option>
+															<option value="05">Retirado</option>
+														</select>
+													</div>
+													<div class="form-group" >
+														<label style="color:#777;" for="cboCodEstadoAlmcMod">Estado Almacén</label>
+														<select id="cboCodEstadoAlmcMod" name="cboCodEstadoAlmcMod" class="form-control">
+															<option selected>---Seleccione---</option>
+															<option value="01">Producto de catálogo</option>
+															<option value="02">Producto ingresado a almacén</option>
+															<option value="03">Producto disponible en almacén</option>
+															<option value="04">Producto pendiente de reposición</option>
+															<option value="05">Producto suspendido</option>
+															<option value="06">Producto retirado</option>
+														</select>
+													</div>
+													<div class="form-group" >
+														<label style="color:#777;" for="cboCodEstadoPublicMod">Estado Publicación</label>
+														<select id="cboCodEstadoPublicMod" name="cboCodEstadoPublicMod" class="form-control">
+															<option selected>---Seleccione---</option>
+															<option value="01">Generado</option>
+															<option value="02">Editado</option>
+															<option value="03">Publicado</option>
+															<option value="04">Suspendido</option>
+															<option value="05">Retirado</option>
+														</select>
+													</div>
+													<div class="form-group">
+														<input type="checkbox" id="idChkDestacadoMod" name="chkDestacadoMod">
+														<label style="color:#777;" for="idChkDestacadoMod">Producto Destacado</label>
+													</div>
+													<div class="form-group">
+														<button type="button" id="btnAceptarMod" class="btn btn-primary btn-block">Modificar</button>
+														<button type="button" id="btnCancelarMod" class="btn btn-success btn-block">Cancelar</button>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Especificación del producto para modificación -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div id="divRegistrarEspecProducto" class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title" style="font-weight:bold;">Registrar Especificaciones de Producto</h3>
+							</div> 
+							<div class="panel-body">
+								<div class="row show-grid">
+									<div class="col-xs-4">
+										<form id="formModEspec" role="form">
+											<div class="panel panel-default">
+												<div class="panel-body">
+													<input type="hidden" id="hdModEspecCodProducto" name="hdModEspecCodProducto" value="">
+													<div class="form-group">
+														<label style="color:#777;" for="cboModListaEspec">Lista de Especificaciones</label>
+														<div id = "divModListaEspec"></div>
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="txtModEspecNumOrden">Número de Orden: </label>
+														<input type="number" id="txtModEspecNumOrden" name="txtModEspecNumOrden" maxlength="2" min="0" max="35" value="0">
+													</div>
+													<div class="form-group">
+														<label style="color:#777;" for="txtModEspecClave">Detalle de Especificación: </label>
+														<input type="text" id="txtModEspecClave" name="txtModEspecClave" maxlength="50" placeholder="Etiqueta"  class="form-control">
+														<textarea id="txtModEspecValor" name="txtModEspecValor" rows="3" maxlength="500" placeholder="Valor" class="form-control"></textarea>
+													</div>
+													<div class="form-group">
+														<input type="checkbox" id="idChkModEspecEstado" name="chkModEspecEstado">
+														<label style="color:#777;" for="idChkModEspecEstado">Ver</label>
+													</div>
+													<button type="button" id="btnModAgregarEspec" class="btn btn-primary btn-block">Agregar</button>
+													<button type="button" id="btnModModificarEspec" class="btn btn-primary btn-block">Modificar</button>
+												</div>
+											</div>
+										</form>
+									</div>
+									<div class="col-xs-8">
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<div class="form-group">
+													<div id="panelModEspcificacion"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Galería de Producto para Modificación -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div id="divGaleriaImagenProducto" class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title" style="font-weight:bold;">Galería de Imagenes de Producto</h3>
+							</div> 
+							<div class="panel-body">
+								<div class="row show-grid">
+									<div class="col-xs-4">
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<div style="width: 100%;">
+													<img id="imgGaleriaProdMod" src="" class="img-thumbnail" />
+												</div>
+												<div style="padding:20px;">
+													<!-- [ini] Subir imagen de producto a galeria -->								
+													<form method="post" action="#" enctype="multipart/form-data" id="frmUploadGaleria">
+														<input type="hidden" id="hdModGaleriaCant" name="hdModGaleriaCant" value="0">
+														<div class="form-group">
+															<label style="color:#777;" for="cboModListaImgGaleria">Lista de Imagenes</label>
+															<div id = "divModListaImgGaleria"></div>
+														</div>
+														<div class="form-group">
+															<label style="color:#777;" for="txtModNumOrdenImgGaleria">Número de Orden: </label>
+															<input type="number" id="txtModNumOrdenImgGaleria" name="txtModNumOrdenImgGaleria" maxlength="2" min="0" max="35" value="0">
+														</div>
+														<div class="form-group">
+															<input type="checkbox" id="idChkModEstadoImgGaleria" name="chkModEstadoImgGaleria">
+															<label style="color:#777;" for="idChkModEstadoImgGaleria">Ver</label>
+														</div>
+														<div class="form-group">
+															<input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+															<input type="file" class="form-control-file" name="imageToUploadGaleria" id="imageToUploadGaleria"
+																	accept=".jpg, .jpeg, .png">
+														</div>
+														<input type="button" id="btnSubirImagenGaleria" class="btn btn-primary" value="Subir">
+														<input type="button" id="btnModifImagenGaleria" class="btn btn-primary" value="Modificar">
+													</form>
+													<!-- [fin] Subir imagen de producto a galeria -->
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-8">
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<div id="panelModGaleriaImagenProducto"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+      	</div>
+   	</div>
+	<!--script type="text/javascript" src="{PATH_LARGE}/libs/jquery/js/jquery-3.6.0.min.js"></script-->
+	<!--script type="text/javascript" src="http://localhost/webapps/wmwitper/static/witper/libs/jquery/ui/1.13.1/jquery-ui.min.js"></script -->
+	<!--script type="text/javascript" src="../../../../static/witper/libs/jquery/ui/1.13.1/jquery-ui.min.js"></script -->
+	<script type="text/javascript" src="{PATH_LARGE}/libs/jquery/ui/1.13.1/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/libs/jquery/ui/1.13.1/jquery.ui.datepicker-es.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/libs/plugins/datatables-1.10.7/media/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/libs/plugins/datatables-1.10.7/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/portaladmin/salidamercancia/registroventa/registrarProducto/stockProductoVenta.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/portaladmin/salidamercancia/registroventa/registrarProducto/subirImagen.js"></script>
+</body>
+</html>

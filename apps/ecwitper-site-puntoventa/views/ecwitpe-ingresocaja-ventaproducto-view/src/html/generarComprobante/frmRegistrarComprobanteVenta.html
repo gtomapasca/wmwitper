@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ES">
+<head>
+   <title>FrmRegistrarVentas</title>
+   <link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/ecwitper/css/puntoventa/ingresocaja/ventaproducto/generarComprobante/registrarComprobanteVenta.css" />
+   <link rel="stylesheet" type="text/css" href="{PATH_LARGE}/libs/jquery/ui/1.13.1/jquery-ui.min.css" />
+</head>
+<body>
+	<!-- page_50101_frmRegistrarVentas.html -->
+	<div class="container show-top-margin separate-rows tall-rows" style="font-size:12px;">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title text-uppercase" style="font-weight:bold;color:silver">Registrar Comprobante de Ventas</h3>
+			</div> 
+			<div class="panel-body">
+				<!-- BUSCAR COMPROBANTE -->
+				<div class="row">
+					<div class="col-md-12">
+						<div id="divBuscarComprobante" class="panel panel-primary">
+							<div class="panel-heading">
+								<h3 class="panel-title" style="font-weight:bold;">Buscar Comprobante</h3>
+							</div> 
+							<div class="panel-body">
+								<div class="row show-grid">
+									<div class="col-xs-12">
+										<form id="formBuscarItem" role="form">
+											<div class="panel panel-default">
+												<div class="panel-body">												
+													<div class="row" style="padding:5px;">
+														<div class="col-md-2">
+															<label class="control-label">Fecha de inicio</label>
+														</div>
+														<div class="col-md-3">
+															<div class="input-group date" id="divFecIniBusqVta">
+																<input type="text" id="dpFecIniBusqVta" name="dpFecIniBusqVta" class="form-conrrol" data-inputmask="'alias': 'date'" readonly />
+																<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+															</div>
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-2">
+															<label>Fecha de fin</label>
+														</div>
+														<div class="col-md-3">
+															<input type="text" id="dpFecFinBusqVta" name="dpFecFinBusqVta" readonly />
+														</div>
+													</div>
+												
+													<div class="row" style="padding:5px;">
+														<div class="col-md-2">
+															<label>Estado comprobante</label>
+														</div>
+														<div class="col-md-2">
+															<select id="cboCodEstadoBusq" name="cboCodEstadoBusq" class="form-control">
+																<!--option value="-1"selected>---Seleccione estado---</option-->
+																<option value="0">Pendiente</option>
+																<option value="1" selected>Generado</option>
+																<option value="2">Emitido</option>
+																<option value="3">Anulado</option>
+															</select>
+														</div>
+													</div>
+												
+													<div class="row" style="padding:5px;">
+														<div class="col-md-2">
+															<label>Tipo comprobante</label>
+														</div>
+														<div class="col-md-2">
+															<select id="cboTipComprobBusq" name="cboTipComprobBusq" class="form-control">
+																<!--option onclick="javascript:registrarComprobanteVenta.habilitarSerieNumComprobBusq('-1')" value="-1"selected>---Seleccione comprobante---</option -->
+																<option onclick="javascript:registrarComprobanteVenta.habilitarSerieNumComprobBusq('01')" value="01">Cotización</option>
+																<option onclick="javascript:registrarComprobanteVenta.habilitarSerieNumComprobBusq('02')" value="02">Nota de Venta</option>
+																<option onclick="javascript:registrarComprobanteVenta.habilitarSerieNumComprobBusq('03')" value="03" selected>Boleta</option>
+																<option onclick="javascript:registrarComprobanteVenta.habilitarSerieNumComprobBusq('04')" value="04">Factura</option>
+															</select>
+														</div>
+														<div class="col-md-1">
+															<input type="text" id="txtSerieComprobBusq" name="txtSerieComprobBusq" maxlength="15" class="form-control" style="text-transform: uppercase;" required="" />
+														</div>
+														<div class="col-md-2">
+															<input type="text" id="txtNumComprobBusq" name="txtNumComprobBusq" maxlength="15" class="form-control" />
+														</div>
+													</div>
+												
+													<div class="row" style="padding:5px;">
+														<div class="col-md-2">
+															<label>Tipo documento</label>
+														</div>
+														<div class="col-md-2">
+															<select id="cboTipDocBusq" name="cboTipDocBusq" class="form-control">
+																<option onclick="javascript:registrarComprobanteVenta.habilitarNumDocBusq('-1')" value="-1"selected>---Seleccione Documento---</option>
+																<option id="opSelSinDniBusq" onclick="javascript:registrarComprobanteVenta.habilitarNumDocBusq('01')" value="01">Sin DNI</option>
+																<option id="opSelDniBusq" onclick="javascript:registrarComprobanteVenta.habilitarNumDocBusq('03')" value="03">DNI</option>
+																<option id="opSelRucBusq" onclick="javascript:registrarComprobanteVenta.habilitarNumDocBusq('04')" value="04">RUC</option>
+															</select>
+														</div>
+														<div class="col-md-3">
+															<input type="text" id="txtNumDocBusq" name="txtNumDocBusq" maxlength="15" class="form-control" disabled />
+														</div>
+													</div>
+												
+													<div class="row" style="padding-top:10px;margin: auto;width: 50%;">
+														<div class="col-md-3" >
+															<button type="button" id="btnLimpiarBusq" class="btn btn-success btn-block" disabled>Limpiar</button>
+														</div>
+														<div class="col-md-3">
+															<button type="button" id="btnAceptarBusq" class="btn btn-primary btn-block" data-loading-text="Buscando...">Buscar</button>
+														</div>
+														<div class="col-md-3">
+															<button type="button" id="btnCrearComprob" class="btn btn-primary btn-block">Crear</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="row show-grid">
+									<div class="col-xs-12">
+										<fieldset class="fldSet-border">
+											<div class="panel panel-default" >
+												<div class="panel-body">
+													<div id="divResultadoBusqComprobantes"></div>
+												</div>
+											</div>
+										</fieldset>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- VISTA DE COMPROBANTE -->
+				<div class="row">
+					<div class="col-md-12">
+						<div id="divVistaComprobanteVenta" class="panel panel-primary witper-box-hide">
+							<div class="panel-heading">
+								<h3 class="panel-title" style="font-weight:bold;">Vista Comprobante</h3>
+							</div> 
+							<div class="panel-body">
+								<div class="row show-grid">
+									<div class="col-xs-12">
+										<div class="row" style="padding:5px;">
+											<div class="col-md-8">
+												<div style="font-weight: bold;font-size: 19px;" id="divNombreRazonSocialVista">COMPUCHICLAYO E.I.R.L.</div>
+												<div style="font-size: 19px;"id="divDireccRazonSocialVista">Chiclayo, Chiclayo, Lambayeque</div>
+											</div>
+											<div class="col-md-4">
+												<div style="border:4px solid #000;">
+													<div style="font-weight: bold;font-size: 22px; text-align:center;" id="divTipoComprobanteVista"></div>
+													<div style="font-weight: bold;font-size: 22px; text-align:center;" id="divRucComprobanteVista"></div>
+													<div style="font-weight: bold;font-size: 22px; text-align:center;" id="divNumeroComprobanteVista"></div>
+												</div>
+											</div>
+										</div>
+										<div class="row" style="padding:5px;">
+											<div class="col-md-2">
+												<label>DNI/RUC</label>
+												<input type="text" id="txtNumDocCliVista" name="txtNumDocCliVista" value="" class="form-control" disabled/>
+											</div>
+											<div class="col-md-6">
+												<label>Nombre Cliente</label>
+												<input type="text" id="txtNombreCliVista" name="txtNombreCliVista" value="" class="form-control" disabled/>
+											</div>
+											<div class="col-md-2">
+												<label>Código Vendedor</label>
+												<input type="text" id="txtCodUserVentVista" name="txtCodUserVentVista" value="" class="form-control" disabled/>
+											</div>
+											<div class="col-md-2">
+												<label>Fecha de Emisión</label>
+												<input type="text" id="txtFechaEmisionVista" name="txtFechaEmisionVista" value="" class="form-control" disabled/>
+											</div>
+										</div>
+										<div class="row" style="padding:5px;">
+											<div class="col-md-2">
+												<label>Medio Pago</label>
+												<input type="text" id="txtMedioPagoVista" name="txtMedioPagoVista" value="" class="form-control" disabled/>
+											</div>
+											<div class="col-md-2">
+												<label>Tipo Moneda</label>
+												<input type="text" id="txtTipoMonedaVista" name="txtTipoMonedaVista" value="" class="form-control" disabled/>
+											</div>
+											<div class="col-md-2">
+												<label>Pago Monto</label>
+												<input type="text" id="txtPagoMontoVista" name="txtPagoMontoVista" value="" class="form-control" disabled/>
+											</div>
+											<div class="col-md-2">
+												<label>Pago Vuelto</label>
+												<input type="text" id="txtPagoVueltoVista" name="txtPagoVueltoVista" value="" class="form-control" disabled/>
+											</div>
+											<div class="col-md-2">
+												<label>Estado Envio</label>
+												<input type="text" id="txtEstEnvioVista" name="txtEstEnvioVista" value="" class="form-control" disabled/>
+											</div>
+											<div class="col-md-2">
+												<label>Estado Comprob.</label>
+												<input type="text" id="txtCodEstComprobVista" name="txtCodEstComprobVista" value="" class="form-control" disabled/>
+											</div>
+										</div>
+										<div class="row" style="padding:5px;">
+											<div class="col-md-8">
+												<label>Observación</label>
+												<input type="text" id="txtObservacionVista" name="txtObservacionVista" value="" class="form-control" disabled/>
+											</div>
+										</div>
+										<div class="row" style="padding:5px;">
+											<div class="col-md-12">
+												<div id="divVistaDetalleVenta" style="border:1px solid silver;padding:20px;margin-top:10px;"></div>
+											</div>
+										</div>
+										<div class="row" style="padding-top:10px;margin: auto;width: 50%;">
+											<div class="col-md-3">
+												<button type="button" id="btnRetornar" class="btn btn-primary btn-block" disabled>Volver</button>
+											</div>
+											<div class="col-md-3">
+												<button type="button" id="btnImprimir" class="btn btn-primary btn-block" disabled>Imprimir</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- REGISTRAR VENTAS -->
+				<div class="row">
+					<div class="col-md-12">
+						<div id="divGenerarComprobante" class="panel panel-primary witper-box-hide">
+							<div class="panel-heading">
+								<h3 class="panel-title" style="font-weight:bold;">Generar Comprobante</h3>
+							</div> 
+							<div class="panel-body">
+								<div class="row show-grid">
+									<div class="col-xs-12">
+										<form id="formGenerarComprobante" role="form">
+											<div class="panel panel-default">
+												<div class="panel-body">	
+													<div class="row" style="padding:5px;">
+														<div class="col-md-1"><label>Comprob.: </label></div>
+														<div class="col-md-2">
+															<select id="cboTipoComprobante" name="cboTipoComprobante" class="form-control">
+																<option onclick="javascript:registrarComprobanteVenta.validarTipoDocu('01')" value="01">Cotización</option>
+																<option onclick="javascript:registrarComprobanteVenta.validarTipoDocu('02')" value="02">Nota de Venta</option>
+																<option onclick="javascript:registrarComprobanteVenta.validarTipoDocu('03')" value="03" selected>Boleta</option>
+																<option onclick="javascript:registrarComprobanteVenta.validarTipoDocu('04')" value="04">Factura</option>
+															</select>
+														</div>
+														<div class="col-md-2"></div>
+														<div class="col-md-1"><label>Vendedor: </label></div>
+														<div class="col-md-3">
+															<input type="text" id="txtUsuVentasReg" name="txtUsuVentasReg" class="form-control" disabled/>
+														</div>
+														<div class="col-md-1"><label>Fecha Emisión: </label></div>
+														<div class="col-md-2">
+															<!-- input type="text" id="txtFecEmisionReg" name="txtFecEmisionReg" class="form-control" disabled/ -->
+															<input type="text" id="dpFecEmisionRegVta" name="dpFecEmisionRegVta" class="form-control" readonly />
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-1">
+															<label>Cliente:</label>
+														</div>
+														<div class="col-md-2">
+															<input type="hidden" id="hdTipDocCli" name="hdTipDocCli" value="03"/>
+															<select id="cboTipDocCli" name="cboTipDocCli" class="form-control">
+																<option onclick="javascript:registrarComprobanteVenta.activarDatosCliSinDNI('01')" value="01">Sin DNI</option>
+																<option onclick="javascript:registrarComprobanteVenta.activarDatosCliSinDNI('03')" value="03" selected>DNI</option>
+																<option id="opSelRUC" onclick="javascript:registrarComprobanteVenta.activarDatosCliSinDNI('04')" value="04" disabled>RUC</option>
+															</select>
+														</div>
+														<div class="col-md-2">
+															<input type="hidden" id="hdCodUsuCliReg" name="hdCodUsuCliReg" />
+															<input type="hidden" id="hdNumDocCliReg" name="hdNumDocCliReg" />
+															<input type="text" id="txtNumDocCli" name="txtNumDocCli" maxlength="11" class="form-control" />
+														</div>
+														<div class="col-md-5">
+															<input type="text" id="txtNombreCli" name="txtNombreCli" maxlength="45" class="form-control" disabled/>
+														</div>
+														<div class="col-md-2" >
+															<button type="button" id="btnAgregarCliente" class="btn btn-success btn-block">Agregar Cliente</button>
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-1">
+															<label>Tipo:</label>
+														</div>
+														<div class="col-md-2">
+															<select id="cboTipoReg" name="cboTipoReg" class="form-control">
+																<option value="1" selected>Bien</option>
+																<option value="2">Servicio</option>
+															</select>
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-1">
+															<label>Producto:</label>
+														</div>
+														<div class="col-md-2">
+															<select id="cboUnidadMedidaReg" name="cboUnidadMedidaReg" class="form-control">
+																<option value="01" selected>Unidad</option>
+																<option value="02">Kilogramo</option>
+																<option value="03">Caja</option>
+																<option value="04">Paquete</option>
+																<option value="05">Balde</option>
+																<option value="06">Botella</option>
+																<option value="07">Centimetro lineal</option>
+																<option value="08">Litro</option>
+																<option value="09">Metro</option>
+																<option value="10">Piezas</option>
+															</select>
+														</div>
+														<div class="col-md-2">
+															<input type="hidden" id="hdCodProdReg" name="hdCodProdReg" />
+															<input type="hidden" id="hdMiniCodProdReg" name="hdMiniCodProdReg" />
+															<input type="hidden" id="hdImgProdReg" name="hdImgProdReg" />
+															<input type="text" id="txtCodProducto" name="txtCodProducto" maxlength="10" class="form-control" />
+														</div>
+														<div class="col-md-5">
+															<input type="text" id="txtDescProducto" name="txtDescProducto" maxlength="65" class="form-control" disabled />
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-3"></div>
+														<div class="col-md-2"><label>Precio Producto:</label></div>
+														<div class="col-md-2">
+															<input type="text" id="txtPrecioProd" name="txtPrecioProd" maxlength="8" class="form-control" disabled />
+														</div>
+														<div class="col-md-1">
+															<input type="checkbox" id="idChkPrecDescuento" onclick="javascript:registrarComprobanteVenta.activarPrecioDescuento()" />
+															<label style="color:#777;" for="idChkPrecDescuento">Dscto</label>
+														</div>
+														<div class="col-md-2">
+															<input type="text" id="txtPrecioDescuento" name="txtPrecioDescuento" maxlength="8" class="form-control" disabled />
+														</div>
+														<div class="col-md-1">
+															<input type="text" id="txtCantidad" name="txtCantidad" value="1" maxlength="2" class="form-control" />
+														</div>
+														<div class="col-md-1" >
+															<button type="button" id="btnAgregarProd" class="btn btn-success btn-block">
+																<i class="fa fa-plus" aria-hidden="true"></i>
+															</button>
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-1"><label for="cboTipoMoneda">Moneda: </label></div>
+														<div class="col-md-2">
+															<select id="cboTipoMoneda" name="cboTipoMoneda" class="form-control">
+																<option value="01" selected>Soles</option>
+																<option value="02">Dolares</option>
+																<option value="03">Euros</option>
+																<option value="99">Otros</option>
+															</select>
+														</div>
+														<div class="col-md-2"><label for="cboTipoPago">Tipo Pago: </label></div>
+														<div class="col-md-2">
+															<select id="cboTipoPago" name="cboTipoPago" class="form-control">
+																<option onclick="javascript:registrarComprobanteVenta.activarMontoPago('01')" value="01">Efectivo</option>
+																<option onclick="javascript:registrarComprobanteVenta.activarMontoPago('02')" value="02">Pago contra entrega</option>
+																<option onclick="javascript:registrarComprobanteVenta.activarMontoPago('03')" value="03" selected>Pago con tarjeta</option>
+																<option onclick="javascript:registrarComprobanteVenta.activarMontoPago('04')" value="04">Transferencia Bancaria</option>										
+																<option onclick="javascript:registrarComprobanteVenta.activarMontoPago('05')" value="05">Yape</option>
+																<option onclick="javascript:registrarComprobanteVenta.activarMontoPago('06')" value="06">Plin</option>
+																<option onclick="javascript:registrarComprobanteVenta.activarMontoPago('99')" value="99">Otros</option>
+															</select>
+														</div>
+														<div class="col-md-1"><label>Monto Total: </label></div>
+														<div class="col-md-2">
+															<input type="text" id="txtMontoTotal" name="txtMontoTotal" maxlength="6" class="form-control" disabled />
+														</div>
+														<div class="col-md-2">
+															<input type="checkbox" id="idChkEstadoEnvio" />
+															<label style="color:#777;" for="idChkEstadoEnvio">Para envío</label>
+														</div>
+													</div>
+													<div id="divPagoMontoReg" class="row witper-box-hide" style="padding:5px;">
+														<div class="col-md-7"></div>
+														<div class="col-md-1"><label for="txtMontoPago">Monto Pago: </label></div>
+														<div class="col-md-2">
+															<input type="text" id="txtMontoPago" name="txtMontoPago" maxlength="6" class="form-control" disabled />
+														</div>
+													</div>
+													<div id="divPagoVueltoReg" class="row witper-box-hide" style="padding:5px;">
+														<div class="col-md-7"></div>
+														<div class="col-md-1"><label for="txtMontoVuelto">Vuelto: </label></div>
+														<div class="col-md-2">
+															<input type="text" id="txtMontoVuelto" name="txtMontoVuelto" maxlength="6" class="form-control" disabled />
+														</div>
+													</div>
+													<div class="row" style="padding:5px;">
+														<div class="col-md-3"></div>
+														<div class="col-md-2">
+															<input type="checkbox" id="idChkObservacion" onclick="javascript:registrarComprobanteVenta.activarObservacion()"/>
+															<label style="color:#777;" for="idChkObservacion">Observación</label>
+														</div>
+														<div class="col-md-5">
+															<input type="text" id="txtObservacionReg" name="txtObservacionReg" maxlength="200" class="form-control" disabled />
+														</div>
+													</div>
+													<div class="row" style="padding-top:10px;margin: auto;width: 50%;">
+														<div class="col-md-3" >
+															<button type="button" id="btnVolverGen" class="btn btn-success btn-block">Volver</button>
+														</div>
+														<div class="col-md-3">
+															<button type="button" id="btnContinuarGen" class="btn btn-primary btn-block">Continuar</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+								<div class="row show-grid">
+									<div class="col-xs-12">
+										<table id="tblListarItemsVenta" class="table table-bordered">
+												<thead>
+													<tr>
+														<th class="text-center" style="width:5%">Item</th>
+														<th class="text-center" style="width:10%">Imagen</th>
+														<th class="text-center" style="width:5%">C&oacute;digo</th>
+														<th class="text-center" style="width:5%">Cant.</th>
+														<th class="text-center" style="width:5%">Unidad</th>
+														<th class="text-center" style="width:15%">Producto</th>
+														<th class="text-center" style="width:10%">Valor Unitario</th>
+														<th class="text-center" style="width:10%">Dscto</th>
+														<th class="text-center" style="width:10%">Precio Unit.</th>
+														<th class="text-center" style="width:5%">IGV (%)</th>
+														<th class="text-center" style="width:5%">IGV (monto)</th>
+														<th class="text-center" style="width:10%">Importe</th>
+														<th class="text-center" style="width:5%"></th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+												<tfoot>
+													<tr>
+														<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+														<td style="font-weight: bold;font-size: 14px; text-align:left;" colspan="3">Sub Total (S/)</td><td style="font-weight: bold;font-size: 14px; text-align:right;"><span id="sSubTotal"></span></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+														<td style="font-weight: bold;font-size: 14px; text-align:left;" colspan="3">IGV (S/)</td><td style="font-weight: bold;font-size: 14px; text-align:right;"><span id="sIGV"></span></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+														<td style="font-weight: bold;font-size: 14px; text-align:left;" colspan="3">Importe Total (S/)</td><td style="font-weight: bold;font-size: 14px; text-align:right;"><span id="sImporteTotal"></span></td>
+														<td></td>
+													</tr>
+												</tfoot>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- MODEL FRMCLIENTE INI -->
+				<div class="row">
+					<div id="divModelRegistrarCliente" class="modal fade" role="dialog">
+						<div class="modal-dialog" style="width: 50%">
+							<form id="formRegNuevoCliVta" class="form-horizontal" role="form">
+								<div class="modal-content panel-primary">
+									<div class="modal-header panel-heading">
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+										<h4 class="panel-title">Registrar Cliente</h4>
+									</div>
+									<fieldset class="fldSet-border" style="margin : 15px 15px !important">
+										<div class="panel panel-primary" >
+											<div class="panel-body">
+												<div class="form-group">
+													<div class="row witper-pading-01">
+														<div class="col-md-3">
+															<label class="witper-label-ds01">Documento: </label>
+														</div>
+														<div class="col-md-9">
+															<div class="row">
+																<div class="col-md-4">
+																	<input type="hidden" id="hdModalTipDocCli" name="hdModalTipDocCli" />
+																	<select id="cboModalTipDocCli" name="cboModalTipDocCli" class="form-control" disabled>
+																		<option value="03">DNI</option>
+																		<option value="04">RUC</option>
+																	</select>
+																</div>
+																<div class="col-md-6">
+																	<input type="hidden" id="hdModalNumDocCli" name="hdModalNumDocCli" />
+																	<input type="text" id="txtModalNumDocCli" name="txtModalNumDocCli" maxlength="11" placeholder="numero documento" class="form-control" />
+																</div>
+																<div class="col-md-2">
+																	<button type="button" class="btn btn-success btn-block" id="btnBuscarCliRegVta">Buscar</button>
+																</div>
+															</div>
+														</div>														
+													</div>
+													<div class="row witper-pading-01">
+														<div class="col-md-3">
+															<label class="witper-label-ds01">Nombre:</label>
+														</div>
+														<div class="col-md-9">
+															<input type="text" id="txtModalNombreCli" name="txtModalNombreCli" maxlength="25" class="form-control" disabled />
+														</div>
+													</div>
+													<div class="row witper-pading-01">
+														<div class="col-md-3">
+															<label class="witper-label-ds01">Apellido Paterno:</label>
+														</div>
+														<div class="col-md-9">
+															<input type="text" id="txtModalApePatCli" name="txtModalApePatCli" maxlength="25" class="form-control" disabled/>
+														</div>
+													</div>
+													<div class="row witper-pading-01">
+														<div class="col-md-3">
+															<label class="witper-label-ds01">Apellido Materno:</label>
+														</div>
+														<div class="col-md-9">
+															<input type="text" id="txtModalApeMatCli" name="txtModalApeMatCli" maxlength="25" class="form-control" disabled/>
+														</div>
+													</div>
+													<div class="row witper-pading-01">
+														<div class="col-md-3">
+															<label class="witper-label-ds01">Celular:</label>
+														</div>
+														<div class="col-md-9">
+															<input type="text" id="txtModalCelCli" name="txtModalCelCli" maxlength="20" class="form-control" disabled/>
+														</div>
+													</div>
+													<div class="row witper-pading-01">
+														<div class="col-md-3 witper-label-ds01">
+															<label class="">E-mail:</label>
+														</div>
+														<div class="col-md-9">
+															<input type="text" id="txtModalMailCli" name="txtModalMailCli" maxlength="45" class="form-control" disabled/>
+														</div>
+													</div>
+												</div>
+												<div class="form-group">
+													<div class="row witper-pading-01">
+														<div class="col-md-3"></div>
+														<div class="col-md-3" align="center">
+															<button type="button" class="btn btn-primary btn-block" id="btnNuevoCliRegVta">Nuevo</button>
+														</div>	
+														<div class="col-md-3" align="center">
+															<button type="button" class="btn btn-primary btn-block" id="btnGrabarCliRegVta" disabled>Grabar</button>
+														</div>	
+														<div class="col-md-3" align="center">
+															<button type="button" class="btn btn-primary btn-block" id="btnCancelarRegVta">Cancelar</button>
+														</div>	
+													</div>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!-- MODEL FRMCLIENTE FIN -->
+				<!-- PRELIMINAR COMPROBANTE -->
+				<div class="row">
+					<div class="col-md-12">
+						<div id="divPreComprobante" class="panel panel-primary witper-box-hide">
+							<div class="panel-heading">
+								<h3 class="panel-title" style="font-weight:bold;">Preliminar Comprobante</h3>
+							</div> 
+							<div class="panel-body">
+								<div class="row show-grid">
+									<div class="col-xs-12">
+										<input type="hidden" id="hdCodMediopagoPre" name="hdCodMediopagoPre" />						
+										<input type="hidden" id="hdCodUsuCliPre" name="hdCodUsuCliPre" />
+										<input type="hidden" id="hdCodUsuVtaPre" name="hdCodUsuVtaPre" />
+										<input type="hidden" id="hdCodTipoMonedaPre" name="hdCodTipoMonedaPre" />
+										<input type="hidden" id="hdCodTipPagoPre" name="hdCodTipPagoPre" />
+										<input type="hidden" id="hdPagoTotalPre" name="hdPagoTotalPre" />
+										<input type="hidden" id="hdPagoMontoPre" name="hdPagoMontoPre" />
+										<input type="hidden" id="hdPagoVueltoPre" name="hdPagoVueltoPre" />
+										<input type="hidden" id="hdCodTipComprobPre" name="hdCodTipComprobPre" />
+										<input type="hidden" id="hdCodTipDocuPre" name="hdCodTipDocuPre" />
+										<input type="hidden" id="hdVentaEnvioPre" name="hdVentaEnvioPre" />
+										<input type="hidden" id="hdObservacionPre" name="hdObservacionPre" />
+										<div class="row" style="padding:5px;">
+											<div class="col-md-8">
+												<label>COMPUCHICLAYO</label>
+											</div>
+											<div class="col-md-4">
+												<label>R.U.C. 20608326481</label>
+											</div>
+										</div>
+										<div class="row" style="padding:5px;">
+											<div class="col-md-8">
+												<label>Señores</label>
+												<input type="text" id="txtNombreCliPre" name="txtNombreCliPre" value="" class="form-control" disabled/>
+											</div>
+											<div class="col-md-2">
+												<label>DNI/RUC</label>
+												<input type="text" id="txtNumDocCliPre" name="txtNumDocCliPre" value="" class="form-control" disabled/>
+											</div>
+											<div class="col-md-2">
+												<label>Fecha de Emisión</label>
+												<input type="text" id="txtFechaEmiPre" name="txtFechaEmiPre" value="" class="form-control" disabled/>
+											</div>
+										</div>
+										<div class="row" style="padding:5px;">
+											<div class="col-md-12">
+												<div id="divListarDetalleVentaPreliminar" style="border:1px solid silver;padding:20px;margin-top:10px;"></div>
+											</div>
+										</div>
+										<div class="row" style="padding:5px;">
+											<div class="col-md-8">
+												<label>Código QR Comprobante</label>
+											</div>
+											<div class="col-md-4">
+												<label>Detalle totales</label>
+											</div>
+										</div>
+										<div class="row" style="padding-top:10px;margin: auto;width: 50%;">
+											<div class="col-md-3" >
+												<button type="button" id="btnVolverEmitir" class="btn btn-success btn-block">Volver</button>
+											</div>
+											<div class="col-md-3" >
+												<button type="button" id="btnRegistrarEmitir" class="btn btn-primary btn-block">Registrar</button>
+											</div>
+											<div class="col-md-3" >
+												<button type="button" id="btnImprimirEmitir" class="btn btn-primary btn-block" disabled>Imprimir</button>
+											</div>
+											<div class="col-md-3">
+												<button type="button" id="btnAceptarEmitir" class="btn btn-primary btn-block" disabled>Emitir</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- COMPROBANTE EMITIDO -->
+				<div class="row">
+					<div class="col-md-12">
+						<div id="divComprobanteEmitido" class="panel panel-primary witper-box-hide">
+							<div class="panel-heading">
+								<h3 class="panel-title" style="font-weight:bold;">Comprobante Emitido</h3>
+							</div> 
+							<div class="panel-body">
+								<div class="row show-grid">
+									<div class="col-xs-12">
+										<div class="row" style="padding:5px;">
+											<div class="col-md-8">
+												<label>COMPUCHICLAYO</label>
+											</div>
+											<div class="col-md-4">
+												<label>R.U.C. 20608326481</label>
+											</div>
+										</div>
+										<div class="row" style="padding:5px;">
+											<div class="col-md-8">
+												<label>Señores</label>
+												<input type="text" id="txtNombreCliEmi" name="txtNombreCliEmi" value="" class="form-control" disabled/>
+											</div>
+											<div class="col-md-2">
+												<label>DNI/RUC</label>
+												<input type="text" id="txtNumDocCliEmi" name="txtNumDocCliEmi" value="" class="form-control" disabled/>
+											</div>
+											<div class="col-md-2">
+												<label>Fecha de Emisión</label>
+												<input type="text" id="txtFechaEmisionEmi" name="txtFechaEmisionEmi" value="" class="form-control" disabled/>
+											</div>
+										</div>
+										<div class="row" style="padding:5px;">
+											<div class="col-md-12">
+												<div id="divListarDetalleVentaEmitida" style="border:1px solid silver;padding:20px;margin-top:10px;"></div>
+											</div>
+										</div>
+										<div class="row" style="padding:5px;">
+											<div class="col-md-8">
+												<label>Código QR Comprobante</label>
+											</div>
+											<div class="col-md-4">
+												<label>Detalle totales</label>
+											</div>
+										</div>
+										<div class="row" style="padding-top:10px;margin: auto;width: 50%;">
+											<div class="col-md-3">
+												<button type="button" id="btnRetornar" class="btn btn-primary btn-block">Volver</button>
+											</div>
+											<div class="col-md-3">
+												<button type="button" id="btnImprimir" class="btn btn-primary btn-block">Imprimir</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+   	</div>
+	<script type="text/javascript" src="{PATH_LARGE}/libs/jquery/ui/1.13.1/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/libs/jquery/ui/1.13.1/jquery.ui.datepicker-es.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/libs/plugins/datatables-1.10.7/media/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/libs/plugins/datatables-1.10.7/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/puntoventa/ingresocaja/ventaproducto/generarComprobante/utilsRegistrarVentas.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/puntoventa/ingresocaja/ventaproducto/generarComprobante/registrarComprobanteVenta.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/puntoventa/ingresocaja/ventaproducto/generarComprobante/agregarNuevoClienteVentas.js"></script>
+
+	
+	<script language="javascript" type="text/javascript">
+	   var registrarComprobanteVenta;
+	   var agregarNuevoClienteVentas;
+	   $(document).ready(function() {               
+		    // registrar comprobante de venta                
+			registrarComprobanteVenta = new clsRegistrarComprobanteVenta();
+			registrarComprobanteVenta.iniciarForm();
+			// modulo agregar cliente
+			agregarNuevoClienteVentas = new clsAgregarNuevoClienteVentas();
+			agregarNuevoClienteVentas.iniciarForm();
+	   })
+	</script>
+	
+</body>
+</html>

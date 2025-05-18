@@ -1,0 +1,51 @@
+/*
+ * 20210526 estilos frmproductos
+ * Degui
+ */
+#divListarItems{
+    display:block;
+}
+#divModificarItem{
+    display:none;
+}
+#divRegistrarEspecProducto{
+    display:none;
+}
+#divGaleriaImagenProducto{
+    display:none;
+}
+#divRegistrarItem{
+    display:none;
+}
+.boxFormReg{
+  padding:20px;
+}
+
+
+/* Subir imagen [ini] 20220528 */
+.file {
+    position: absolute;
+    clip: rect(0px, 0px, 0px, 0px);
+    display: block;
+  }
+  
+  .labelfile {
+    color: #333;
+    background-color: #fff;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    padding: 6px 8px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  /* Subir imagen [fin] */

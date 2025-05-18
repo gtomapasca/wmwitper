@@ -1,0 +1,57 @@
+<!DOCTYPE html">
+<html lang="ES">
+  <head>
+    <title>{SITEADM_TITLE}</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<meta name="description" content="{SITEADM_DESCRIPTION}" />
+	<meta name="keywords" content="{SITEADM_KEYWORDS}" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+	<link rel="shorcut icon" type="img/x-icon" href="{SITEADM_FAVICON}" />
+	<link rel="stylesheet" type="text/css" href="{CSS_LIB_BOOTSTRAP}" media="screen" />
+	<link rel="stylesheet" type="text/css" href="{CSS_LIB_FONTAWESOME}" media="screen" />
+	<!--link rel="stylesheet" type="text/css" href="{CSS_LIB_JQUERY_UI}" media="screen" /-->
+	<link rel="stylesheet" type="text/css" href="{CSS_LIB_RESET}">
+	<link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/ecwitper/css/portaladmin/cpaneladmin/mainmenu/common/mainmenuGeneral.css" />
+	<link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/ecwitper/css/portaladmin/cpaneladmin/mainmenu/login/loginadmin.css" />
+  </head>
+  <body>
+   <header class="container-fluid witper-login-header">
+	<div class="container witper-login-divlogo">
+		<a href="../../../../ecwitper-site-portaladmin/ecwitper-cpaneladmin-mainmenu-ctrl/ver/menu/?page=login">
+			<img id="witper-login-logo" src="{SITEADM_LOGO}" alt="Compuchiclayo" class="img-responsive">
+		</a>
+	</div>      
+   </header>  
+   <div class="container">
+	<div id="divLogin">
+	   <form id="formLoginUser" role="form">
+		<label for="txtUser">Cpanel Login</label>
+	       <div class="form-group">
+		   		<input type="text" id="txtUser" name="txtUser" maxlength="15" class="form-control" placeholder="Usuario" required>
+	       </div>
+	       <div class="form-group">
+		   		<input type="password" id="txtPassword" name="txtPassword" maxlength="10" class="form-control" placeholder="Contraseña" required>
+	       </div>
+	       <div class="form-group">
+		   		<button type="button" id="btnInLoginUser" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-block">Ingresar</button>
+	       </div>
+	    </form>
+	</div>
+   </div>
+   <footer class="container-fluid witper-esp104 witper-login-footer">
+	  <div class="container">
+	    <div class="row witper-esp105">
+		  <div class="col-md-9">
+		    <p>{SITEADM_COPYRIGHT}</p>
+		  </div>
+	    </div>
+	  </div>
+   </footer>
+   <script type="text/javascript" src="{JS_LIB_JQUERY}"></script>
+   <script type="text/javascript" src="{JS_LIB_BOOTSTRAP}"></script>
+   <script type="text/javascript" src="{JS_LIB_WITPER_ADM}"></script>
+   <script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/portaladmin/cpaneladmin/mainmenu/common/mainmenuGeneral.js"></script>
+   <script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/portaladmin/cpaneladmin/mainmenu/login/loginadmin.js"></script>
+  </body>
+</html>

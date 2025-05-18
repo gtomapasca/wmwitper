@@ -1,0 +1,15 @@
+/*
+ * estilos carrito
+ * 20190728
+ */
+
+.carProductos{
+	display:block;
+}
+.carCliente{
+	display:none;
+}
+.carPedido{
+	display:none;
+}
+

@@ -1,0 +1,98 @@
+<!DOCTYPE html">
+<html lang="ES">
+	<head>
+		<title>New User</title>
+		<!--link rel="stylesheet" type="text/css" href="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/cuenta-usuario-view/inter-crearCuentaUsuario-web/src/css/frmCrearUsuario.css" /-->
+		<link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/tiendaonline/cuenta/usuario/crearCuentaUsuario/css/frmCrearUsuario.css" />
+	</head>
+	<body>
+		<div class="container show-top-margin separate-rows tall-rows">
+			<div class="panel panel-default">
+
+				<div class="panel-body">
+					<div id="divRegUser" class="row">
+						<div class="col-md-6">
+							<h2 class="wpr-h2-e01">Crear Usuario</h2>
+							<p class="wpr-p-e01">Tener su propia cuenta personal le permite recibir información destacada de los productos, ofertas y descuentos.</p>
+							<p class="wpr-p-e01">Registrese completando sus datos en el formulario y compruebelo usted mismo.</p>
+						</div>
+						<div class="col-md-6">
+							<form id="frmNewUser" role="form">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h3 class="panel-title wpr-title-e01">CREAR USUARIO</h3>
+									</div>
+									<div class="panel-body wpr-body-e01">
+										<div class="row">
+											<div class="col-md-4 col-sm-6 col-xs-12">
+												<label class="wpr-label-e01" for="txtNick">Nickname<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+											</div>
+											<div class="col-md-8 col-sm-6 col-xs-12">
+												<input type="text" id="txtNick" name="txtNick" maxlength="15" class="form-control wpr-input-e01" requeridoinput>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4 col-sm-6 col-xs-12">
+												<label class="wpr-label-e01" for="txtCel">Celular</label>
+											</div>
+											<div class="col-md-8 col-sm-6 col-xs-12">
+												<input type="text" id="txtCel" name="txtCel" maxlength="9" class="form-control wpr-input-e01" onkeydown="soloNumeros('txtCel')">
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4 col-sm-6 col-xs-12">
+												<label class="wpr-label-e01" for="txtEmailU">E-mail<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+											</div>
+											<div class="col-md-8 col-sm-6 col-xs-12">
+												<input type="email" id="txtEmailU" name="txtEmailU" maxlength="65" class="form-control wpr-input-e01" requeridoinput>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4 col-sm-6 col-xs-12">
+												<label class="wpr-label-e01" for="txtPasswordCU">Contraseña<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+											</div>
+											<div class="col-md-8 col-sm-6 col-xs-12">
+												<input type="password" id="txtPasswordCU" name="txtPasswordCU" maxlength="12" class="form-control wpr-input-e01" requeridoinput>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12 col-sm-12 col-xs-12 wpr-button-e01 wpr-esp-e02">
+											<button type="button" id="btnGrabar" class="btn btn-primary btn-lg">Crear Usuario</button>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12 col-sm-12 col-xs-12">
+											<div id="divMsjObligatorioFrmCrearUsuario" class="alert alert-danger wpr-esp-e01"></div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div id="divMjsResultadoFrmCrearUsuario" class="row">
+						<div class="col-md-12">
+							<h1 class="wpr-h2-e01">Felicitaciones!!!</h1>
+							<p class="wpr-p-e01">Ya eres un usuario registrado. Se ha creado correctamente tu usuario... ya puede ingresar con tu usuario y contraseña.</p>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!--script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script>
+		<script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/cuenta-usuario-view/inter-crearCuentaUsuario-web/src/js/utilsCrearUsuario.js"></script>
+		<script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/cuenta-usuario-view/inter-crearCuentaUsuario-web/src/js/frmCrearUsuario.js"></script>
+		<script type="text/javascript" src="{PATH_STORE}/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script-->
+
+		<script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script>
+		<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/cuenta/usuario/crearCuentaUsuario/js/utilsCrearUsuario.js"></script>
+		<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/cuenta/usuario/crearCuentaUsuario/js/frmCrearUsuario.js"></script>
+		<script type="text/javascript" src="{PATH_STORE}/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
+
+		<script language="javascript" type="text/javascript">
+			// desplazar hacía arriba de la pagina
+			window.scroll(0,0);
+		</script>
+	</body>
+</html>
