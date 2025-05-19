@@ -231,11 +231,11 @@ const SITECLI_HTML_TAG_FAVICON 		= "SITECLI_FAVICON";
 //const SITECLI_HTML_DIR_FAVICON 		= SITECLI_PATH_DIR_SKIN . "/img/principal/site/compuchiclayo.ico";
 const SITECLI_HTML_DIR_FAVICON 	= "/apps/ecwitper/img/tiendavirtual/iniciotienda/mainmenu/principal/logo/compuchiclayo.ico";
 const SITECLI_CSS_TAG_LIB_BOOTSTRAP	= "CSS_LIB_BOOTSTRAP";
-const SITECLI_CSS_DIR_LIB_BOOTSTRAP	= "/libs/bootstrap/css/bootstrap.min.css";
+const SITECLI_CSS_DIR_LIB_BOOTSTRAP	= "/libsExt/bootstrap/css/bootstrap.min.css";
 const SITECLI_CSS_TAG_LIB_FONTAWESOME   = "CSS_LIB_FONTAWESOME";
-const SITECLI_CSS_DIR_LIB_FONTAWESOME 	= "/libs/font-awesome/css/font-awesome.min.css";
+const SITECLI_CSS_DIR_LIB_FONTAWESOME 	= "/libsExt/font-awesome/css/font-awesome.min.css";
 const SITECLI_CSS_TAG_LIB_JQUERY_UI	= "CSS_LIB_JQUERY_UI";
-const SITECLI_CSS_DIR_LIB_JQUERY_UI	= "/libs/jquery/ui/1.13.1/jquery-ui.min.css";
+const SITECLI_CSS_DIR_LIB_JQUERY_UI	= "/libsExt/jquery/ui/1.13.1/jquery-ui.min.css";
 const SITECLI_CSS_TAG_LIB_RESET  	= "CSS_LIB_RESET";
 const SITECLI_CSS_DIR_LIB_RESET 	= "/utils/css/reset/reset.css";
 
@@ -250,13 +250,13 @@ const SITECLI_HTML_DES_CARITEMS 	= "0";
 
 // Constantes de pie de pagina
 const SITECLI_JS_TAG_LIB_JQUERY		= "JS_LIB_JQUERY";
-const SITECLI_JS_DIR_LIB_JQUERY		= "/libs/jquery/js/jquery-3.6.0.min.js";
+const SITECLI_JS_DIR_LIB_JQUERY		= "/libsExt/jquery/js/jquery-3.6.0.min.js";
 const SITECLI_JS_TAG_LIB_JQUERY_UI	= "JS_LIB_JQUERY_UI";
-const SITECLI_JS_DIR_LIB_JQUERY_UI	= "/libs/jquery/ui/1.13.1/jquery-ui.min.js";
+const SITECLI_JS_DIR_LIB_JQUERY_UI	= "/libsExt/jquery/ui/1.13.1/jquery-ui.min.js";
 const SITECLI_JS_TAG_LIB_BSTRAP_JQ	= "JS_LIB_BSTRAP_JQ";
-const SITECLI_JS_DIR_LIB_BSTRAP_JQ 	= "/libs/bootstrap/js/jquery-1.12.1.min.js";
+const SITECLI_JS_DIR_LIB_BSTRAP_JQ 	= "/libsExt/bootstrap/js/jquery-1.12.1.min.js";
 const SITECLI_JS_TAG_LIB_BOOTSTRAP	= "JS_LIB_BOOTSTRAP";
-const SITECLI_JS_DIR_LIB_BOOTSTRAP	= "/libs/bootstrap/js/bootstrap.min.js";
+const SITECLI_JS_DIR_LIB_BOOTSTRAP	= "/libsExt/bootstrap/js/bootstrap.min.js";
 const SITECLI_JS_TAG_LIB_WITPER_CLI = "JS_LIB_WITPER_CLI";		// Tag general
 //const SITECLI_JS_DIR_LIB_WITPER_CLI = "/libs/witper-cli/js/witper_cli-0.0.1.js";
 const SITECLI_JS_DIR_LIB_WITPER_CLI = "/libs/ecwitper/js/tiendavirtual/witper_pcli-1.1.1.js";
