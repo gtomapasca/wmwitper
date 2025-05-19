@@ -13,7 +13,7 @@ const DEFAULT_MODULE 			= '';
 const DEFAULT_MODEL 			= '';
 const DEFAULT_RESOURCE 			= '';
 
-const PATH_ROOT 			= '../../../../';
+//const PATH_ROOT 			= '../../../../';
 
 /*
  *************************************** 
