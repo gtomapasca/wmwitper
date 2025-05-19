@@ -1,0 +1,42 @@
+<!DOCTYPE html">
+<html lang="ES">
+	<!-- page_20101_ProductoCat.html -->
+  <head>
+	<title>Producto por Categoria</title>
+	<!--link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/sitecli/skin/compuchiclayo/css/principal/page_inicio.css" /-->
+  </head>
+  <body>
+	<div id="cuerpo">
+	  <!-- seccion cuerpo -->
+	  <section class="container-fluid">
+	      <div class="container 1witper-bgcolor-blancohumo">
+		    <div class="row">	
+				<!-- Seccion #01 -->
+				<div class="col-md-2">
+					<div class="panel panel-primary" style="margin-top:20px;">
+						<div class="panel-heading">Marcas</div>
+						<div class="panel-body">
+							<div id="panelTopCategoria1"></div>
+						</div>
+					</div>
+				</div>
+				<!-- Seccion #02 -->
+				<div class="col-md-10">
+					<!-- Panel #01  -->
+					<div class="panel panel-warning" style="margin-top:20px;">
+						<div class="panel-heading" id="codCategoria" data-codCategoria="{cod_categoria}" data-codSubCategoria="{cod_subcategoria}">:::: {nom_categoria}</div>
+						<div class="panel-body">
+							<div class="row">
+								<div id="panelTopProducto1"></div>
+							</div>    
+						</div>
+					</div>
+				</div>     
+		    </div>
+	      </div>
+	  </section>
+	</div>
+   <!-- script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/comercio-productos-view/inter-cattegoriaproductos-web/src/js/categoriaProductos.js"></script -->
+   <script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/comercio/productos/categoriaproducto/js/categoriaProductos.js"></script>
+  </body>
+</html>

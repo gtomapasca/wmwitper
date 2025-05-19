@@ -1,0 +1,28 @@
+.witper-login-divlogo{
+   float:left;
+   width:100px;
+}
+
+#witper-login-logo{
+   width: 100px;
+   padding: 10px;
+}
+
+.witper-login-header{
+   /*background-color:#2B3856; */
+   border-bottom:1px solid #E5E4E2;
+}
+
+#divLogin{
+   margin:auto; width: 400px; 
+   /*border: 1px solid green;padding:30px;*/
+}
+
+#formLoginUser{
+   background-color:#E5E4E2;padding: 25px;
+}
+
+.witper-login-footer{
+   /*background-color:#BCC6CC;*/
+   border-top: 1px solid #E5E4E2;
+}

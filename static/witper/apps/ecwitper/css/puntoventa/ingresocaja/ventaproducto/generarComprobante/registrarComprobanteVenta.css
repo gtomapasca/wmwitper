@@ -1,0 +1,19 @@
+/*
+ * 20230202 estilos frmRegistrarVentas
+ * Degui
+ */
+
+.witper-box-hide{
+  display:none;
+}
+
+.witper-label-ds01{
+  font-weight:bold;
+  font-size:14px;
+  color:#5d6d7e;
+}
+
+.witper-pading-01{
+  padding:7px 20px 7px 20px;
+}
+

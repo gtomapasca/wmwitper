@@ -1,0 +1,131 @@
+<!DOCTYPE html">
+<html lang="ES">
+<head>
+   <title>FrmClientes</title>
+   <link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/ecwitper/css/portaladmin/atencioncliente/recepcioncli/registroSuscripcion/registrarSuscriptor.css" />
+</head>
+<body>
+	<!-- page_41054_frmSuscriptores.html -->
+   <section class="container-fluid">
+      <div class="container">
+	 <div class="row">
+	    <div class="col-md-6">
+		<div id="divListarItems"></div>
+	    </div>
+	 </div>
+	 <div class="row">
+	    <div id="divModificarClientes" class="col-md-6">
+		<h1>Modificar cliente</h1>
+		<form id="formClienteMod" role="form">
+		       <input type="hidden" id="hid_idUsuario" name="hid_idUsuario" value="">
+		       <div class="form-group">
+			   <label style="color:#777;" for="txtAvatarMod">Avatar</label>
+	    	           <input type="text" id="txtAvatarMod" name="txtAvatarMod" maxlength="50" class="form-control" required>
+		       </div>
+		       <div class="form-group">
+			   <label style="color:#777;" for="txtNickMod">Nick</label>
+			   <input type="text" id="txtNickMod" name="txtNickMod" maxlength="10" class="form-control">
+		       </div>
+		       <div class="form-group">
+			   <label style="color:#777;" for="txtEmailMod">Email</label>
+			   <input type="text" id="txtEmailMod" name="txtEmailMod" maxlength="20" class="form-control">
+		       </div>
+		       <div class="form-group">
+			   <label style="color:#777;" for="txtCelMod">Celular</label>
+			   <input type="text" id="txtCelMod" name="txtCelMod" maxlength="20" class="form-control">
+		       </div>
+		       <div class="form-group">
+			   <label style="color:#777;" for="txtPasswordMod">Password</label>
+			   <input type="text" id="txtPasswordMod" name="txtPasswordMod" maxlength="10" class="form-control">
+		       </div>
+			<div class="form-group">
+			   <label style="color:#777;" for="selNivelMod">Nivel</label>
+		           <select id="selNivelMod" name="selNivelMod" class="form-control">
+				  <option selected>---Seleccione---</option>
+				  <option value="0">Ninguno</option>
+				  <option value="1">Básico</option>
+			   </select>
+			</div>
+			<div class="form-group">
+			   <label style="color:#777;" for="selTipoMod">Tipo</label>
+		           <select id="selTipoMod" name="selTipoMod" class="form-control">
+				  <option selected>---Seleccione---</option>
+				  <option value="UI">Usuario interno</option>
+				  <option value="UX">Usuario externo</option>
+			   </select>
+			</div>
+			<div class="form-group">
+			   <label style="color:#777;" for="selEstadoMod">Estado</label>
+		           <select id="selEstadoMod" name="selEstadoMod" class="form-control">
+				  <option selected>---Seleccione---</option>
+				  <option value="0">Habilitado</option>
+				  <option value="1">Deshabilitado</option>
+			   </select>
+			</div>
+		       <div class="form-group">
+			   <button type="button" id="btnModificarCliente" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-block">Modificar</button>
+			   <button type="button" id="btnCancelarModCli" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-block">Cancelar</button>
+		       </div>
+		   </form>
+	    </div>
+	 </div>
+         <div class="row">
+	    <div id="divRegistrarClientes" class="col-md-6">
+		   <h1>Registrar nuevo clientes</h1>
+		   <form id="formCliente" role="form">
+		       <div class="form-group">
+			   <label style="color:#777;" for="txtAvatar">Avatar</label>
+	    	           <input type="text" id="txtAvatar" name="txtAvatar" maxlength="50" class="form-control" required>
+		       </div>
+		       <div class="form-group">
+			   <label style="color:#777;" for="txtNick">Nick</label>
+			   <input type="text" id="txtNick" name="txtNick" maxlength="10" class="form-control">
+		       </div>
+		       <div class="form-group">
+			   <label style="color:#777;" for="txtEmail">Email</label>
+			   <input type="text" id="txtEmail" name="txtEmail" maxlength="20" class="form-control">
+		       </div>
+		       <div class="form-group">
+			   <label style="color:#777;" for="txtCel">Celular</label>
+			   <input type="text" id="txtCel" name="txtCel" maxlength="20" class="form-control">
+		       </div>
+		       <div class="form-group">
+			   <label style="color:#777;" for="txtPassword">Password</label>
+			   <input type="text" id="txtPassword" name="txtPassword" maxlength="10" class="form-control">
+		       </div>
+			<div class="form-group">
+			   <label style="color:#777;" for="selNivel">Nivel</label>
+		           <select id="selNivel" name="selNivel" class="form-control">
+				  <option selected>---Seleccione---</option>
+				  <option value="0">Ninguno</option>
+				  <option value="1">Básico</option>
+			   </select>
+			</div>
+			<div class="form-group">
+			   <label style="color:#777;" for="selTipo">Tipo</label>
+		           <select id="selTipo" name="selTipo" class="form-control">
+				  <option selected>---Seleccione---</option>
+				  <option value="UI">Usuario interno</option>
+				  <option value="UX">Usuario externo</option>
+			   </select>
+			</div>
+			<div class="form-group">
+			   <label style="color:#777;" for="selEstado">Estado</label>
+		           <select id="selEstado" name="selEstado" class="form-control">
+				  <option selected>---Seleccione---</option>
+				  <option value="0">Habilitado</option>
+				  <option value="1">Deshabilitado</option>
+			   </select>
+			</div>
+		       <div class="form-group">
+			   <button type="button" id="btnRegistrarCliente" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-block">Registrar</button>
+			   <button type="button" id="btnCancelarRegCli" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-block">Cancelar</button>
+		       </div>
+		   </form>
+	    </div>
+         </div>
+      </div>
+   </section>
+   <script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/portaladmin/atencioncliente/recepcioncli/registroSuscripcion/registrarSuscriptor.js"></script>
+</body>
+</html>

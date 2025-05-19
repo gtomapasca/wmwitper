@@ -1,0 +1,54 @@
+<!DOCTYPE html">
+<html lang="ES">
+	<head>
+		<title>Post</title>
+	</head>
+	<body>
+		<div class="container show-top-margin separate-rows tall-rows">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-8">
+							<h3>BLOG::POST</h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-8">
+							<section class="gtp-marg-blog thumbnail">
+								<article id="contenidopost">
+									<h1 id="codpost" data-codpost="{cod_articulo}" style="padding:5px; color:003366;">{titulo}</h1>
+									<p><img src="{imagen_xl}" class="img-responsive"></p>
+									<p><b>Por:</b> {nombres} {ape_pat} {ape_mat}</p>
+									<p><b>Fecha:</b> {fecha_creacion}</p>
+									<h5>{contenido}</h5>
+								</article>
+								<div id="comentario">
+									<form id="frmComentarioPost" role="form" method="post">
+										<input type="hidden" class="form-control" name="codPost" value="{cod_articulo}">
+										<div class="row witper-esp103">
+												<div class="col-md-11"><input type="text" id="txtNick" name="txtNick" maxlength="15" class="form-control" placeholder="Nick" required></div>
+										</div>
+										<div class="row witper-esp103">
+											<div class="col-md-11"><textarea id="txtComentario" name="txtComentario" class="form-control" rows="4" maxlength="800" placeholder="Escriba aquí su comentario" required></textarea></div>
+										</div>
+										<div class="row witper-esp103">
+											<div class="col-md-11"><button type="button" id="btnComentar" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-block">Comentar</button></div>
+										</div>
+									</form>
+								</div>
+								<!-- Panel Comentarios -->
+								<div id="panelComentarios"></div>	 
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- page_10602_post.html -->
+		<div class="container">
+		
+		</div>
+		<!--script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/publicador-articulos-view/inter-post-web/src/js/post.js"></script-->
+		<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/publicador/articulos/post/js/post.js"></script>
+	</body>
+</html>

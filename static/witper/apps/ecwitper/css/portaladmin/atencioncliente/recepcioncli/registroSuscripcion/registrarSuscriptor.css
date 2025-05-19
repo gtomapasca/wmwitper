@@ -1,0 +1,16 @@
+/*
+ * 20191210 estilos frmusuarios
+ * Degui
+ */
+#divListarClientes{
+    display:block;
+}
+#divModificarClientes{
+    display:none;
+}
+#divRegistrarClientes{
+    display:none;
+}
+.boxFormReg{
+  padding:20px;
+}

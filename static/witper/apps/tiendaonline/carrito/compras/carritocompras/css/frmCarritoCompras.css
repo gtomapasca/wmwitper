@@ -1,0 +1,156 @@
+/*
+ * estilos carrito compras
+ * 20190728
+ */
+
+.carProductos{
+	display:block;
+}
+.carCliente{
+	display:none;
+}
+.carPedido{
+	display:none;
+}
+
+/* ------------------------------- */
+
+/* h2 estilo 01 */
+.wpr-h2-e01{
+    font-size: 1.8rem;
+    color:#1c2833;
+    margin-top: 25px;
+    font-family: arial, serif, verdana;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* h4 estilo 01 */
+.wpr-h4-e01{
+    font-size: 1.4rem;
+    color:#1c2833;
+    margin-top: 15px;
+    font-family: arial, serif, verdana;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* p estilo 01 */
+.wpr-p-e01{
+    font-size: 1.2rem;
+    color: #1c2833;
+    margin-top: 10px;
+    font-family: arial, serif, verdana;
+    text-align: justify;
+    line-height: 1.3em;
+}
+
+/* title estilo 01 */
+.wpr-title-e01{
+    font-size: 1rem;
+    color:#2c3e50;
+    font-family: arial, serif, verdana;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* label estilo 01 */
+.wpr-label-e01{
+    font-size: 1rem;
+    color: #2c3e50 ;
+    font-family: arial, serif, verdana;
+    margin: 10 0 0 7px;
+}
+
+/* input estilo 01 */
+.wpr-input-e01{
+    /*margin: 5 15 5 5px;*/
+    margin: 5px;
+}
+
+/* body estilo 01 */
+.wpr-body-e01{
+    margin: 5 25 5 5px;
+}
+
+/* buton estilo 01 */
+.wpr-button-e01{
+    text-align: center;
+}
+
+/* img estilo 01 */
+.wpr-img-e01{
+    width:40%;
+    margin: 15px;
+}
+
+/* espaciado 01 */
+.wpr-esp-e01{
+    margin-top: 20px;
+}
+/* espaciado 02 */
+.wpr-esp-e02{
+    margin-bottom: 20px;
+}
+
+
+
+/* upercase estilo 01 */
+.wpr-upercase{    
+    text-transform: uppercase;
+}
+
+.error {
+    font-size: 0.9rem;
+    color:red;
+    font-family: arial, serif, verdana;
+}
+
+.wpr-asterix-e01 {
+    font-size: 1.2rem;
+    color:red;
+    /*color: #C9302C;*/
+    font-family: arial, serif, verdana;
+}
+
+.wpr-texto-e05 {
+    font-size: 1.4rem;
+    color:steelblue;
+    font-family: arial, serif, verdana;
+}
+
+.wpr-texto-e06 {
+    font-size: 1.2rem;
+    color:steelblue;
+    font-family: arial, serif, verdana;
+    /*font-family: Helvetica, Arial, sans-serif;*/
+    font-weight: bold;
+}
+
+.wpr-texto-e11 {
+    font-size: .8rem;
+    color:steelblue;
+    font-family: arial, serif, verdana;
+}
+
+.wpr-input-invalid {
+    box-shadow: 0 0 5px 1px red;
+}
+
+.wpr-display-n{
+	display:none;
+}
+
+/* listas */
+.wpr-list-e01 {
+    list-style-type: disc;
+    list-style-position: inside;
+    /*list-style-image: url(star.svg);*/
+    font-family: arial, serif, verdana;
+    font-size: 1.2rem;
+    padding: 1rem;
+}
+
+.wpr-list-e01 li{
+  line-height: 1.5;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html">
+<html lang="ES">
+  	<head>
+		<title>Carrito</title>
+		<!-- link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/ecwitper/css/tiendavirtual/iniciotienda/mainmenu/carrito/frmCarrito.css" / -->
+		<!--link rel="stylesheet" type="text/css" href="http://localhost/webapps/wmwitper/apps/ecwitper-tiendaonline-webapp/views/carrito-compras-view/inter-carritocompras-web/src/css/frmCarritoCompras.css" /-->
+		<link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/tiendaonline/carrito/compras/carritocompras/css/frmCarritoCompras.css" />
+		<style>
+			.table colorItems{
+				color:blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container show-top-margin separate-rows tall-rows">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div id="divCarProductos" class="row carProductos">
+						<div id="panelCarrito"></div>
+					</div>
+					<div id="divCarCliente" class="row carCliente">
+						<div class="col-md-8">
+							<h2 class="wpr-h2-e01">Carrito::Registrar Datos del Cliente</h2>
+							<h4>Debe ingresar sus datos personales en el siguiente formulario para realizar su pedido:</h4>
+								<!--form role="form" action="{enlace carrito pedido}" method="post" target="_self"-->
+							<form id="frmCarCliente" role="form">
+								<input type="hidden" name="Accion" value="carritoCliente">
+								<div class="row witper-esp103">
+										<div class="col-md-11"><input type="text" name="txtDNI" maxlength="8" class="form-control" placeholder="DNI"></div>
+								</div>
+								<div class="row witper-esp103">
+										<div class="col-md-11"><input type="text" name="txtNombre" maxlength="50" class="form-control" placeholder="Nombres"></div>
+								</div>
+								<div class="row witper-esp103">
+										<div class="col-md-11"><input type="text" name="txtApePat" maxlength="50" class="form-control" placeholder="Apellido paterno"></div>
+								</div>
+								<div class="row witper-esp103">
+										<div class="col-md-11"><input type="text" name="txtApeMat" maxlength="50" class="form-control" placeholder="Apellido materno"></div>
+								</div>
+								<div class="row witper-esp103">
+									<div class="col-md-11"><input type="text" name="txtCel" maxlength="12" class="form-control" placeholder="Teléfono/Celular"></div>
+								</div>
+								<div class="row witper-esp103">
+									<div class="col-md-11"><input type="email" name="txtEmail" maxlength="50" class="form-control" placeholder="E-mail" required></div>
+								</div>
+								<div class="row witper-esp103">
+									<div class="col-md-11"><input type="text" name="txtDireccion" maxlength="100" class="form-control" placeholder="Dirección" required></div>
+								</div>
+								<div class="row witper-esp103">
+									<div class="col-md-11">
+										<button type="button" id="btnContinuarCli" class="btn btn-primary btn-block">Continuar</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div id="divCarPedido" class="row carPedido">
+						<div id="panelPedido"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/tiendavirtual/iniciotienda/mainmenu/carrito/frmCarrito.js"></script -->
+		<!-- script type="text/javascript" src="http://localhost/webapps/wmwitper/apps/ecwitper-tiendaonline-webapp/views/carrito-compras-view/inter-carritocompras-web/src/js/frmCarritoCompras.js"></script -->
+		<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/carrito/compras/carritocompras/js/frmCarritoCompras.js"></script>
+  	</body>
+</html>

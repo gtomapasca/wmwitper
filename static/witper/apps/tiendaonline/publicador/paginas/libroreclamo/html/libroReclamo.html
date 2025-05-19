@@ -1,0 +1,307 @@
+<!DOCTYPE html">
+<html lang="ES">
+  <head>
+	<title>Libro Reclamaciones</title>
+	<!-- link rel="stylesheet" type="text/css" href="/static/witper/apps/ecwitper/css/tiendavirtual/iniciotienda/mainmenu/forms/frmLibroReclamo.css" / -->
+	<!--link rel="stylesheet" type="text/css" href="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/publicador-paginas-view/inter-libroreclamo-web/src/css/libroReclamo.css" /-->
+	<link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/tiendaonline/publicador/paginas/libroreclamo/css/libroReclamo.css" />
+  </head>
+  <body>
+	<div class="container show-top-margin separate-rows tall-rows">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="row show-grid" id="divDatosReclamo">
+					<div class="col-xs-12">
+						<h2 class="wpr-h2-e01">Libro de Reclamaciones</h2>
+						<p class="wpr-p-e01">Es importante para nosotros conocer sus quejas o reclamos para mejorar nuestros servicios. Por favor, llene el siguiente formulario y responderemos a la brevedad posible.</p>	
+						<p class="wpr-p-e01"></p>
+						<form id="frmLibroReclamo" name="frmLibroReclamo" data-toggle="validator" role="form" novalidate>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title wpr-title-e01">DATOS PERSONALES</h3>
+								</div>
+								<div class="panel-body wpr-body-e01">
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="cboTipDocu">Tipo Documento<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<select id="cboTipDocu" name="cboTipDocu" class="form-control wpr-input-e01" requeridosel>
+												<option value="0" selected>DNI</option>
+												<option value="1">RUC</option>
+											</select>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtNumDocu">Nro Documento<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="text" id="txtNumDocu" name="txtNumDocu" maxlength="8" class="form-control wpr-input-e01" onkeydown="soloNumeros('txtNumDocu')" requeridoinput>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtNombre">Nombre / Raz. Social<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="text" id="txtNombre" name="txtNombre" maxlength="50" class="form-control wpr-input-e01 wpr-upercase" requeridoinput>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtCel">Celular<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="text" id="txtCel" name="txtCel" maxlength="9" class="form-control wpr-input-e01" onkeydown="soloNumeros('txtCel')" requeridoinput>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtEmail">E-mail<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="email" id="txtEmail" name="txtEmail" maxlength="45" class="form-control wpr-input-e01" >
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title wpr-title-e01">DATOS DOMICILIO</h3>
+								</div>
+								<div class="panel-body wpr-body-e01">									
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="cboRegion">Regi&oacute;n<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="hidden" id="hdRegion" name="hdRegion" value="74">
+											<select id="cboRegion" name="cboRegion" class="form-control wpr-input-e01" disabled>
+												<option value="51">Lima</option>
+												<option value="74" selected>Lambayeque</option>
+											</select>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="cboProvincia">Provincia<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="hidden" id="hdProvincia" name="hdProvincia" value="CIX">
+											<select id="cboProvincia" name="cboProvincia" class="form-control wpr-input-e01" disabled>
+												<option value="CIX" selected>Chiclayo</option>
+												<option value="FER">Ferreñafe</option>
+												<option value="LAM">Lambayeque</option>
+											</select>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="cboDistrito">Distrito<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<select id="cboDistrito" name="cboDistrito" class="form-control wpr-input-e01" requeridosel>
+												<option value="-1" selected>--- Seleccione ---</option>
+												<option value="CIX" >Chiclayo</option>
+												<option value="JLO">José Leonardo Ortiz</option>
+												<option value="VIC">La Victoria</option>
+											</select>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtDomicilio">Domicilio</label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="text" id="txtDomicilio" name="txtDomicilio" class="form-control wpr-input-e01" maxlength="65">
+										</div>
+									</div>
+									<!--div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtTelf">Teléfono Fijo:</label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="text" id="txtTelf" name="txtTelf" maxlength="10" class="form-control wpr-input-e01" onkeydown="soloNumeros('txtTelf')">
+										</div>
+									</div -->
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title wpr-title-e01">DATOS DE LA COMPRA</h3>
+								</div>
+								<div class="panel-body wpr-body-e01">
+									<!--div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12"></div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<fieldset>
+												<legend>¿Tienes carné de conducir?<abbr title="Este campo es obligatorio" aria-label="required">*</abbr></legend>
+												<input type="radio" required name="driver" id="r1" value="yes"><label for="r1">Sí</label>
+												<input type="radio" required name="driver" id="r2" value="no"><label for="r2">No</label>
+											</fieldset>
+										</div>
+									</div-->
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="cboMotivo">Motivo<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<select id="cboMotivo" name="cboMotivo" class="form-control wpr-input-e01">
+												<option value="0" selected>Queja</option>
+												<option value="1">Reclamo</option>
+											</select>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="cboTipoComprob">Tipo Comprobante<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<select id="cboTipoComprob" name="cboTipoComprob" class="form-control wpr-input-e01">
+												<option value="B" selected>Boleta</option>
+												<option value="F">Factura</option>
+											</select>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtNroComprob">Número de comprobante<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="text" id="txtNroComprob" name="txtNroComprob" maxlength="15" class="form-control wpr-input-e01" requeridoinput>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtFecComprob">Fecha de Comprobante<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class='col-md-9 col-sm-6 col-xs-12' id="divtxtFecComprob">
+											<div class='input-group date' id='dtpComprob'>
+												<input type='text' class="form-control" id="txtFecComprob" name="txtFecComprob" readonly />
+												<span class="input-group-addon">
+													<span class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtCodProd">Código de Producto</label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="text" id="txtCodProd" name="txtCodProd" maxlength="10" class="form-control wpr-input-e01" onkeydown="soloNumeros('txtCodProd')">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtDesProd">Nombre de producto<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="text" id="txtDesProd" name="txtDesProd" maxlength="65" class="form-control wpr-input-e01" requeridoinput>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtCantProd">Cantidad de producto<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<!-- input type="text" id="txtCanProd" name="txtCanProd" maxlength="3" class="form-control wpr-input-e01" onkeydown="soloNumeros('txtCanProd')" -->
+											<input type="number" id="txtCantProd" name="txtCantProd" class="form-control wpr-input-e01" value="1" min="1" max="999" onkeydown="soloNumeros('txtCantProd')" requeridoinput>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtPrecioProd">Monto de Reclamo (S/)<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<!-- input type="text" id="txtPreProd" name="txtPreProd" class="form-control wpr-input-e01" onkeydown="soloNumeros('txtPreProd')" -->
+											<input type="number" id="txtPrecioProd" name="txtPrecioProd" class="form-control wpr-input-e01" value="0" min="1" max="99999" onkeydown="soloNumeros('txtPrecioProd')" requeridoinput>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtMotivo">Motivo de reclamo<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<textarea id="txtMotivo" name="txtMotivo" class="form-control wpr-input-e01" rows="4" requeridoinput></textarea>
+											<span id="txtContadorCaracteres" class="wpr-texto-e11"></span>
+										</div>
+									</div>
+									<!--div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtDetPedido">Pedido de cliente:</label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<textarea id="txtDetPedido" name="txtDetPedido" class="form-control wpr-input-e01" rows="4" maxlength="500" required></textarea>
+										</div>
+									</div-->
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12 wpr-button-e01">
+									<button type="button" id="btnEnviarReclamo" class="btn btn-primary btn-lg">Enviar Formulario</button>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<div id="divMsgDatoObligatorio" class="alert alert-danger wpr-esp-e01"></div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="row wpr-display-n" id="divResultado">
+					<div class="col-xs-12">
+						<h1 class="wpr-h2-e01">Libro de Reclamaciones</h1>
+						<p class="wpr-p-e01"></p>
+						<!-- p class="wpr-p-e01">Su reclamo ha sido registrado con el código: <span id="lblNumReclamo" class="wpr-texto-e05"></span>. Se ha enviado una notificación ha su correo electronico.</P -->
+						<p class="wpr-p-e01">
+							Su reclamo ha sido registrado con &eacute;xito. 
+						</P>
+						<p class="wpr-p-e01">
+							Se ha generado y envi&aacute;do el n&uacute;mero de reclamo a su correo electr&oacute;nico: <span id="lblemail" class="wpr-texto-e05"></span>.
+						</P>
+						<p class="wpr-p-e01">
+							Muy pronto nos pondremos en contacto con usted.
+						</P>
+					</div>
+				</div>
+			</div>
+		</div>
+  	</div>
+	<!--
+	<script type="text/javascript" src="{PATH_LARGE}/utils/js/tiendavirtual/utils.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/tiendavirtual/iniciotienda/mainmenu/forms/utilsLibroReclamo.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/tiendavirtual/iniciotienda/mainmenu/forms/frmLibroReclamo.js"></script>
+	<script type="text/javascript" src="/static/witper/libs/bootstrap-datetimepicker-3.1.3/js/moment-with-locales.js"></script>
+	<script type="text/javascript" src="/static/witper/libs/bootstrap-datetimepicker-3.1.3/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="/static/witper/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
+	-->
+	<!--
+	<script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script>
+	<script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/publicador-paginas-view/inter-libroreclamo-web/src/js/utilsLibroReclamo.js"></script>
+	<script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/publicador-paginas-view/inter-libroreclamo-web/src/js/libroReclamo.js"></script>
+	<script type="text/javascript" src="{PATH_STORE}/libs/bootstrap-datetimepicker-3.1.3/js/moment-with-locales.js"></script>
+	<script type="text/javascript" src="{PATH_STORE}/libs/bootstrap-datetimepicker-3.1.3/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="{PATH_STORE}/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
+	-->
+	<script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/publicador/paginas/libroreclamo/js/utilsLibroReclamo.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/publicador/paginas/libroreclamo/js/libroReclamo.js"></script>
+	<script type="text/javascript" src="{PATH_STORE}/libs/bootstrap-datetimepicker-3.1.3/js/moment-with-locales.js"></script>
+	<script type="text/javascript" src="{PATH_STORE}/libs/bootstrap-datetimepicker-3.1.3/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="{PATH_STORE}/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
+
+	<script language="javascript" type="text/javascript">
+		/*var registrarLibroReclamo;
+		$(document).ready(function() {
+			 registrarLibroReclamo = new clsRegistrarLibroReclamo();
+			 registrarLibroReclamo.iniciarForm();
+		});*/
+		// desplazar hacía arriba de la pagina
+	 	window.scroll(0,0);
+	</script>
+
+  </body>
+</html>

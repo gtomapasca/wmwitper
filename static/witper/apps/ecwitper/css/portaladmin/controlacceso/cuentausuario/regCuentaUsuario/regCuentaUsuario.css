@@ -1,0 +1,16 @@
+/*
+ * 20191210 estilos frmusuarios
+ * Degui
+ */
+#divListaUsuarios{
+    display:block;
+}
+#divModificarUsuario{
+    display:none;
+}
+#divRegistrarUsuario{
+    display:none;
+}
+.boxNewUser{
+  padding:20px;
+}

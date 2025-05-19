@@ -1,0 +1,139 @@
+<!DOCTYPE html">
+<html lang="ES">
+  <head>
+	<title>Contacto</title>
+	<!-- link rel="stylesheet" type="text/css" href="/static/witper/apps/ecwitper/css/tiendavirtual/iniciotienda/mainmenu/forms/frmContacto.css" / -->
+	<!--link rel="stylesheet" type="text/css" href="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/publicador-paginas-view/inter-contacto-web/src/css/contacto.css" /-->
+	<link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/tiendaonline/publicador/paginas/contacto/css/contacto.css" />
+  </head>
+  <body>
+	<div class="container show-top-margin separate-rows tall-rows">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="wpr-h2-e01">Cont&aacute;ctenos</h2>
+						<p class="wpr-p-e01 wpr-esp-e02">Env&iacute;enos sus consultas a trav&eacute;s del siguiente formulario:</p>
+						<form id="frmContactenos" role="form">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title wpr-title-e01">CONTACTENOS</h3>
+								</div>
+								<div class="panel-body wpr-body-e01">
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtNombre">Nombre</label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="text" id="txtNombre" name="txtNombre" maxlength="65" class="form-control wpr-input-e01" requeridoinput>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtCel">Celular</label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="text" id="txtCel" name="txtCel" maxlength="9" class="form-control wpr-input-e01" onkeydown="soloNumeros('txtCel')">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtEmail">E-mail<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="text" id="txtEmail" name="txtEmail" maxlength="65" class="form-control wpr-input-e01" requeridoinput>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtAsunto">Asunto</label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<input type="text" id="txtAsunto" name="txtAsunto" maxlength="65" class="form-control wpr-input-e01" requeridoinput>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3 col-sm-6 col-xs-12">
+											<label class="wpr-label-e01" for="txtMensaje">Mensaje<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+										</div>
+										<div class="col-md-9 col-sm-6 col-xs-12">
+											<textarea id="txtMensaje" name="txtMensaje" class="form-control wpr-input-e01" rows="4" requeridoinput></textarea>
+											<span id="txtContadorCaracteres" class="wpr-texto-e11"></span>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-xs-12 wpr-button-e01 wpr-esp-e02">
+										<button type="button" id="btnGrabar" class="btn btn-primary btn-lg">Enviar Formulario</button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<div id="divMsgDatoObligatorio" class="alert alert-danger wpr-esp-e01"></div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="col-md-12">
+						<h2 class="wpr-h2-e01">Tienda Principal</h2>
+						<p class="wpr-p-e01 wpr-esp-e02">Encuentranos en pleno centro de Chiclayo. Calle Juan Cuglievan N° 848.</p>
+						<p class="wpr-p-e01 wpr-esp-e02">Horario de atención: Lunes a Sábados, de 8:00 am - 8:00 pm.</p>
+						<p class="wpr-p-e01 wpr-esp-e02">Whatsapp: <i class="fa fa-whatsapp" aria-hidden="true"></i>&nbsp;940 089 237 / <i class="fa fa-whatsapp" aria-hidden="true"></i>&nbsp;991 914 016</p>
+						<img class="img-thumbnail" src="{PATH_STORE}/apps/ecwitper/img/tiendavirtual/iniciotienda/mainmenu/principal/tienda/principal.jpg">
+					</div>
+					<div class="col-md-12 wpr-esp-e01">
+						<h2 class="wpr-h2-e01">Ub&iacute;canos</h2>
+						<p class="wpr-p-e01 wpr-esp-e02">Cal. Juan Cuglievan #848 - Chiclayo, Per&uacute;.</p>
+						<div id="map" style="width:100%;height:400px;">Mapa de ubicación</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--
+	<script type="text/javascript" src="{PATH_LARGE}/utils/js/tiendavirtual/utils.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/tiendavirtual/iniciotienda/mainmenu/forms/utilsContacto.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/tiendavirtual/iniciotienda/mainmenu/forms/frmContacto.js"></script>
+	<script type="text/javascript" src="/static/witper/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVMnzmc1Nl_3e_VvtH6dbuFuNp37crTWE&callback=myMap"></script>
+	-->
+	<!--
+	<script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script>
+	<script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/publicador-paginas-view/inter-contacto-web/src/js/utilsContacto.js"></script>
+	<script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/publicador-paginas-view/inter-contacto-web/src/js/contacto.js"></script>
+	<script type="text/javascript" src="{PATH_STORE}/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVMnzmc1Nl_3e_VvtH6dbuFuNp37crTWE&callback=myMap"></script>
+	-->
+	<script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/publicador/paginas/contacto/js/utilsContacto.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/publicador/paginas/contacto/js/contacto.js"></script>
+	<script type="text/javascript" src="{PATH_STORE}/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVMnzmc1Nl_3e_VvtH6dbuFuNp37crTWE&callback=myMap"></script>
+
+	<script language="javascript" type="text/javascript">
+		// desplazar hacía arriba de la pagina
+		window.scroll(0,0);
+
+		// importaciones js
+		/*var registrarContacto;
+		$(document).ready(function() {
+			 registrarContacto = new clsRegistrarContacto();
+			 registrarContacto.iniciarForm();
+		});*/
+		
+		// google maps
+		function myMap() {
+			//var myCenter = new google.maps.LatLng(-6.774983677067341, -79.83202081476233);
+			var myCenter = new google.maps.LatLng(-6.7708467, -79.8403029);
+			var mapCanvas = document.getElementById("map");
+			var mapOptions = {center: myCenter, zoom: 15};
+			var map = new google.maps.Map(mapCanvas, mapOptions);
+			var marker = new google.maps.Marker({position:myCenter});
+			marker.setMap(map);
+		}
+	</script>
+	
+  </body>
+</html>

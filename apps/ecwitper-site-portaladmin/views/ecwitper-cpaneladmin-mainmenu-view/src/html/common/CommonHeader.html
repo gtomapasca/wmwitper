@@ -1,0 +1,63 @@
+<!-- sección cabecera -->
+<div id="cabecera">
+  <header class="gtp-bgcolor-principal">
+      <div class="container-fluid">
+	<div class="row">
+	    <div class="colxx-md-10 colxx-xs-6 gtp-esp104">
+	        <nav class="navbar navbar-default" style="border:0;">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!--a href="javascript:cargarPagina('adm/principal/ver/menu/?page=principal')"-->
+					<!--a href="../../../../adm/principal/ver/menu/?page=principal" -->
+					<a href="../../../../ecwitper-site-portaladmin/ecwitper-cpaneladmin-mainmenu-ctrl/ver/menu/?page=cpaneladmin">
+						<img id="witper-logo-principal" src="{SITEADM_LOGO}" alt="COMPUCHICLAYO" class="img-responsive">
+					</a>
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<div id="mnuPrincipalCpanel"></div>
+					<div class="text-center">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="#" id="btnLoginUser" data-toggle="tooltip" title="Usuario"><span class="glyphicon glyphicon-user"></span><span id="nameUser"></span></a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div id="divLoginUser" style="position:absolute;right:0;background-color:#f6f6f6;width:230px;z-index:1;">
+					<div id="divLoginUser-p1" style="display:none;padding:10px;">
+						<div>
+							<h4>Login</h4>
+							<form id="formLoginUser" role="form">
+								<div class="form-group">
+									<input type="email" id="txtEmailLogin" name="txtEmailLogin" maxlength="50" class="form-control" placeholder="E-mail" required>
+								</div>
+								<div class="form-group">
+									<input type="password" id="txtPassword" name="txtPassword" maxlength="10" class="form-control" placeholder="Contraseña" required>
+								</div>
+								<div class="form-group">
+									<button type="button" id="btnInLoginUser" data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-block">Ingresar</button>
+								</div>
+							</form>
+						</div>
+						<div>
+							<a href="{LINK_NEWUSER}">Registrar Nuevo Usuario</a>
+						</div>
+					</div>
+					<div id="divLoginUser-p2" style="display:none;padding:10px;">
+						<ul>
+							<li><a id="user-op1" href="#">Cuenta Usuario</a></li>
+							<!--li><a id="user-op2" href="#">Ver Ofertas</a></li>
+							<li><a id="user-op3" href="#">Ver Carrito</a></li-->
+							<li><a id="mnulogin-exit" href="#">Salir</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+	    </div>
+	</div>
+      </div>
+  </header>
+</div>

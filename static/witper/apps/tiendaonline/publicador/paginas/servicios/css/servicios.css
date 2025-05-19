@@ -1,0 +1,42 @@
+/*
+ * estilos para paginas estaticas
+ * 20240201 Degui
+ *
+ */
+
+/* h2 estilo 01 */
+.wpr-h2-e01{
+    font-size: 1.8rem;
+    color:#1c2833;
+    margin-top: 25px;
+    font-family: arial, serif, verdana;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* h4 estilo 01 */
+.wpr-h4-e01{
+    font-size: 1.4rem;
+    color:#1c2833;
+    margin-top: 15px;
+    font-family: arial, serif, verdana;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* p estilo 01 */
+.wpr-p-e01{
+    font-size: 1.2rem;
+    color: #1c2833;
+    margin-top: 10px;
+    font-family: arial, serif, verdana;
+    text-align: justify;
+    line-height: 1.3em;
+}
+
+/* img estilo 01 */
+.wpr-img-e01{
+    width:40%;
+    margin: 15px;
+}
+

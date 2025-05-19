@@ -1,0 +1,53 @@
+
+<html lang="ES">
+    <head>
+        <title>Login Usuario</title>
+        <!-- link rel="stylesheet" type="text/css" href="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/cuenta-usuario-view/inter-loginUsuario-web/src/css/frmLoginUsuario.css" /-->
+        <link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/tiendaonline/cuenta/usuario/loginUsuario/css/frmLoginUsuario.css" />
+    </head>
+    <body>
+
+      <form id="frmLoginUser" role="form">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title wpr-title-e01">Iniciar Sesion</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row wpr-row-e01">
+              <div class="col-md-12 input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input type="email" id="txtEmailLogin" name="txtEmailLogin" maxlength="65" class="form-control" placeholder="Email">
+              </div>
+            </div>
+            <div class="row wpr-row-e01">
+              <div class="col-md-12 input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input type="password" id="txtPasswordLogin" name="txtPasswordLogin" maxlength="12" class="form-control" placeholder="Contraseña">
+              </div>
+            </div>
+          </div>
+          <div class="row wpr-row-e01">
+            <div class="col-md-12">
+              <button type="button" id="btnInLoginUser" class="btn btn-primary form-control">Iniciar</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <div id="divMsgDatoObligatorio" class="alert alert-danger wpr-esp-e01"></div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!--script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script>
+      <script type="text/javascript" src="http://localhost/webapps/wmwitper/apps/ecwitper-tiendaonline-webapp/views/cuenta-usuario-view/inter-loginUsuario-web/src/js/utilsLoginUsuario.js"></script>
+      <script type="text/javascript" src="http://localhost/webapps/wmwitper/apps/ecwitper-tiendaonline-webapp/views/cuenta-usuario-view/inter-loginUsuario-web/src/js/frmLoginUsuario.js"></script>
+      <script type="text/javascript" src="{PATH_STORE}/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script -->
+
+      <script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script>
+      <script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/cuenta/usuario/loginUsuario/js/utilsLoginUsuario.js"></script>
+      <script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/cuenta/usuario/loginUsuario/js/frmLoginUsuario.js"></script>
+      <script type="text/javascript" src="{PATH_STORE}/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
+
+    </body>
+</html>

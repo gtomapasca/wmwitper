@@ -1,0 +1,33 @@
+/*
+ * 20230202 estilos frmRegistrarVentas
+ * Degui
+ */
+
+#divVistaComprobanteVenta{
+  display:none;
+}
+#divGenerarComprobante{
+  display:none;
+}
+#divPreComprobante{
+  display:none;
+}
+#divListarItemsVenta{
+  display:none;
+}
+#divListarItemsVenta{
+  display:none;
+}
+#divComprobanteEmitido{
+  display:none;
+}
+#divPagoMontoReg{
+  display:none;
+}
+#divPagoVueltoReg{
+  display:none;
+}
+.boxFormReg{
+  padding:20px;
+}
+
