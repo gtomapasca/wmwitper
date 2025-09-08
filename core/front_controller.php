@@ -58,6 +58,7 @@ class FrontController {
 			}else if($site == "adm"){
 				if($root == "cpanels"){
 					$ruta = "{$root}/{$app}/controllers/{$modulo}/ctrl/src/php/{$cname}.php";
+					//echo $ruta;
 				}else{
 					$ruta = "{$root}/{$app}/controllers/{$modulo}/src/php/{$cname}.php";
 				}

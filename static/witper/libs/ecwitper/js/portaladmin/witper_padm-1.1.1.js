@@ -7,7 +7,7 @@
 //------------------------------------------------------------------------------
 
 //PATH_SMALL 		= "../../../../";
-//APP 			= "apps";
+//APP 			= "adm/app";
 //PORTALADMIN		= "ecwitper-site-portaladmin";
 //PRINCIPAL 		= "ecwitper-cpaneladmin-mainmenu-ctrl";
 //CTRLACCESO 		= "ecwitper-controlacceso-cuentausuario-ctrl";
@@ -26,12 +26,14 @@ ECW_ATENCIONCLI_RECEPCLI	= "adm/app/atencioncli";
 //------------------------------------------------------------------------------
 // 20210502 iniciar sesion
 function witper_inLoginUser(idForm, callback){
+	console.log(">>> GTPX-URL: " + PATH_SMALL + ECW_CPANELADM_MAINMENU + "/consultar/validar-usuario");
       $.ajax({
 	     type: "POST",
 	     //url: PATH_SMALL + "adm/principal/consultar/validar-usuario",
 		 //url: PATH_SMALL + PORTALADMIN + "/"+ PRINCIPAL + "/consultar/validar-usuario",
 		 //url: PATH_SMALL + APP + "/" + PORTALADMIN + "/"+ PRINCIPAL + "/consultar/validar-usuario",
 		 url: PATH_SMALL + ECW_CPANELADM_MAINMENU + "/consultar/validar-usuario",
+		 //url: PATH_SMALL + APP + "/" + ECW_CPANELADM_MAINMENU + "/consultar/validar-usuario",
 	     data: $(idForm).serialize(),
 	     dataType: "json",
 	     success: function(response){callback(null, response);},

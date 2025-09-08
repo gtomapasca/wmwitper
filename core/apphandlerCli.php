@@ -43,7 +43,10 @@ class ApplicationHandlerCli {
 			// http://compuchiclayo.com/ecwitper-site-tiendavirtual/principal/consultar/listar-productos-catalogo		
 			if($app == 'store'){
 				//echo  "<p>entre store...";
-				if($ctrl == 'buscador'){
+				if($ctrl == 'categorias'){
+					$app 	= APP_MAIN_TIENDAONLINE;
+					$modulo = APP_MODULE_CATEGORIAPROD;
+				}else if($ctrl == 'buscador'){
 					$app 	= APP_MAIN_TIENDAONLINE;
 					$modulo = APP_MODULE_BUSCADORPROD;
 				}else if($ctrl == 'catalogo'){

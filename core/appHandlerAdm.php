@@ -23,13 +23,13 @@ class ApplicationHandlerAdm {
 		//echo "<p>app: " . $app;
 		if ($app == "app"){ 
 			$root = "apps";
+			//echo "ingreso apps..";
 			// $app 	= isset($arrayUri[0]) ? $arrayUri[0] : CLI_DEFAULT_APP;
 			// 20230616-INI Degui: se reemplaza nombre app
 			// uri sin virtual host apache (POS_INI = 3)
 			// http://localhost/webapps/wmwitper/application.php/ecwitper-site-tiendavirtual/principal/consultar/listar-productos-catalogo
 			// uri con virtual host apache (POS_INI = 0)
-			// http://compuchiclayo.com/ecwitper-site-tiendavirtual/principal/consultar/listar-productos-catalogo		
-			
+			// http://compuchiclayo.com/ecwitper-site-tiendavirtual/principal/consultar/listar-productos-catalogo
 			if($ctrl == 'mainmenu'){
 				$app 	= APP_SITE_PORTALADMIN;
 				$modulo = PADM_CPANELADMIN_MAINMENU;

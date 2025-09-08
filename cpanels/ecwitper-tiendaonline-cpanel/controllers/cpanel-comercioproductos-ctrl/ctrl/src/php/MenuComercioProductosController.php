@@ -7,6 +7,7 @@ require_once 'apps/ecwitper-tiendaonline-webapp/controllers/publicador-paginas-c
 require_once 'apps/ecwitper-tiendaonline-webapp/controllers/carrito-compras-ctrl/ctrl/src/php/CPMenuCarritoComprasController.php';
 require_once 'apps/ecwitper-tiendaonline-webapp/controllers/cuenta-usuario-ctrl/ctrl/src/php/CPMenuCuentaUsuarioController.php';
 require_once 'apps/ecwitper-tiendaonline-webapp/controllers/publicador-articulos-ctrl/ctrl/src/php/CPMenuPublicadorArticulosController.php';
+require_once 'apps/ecwitper-tiendaonline-webapp/controllers/categoria-productos-ctrl/ctrl/src/php/CPMenuCategoriaProductosPrincipalController.php';
 
 //require_once 'apps/ecwitper-tiendaonline-webapp/controllers/comercio-productos-ctrl/ctrl/src/php/MenuCatalogoProductosController.php';
 //require_once 'apps/ecwitper-tiendaonline-webapp/controllers/publicador-articulos-ctrl/ctrl/src/php/MenuBlogTiendaController.php';
@@ -16,6 +17,13 @@ class MenuComercioProductosController extends Controller{
 	public function opcionInicio() {
 		$control = new CPMenuPublicadorPaginasController();
 		$dataResponse = $control->cargarInicioTienda($dataRequest);
+		echo json_encode($dataResponse);
+		exit();
+	}
+
+	public function opcionCategorias() {
+		$control = new CPMenuCategoriaProductosPrincipalController();
+		$dataResponse = $control->cargarCategoriaProductos($dataRequest);
 		echo json_encode($dataResponse);
 		exit();
 	}
