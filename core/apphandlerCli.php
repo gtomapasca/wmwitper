@@ -17,13 +17,17 @@ class ApplicationHandlerCli {
 		//echo '<p>total: '.count($arrayUri).'</p>';
 		//$pos = POS_INI;
 		$pos = 1;
+		$root = ""; 
+		$app  = "";
+		$ctrl = "";
+		$arg = "";
 		if($arrayUri[0] == "ofertas"){
 			// cargarPagina("app/store/publipages/CPModal-publicador-paginas/cargar-oferta-productos");
 			//$arrayUri = array("cli", "app", "store", "publipages", "CPModal-publicador-paginas", "cargar-oferta-productos");
 			$root = "page";
 			$app = "ofertas";
 			$ctrl = "";
-		}else{
+		}else if (count($arrayUri) >= 3){
 			$root = $arrayUri[0 + $pos]; 
 			$app  = $arrayUri[1 + $pos];
 			$ctrl = $arrayUri[2 + $pos];

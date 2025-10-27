@@ -100,7 +100,7 @@ class CPMenuPublicadorPaginasController {
 			$dataResponse["encontrado"] = false;
 			$dataResponse["mensaje"] = "no encontrado";
 			$dataResponse["datos"] = '';
-		}
+		}		
 		return $dataResponse;
 	}
 

@@ -16,6 +16,7 @@ function cargarPaginaSeleccionada(){
     let opcion = $("#box-contenido-principal").attr("data-opcion");
     let clave = $("#box-contenido-principal").attr("data-clave");
     let valor = $("#box-contenido-principal").attr("data-valor");
+	console.log(">>> GTPX-opcion: " + opcion);
     // cargar pagina inicio
     if(opcion == "inicio"){
 		cargarPagina("cpanel/store/commerce/menu-comercio-productos/opcion-inicio");

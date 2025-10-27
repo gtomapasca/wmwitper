@@ -181,6 +181,8 @@ function cargarPagina(uri){
 }
 
 function cargarPagina(uri, idElemento){ 
+	console.log(">> GTPX-cargarPagina-uri: " + uri);
+	console.log(">> GTPX-cargarPagina-idElemento: " + idElemento);
 	// 20241103 degui: se agrega cli
 	uri = "cli/"+uri;
 	//console.log(">> general-cargarPagina-uri: " + uri);

@@ -11,6 +11,7 @@
 // Principal
 //------------------------------------------------------------------------------
 PATH_SMALL 			= "../../../../";
+//PATH_SMALL 			= "http://compuchiclayo-dev.com/";
 CLI 				= "ecwitper-site-tiendavirtual";
 PRINCIPAL 			= "ecwitper-iniciotienda-mainmenu-ctrl";
 CARRITO_COMPRAS		= "ecwitper-ventaselectronicas-carritocompras-ctrl";
