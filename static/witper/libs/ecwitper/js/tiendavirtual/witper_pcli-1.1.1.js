@@ -38,7 +38,7 @@ PUBLICADOR_PAGINAS_CTRL		= "publipages";
 
 // 20210301 obtener una pagina en general
 function witper_cargarPagina(ruta, callback){
-	//console.log(">>> cli-witper_cargarPagina-ruta: " + ruta);
+	console.log(">>> cli-witper_cargarPagina-ruta: " + ruta);
     $.ajax({
 	    type: "POST",
 	    url: PATH_SMALL + ruta,
