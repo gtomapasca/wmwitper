@@ -37,7 +37,6 @@ class ConsultarCatalogoProductosServiceImpl implements ConsultarCatalogoProducto
 			$jsondata["datos"] = "";
 		}
 		return $jsondata;
-		
 	}
 
 	function buscarProductoById($dataRequest) {

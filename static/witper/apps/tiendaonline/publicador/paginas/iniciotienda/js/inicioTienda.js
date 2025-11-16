@@ -15,10 +15,10 @@ function initInterfazInicio(){
 	cargarPagina("app/store/buscador/CPModal-buscador-principal/cargar-buscador-principal", "divBuscadorPrincipal");
 	// 20240620 cargar formulario iniciar sesion
 	cargarPagina("app/store/publipages/CPModal-publicador-paginas/cargar-frm-iniciar-sesion", "divFormLoginUser");
-	// 20240630 cargar catalogo de productos
-	cargarPagina("app/store/catalogo/CPModal-comercio-productos/cargar-catalogo-productos", "divInicioTienda");
 	// 20240713 cargar susbribir mail
 	cargarPagina("app/store/publipages/CPModal-publicador-paginas/cargar-suscribir-mail", "divSuscribirMail");
+	// 20240630 cargar catalogo de productos
+	cargarPagina("app/store/catalogo/CPModal-comercio-productos/cargar-catalogo-productos", "divInicioTienda");
 };
 
 // 20210301 obtener items del carrito

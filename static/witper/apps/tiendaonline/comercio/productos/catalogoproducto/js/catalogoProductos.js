@@ -34,6 +34,7 @@ function obtenerTopProductos(){
 
 // muestra los productos en la pagina de inicio
 function mostrarTopProductos(datos){
+	//console.log(">>> GTPX-mostrarTopProductos-datos: " + JSON.stringify(datos));
 	let html =  '';
 	//let uri_wwwstore = '../../../../static/witper/';
 	//let uri_wwwstore = 'static/witper/';

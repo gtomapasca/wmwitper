@@ -123,25 +123,31 @@ class SqlMapProductoDAO implements ProductoDAO{
     public function selectProductosCatalogo(){
 		try{
 			$producto = new ProductoTienda();
-			//$del = '0';
-			$estado = '03'; // 20220807 GTP: Se cambia estado
+			//$estado = '03'; // 20220807 GTP: Se cambia estado
 			$sql = "select 	pt.cod_producto, pt.mini_codigo, pt.cod_fabricante, fb.marca, pt.cod_categoria, cp.nom_categoria, pt.cod_subcategoria, scp.nom_subcategoria, pt.producto, pt.descrip_corta, pt.descrip_larga "
 				."			,pt.ind_especificaciones, pt.ind_galeriaImagenes, pt.nom_img, pt.dir_img, pt.ruta_img, pt.key_word, pt.precio_compra_final, pt.precio_venta_normal "
 				."			,pt.precio_venta_internet, pt.precio_venta_tarjeta, pt.stock, pt.puntaje, pt.estado, pt.fecha_reg "
 				."			,pt.almacen_ind, pt.almacen_stock, pt.almacen_fecreg, pt.almacen_fecmod, pt.almacen_usureg, pt.almacen_usumod, pt.almacen_del "
 				."			,pt.destacado_ind, pt.descuento_precio, pt.descuento_fecini, pt.descuento_fecfin, pt.proveedor_ruc, pt.proveedor_codprod "
-				."			,NOW() >= pt.descuento_fecini isFecIni, NOW() <= pt.descuento_fecfin isFecFin "
+				//."			,NOW() >= pt.descuento_fecini isFecIni, NOW() <= pt.descuento_fecfin isFecFin "
+				."			,pt.descuento_fecini isFecIni, pt.descuento_fecfin isFecFin "
 				." from 	wip_producto_tienda pt "
 				."			inner join wip_fabricante fb on fb.cod_fabricante = pt.cod_fabricante "
 				."        	inner join wip_categoria_producto cp on cp.cod_categoria = pt.cod_categoria "
 				."        	inner join wip_subcategoria_producto scp on scp.cod_subcategoria = pt.cod_subcategoria "
-				//." where 	pt.del = ? and pt.estado = ? and pt.destacado_ind = 1 ";
 				." where 	pt.del = 0 and cp.del = 0 and scp.del = 0 and pt.estado_prod = '03' and pt.public_est = ? and pt.destacado_ind = 1 ";
-			//$data = array('ss', "{$del}", "{$estado}");
-			$data = array('s', "{$estado}");
+			//$data = array('s', "{$estado}");
+			$values = ['03']; 
+			$types = 's';
+			$values = array_values($values); // asegurar indices 0..
+			$data = [];
+			$data[] = $types;
+			foreach ($values as $i => $v) {
+				$data[] = &$values[$i]; // REFERENCIAS necesarias
+			}
 			$fields = $producto->toArrayProductoTienda();
 			return DBObject::ejecutar($sql, $data, $fields);
-			//return array ("sql" => $sql, "data" => $data);
+			//return array("sql" => $sql, "data" => $data, "fields" => $fields);
 		}catch (Exception $e) {
 			print "Error!: " . $e->getMessage() . "<br/>";
 		}
