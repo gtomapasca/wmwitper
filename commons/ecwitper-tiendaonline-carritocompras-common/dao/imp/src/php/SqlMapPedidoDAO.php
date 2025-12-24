@@ -27,7 +27,16 @@ class SqlMapPedidoDAO implements PedidoDAO{
       public function getLastPedido(){
 		// Consultamos id_pedido para generar nro_pedido
 		$sql = "select id_pedido from wip_pedido where del = ? order by id_pedido desc limit 1";
-		$data = array('s', "0");
+		//$data = array('s', "0");
+		// [INI] Setear data
+		$values = ["0"]; 
+		$types = 's';
+		$values = array_values($values); 
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
 		$pedido = new Pedido();
 		$fields = $pedido->toArrayById();
 		return DBObject::ejecutar($sql, $data, $fields);
@@ -35,8 +44,10 @@ class SqlMapPedidoDAO implements PedidoDAO{
 
       // Registrar Pedido
       public function insertPedidoCar($dataRequest){
+		//$ruc_negocio 	 = "20123456781"; // descomentar para primeras pruebas 
+		//$id_usuario 	 = 21; // descomentar para primeras pruebas 
 		$ruc_negocio 	 = "10440440911";
-		$id_usuario 	 = 4;
+		$id_usuario 	 = 4; 
 		$data_cliente	 = $dataRequest["datos_cliente"];
 		$nro_pedido 	 = $dataRequest["nro_pedido"];
 		$docnum 	 = $data_cliente["docnum"];
@@ -47,7 +58,16 @@ class SqlMapPedidoDAO implements PedidoDAO{
 		/* Registramos datos del cliente */
 		$sql = "insert into wip_pedido (ruc_negocio, id_usuario, nro_pedido, carrito_nropedido, carrito_dni, carrito_cliente, carrito_celular, carrito_email, carrito_direccion, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
 		       ."values(?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
-		$data = array('sisssssss', "{$ruc_negocio}", "{$id_usuario}", "{$nro_pedido}", "{$nro_pedido}", "{$docnum}", "{$nombre_completo}", "{$telef}", "{$email}", "{$direc}");
+		//$data = array('sisssssss', "{$ruc_negocio}", "{$id_usuario}", "{$nro_pedido}", "{$nro_pedido}", "{$docnum}", "{$nombre_completo}", "{$telef}", "{$email}", "{$direc}");
+		// [INI] Setear data
+		$values = [$ruc_negocio, $id_usuario, $nro_pedido, $nro_pedido, $docnum, $nombre_completo, $telef, $email, $direc]; 
+		$types = 'sisssssss';
+		$values = array_values($values); 
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
 		DBObject::ejecutar($sql, $data);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
 		//return $resp_temp;

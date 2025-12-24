@@ -27,12 +27,14 @@ class SqlMapProductoDAO implements ProductoDAO{
     // Consultar producto by descripcion
     public function selectProductoByDesc($jsonParams){
 		try{
-			$producto  = new ProductoTienda();
+			//$producto  = new ProductoTienda();
 			//$categoria = $dataRequest["categoria"];
 			//$buscar    = $dataRequest["buscar"];
 			$categoria 	= $jsonParams->categoria;
 			$buscar 	= $jsonParams->busqueda;
-			//$buscar    = "%".$dataRequest["buscar"]."%";
+			$values = [];
+			$types = "";
+			$where = "";
 			$sql = "select 	pt.cod_producto, pt.mini_codigo, pt.cod_fabricante, fb.marca, pt.cod_categoria, cp.nom_categoria, pt.cod_subcategoria, scp.nom_subcategoria, pt.producto, pt.descrip_corta, pt.descrip_larga "
 				."			,pt.ind_especificaciones, pt.ind_galeriaImagenes, pt.nom_img, pt.dir_img, pt.ruta_img, pt.key_word, pt.precio_compra_final, pt.precio_venta_normal "
 				."			,pt.precio_venta_internet, pt.precio_venta_tarjeta, pt.stock, pt.puntaje, pt.estado, pt.fecha_reg "
@@ -47,18 +49,33 @@ class SqlMapProductoDAO implements ProductoDAO{
 				$buscar    = "%".$buscar."%";
 				//$where = " where pt.del = '0' and pt.estado = '1' and pt.producto like ?";
 				$where = " where pt.del = '0' and pt.estado_prod = '03' and pt.public_est = '03' and pt.producto like ?";
-				$data = array('s', "{$buscar}");
+				//$data = array('s', "{$buscar}");
+				$values = [$buscar];
+				$types = 's';
 			}else if($categoria=='1'){ // consulta por mini código
 				//$where = " where pt.del = '0' and pt.estado = '1' and pt.mini_codigo = ?";
 				$where = " where pt.del = '0' and pt.estado_prod = '03' and pt.public_est = '03' and pt.mini_codigo = ?";
-				$data = array('s', "{$buscar}");
+				//$data = array('s', "{$buscar}");
+				$values = [$buscar];
+				$types = 's';
 			}else{	// consulta por categoría
 				$buscar    = "%".$buscar."%";
 				//$where = " where pt.del = '0' and pt.estado = '1' and pt.cod_categoria = ? and pt.producto like ?";
 				$where = " where pt.del = '0' and pt.estado_prod = '03' and pt.public_est = '03' and pt.cod_categoria = ? and pt.producto like ?";
-				$data = array('ss', "{$categoria}", "{$buscar}");
+				//$data = array('ss', "{$categoria}", "{$buscar}");
+				$values = [$categoria, $buscar];
+				$types = 'ss';
 			}
 			$sql = $sql . $where;
+			// [INI] Setear data
+			$values = array_values($values); 
+			$data = [];
+			$data[] = $types;
+			foreach ($values as $i => $v) {
+				$data[] = &$values[$i]; 
+			}
+			// [FIN] Setear data
+			$producto  = new ProductoTienda();
 			$fields = $producto->toArrayProductoTienda();
 			return DBObject::ejecutar($sql, $data, $fields);
 			//$resp_temp = array ("sql" => $sql, "data" => $data);

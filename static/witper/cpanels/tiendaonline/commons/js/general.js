@@ -69,6 +69,7 @@ function mensajeConfirmar(callback){
 		+'</div>'
 	);
 	$("#dlgBtnAceptarConfirm").click(function(e){
+		console.log(">>> dlgBtnAceptarConfirm...");
 		$('#dlgMensajeAfirmativo1').toggle('hide');
 		$('#dlgMensajeAfirmativo2').toggle('hide');
 		$('#dlgMensajeConfirma1').toggle('slow');

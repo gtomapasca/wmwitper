@@ -91,6 +91,7 @@ class ConsultarCatalogoProductosServiceImpl implements ConsultarCatalogoProducto
 	function buscarProductosByCategoria($dataRequest) {
 		$sqlMapProductoDAO = new SqlMapProductoDAO();
 		$dataResponse = $sqlMapProductoDAO->selectProductoByCategoria($dataRequest);
+
 		if(count($dataResponse) > 0){
 			$jsondata["encontrado"] = true;
 			$jsondata["mensaje"] = "encontrado";

@@ -84,9 +84,10 @@ class RegistrarCarritoComprasServiceImpl implements RegistrarCarritoComprasServi
 			$dataResponse = array("nro_pedido" => $nro_pedido, "encontrado" => true, "mensaje" => "Se registro correctamente");
 			//Limpiar carrito y session
 			if($dataResponse["encontrado"]){
-				session_start();
+				//session_start();
 				$_SESSION = array();
 				session_destroy();
+				session_start();
 			}
 			return $dataResponse;
 		}catch (Exception $e) {

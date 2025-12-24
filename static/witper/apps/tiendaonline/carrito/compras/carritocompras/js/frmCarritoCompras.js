@@ -115,7 +115,7 @@ function eliminarItemDelCarrito(index){
 			if(exito){
 				consultarListaCarrito()
 				$("#countCar").html(cant_car);
-				mostrarMensaje("Se quito producto del carrito...", 1);
+				mostrarMensaje("Se elimino item del carrito de compras.", 1);
 			}else{
 				mostrarMensaje("Disculpe, no se pudo realizar la última operación", 2);
 			}
@@ -231,6 +231,7 @@ var registrarCarPedido = function(){
 				console.log(">>> ERROR: codErr: "+ codErr +", msjErr: "+ msjErr);
 			}
 		}else{
+			console.log(">>> witper_setCarPedido-errorLanzado: " + JSON.stringify(errorLanzado));
 			mostrarMensaje("Disculpe, existi&oacute; un problema al registrar pedido");
 		}
     });

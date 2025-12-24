@@ -9,15 +9,11 @@ require_once 'apps/ecwitper-tiendaonline-webapp/controllers/cuenta-usuario-ctrl/
 require_once 'apps/ecwitper-tiendaonline-webapp/controllers/publicador-articulos-ctrl/ctrl/src/php/CPMenuPublicadorArticulosController.php';
 require_once 'apps/ecwitper-tiendaonline-webapp/controllers/categoria-productos-ctrl/ctrl/src/php/CPMenuCategoriaProductosPrincipalController.php';
 
-//require_once 'apps/ecwitper-tiendaonline-webapp/controllers/comercio-productos-ctrl/ctrl/src/php/MenuCatalogoProductosController.php';
-//require_once 'apps/ecwitper-tiendaonline-webapp/controllers/publicador-articulos-ctrl/ctrl/src/php/MenuBlogTiendaController.php';
-
 class MenuComercioProductosController extends Controller{
 
 	public function opcionInicio() {
-		$dataRequest = "";
 		$control = new CPMenuPublicadorPaginasController();
-		$dataResponse = $control->cargarInicioTienda($dataRequest);
+		$dataResponse = $control->cargarInicioTienda();
 		echo json_encode($dataResponse);
 		exit();
 	}
@@ -31,96 +27,85 @@ class MenuComercioProductosController extends Controller{
 	}
 
 	public function opcionOfertas() {
-		$dataRequest = "";
 		$control = new CPMenuPublicadorPaginasController();
-		$dataResponse = $control->cargarOfertaProductos($dataRequest);
+		$dataResponse = $control->cargarOfertaProductos();
 		echo json_encode($dataResponse);
 		exit();
 	}
 
-	// Observado!!
+	// Opciones del menu lateral cuenta usuario
 	public function opcionCuentaPerfil() {
-		$dataRequest = "";
 		$control = new CPMenuCuentaUsuarioController();
-		$dataResponse = $control->cargarCuentaPerfil($dataRequest);
+		$dataResponse = $control->cargarCuentaPerfil();
 		echo json_encode($dataResponse);
 		exit();
 	}
 
-	// Observado!!
+	// Opciones del menu lateral cuenta usuario
 	public function opcionCuentaCarrito() {
-		$dataRequest = "";
 		$control = new CPMenuCarritoComprasController();
-		$dataResponse = $control->cargarCuentaCarrito($dataRequest);
+		$dataResponse = $control->cargarCuentaCarrito();
 		echo json_encode($dataResponse);
 		exit();
 	}
 
 	public function opcionCarritoCompras() {
-		$dataRequest = "";
 		$control = new CPMenuCarritoComprasController();
-		$dataResponse = $control->cargarCarritoCompras($dataRequest);
+		$dataResponse = $control->cargarCarritoCompras();
 		echo json_encode($dataResponse);
 		exit();
 	}
 
 	// BLog
 	public function opcionBlog() {
-		$dataRequest = "";
 		$control = new CPMenuPublicadorArticulosController();
-		$dataResponse = $control->cargarBlog($dataRequest);
+		$dataResponse = $control->cargarBlog();
 		echo json_encode($dataResponse);
 		exit();
 	}
 
 	// Paginas tienda
 	public function opcionNosotros() {
-		$dataRequest = "";
 		$control = new CPMenuPublicadorPaginasController();
-		$dataResponse = $control->cargarNosotros($dataRequest);
+		$dataResponse = $control->cargarNosotros();
 		echo json_encode($dataResponse);
 		exit();
 	}
 
 	// suscribir
 	public function opcionSuscribete() {
-		$dataRequest = "";
 		$control = new CPMenuPublicadorPaginasController();
-		$dataResponse = $control->cargarSuscribir($dataRequest);
+		$dataResponse = $control->cargarSuscribir();
 		echo json_encode($dataResponse);
 		exit();
 	}
 
 	// contacto
 	public function opcionContacto() {
-		$dataRequest = "";
 		$control = new CPMenuPublicadorPaginasController();
-		$dataResponse = $control->cargarContacto($dataRequest);
+		$dataResponse = $control->cargarContacto();
 		echo json_encode($dataResponse);
 		exit();
 	}
 
 	// postulante
 	public function opcionPostulante() {
-		$dataRequest = "";
 		$control = new CPMenuPublicadorPaginasController();
-		$dataResponse = $control->cargarPostulante($dataRequest);
+		$dataResponse = $control->cargarPostulante();
 		echo json_encode($dataResponse);
 		exit();
 	}
 
 	// libro reclamo
 	public function opcionLibroReclamo() {
-		$dataRequest = "";
 		$control = new CPMenuPublicadorPaginasController();
-		$dataResponse = $control->cargarLibroReclamo($dataRequest);
+		$dataResponse = $control->cargarLibroReclamo();
 		echo json_encode($dataResponse);
 		exit();
 	}
 	
 	// CixServtec
 	public function opcionCixServtec() {
-		$dataRequest = "";
 		$file = SITECLI_HTML_DIR_CIXSERVTEC;
 		$control = new CPMenuPublicadorPaginasController();
 		$dataResponse = $control->cargarServicios($file);
@@ -130,7 +115,6 @@ class MenuComercioProductosController extends Controller{
 
 	// CixServtec
 	public function opcionCixDevelop() {
-		$dataRequest = "";
 		$file = SITECLI_HTML_DIR_CIXDEVELOP;
 		$control = new CPMenuPublicadorPaginasController();
 		$dataResponse = $control->cargarServicios($file);
@@ -140,7 +124,6 @@ class MenuComercioProductosController extends Controller{
 
 	// CixServtec
 	public function opcionCixTelecom() {
-		$dataRequest = "";
 		$file = SITECLI_HTML_DIR_CIXTELECOM;
 		$control = new CPMenuPublicadorPaginasController();
 		$dataResponse = $control->cargarServicios($file);
@@ -150,7 +133,6 @@ class MenuComercioProductosController extends Controller{
 
 	// CixServtec
 	public function opcionCixServers() {
-		$dataRequest = "";
 		$file = SITECLI_HTML_DIR_CIXSERVERS;
 		$control = new CPMenuPublicadorPaginasController();
 		$dataResponse = $control->cargarServicios($file);

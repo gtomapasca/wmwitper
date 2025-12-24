@@ -10,6 +10,8 @@ class ConsultarBuscadorPrincipalController extends Controller{
 	// 20240705 buscador de productos por descripción
     public function buscarProductoByDesc() {
         $objResponse = new stdClass();
+        $jsonDatos = null;
+        $service = null;
 		if($_POST['datos']){ // si existe
 			$jsonDatos = json_decode($_POST['datos']);
             $service = new BuscarProductosServiceImpl();

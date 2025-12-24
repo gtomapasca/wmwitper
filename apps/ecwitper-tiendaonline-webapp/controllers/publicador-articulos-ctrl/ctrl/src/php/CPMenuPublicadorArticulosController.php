@@ -3,7 +3,7 @@
 // Cargar Página Menú
 class CPMenuPublicadorArticulosController {
 
-	public function cargarBlog($dataRequest) {
+	public function cargarBlog() {
 		$file = "";
 		$dicc = array();	// diccionario
 		$dicc[SITECLI_PATH_TAG_LARGE] = SITECLI_PATH_DIR_LARGE;

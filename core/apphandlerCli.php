@@ -21,6 +21,7 @@ class ApplicationHandlerCli {
 		$app  = "";
 		$ctrl = "";
 		$arg = "";
+		$modulo = "";
 		if($arrayUri[0] == "ofertas"){
 			// cargarPagina("app/store/publipages/CPModal-publicador-paginas/cargar-oferta-productos");
 			//$arrayUri = array("cli", "app", "store", "publipages", "CPModal-publicador-paginas", "cargar-oferta-productos");
