@@ -22,7 +22,7 @@ var clsSuscribirMail = function() {
 
     this.iniciarForm = function(){
 		//console.log(">>> GTP-Suscribirmail...");
-        var refCls = this;
+        let refCls = this;
 		//$("#divMsgDatoObligatorio").hide();
 		//$("#divResultado").hide();
         $("#" + this.botones.btnGrabar.id).click(function(){
@@ -42,6 +42,7 @@ var clsSuscribirMail = function() {
 	this.onClickBtnGrabar = function () {
 		//var isFormValido = $("#frmSuscribirMail").valid();
 		var isFormValido = $("#" + this.forms.formPrincipal.id).valid();
+		let refCls = this;
 		// validar formulario
 		if(isFormValido){
 			// valiadar datos ingresados
