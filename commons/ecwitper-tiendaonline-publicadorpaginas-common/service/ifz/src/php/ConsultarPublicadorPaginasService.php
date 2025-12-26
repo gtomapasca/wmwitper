@@ -1,6 +1,6 @@
 <?php
 
-interface ConsultarPrincipalService{
+interface ConsultarPublicadorPaginasService{
       //public function validarUsuarioCli($dataRequest);
 }
 

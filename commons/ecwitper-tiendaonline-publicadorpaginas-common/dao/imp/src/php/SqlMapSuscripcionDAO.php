@@ -18,19 +18,43 @@
 // ----------------------------------------------------------------------------
 
 require_once 'core/dblayer.php';
-require_once 'apps/ecwitper-site-tiendavirtual/modules/ecwitper-iniciotienda-mainmenu-modl/dao/ifz/src/php/SuscripcionDAO.php';
+require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/ifz/src/php/SuscripcionDAO.php';
 
 /* Clase SqlMapSuscripcionDAO */
 class SqlMapSuscripcionDAO implements SuscripcionDAO{
       // Registrar suscripcion
-      public function insertSuscripcion($dataRequest){
+      /*public function insertSuscripcion($dataRequest){
 		$ruc_negocio = "10440440911";
 		$email 	     = $dataRequest;
 		$sql  = "insert into wip_suscripcion (ruc_negocio, email, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act, fk_idusuario) "
 		       	."values(?, ?, 0, 0, USER(), USER(), NOW(), NOW(), null)";
 		$data = array('ss', "{$ruc_negocio}", "{$email}");
 		DBObject::ejecutar($sql, $data);
-      }
+      }*/
+
+	  public function insertSuscripcion($jsonParams){
+		try{
+			$ruc_negocio = "10440440911";
+			$mail = $jsonParams->email;
+			$sql  = "insert into wip_suscripcion (ruc_negocio, email, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act, fk_idusuario) "
+		       	."values(?, ?, 0, 0, USER(), USER(), NOW(), NOW(), null)";
+			// [INI] Setear data
+			$values = [$ruc_negocio, $mail]; 
+			$types = 'ss';
+			$values = array_values($values); 
+			//$data = [];
+			$data[] = $types;
+			foreach ($values as $i => $v) {
+				$data[] = &$values[$i]; 
+			}
+			// [FIN] Setear data
+			DBObject::ejecutar($sql, $data);
+			//$resp_temp = array ("sql" => $sql, "data" => $data);
+			//return $resp_temp;
+		}catch (Exception $e) {
+			print "Error!: " . $e->getMessage() . "<br/>";
+		}	
+    }
       	
 }
 

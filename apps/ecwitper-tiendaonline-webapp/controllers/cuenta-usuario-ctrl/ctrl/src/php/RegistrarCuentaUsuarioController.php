@@ -21,6 +21,7 @@ class RegistrarCuentaUsuarioController extends Controller{
         echo json_encode($objResponse);
         exit();
 	}
+    
 
 }
 

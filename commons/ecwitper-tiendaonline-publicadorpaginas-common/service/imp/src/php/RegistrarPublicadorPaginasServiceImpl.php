@@ -1,40 +1,49 @@
 <?php
 
-require_once 'apps/ecwitper-site-tiendavirtual/modules/ecwitper-iniciotienda-mainmenu-modl/service/ifz/src/php/RegistrarPrincipalService.php';
-require_once 'apps/ecwitper-site-tiendavirtual/modules/ecwitper-iniciotienda-mainmenu-modl/dao/imp/src/php/SqlMapSuscripcionDAO.php';
-require_once 'apps/ecwitper-site-tiendavirtual/modules/ecwitper-iniciotienda-mainmenu-modl/dao/imp/src/php/SqlMapBuzonDAO.php';
-require_once 'apps/ecwitper-site-tiendavirtual/modules/ecwitper-iniciotienda-mainmenu-modl/dao/imp/src/php/SqlMapLibroReclamoDAO.php';
-require_once 'apps/ecwitper-site-tiendavirtual/modules/ecwitper-iniciotienda-mainmenu-modl/dao/imp/src/php/SqlMapAvisoDAO.php';
-require_once 'apps/ecwitper-site-tiendavirtual/modules/ecwitper-iniciotienda-mainmenu-modl/dao/model/src/php/Aviso.php';
-require_once 'apps/ecwitper-site-tiendavirtual/modules/ecwitper-iniciotienda-mainmenu-modl/dao/model/src/php/Suscripcion.php';
+require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/service/ifz/src/php/RegistrarPublicadorPaginasService.php';
+require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/imp/src/php/SqlMapSuscripcionDAO.php';
+require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/imp/src/php/SqlMapBuzonDAO.php';
+require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/imp/src/php/SqlMapLibroReclamoDAO.php';
+require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/imp/src/php/SqlMapAvisoDAO.php';
+require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/model/src/php/Aviso.php';
+require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/model/src/php/Suscripcion.php';
 
-class RegistrarPrincipalServiceImpl implements RegistrarPrincipalService{
+class RegistrarPublicadorPaginasServiceImpl implements RegistrarPublicadorPaginasService{
   
-	/*public function registrarSuscripcion($email) {
+	/*public function registrarSuscripcionMail($email) {
 		try{
 			$sqlMapSuscripcionDAO = new SqlMapSuscripcionDAO();
 			$sqlMapSuscripcionDAO->insertSuscripcion($email);
-			$dataResponse["msj"] = "todo bien";
-			$dataResponse["encontrado"] = true;
+			//$dataResponse["msj"] = "todo bien";
+			//$dataResponse["encontrado"] = true;
+			$dataResponse["tipo"] = "I"; // Información
+			$dataResponse["msj"] = "se registro correctamente";
+			$dataResponse["exito"] = true;
 			return $dataResponse;
 		}catch (Exception $e) {
-			$dataResponse["encontrado"] = false;
+			//$dataResponse["encontrado"] = false;
+			//$dataResponse["msj"] = "Error " . $e->getMessage();
+			$dataResponse["tipo"] = "E"; // Error
 			$dataResponse["msj"] = "Error " . $e->getMessage();
+			$dataResponse["exito"] = false;
 			return $dataResponse;
 		}
 	}*/
 
-	public function registrarSuscripcion($objParams) {
-		try{
+	public function registrarSuscripcionMail($jsonParams) {
+		$objRespuesta = new stdClass();
+		try{			
 			$sqlMapSuscripcionDAO = new SqlMapSuscripcionDAO();
-			$sqlMapSuscripcionDAO->insertSuscripcion($email);
-			$dataResponse["msj"] = "todo bien";
-			$dataResponse["encontrado"] = true;
-			return $dataResponse;
+			$sqlMapSuscripcionDAO->insertSuscripcion($jsonParams);
+			$objRespuesta->tip = "I"; // Info
+			$objRespuesta->msj = "Se grabo la suscripción";
+			$objRespuesta->val = true;
+			return $objRespuesta;
 		}catch (Exception $e) {
-			$dataResponse["encontrado"] = false;
-			$dataResponse["msj"] = "Error " . $e->getMessage();
-			return $dataResponse;
+			$objRespuesta->tip = "E"; // Error
+			$objRespuesta->msj = "(" . $e->getCode() .") ". $e->getMessage();
+			$objRespuesta->val = false;
+			return $objRespuesta;
 		}
 	}
 
