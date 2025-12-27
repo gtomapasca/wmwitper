@@ -23,15 +23,6 @@ require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/ifz/src
 /* Clase SqlMapSuscripcionDAO */
 class SqlMapSuscripcionDAO implements SuscripcionDAO{
       // Registrar suscripcion
-      /*public function insertSuscripcion($dataRequest){
-		$ruc_negocio = "10440440911";
-		$email 	     = $dataRequest;
-		$sql  = "insert into wip_suscripcion (ruc_negocio, email, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act, fk_idusuario) "
-		       	."values(?, ?, 0, 0, USER(), USER(), NOW(), NOW(), null)";
-		$data = array('ss', "{$ruc_negocio}", "{$email}");
-		DBObject::ejecutar($sql, $data);
-      }*/
-
 	  public function insertSuscripcion($jsonParams){
 		try{
 			$ruc_negocio = "10440440911";
@@ -42,7 +33,6 @@ class SqlMapSuscripcionDAO implements SuscripcionDAO{
 			$values = [$ruc_negocio, $mail]; 
 			$types = 'ss';
 			$values = array_values($values); 
-			//$data = [];
 			$data[] = $types;
 			foreach ($values as $i => $v) {
 				$data[] = &$values[$i]; 

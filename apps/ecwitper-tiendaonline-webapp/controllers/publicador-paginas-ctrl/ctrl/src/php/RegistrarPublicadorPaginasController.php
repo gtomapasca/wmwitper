@@ -9,22 +9,12 @@ require_once 'commons/ecwitper-tiendaonline-cuentausuario-common/service/imp/src
 class RegistrarPublicadorPaginasController extends Controller{
 
 	// 20240714: registrar suscripción mail
-	/*public function registrarSuscripcionMail() {
-		//$email = $_POST["txtEmail"];
-		$email = $_POST["email"];
-		$service = new RegistrarPublicadorPaginasServiceImpl();
-		$dataResponse = $service->registrarSuscripcionMail($email);
-		echo json_encode($dataResponse);
-		exit();
-	}*/
-
 	public function registrarSuscripcionMail() {
 		$objResponse = new stdClass();
 		if($_POST['datos']){ // si existe
             $service = new RegistrarPublicadorPaginasServiceImpl();
             $jsonDataForm = json_decode($_POST['datos']);
             $objResponse = $service->registrarSuscripcionMail($jsonDataForm);
-			//$objResponse = $jsonDataForm;
         }else{
             $objResponse->tip = "E"; // Error
             $objResponse->msj = "Error: no se encontraron datos a validar";
@@ -41,7 +31,6 @@ class RegistrarPublicadorPaginasController extends Controller{
             $jsonDataForm = json_decode($_POST['datos']);
 			$service = new RegistrarCuentaUsuarioServiceImpl();
             $objResponse = $service->registrarUsuarioCli($jsonDataForm);
-			//$objResponse = $jsonDataForm;
         }else{
             $objResponse->tip = "E"; // Error
             $objResponse->msj = "Error: no se encontraron datos a validar";

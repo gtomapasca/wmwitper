@@ -9,26 +9,6 @@ require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/model/s
 require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/model/src/php/Suscripcion.php';
 
 class RegistrarPublicadorPaginasServiceImpl implements RegistrarPublicadorPaginasService{
-  
-	/*public function registrarSuscripcionMail($email) {
-		try{
-			$sqlMapSuscripcionDAO = new SqlMapSuscripcionDAO();
-			$sqlMapSuscripcionDAO->insertSuscripcion($email);
-			//$dataResponse["msj"] = "todo bien";
-			//$dataResponse["encontrado"] = true;
-			$dataResponse["tipo"] = "I"; // Información
-			$dataResponse["msj"] = "se registro correctamente";
-			$dataResponse["exito"] = true;
-			return $dataResponse;
-		}catch (Exception $e) {
-			//$dataResponse["encontrado"] = false;
-			//$dataResponse["msj"] = "Error " . $e->getMessage();
-			$dataResponse["tipo"] = "E"; // Error
-			$dataResponse["msj"] = "Error " . $e->getMessage();
-			$dataResponse["exito"] = false;
-			return $dataResponse;
-		}
-	}*/
 
 	public function registrarSuscripcionMail($jsonParams) {
 		$objRespuesta = new stdClass();
@@ -59,8 +39,6 @@ class RegistrarPublicadorPaginasServiceImpl implements RegistrarPublicadorPagina
 			$dataResponse["msj"] = "Error " . $e->getMessage();
 			return $dataResponse;
 		}
-
-		
 	}
 
 	public function registrarContacto($dataRequest) {

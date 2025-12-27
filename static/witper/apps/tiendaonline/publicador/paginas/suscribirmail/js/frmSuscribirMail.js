@@ -11,8 +11,6 @@ var clsSuscribirMail = function() {
     };
 
     this.inputs = {
-        //nomCli :	{ id: 'txtNombre' },
-        //numCel : 	{ id: 'txtCel' },
         email  : 	{ id: 'txtEmail' }
     };
 
@@ -21,26 +19,19 @@ var clsSuscribirMail = function() {
     };
 
     this.iniciarForm = function(){
-		//console.log(">>> GTP-Suscribirmail...");
         let refCls = this;
-		//$("#divMsgDatoObligatorio").hide();
-		//$("#divResultado").hide();
         $("#" + this.botones.btnGrabar.id).click(function(){
             refCls.onClickBtnGrabar();
         });
-
-		//this.validarForm(); 
     };
 
 	this.getJsonDataForm = function(){
         return {
 			email  		: 	$("#" + this.inputs.email.id).val()
-			//password  	: 	$("#" + this.inputs.password.id).val()
 		};
     };
 
 	this.onClickBtnGrabar = function () {
-		//var isFormValido = $("#frmSuscribirMail").valid();
 		var isFormValido = $("#" + this.forms.formPrincipal.id).valid();
 		let refCls = this;
 		// validar formulario
@@ -57,13 +48,13 @@ var clsSuscribirMail = function() {
 		let refCls = this;
 		let jsonDataForm = this.getJsonDataForm();
 		utils_setSuscribirMail(jsonDataForm, function(datosDevuelto){
-			console.log("grabarSuscripcionMail-response: " + JSON.stringify(datosDevuelto));
-			let tip = datosDevuelto.tipo;
+			//console.log("grabarSuscripcionMail-response: " + JSON.stringify(datosDevuelto));
+			let tip = datosDevuelto.tip;
 			let msj = datosDevuelto.msj;
-			let val = datosDevuelto.exito;
+			let val = datosDevuelto.val;
 			if(val){
 				refCls.limpiarForm();
-				mostrarMensaje("Se ha suscrito correctamente.", 0);
+				mostrarMensaje("Gracias por suscribirse. Se ha suscrito correctamente.", 0);
 			}else{
 				if(tip == "A"){
 					mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);
