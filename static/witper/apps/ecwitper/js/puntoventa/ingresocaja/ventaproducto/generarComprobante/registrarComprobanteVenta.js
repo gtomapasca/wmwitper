@@ -1024,7 +1024,8 @@ var clsRegistrarComprobanteVenta = function() {
         // cargar datos 
         let dataVenta = {};
         dataVenta["nroSerieVenta"] 	= lSerie + "001";	// 20230331 GTP: queda pendiente la secuencia automática.
-        dataVenta["nroCorreVenta"] 	= this.agregarCerosAlaIzq(parseInt(secComprob) + 1);
+        //dataVenta["nroCorreVenta"] 	= this.agregarCerosAlaIzq(parseInt(secComprob) + 1);
+        dataVenta["nroCorreVenta"] 	= (parseInt(secComprob) + 1); // 20260301 GTP: se adecua ya que emite error al llegar a los mil registros
         dataVenta["rucNegocio"] 	= "20608326481";
         dataVenta["codTipComprob"] 	= $("#hdCodTipComprobPre").val();
         dataVenta["fechaEmision"] 	= $("#txtFechaEmiPre").val();

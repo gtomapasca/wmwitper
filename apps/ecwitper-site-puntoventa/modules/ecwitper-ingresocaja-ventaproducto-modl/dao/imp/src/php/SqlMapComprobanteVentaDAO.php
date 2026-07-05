@@ -93,7 +93,9 @@ class SqlMapComprobanteVentaDAO implements ComprobanteVentaDAO{
 	public function selectCorreComprobanteVenta($dataRequest){
 		$comprobanteVenta = new ComprobanteVenta();
 		$tipComprob = $dataRequest["tipComprob"];
-		$sql  = "select nro_correlativo from wip_venta where cod_tipcom = ? and del = 0 order by nro_correlativo desc limit 1";
+		// 20260309 se adecua para registar ventas al superar los 1000 registros
+		// $sql  = "select nro_correlativo from wip_venta where cod_tipcom = ? and del = 0 order by nro_correlativo desc limit 1";
+		$sql  = "select nro_correlativo from wip_venta where cod_tipcom = ? and del = 0 order by cast(nro_correlativo as signed) desc limit 1";
 		$data = array('s', "{$tipComprob}");
 		$fields = $comprobanteVenta->toArrayCorreComprobanteVenta();
 		return DBObject::ejecutar($sql, $data, $fields);
