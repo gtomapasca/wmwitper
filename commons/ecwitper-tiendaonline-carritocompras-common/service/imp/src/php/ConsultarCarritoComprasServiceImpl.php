@@ -6,16 +6,33 @@ require_once 'commons/ecwitper-tiendaonline-carritocompras-common/dao/model/src/
 class ConsultarCarritoComprasServiceImpl implements ConsultarCarritoComprasService {
 	// obtener lista de carrito
 	public function getCarList() {
-		session_start();
-		$dataResponse["encontrado"] = false;
-		if (isset($_SESSION["carrito"])){
-			if ($_SESSION["carrito"]->get_car_nproductos() > 0){
-				$dataResponse["encontrado"] = true;
-				$dataResponse["mensaje"]    = "Detalle de carrito";
-				$dataResponse["datos"] 	    = $_SESSION["carrito"]->get_car_detalle_producto();
+		try{
+			session_start();
+			$objRespuesta = new stdClass();
+			//$sqlMapUsuarioDAO = new SqlMapUsuarioDAO();
+			//$data = $sqlMapUsuarioDAO->selectAccountUser($jsonParams);
+			if(isset($_SESSION["carrito"]) && $_SESSION["carrito"]->get_car_nproductos() > 0){
+				//if ($_SESSION["carrito"]->get_car_nproductos() > 0){
+				$data = $_SESSION["carrito"]->get_car_detalle_producto();
+				$objRespuesta->tip = "I"; // Info
+				$objRespuesta->msj = "Encontrado";
+				$objRespuesta->val = true;
+				$objRespuesta->datos = $data;
+				//}
+			}else{
+				$objRespuesta->tip = "A"; // Advertencia
+            	$objRespuesta->msj = "Disculpe, no tiene items en el carrito, vuelva a intentarlo"; 
+            	$objRespuesta->val = false;
+				$objRespuesta->datos = 0;
 			}
+			return $objRespuesta;
+		}catch (Exception $e) {
+			$objRespuesta->tip = "E"; // Error
+            $objRespuesta->msj = "(" . $e->getCode() .") ". $e->getMessage();
+            $objRespuesta->val = false;
+			$objRespuesta->datos = 0;
+			return $objRespuesta;
 		}
-		return $dataResponse;
 	}
 
 	// obtener pedido carrito

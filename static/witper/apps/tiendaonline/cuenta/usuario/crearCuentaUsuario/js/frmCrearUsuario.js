@@ -2,7 +2,7 @@
 // Funciones javascript - Formulario Crear Usuario
 /************************************************************************/
 
-var clsRegistrarUsuario = function() {
+var clsCrearUsuario = function() {
 
 	var regExpCorreo = new RegExp("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$");
 
@@ -201,6 +201,6 @@ var clsRegistrarUsuario = function() {
 }
 
 $(document).ready(function() {
-	var obj = new clsRegistrarUsuario();
+	var obj = new clsCrearUsuario();
 	obj.iniciarForm();
 });

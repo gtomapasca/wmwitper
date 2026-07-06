@@ -7,6 +7,15 @@ require_once 'commons/ecwitper-tiendaonline-cuentausuario-common/service/imp/src
 class ConsultarCuentaUsuarioController extends Controller{
 
     // 20210213 iniciar sesion
+    public function obtenerUsuarioAnonimo() {
+        $objResponse = new stdClass();
+        $service = new ConsultarCuentaUsuarioServiceImpl();
+        $objResponse = $service->obtUsuarioAnonimo();
+        echo json_encode($objResponse);
+        exit();
+    }
+
+    // 20210213 iniciar sesion
     public function iniciarSesion() {
         $objResponse = new stdClass();
 		if($_POST['datos']){ // si existe

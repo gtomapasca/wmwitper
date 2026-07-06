@@ -46,7 +46,7 @@ class ConsultarCatalogoProductosController extends Controller{
 
 	// 20210310 Mostrar producto por categoria
 	public function listarProductosPorCategoria() {
-		//$dataRequest["productocat"] = $_GET["productocat"];
+		$dataRequest = array();
 		if($_POST['datos']){ // si existe
 			$datosArray = json_decode($_POST['datos']);
 			foreach($datosArray as $clave=>$valor){
@@ -61,7 +61,7 @@ class ConsultarCatalogoProductosController extends Controller{
 
 	// 20210618 Degui: obtener cantidad de fabricantes por categoria de productos habilitados
 	public function obtenerCantidadFabricantesPorCategoria() {
-		//$dataRequest["productocat"] = $_GET["productocat"];
+		$dataRequest = array();
 		if($_POST['datos']){ // si existe
 			$datosArray = json_decode($_POST['datos']);
 			foreach($datosArray as $clave=>$valor){

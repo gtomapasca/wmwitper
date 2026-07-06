@@ -25,7 +25,8 @@ class SqlMapSuscripcionDAO implements SuscripcionDAO{
       // Registrar suscripcion
 	  public function insertSuscripcion($jsonParams){
 		try{
-			$ruc_negocio = "10440440911";
+			$ruc_negocio = "20123456781"; // solo paa desa
+			// $ruc_negocio = "10440440911";
 			$mail = $jsonParams->email;
 			$sql  = "insert into wip_suscripcion (ruc_negocio, email, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act, fk_idusuario) "
 		       	."values(?, ?, 0, 0, USER(), USER(), NOW(), NOW(), null)";

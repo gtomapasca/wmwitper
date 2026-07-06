@@ -6,6 +6,8 @@
  * Dominio: compuchiclayo.com
  ***************************************
 */
+// RUC por defecto
+const RUC_NEGOCIO = "20608326481";
 // Rutas generales
 //const APP_DIR = '/';
 //const APP_DIR 				= '/sw201b/witper/witper-1.2.5/application.php';
@@ -138,7 +140,7 @@ const SITEADM_JS_TAG_LIB_WITPER_ADM 	= "JS_LIB_WITPER_ADM";		// Tag general
 //const SITEADM_JS_DIR_LIB_WITPER_ADM 	= "/libs/witper-adm/js/witper_adm-0.0.1.js";
 const SITEPADM_JS_DIR_LIB_WITPERPADM 	= "/libs/ecwitper/js/portaladmin/witper_padm-1.1.1.js";
 const SITEADM_HTML_TAG_COPYRIGHT	    = "SITEADM_COPYRIGHT";
-const SITEADM_HTML_DES_COPYRIGHT 	    = "Copyright ©2021 - 2025 Compuchiclayo.com. Todos los derechos reservados.";
+const SITEADM_HTML_DES_COPYRIGHT 	    = "Copyright ©2021 - 2026 Compuchiclayo.com. Todos los derechos reservados.";
 
 // Constantes de archivos html
 //const SITEADM_HTML_DIR_LOGIN			        = SITEADM_PATH_DIR_SKIN . "/html/principal/page_00001_login.html";
@@ -255,14 +257,15 @@ const SITECLI_JS_DIR_LIB_JQUERY		= "/libsExt/jquery/js/jquery-3.6.0.min.js";
 const SITECLI_JS_TAG_LIB_JQUERY_UI	= "JS_LIB_JQUERY_UI";
 const SITECLI_JS_DIR_LIB_JQUERY_UI	= "/libsExt/jquery/ui/1.13.1/jquery-ui.min.js";
 const SITECLI_JS_TAG_LIB_BSTRAP_JQ	= "JS_LIB_BSTRAP_JQ";
-const SITECLI_JS_DIR_LIB_BSTRAP_JQ 	= "/libsExt/bootstrap/js/jquery-1.12.1.min.js";
+//const SITECLI_JS_DIR_LIB_BSTRAP_JQ 	= "/libsExt/bootstrap/js/jquery-1.12.1.min.js";
+const SITECLI_JS_DIR_LIB_BSTRAP_JQ 	= "/libsExt/jquery/1.11.2/jquery.min.js"; // 20260211 GTP
 const SITECLI_JS_TAG_LIB_BOOTSTRAP	= "JS_LIB_BOOTSTRAP";
 const SITECLI_JS_DIR_LIB_BOOTSTRAP	= "/libsExt/bootstrap/js/bootstrap.min.js";
 const SITECLI_JS_TAG_LIB_WITPER_CLI = "JS_LIB_WITPER_CLI";		// Tag general
 //const SITECLI_JS_DIR_LIB_WITPER_CLI = "/libs/witper-cli/js/witper_cli-0.0.1.js";
 const SITECLI_JS_DIR_LIB_WITPER_CLI = "/libs/ecwitper/js/tiendavirtual/witper_pcli-1.1.1.js";
 const SITECLI_HTML_TAG_COPYRIGHT	= "SITECLI_COPYRIGHT";
-const SITECLI_HTML_DES_COPYRIGHT 	= "Copyright ©2021 - 2025 Compuchiclayo.com. Todos los derechos reservados.";
+const SITECLI_HTML_DES_COPYRIGHT 	= "Copyright ©2021 - 2026 Compuchiclayo.com. Todos los derechos reservados.";
 
 
 /*
@@ -400,7 +403,7 @@ const SITEPVTA_JS_DIR_LIB_BOOTSTRAP	    = "/libsExt/bootstrap/js/bootstrap.min.j
 const SITEPVTA_JS_TAG_LIB_WITPERPVTA 	= "JS_LIB_WITPERPVTA";
 const SITEPVTA_JS_DIR_LIB_WITPERPVTA 	= "/libs/ecwitper/js/puntoventa/witper_pvta-1.1.1.js";
 const SITEPVTA_HTML_TAG_COPYRIGHT	    = "SITE_COPYRIGHT";
-const SITEPVTA_HTML_DES_COPYRIGHT 	    = "Copyright ©2021 - 2025 Compuchiclayo.com. Todos los derechos reservados.";
+const SITEPVTA_HTML_DES_COPYRIGHT 	    = "Copyright ©2021 - 2026 Compuchiclayo.com. Todos los derechos reservados.";
 
 // Constantes de archivos html
 const SITEPVTA_HTML_DIR_LOGIN	        = "apps/ecwitper-site-puntoventa/views/ecwitper-cpanelpvta-mainmenu-view/src/html/login/loginpvta.html";

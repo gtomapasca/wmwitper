@@ -3,7 +3,7 @@ $(document).ready(function () {
 });
 
 function initInterfazInicio(){
-	console.log(">> GTPX-initInterfazInicio...");
+	//console.log(">> GTPX-initInterfazInicio...");
     // 20210301 obtener items del carrito
     obtenerTotalItemsCarrito(); 
     // 20210301 obtener items del carrito

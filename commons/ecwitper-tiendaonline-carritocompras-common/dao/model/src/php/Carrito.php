@@ -24,7 +24,8 @@ class Carrito{
 	// Constructor
 	function __construct(){
 		// datos del cliente
-		$this->datos_cliente = array();
+		//$this->datos_cliente = array();
+		$this->datos_cliente;
 		// Detalle de producto
 		$this->car_detalle_producto = array();
 	}
@@ -35,9 +36,13 @@ class Carrito{
 	public function get_datos_cliente(){
 		return $this->datos_cliente;
 	}
-	public function set_datos_cliente($data){
-		$this->datos_cliente = array (
-				"doctip" => "0",
+	public function set_datos_cliente($jsonParams){
+		//$nick = $jsonParams->nick;
+		$this->datos_cliente = $jsonParams;
+		/*$this->datos_cliente = array (
+				"idusu" => $data["idusu"],
+				"codusu" => $data["codusu"],
+				"doctip" => $data["doctip"],
 				"docnum" => $data["docnum"],
 				"nombre" => $data["nombre"],
 				"apepat" => $data["apepat"],
@@ -45,7 +50,7 @@ class Carrito{
 				"telef"  => $data["telef"],
 				"email"  => $data["email"],
 				"direc"  => $data["direc"]
-			);
+			);*/
 	}
 	public function get_car_detalle_producto(){
 		return $this->car_detalle_producto;
@@ -65,6 +70,7 @@ class Carrito{
 		// Estados: 0 (producto registrado), 1(producto eliminado).
 		$i = count($this->car_detalle_producto);
 		return $this->car_detalle_producto[$i] = array (
+				"index"			=> $i,
 				"cod_producto"	=> $data["cod_producto"],
 				"mini_codigo"	=> $data["mini_codigo"],
 				"nom_producto" 	=> $data["producto"],
@@ -84,8 +90,11 @@ class Carrito{
 	}
 	public function del_car_producto($index){
 		$this->car_detalle_producto[$index]["estado"] = 1; // 1: eliminado
-		//return $data = array("eliminado"=>"OK", "cod_producto" => $this->car_detalle_producto[$index]["cod_producto"]);
-		return $data = array("eliminado"=>"OK", "cod_producto" => $this->car_detalle_producto[$index]["mini_codigo"]);
+		//return $data = array("eliminado"=>"OK", "cod_producto" => $this->car_detalle_producto[$index]["mini_codigo"]);
+		return $data = array("eliminado" => "OK", 
+							"miniCodigo" => $this->car_detalle_producto[$index]["mini_codigo"],
+							"nproductos" => $this->get_car_nproductos()
+							);
 	}
 } 
 

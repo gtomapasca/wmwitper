@@ -44,24 +44,24 @@ class SqlMapPedidoDAO implements PedidoDAO{
 
       // Registrar Pedido
       public function insertPedidoCar($dataRequest){
-		//$ruc_negocio 	 = "20123456781"; // descomentar para primeras pruebas 
-		//$id_usuario 	 = 21; // descomentar para primeras pruebas 
-		$ruc_negocio 	 = "10440440911";
-		$id_usuario 	 = 4; 
+		// 20251228 Degui: obtener ruc dinamicamente
+		$ruc_negocio 	 = $dataRequest["ruc_negocio"];
 		$data_cliente	 = $dataRequest["datos_cliente"];
-		$nro_pedido 	 = $dataRequest["nro_pedido"];
-		$docnum 	 = $data_cliente["docnum"];
-		$telef	 	 = $data_cliente["telef"];
-		$email	 	 = $data_cliente["email"];
-		$direc	 	 = $data_cliente["direc"];
-		$nombre_completo = $data_cliente["nombre"]." ".$data_cliente["apepat"]." ".$data_cliente["apemat"];
+		$jsonDataCliente = json_decode($data_cliente);
+		$nro_pedido 	 = $jsonDataCliente->nro_pedido;
+		$id_usuario  = $jsonDataCliente->idUsuario;
+		$cod_usuario = $jsonDataCliente->codUsuario;
+		$docnum 	 = $jsonDataCliente->dni;
+		$numCel 	 = $jsonDataCliente->numCel;
+		$email	 	 = $jsonDataCliente->email;
+		$direc	 	 = $jsonDataCliente->direccion;
+		$nombre_completo = $jsonDataCliente->nombre." ".$jsonDataCliente->apePat." ".$jsonDataCliente->apeMat;
 		/* Registramos datos del cliente */
-		$sql = "insert into wip_pedido (ruc_negocio, id_usuario, nro_pedido, carrito_nropedido, carrito_dni, carrito_cliente, carrito_celular, carrito_email, carrito_direccion, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
-		       ."values(?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
-		//$data = array('sisssssss', "{$ruc_negocio}", "{$id_usuario}", "{$nro_pedido}", "{$nro_pedido}", "{$docnum}", "{$nombre_completo}", "{$telef}", "{$email}", "{$direc}");
+		$sql = "insert into wip_pedido (ruc_negocio, id_usuario, cod_usuario, nro_pedido, carrito_nropedido, carrito_dni, carrito_cliente, carrito_celular, carrito_email, carrito_direccion, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
+		       ."values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
 		// [INI] Setear data
-		$values = [$ruc_negocio, $id_usuario, $nro_pedido, $nro_pedido, $docnum, $nombre_completo, $telef, $email, $direc]; 
-		$types = 'sisssssss';
+		$values = [$ruc_negocio, $id_usuario, $cod_usuario, $nro_pedido, $nro_pedido, $docnum, $nombre_completo, $numCel, $email, $direc]; 
+		$types = 'sissssssss';
 		$values = array_values($values); 
 		$data[] = $types;
 		foreach ($values as $i => $v) {

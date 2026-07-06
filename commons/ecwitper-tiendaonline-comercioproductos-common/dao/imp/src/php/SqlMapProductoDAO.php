@@ -74,7 +74,6 @@ class SqlMapProductoDAO implements ProductoDAO{
 			$values = [$miniCodigo]; 
 			$types = 's';
 			$values = array_values($values); 
-			$data = [];
 			$data[] = $types;
 			foreach ($values as $i => $v) {
 				$data[] = &$values[$i]; 
@@ -132,7 +131,6 @@ class SqlMapProductoDAO implements ProductoDAO{
 			$sql = $sql . $where;
 			// [INI] Setear data
 			$values = array_values($values); 
-			$data = [];
 			$data[] = $types;
 			foreach ($values as $i => $v) {
 				$data[] = &$values[$i]; 
@@ -165,8 +163,6 @@ class SqlMapProductoDAO implements ProductoDAO{
 			// [INI] Setear data
 			$values = ['03']; 
 			$types = 's';
-			$values = array_values($values); // asegurar indices 0..
-			$data = [];
 			$data[] = $types;
 			foreach ($values as $i => $v) {
 				$data[] = &$values[$i]; // REFERENCIAS necesarias
@@ -184,13 +180,9 @@ class SqlMapProductoDAO implements ProductoDAO{
     // 20210311 Degui:  Consultar producto por categoria
     public function selectProductoByCategoria($dataRequest){
 		try{
-			//$producto = new ProductoTienda();
-			//$codProductoCat = $dataRequest["productocat"];
 			$n = 0;
-			$data[0] = "";
 			$values = [];
 			$types = "";
-			//$where = " where pt.del = '0' and pt.estado = '1' ";
 			$where = " where pt.del = '0' and pt.estado_prod = '03' and pt.public_est = '03' ";
 			foreach($dataRequest as $clave=>$valor){
 				if($valor != ''){
@@ -211,12 +203,9 @@ class SqlMapProductoDAO implements ProductoDAO{
 				."			inner join wip_fabricante fb on fb.cod_fabricante = pt.cod_fabricante "
 				."        	inner join wip_categoria_producto cp on cp.cod_categoria = pt.cod_categoria "
 				."        	inner join wip_subcategoria_producto scp on scp.cod_subcategoria = pt.cod_subcategoria ";
-				//." where 	pt.del = '0' and pt.estado = '1' and pt.cod_categoria = ?";
-				//$data = array('s', "{$codProductoCat}");
 			$sql .= $where;
 			// [INI] Setear data
 			$values = array_values($values); 
-			$data = [];
 			$data[] = $types;
 			foreach ($values as $i => $v) {
 				$data[] = &$values[$i]; 
@@ -234,9 +223,6 @@ class SqlMapProductoDAO implements ProductoDAO{
 	// 20220925 Seleccionar por fabricante
 	public function selectProductoByFabricante($dataRequest){
 		try{
-			//$producto = new ProductoTienda();
-			//$codCategoria = $dataRequest["cod_categoria"];
-			//$codSubCategoria = $dataRequest["cod_subcategoria"];
 			$listFabricantes = $dataRequest["fabricantes"];
 			$cadena = "";
 			for($i=0;$i<count($listFabricantes);$i++){
@@ -259,12 +245,10 @@ class SqlMapProductoDAO implements ProductoDAO{
 				." where 	pt.del = '0' and pt.estado_prod = '03' and pt.public_est = '03' and pt.cod_categoria = ? and pt.cod_subcategoria = ? and pt.cod_fabricante in (".$cadena.") ";
 			$codCategoria = $dataRequest["cod_categoria"];
 			$codSubCategoria = $dataRequest["cod_subcategoria"];
-			//$data = array('ss', "{$codCategoria}", "{$codSubCategoria}");
 			// [INI] Setear data
 			$values = [$codCategoria, $codSubCategoria]; 
 			$types = 'ss';
 			$values = array_values($values); 
-			$data = [];
 			$data[] = $types;
 			foreach ($values as $i => $v) {
 				$data[] = &$values[$i]; 
@@ -282,17 +266,12 @@ class SqlMapProductoDAO implements ProductoDAO{
     // 20210618 Degui:  Listar cantidad Fabricantes por categoria de productos habilitados
     public function selectCountFabByCategoria($dataRequest){
 		try{
-			//$fabricanteCat = new FabricanteCat();
-			//$codProductoCat = $dataRequest["productocat"];
 			$n = 0;
-			$data[0] = "";
 			$values = [];
 			$types = "";
 			$where = " where p.del = '0' and p.estado_prod = '03' and p.public_est = '03' ";
 			foreach($dataRequest as $clave=>$valor){
 				if($valor != ''){
-					//$data[0] .= "s"; 
-					//$data[++$n] = "{$valor}";
 					$values[++$n] = "{$valor}";
 					$types .= 's';
 					$where .= (" and p." . $clave . " = ? ");
@@ -300,13 +279,9 @@ class SqlMapProductoDAO implements ProductoDAO{
 			}
 			$sql = "select 	p.cod_fabricante, f.marca, count(p.cod_fabricante) as cantidad "
 				." from 	wip_producto_tienda p inner join wip_fabricante f on p.cod_fabricante = f.cod_fabricante ";
-				//." where 	p.del = '0' and p.estado = '1' and p.cod_categoria = ? GROUP BY p.cod_fabricante";
-				//." where 	p.del = '0' and p.estado_prod = '03' and p.public_est = '03' and p.cod_categoria = ? GROUP BY p.cod_fabricante";
-			//$data = array('s', "{$codProductoCat}");
 			$sql .= $where ."GROUP BY p.cod_fabricante ";
 			// [INI] Setear data
 			$values = array_values($values); 
-			$data = [];
 			$data[] = $types;
 			foreach ($values as $i => $v) {
 				$data[] = &$values[$i]; 
@@ -343,7 +318,6 @@ class SqlMapProductoDAO implements ProductoDAO{
 			$values = [$del, $estado]; 
 			$types = 'ss';
 			$values = array_values($values); 
-			$data = [];
 			$data[] = $types;
 			foreach ($values as $i => $v) {
 				$data[] = &$values[$i]; 

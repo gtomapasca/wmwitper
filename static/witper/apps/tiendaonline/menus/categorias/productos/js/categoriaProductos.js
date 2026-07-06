@@ -6,6 +6,7 @@ function initInterfaz(){
     let codCategoria = $("#codCategoria").attr("data-codCategoria");
 	let codSubCategoria = $("#codCategoria").attr("data-codSubCategoria");
     let filtro = {"cod_categoria": codCategoria, "cod_subcategoria":codSubCategoria};
+	console.log(">>> GTPX-menus-initInterfaz-filtro: " + JSON.stringify(filtro));
     obtenerProductosPorCategoria(filtro);
     //obtenerCantidadFabricantesPorCategoria(codCategoria);
 	obtenerCantidadFabricantesPorCategoria(filtro); // 20220919 GTP
@@ -25,7 +26,7 @@ function obtenerProductosPorCategoria(filtro){
 				mostrarMensaje(mensj, 2);
 			}
 		}else{
-			mostrarMensaje("Disculpe, existi&oacute; un problema al obtener productos por categoria", 2);
+			mostrarMensaje("Disculpe, existi&oacute; un problema al mostrar la categoria seleccionada", 2);
 		}
     });
 }

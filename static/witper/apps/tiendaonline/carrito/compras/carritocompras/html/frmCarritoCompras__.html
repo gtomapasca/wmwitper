@@ -1,0 +1,281 @@
+<!DOCTYPE html">
+<html lang="ES">
+  	<head>
+		<title>Carrito</title>
+		<link rel="stylesheet" type="text/css" href="{PATH_LARGE}/libsExt/bootstrap/3.3.2/css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="{PATH_LARGE}/libsExt/bootstrap/3.3.2/plugins/bootstrap-datetimepicker-3.1.3/css/bootstrap-datetimepicker.min.css" />
+		<link rel="stylesheet" type="text/css" href="{PATH_LARGE}/libsExt/bootstrap/3.3.2/plugins/datatables-1.10.7/media/css/jquery.dataTables.css" />
+		<link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/tiendaonline/carrito/compras/carritocompras/css/frmCarritoCompras.css" />
+	</head>
+	<body>
+		<div class="container show-top-margin separate-rows tall-rows">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div id="divCarProductos" class="row">
+						<div class="col-md-10 col-md-offset-1">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">:: Carrito de Compras</h3>
+								</div>
+								<div class="panel-body">
+									<div class="row">
+										<div class="col-md-12">	
+											<!--div id="panelCarrito">	</div-->
+											
+											<table id="tabItemsCarrito" class="table form-table display table-striped" width="100%">
+												<thead>
+													<tr>
+														<th class="rowTitle text-center">Item</th>
+														<th class="rowTitle text-center">Imagen</th>
+														<th class="rowTitle text-center">C&oacute;digo</th>
+														<th class="rowTitle text-center">Descripci&oacute;n</th>
+														<th class="rowTitle text-center">Precio</th>
+														<th class="rowTitle text-center">Cant.</th>
+														<th class="rowTitle text-center">SubTotal</th>
+														<th class="rowTitle text-center">Opci&oacute;n</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+												<tfoot>
+													<tr>
+														<td></td><td></td><td></td><td></td>
+														<td style="font-weight: bold;font-size: 14px; text-align:left;" colspan="2">SubTotal (S/)</td>
+														<td style="font-weight: bold;font-size: 14px; text-align:right;"><span id="sSubTotal"></span></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td></td><td></td><td></td><td></td>
+														<td style="font-weight: bold;font-size: 14px; text-align:left;" colspan="2">IGV (S/)</td>
+														<td style="font-weight: bold;font-size: 14px; text-align:right;"><span id="sIGV"></span></td>
+														<td></td>
+													</tr>
+													<tr>
+														<td></td><td></td><td></td><td></td>
+														<td style="font-weight: bold;font-size: 14px; text-align:left;" colspan="2">Total (S/)</td>
+														<td style="font-weight: bold;font-size: 14px; text-align:right;"><span id="sImporteTotal"></span></td>
+														<td></td>
+													</tr>
+												</tfoot>
+											</table>
+											
+										</div>
+									</div>
+									<div class="row text-center">
+										<div class="col-md-12 col-sm-12 col-xs-12">
+											<button type="button" id="btnContinuarCar" class="btn btn-primary btn-lg">Continuar Pedido</button>
+											<a href="javascript:cargarPagina('cpanel/store/commerce/menu-comercio-productos/opcion-inicio')" class='btn btn-success btn-lg' role='button'>Seguir comprando</a>
+										</div>
+										<!--div class="col-md-6 col-sm-6 col-xs-6">	
+											<a href="javascript:cargarPagina('cpanel/store/commerce/menu-comercio-productos/opcion-inicio')" class='btn btn-success btn-lg' role='button'>Seguir comprando</a>
+										</div-->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="divCarCliente" class="row carCliente">
+						<div class="col-md-10 col-md-offset-1">
+							<!--h2 class="wpr-h2-e01">:: Carrito de Compras</h2 -->
+							<!-- h4>Debe ingresar sus datos personales en el siguiente formulario para realizar su pedido:</h4 -->
+							<form id="frmCarCliente" role="form">
+								<!--input type="hidden" name="Accion" value="carritoCliente"-->
+								<input type="hidden" id="hdIdUsuario" name="hdIdUsuario" value="">
+								<input type="hidden" id="hdCodUsuario" name="hdCodUsuario" value="">
+								<input type="hidden" name="hdTipoDocu" value="3"><!-- 3: DNI -->
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h3 class="panel-title">Registrar Datos del Cliente</h3>
+									</div>
+									<div class="panel-body">
+										<div class="row">
+											<div class="col-md-4 col-sm-6 col-xs-12">
+												<label for="txtDNI">DNI<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+											</div>
+											<div class="col-md-8 col-sm-6 col-xs-12">
+												<input type="text" id="txtDNI" name="txtDNI" maxlength="8" class="form-control wpr-input-e01" onkeydown="soloNumeros('txtDNI')" requeridoinput>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4 col-sm-6 col-xs-12">
+												<label for="txtNombre">Nombre<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+											</div>
+											<div class="col-md-8 col-sm-6 col-xs-12">
+												<input type="text" id="txtNombre" name="txtNombre" maxlength="55" class="form-control wpr-input-e01" requeridoinput>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4 col-sm-6 col-xs-12">
+												<label for="txtApePat">Apellido Paterno<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+											</div>
+											<div class="col-md-8 col-sm-6 col-xs-12">
+												<input type="text" id="txtApePat" name="txtApePat" maxlength="55" class="form-control wpr-input-e01" requeridoinput>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4 col-sm-6 col-xs-12">
+												<label for="txtApeMat">Apellido Materno<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+											</div>
+											<div class="col-md-8 col-sm-6 col-xs-12">
+												<input type="text" id="txtApeMat" name="txtApeMat" maxlength="55" class="form-control wpr-input-e01" requeridoinput>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4 col-sm-6 col-xs-12">
+												<label for="txtCel">Celular</label>
+											</div>
+											<div class="col-md-8 col-sm-6 col-xs-12">
+												<input type="text" id="txtCel" name="txtCel" maxlength="9" class="form-control wpr-input-e01" onkeydown="soloNumeros('txtCel')">
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4 col-sm-6 col-xs-12">
+												<label for="txtEmail">E-mail<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+											</div>
+											<div class="col-md-8 col-sm-6 col-xs-12">
+												<input type="email" id="txtEmail" name="txtEmail" maxlength="80" class="form-control wpr-input-e01" requeridoinput>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4 col-sm-6 col-xs-12">
+												<label for="txtDireccion">Dirección<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+											</div>
+											<div class="col-md-8 col-sm-6 col-xs-12">
+												<input type="text" id="txtDireccion" name="txtDireccion" maxlength="100" class="form-control wpr-input-e01" requeridoinput>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12 col-sm-12 col-xs-12 wpr-button-e01 wpr-esp-e02">
+												<button type="button" id="btnContinuarCli" class="btn btn-primary btn-lg">Continuar Detalle Pedido</button>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12 col-sm-12 col-xs-12">
+												<div id="divMsjObligatorioFrmCrearUsuario" class="alert alert-danger wpr-esp-e01"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div id="divCarPedido" class="row carPedido">
+						<div class="col-md-10 col-md-offset-1">
+							<div class="row show-grid">
+								<div class="col-md-12">
+									<form id="frmCarCliente" role="form">
+										<div class="panel panel-default">
+											<div class="panel-heading">
+												<h3 class="panel-title">Datos del Cliente</h3>
+											</div>
+											<div class="panel-body">
+												<div class="row">
+													<div class="col-md-4 col-sm-6 col-xs-12">
+														<label>DNI</label>
+													</div>
+													<div class="col-md-8 col-sm-6 col-xs-12">
+														<input type="text" id="txtDetalleDNI" name="txtDetalleDNI" maxlength="8" class="form-control" value="" disabled />
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-4 col-sm-6 col-xs-12">
+														<label>Nombre</label>
+													</div>
+													<div class="col-md-8 col-sm-6 col-xs-12">
+														<input type="text" id="txtDetalleNombre" name="txtDetalleNombre" maxlength="55" class="form-control" value="" disabled />
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-4 col-sm-6 col-xs-12">
+														<label for="txtCel">Celular</label>
+													</div>
+													<div class="col-md-8 col-sm-6 col-xs-12">
+														<input type="text" id="txtDetalleCel" name="txtDetalleCel" maxlength="9" class="form-control" value="" disabled />
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-4 col-sm-6 col-xs-12">
+														<label for="txtEmail">E-mail</label>
+													</div>
+													<div class="col-md-8 col-sm-6 col-xs-12">
+														<input type="email" id="txtDetalleEmail" name="txtDetalleEmail" maxlength="80" class="form-control" value="" disabled />
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-4 col-sm-6 col-xs-12">
+														<label for="txtDireccion">Dirección</label>
+													</div>
+													<div class="col-md-8 col-sm-6 col-xs-12">
+														<input type="text" id="txtDetalleDireccion" name="txtDetalleDireccion" maxlength="100" class="form-control" value="" disabled />
+													</div>
+												</div>
+												
+											</div>
+										</div>
+									</form>
+								</div>
+								
+							</div>
+							<div class="row show-grid">
+								<div class="col-md-12">
+									<div class="row">
+										<div class="col-md-12 col-sm-12 col-xs-12">
+											<table id="tabDetalleItemsCarrito" class="table form-table display table-striped" width="100%">
+												<thead>
+													<tr>
+														<th class="rowTitle text-center">Item</th>
+														<th class="rowTitle text-center">Imagen</th>
+														<th class="rowTitle text-center">C&oacute;digo</th>
+														<th class="rowTitle text-center">Descripci&oacute;n</th>
+														<th class="rowTitle text-center">Precio</th>
+														<th class="rowTitle text-center">Cant.</th>
+														<th class="rowTitle text-center">SubTotal</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+												<tfoot>
+													<tr>
+														<td></td><td></td><td></td><td></td>
+														<td style="font-weight: bold;font-size: 14px; text-align:left;" colspan="2">SubTotal (S/)</td>
+														<td style="font-weight: bold;font-size: 14px; text-align:right;"><span id="sDetalleSubTotal"></span></td>
+													</tr>
+													<tr>
+														<td></td><td></td><td></td><td></td>
+														<td style="font-weight: bold;font-size: 14px; text-align:left;" colspan="2">IGV (S/)</td>
+														<td style="font-weight: bold;font-size: 14px; text-align:right;"><span id="sDetalleIGV"></span></td>
+													</tr>
+													<tr>
+														<td></td><td></td><td></td><td></td>
+														<td style="font-weight: bold;font-size: 14px; text-align:left;" colspan="2">Total (S/)</td>
+														<td style="font-weight: bold;font-size: 14px; text-align:right;"><span id="sDetalleImporteTotal"></span></td>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
+									</div>
+									<div class="row text-center">
+										<div class="col-md-12 col-sm-12 col-xs-12">
+											<button type="button" id="btnContinuarPedido" class="btn btn-primary btn-lg">Realizar Pedido</button>
+											<a href="javascript:cargarPagina('cpanel/store/commerce/menu-comercio-productos/opcion-inicio')" class='btn btn-success btn-lg' role='button'>Cancelar Pedido</a>
+										</div>
+										<!--div class="col-md-6 col-sm-6 col-xs-6">	
+											<a href="javascript:cargarPagina('cpanel/store/commerce/menu-comercio-productos/opcion-inicio')" class='btn btn-success btn-lg' role='button'>Seguir comprando</a>
+										</div-->
+									</div>
+								</div>	
+							</div>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="{PATH_LARGE}/libsExt/plugins/datatables-1.10.7/media/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="{PATH_LARGE}/libsExt/plugins/datatables-1.10.7/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+		<script type="text/javascript" src="{PATH_LARGE}/libsExt/bootstrap/3.3.2/plugins/datatables-1.10.7/media/js/jquery.dataTables.js"></script>
+		<script type="text/javascript" src="{PATH_LARGE}/libsExt/bootstrap/3.3.2/plugins/datatables-1.10.7/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+		<!--script type="text/javascript" src="{PATH_LARGE}/libsExt/bootstrap/3.3.2/plugins/bootstrap-datetimepicker-3.1.3/js/bootstrap-datetimepicker.min.js"></script-->
+	    <script type="text/javascript" src="{PATH_LARGE}/libsExt/bootstrap/3.3.2/js/bootstrap-table.js"></script>
+		<script type="text/javascript" src="{PATH_LARGE}/libsExt/bootstrap/3.3.2/plugins/bootstrap-datetimepicker-3.1.3/js/moment-with-locales.js"></script>
+		<script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script>
+		<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/carrito/compras/carritocompras/js/frmCarritoCompras.js"></script>
+  	</body>
+</html>

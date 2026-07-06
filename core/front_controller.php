@@ -79,7 +79,7 @@ class FrontController {
 			require_once $ruta;
 			$controller = new $cname($recurso, $arg);
 		}else{
-			echo $msjErr;		
+			echo 'ErrorG: ' . $msjErr;		
 		}
 		
 	}

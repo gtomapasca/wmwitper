@@ -75,11 +75,11 @@ var clsLoginUsuario = function() {
 			let val = datosDevuelto.val;
 			if(val){
 				let datos = datosDevuelto.datos[0];
-				console.log(">>> iniciarSesion-datos: " + JSON.stringify(datos));
+				//console.log(">>> iniciarSesion-datos: " + JSON.stringify(datos));
 				document.getElementById("myContentMenuUsuario").style.display = "none";
-				let usesion = null;
+				//let usesion = null;
 				sessionStorage.setItem("userSesion", JSON.stringify(datos));
-				usesion = JSON.parse(sessionStorage.getItem("userSesion"));
+				let usesion = JSON.parse(sessionStorage.getItem("userSesion"));
 				//$("#nameUser").html("&nbsp;<b>Bienvenido:</b> " + usesion[0].nick);
 				$("#nameUser").html("<b>Hola!</b>");
 				// 20240521 Degui: se agrega

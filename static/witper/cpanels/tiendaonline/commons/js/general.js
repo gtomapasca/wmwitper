@@ -7,11 +7,18 @@ $(document).ready(function () {
 
 function initInterfazG(){
     // iniciar sesion
-    iniCountUser();
+    iniAccountUser();
 };
 //-------------------------------------------------------------------------------------
 // modal mensaje
 function mostrarMensaje(msj, tipo){
+	if ($('#myModalOne').length) {
+		$('#myModalOne').modal('hide');
+		$('#myModalOne').modal('dispose');
+		$('#myModalOne').remove();
+	}
+	$('.modal-backdrop').remove();
+	$('body').removeClass('modal-open');
 	$("#myModalOne").remove();
 	$("body").append(
 		'<div class="modal fade" id="myModalOne" role="dialog">'
@@ -34,10 +41,15 @@ function mostrarMensaje(msj, tipo){
 		+	'</div>'
 		+'</div>'
 	);
-	$("#dlgBtnAceptarConfirm").click(function(e){
+	$("#dlgBtnAceptarConfirm").on('click', function(e){
 		$('#myModalOne').modal('hide');
 	});
-	$('#myModalOne').modal('show');
+	$('#myModalOne').on('hidden.bs.modal', function(){
+		$('.modal-backdrop').remove();
+		$('body').removeClass('modal-open');
+		$('#myModalOne').remove();
+	});
+	$('#myModalOne').modal({backdrop: 'static', keyboard: true, show: true});
 };
 //-------------------------------------------------------------------------------------
 // modal mensaje confirmacion
@@ -85,15 +97,14 @@ function mensajeConfirmar(callback){
 	});
 	$('#myModalConfirm').modal('show');
 };
-
 //-------------------------------------------------------------------------------------
 
 // valida si existe una sesion activa al inicio de cargar la web
-function iniCountUser(){
+function iniAccountUser(){
 	//let usesion = localStorage.getItem("userSesion");
 	//let usesion = JSON.parse(sessionStorage.getItem("userSesion"));
 	let usesion = sessionStorage.getItem("userSesion");
-	//console.log(">>> iniCountUser-usesion: " + usesion);
+	//console.log(">>> iniAccountUser-usesion: " + usesion);
 	$("#txtEmailLogin").val("");
 	$("#txtPassword").val("");
 	if (usesion == null || usesion == undefined){

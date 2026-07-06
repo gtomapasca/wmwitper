@@ -10,17 +10,18 @@
 // copia de la licencia, por favor solicite una copia a su proveedor.
 // ----------------------------------------------------------------------------
 // Interfaz Usuario:
-//  - Interfaz de producto
+//  - Interfaz de Usuario
 // ----------------------------------------------------------------------------
 // Change History:
 //  2019/04/17  degui <degui@nitper.com>
-//     - Se crea interfaz de producto
+//     - Se crea interfaz de Usuario
 // ----------------------------------------------------------------------------
 
 /* Interfaz UsuarioDAO */
 interface UsuarioDAO{
 	public function insertUsuario($dataRequest);
-	public function selectCountUser($dataRequest);
+	public function selectAccountUser($dataRequest);
+	public function selectUsuarioAnonimo();
 }
 
 ?>
