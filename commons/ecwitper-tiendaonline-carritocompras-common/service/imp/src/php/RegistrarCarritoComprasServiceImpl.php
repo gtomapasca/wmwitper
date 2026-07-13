@@ -76,16 +76,21 @@ class RegistrarCarritoComprasServiceImpl implements RegistrarCarritoComprasServi
 				// setea data carrito
 				$dataPedidoReq["datos_cliente"] = $data_carrito["datos_cliente"];
 				$data_list_productos = $data_carrito["car_detalle_producto"];
-				// Consultar ultimo pedido
+				
+				// Registrar pedido
 				$sqlMapPedidoDAO = new SqlMapPedidoDAO();
+				//$dataPedidoReq["nro_pedido"] = strval($nro_pedido);
+				$dataPedidoReq["nro_pedido"] = 0;
+				$sqlMapPedidoDAO->insertPedidoCar($dataPedidoReq);
+
+				// Consultar ultimo pedido
+				//$sqlMapPedidoDAO = new SqlMapPedidoDAO();
 				$dataPedido = $sqlMapPedidoDAO->getLastPedido();
 				$id_last    = $dataPedido[0]["id_pedido"];
 				$id_pedido  = ($id_last != null && $id_last > 0 ? $id_last : 0);
-				$id_pedido++;
+				//$id_pedido++;
 				$nro_pedido = $id_pedido != null ? $id_pedido + 1000 : 0;
-				// Registrar pedido
-				$dataPedidoReq["nro_pedido"] = strval($nro_pedido);
-				$sqlMapPedidoDAO->insertPedidoCar($dataPedidoReq);
+
 				// Registrar detalle pedido
 				$sqlMapDetPedidoDAO = new SqlMapDetPedidoDAO();
 				$dataDetPedidoReq["id_pedido"] = $id_pedido;
@@ -96,6 +101,9 @@ class RegistrarCarritoComprasServiceImpl implements RegistrarCarritoComprasServi
 						$sqlMapDetPedidoDAO->insertDetallePedidoCar($dataDetPedidoReq);
 					}
 				}
+
+				// actualizar pedido
+
 				// Retornamos numero de pedido
 				//$dataResponse = array("nro_pedido" => $nro_pedido, "encontrado" => true, "mensaje" => "Se registro correctamente");
 				$objRespuesta->tip = "I"; // Info

@@ -46,16 +46,17 @@ class SqlMapPedidoDAO implements PedidoDAO{
       public function insertPedidoCar($dataRequest){
 		// 20251228 Degui: obtener ruc dinamicamente
 		$ruc_negocio 	 = $dataRequest["ruc_negocio"];
+		$nro_pedido 	 = $dataRequest["nro_pedido"];
 		$data_cliente	 = $dataRequest["datos_cliente"];
-		$jsonDataCliente = json_decode($data_cliente);
-		$nro_pedido 	 = $jsonDataCliente->nro_pedido;
-		$id_usuario  = $jsonDataCliente->idUsuario;
-		$cod_usuario = $jsonDataCliente->codUsuario;
-		$docnum 	 = $jsonDataCliente->dni;
-		$numCel 	 = $jsonDataCliente->numCel;
-		$email	 	 = $jsonDataCliente->email;
-		$direc	 	 = $jsonDataCliente->direccion;
-		$nombre_completo = $jsonDataCliente->nombre." ".$jsonDataCliente->apePat." ".$jsonDataCliente->apeMat;
+		$jsonStrDataCliente = json_encode($data_cliente);
+		$jsonObjDataCliente = json_decode($jsonStrDataCliente);
+		$id_usuario  = $jsonObjDataCliente->idUsuario;
+		$cod_usuario = $jsonObjDataCliente->codUsuario;
+		$docnum 	 = $jsonObjDataCliente->dni;
+		$numCel 	 = $jsonObjDataCliente->numCel;
+		$email	 	 = $jsonObjDataCliente->email;
+		$direc	 	 = $jsonObjDataCliente->direccion;
+		$nombre_completo = $jsonObjDataCliente->nombre." ".$jsonObjDataCliente->apePat." ".$jsonObjDataCliente->apeMat;
 		/* Registramos datos del cliente */
 		$sql = "insert into wip_pedido (ruc_negocio, id_usuario, cod_usuario, nro_pedido, carrito_nropedido, carrito_dni, carrito_cliente, carrito_celular, carrito_email, carrito_direccion, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
 		       ."values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
