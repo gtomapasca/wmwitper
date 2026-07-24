@@ -100,7 +100,7 @@ var MSG = {
 				divPanel.addClass('panel-info');
 				break;
 			case MSG.Tipo.WAR:
-				divPanel.addClass('panel-danger');
+				divPanel.addClass('panel-warning');
 				break;
 			default:
 				divPanel.addClass('panel-success');
@@ -119,11 +119,9 @@ var MSG = {
 
 	showParentSiNo: function (msg) {
 		var div = MSG.fnGetModalSiNo();
-
-		//console.debug("INI mostrarMensajeSiNo()");
-
+		//console.debug("GTP mostrarMensajeSiNo()");
 		//console.debug(msg.titulo + ':' + msg.mensaje);
-		// Por defecto ambos botones cerrarÃ¡n el modal
+		// Por defecto ambos botones cerraron el modal
 		if (msg.fnNo === undefined || msg.fnNo === null) {
 			UTIL.dialogResponse.No = function () {
 				$('#divModalMsgSiNo').modal('hide');
@@ -200,7 +198,12 @@ var MSG = {
 		if (typeof msg === 'string') {
 			MSG.show({ titulo: 'Advertencia', mensaje: msg, tipo: MSG.Tipo.WAR });
 		} else {
-			MSG.show({ titulo: msg.titulo || 'Advertencia', mensaje: msg.mensaje, tipo: MSG.Tipo.WAR });
+			//MSG.show({ titulo: msg.titulo || 'Advertencia', mensaje: msg.mensaje, tipo: MSG.Tipo.WAR });
+			if (msg.fnOk === undefined && msg.fnSi !== undefined) {
+				msg.fnOk = msg.fnSi;
+			}
+			msg.titulo = msg.titulo || 'Advertencia';
+			MSG.show({ titulo: msg.titulo, mensaje: msg.mensaje, tipo: MSG.Tipo.WAR, fnOk: msg.fnOk });
 		}
 	},
 

@@ -25,7 +25,8 @@ var clsCarritoCompras = function() {
 	this.divs = {
         carProductos:	{ id: 'divCarProductos' },
 		carCliente	:	{ id: 'divCarCliente' },
-		carPedido  	: 	{ id: 'divCarPedido' }
+		carDetPedido : 	{ id: 'divCarDetallePedido' },
+		carFinPedido : 	{ id: 'divCarFinPedido' }
     };
 
     this.botones = {
@@ -38,7 +39,8 @@ var clsCarritoCompras = function() {
         var refCls = this;
 		$("#" + this.divs.carProductos.id).show();
 		$("#" + this.divs.carCliente.id).hide();
-		$("#" + this.divs.carPedido.id).hide();
+		$("#" + this.divs.carDetPedido.id).hide();
+		$("#" + this.divs.carFinPedido.id).hide();
         $("#" + this.botones.btnContinuarCar.id).click(function(){
             refCls.onClickBtnContinuarCar();
         });
@@ -59,7 +61,7 @@ var clsCarritoCompras = function() {
 			url: '../../../../cli/app/store/carrito/consultar-carrito-compras/obtener-lista-carrito',
 			dataType: "json",
 			success: function(response){
-				console.log(">>> consultarListaCarrito-response: " + JSON.stringify(response));
+				//console.log(">>> consultarListaCarrito-response: " + JSON.stringify(response));
 				let tip = response.tip;
 				let msj = response.msj;
 				let val = response.val;
@@ -94,25 +96,25 @@ var clsCarritoCompras = function() {
 							listItems.push(newItem);
 						}
 					}
-					console.log(">>> consultarListaCarrito-listItems: " + JSON.stringify(listItems));
+					//console.log(">>> consultarListaCarrito-listItems: " + JSON.stringify(listItems));
 					refCls.buildTablaItemsCarrito(listItems, importe_total);
 					$("#" + refCls.botones.btnContinuarCar.id).prop("disabled", listItems.length == 0);
-					$("#divMensaje").html("");
+					//$("#divMensaje").html("");
 				}else{
 					if(tip == "A"){
-						console.log(">>> consultarListaCarrito-else-mensaje: debe limpiar el carrito");
+						//console.log(">>> consultarListaCarrito-else-mensaje: debe limpiar el carrito");
 						refCls.buildTablaItemsCarrito("", 0);
 						$("#" + refCls.botones.btnContinuarCar.id).prop("disabled", true);
 					}else if(tip == "E"){
 						mostrarMensaje("Mensaje Error: " + msj, 2);
-						console.log(">>> consultarListaCarrito-Error: " + msj);
+						//console.log(">>> consultarListaCarrito-Error: " + msj);
 					}
-					$("#divMensaje").html("");
+					//$("#divMensaje").html("");
 				}
 			},
 			error: function(errorThrown) {
 				mostrarMensaje("Disculpe, existi&oacute; un problema al consultar carrito", 2);
-				console.log(">>> consultarListaCarrito-errorLanzado: " + JSON.stringify(errorThrown));
+				//console.log(">>> consultarListaCarrito-errorLanzado: " + JSON.stringify(errorThrown));
 			}
 		});
 		
@@ -201,7 +203,7 @@ var clsCarritoCompras = function() {
 
 	// 20260216 Tabla Detalle de items del carrito
 	this.buildTablaDetalleItemsCarrito = function(lstArchivosAux, total){
-		console.log(">>> buildTablaDetalleItemsCarrito: " + JSON.stringify(lstArchivosAux));
+		//console.log(">>> buildTablaDetalleItemsCarrito: " + JSON.stringify(lstArchivosAux));
 		let refCls = this;
 		var tblRepCfg = {bResponsive: false};
 		//refCls.destruirDataTabla("#tabItemsCarrito");
@@ -280,23 +282,23 @@ var clsCarritoCompras = function() {
 				}else{
 					if(tip == "A"){
 						mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);
-						console.log(">>> obtenerUsuarioAnonimo-Validar: " + msj);
+						//console.log(">>> obtenerUsuarioAnonimo-Validar: " + msj);
 					}else if(tip == "E"){
 						mostrarMensaje("Mensaje Error: " + msj, 2);
-						console.log(">>> obtenerUsuarioAnonimo-Error: " + msj);
+						//console.log(">>> obtenerUsuarioAnonimo-Error: " + msj);
 					}
 				}
 			},
 			error: function(errorThrown) {
 				mostrarMensaje("Disculpe, existi&oacute; un problema al obtener usuario", 2);
-				console.log(">>> obtenerUsuarioAnonimo-errorLanzado: " + JSON.stringify(errorThrown));
+				//console.log(">>> obtenerUsuarioAnonimo-errorLanzado: " + JSON.stringify(errorThrown));
 			}
 		});
 	}
 
 	// 20260102 Degui: eliminar item del carrito
 	this.eliminarItemDelCarrito = function(index){
-		console.log(">>> eliminarItemDelCarrito-index: " + index);
+		//console.log(">>> eliminarItemDelCarrito-index: " + index);
 		let refCls = this;
 		$.ajax({
 			type: "POST",
@@ -308,27 +310,27 @@ var clsCarritoCompras = function() {
 				let val = response.val;
 				let datos = response.datos;
 				//let cant_car = response.ncar;
-				console.log(">>> eliminarItemDelCarrito-response: " + JSON.stringify(response));
+				//console.log(">>> eliminarItemDelCarrito-response: " + JSON.stringify(response));
 				if(val){
 					refCls.consultarListaCarrito();
 					$("#countCar").html(datos.nproductos);
 					//mostrarMensaje("Se elimino item del carrito de compras.", 1);
 					//$("#divMensaje").html("Se elimino item del carrito de compras.");
 					MSG.showINF({ mensaje: "Se elimino item del carrito de compras..."});
-					return false;
+					//return false;
 				}else{
 					if(tip == "A"){
 						mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);
-						console.log(">>> eliminarItemDelCarrito-Validar: " + msj);
+						//console.log(">>> eliminarItemDelCarrito-Validar: " + msj);
 					}else if(tip == "E"){
 						mostrarMensaje("Mensaje Error: " + msj, 2);
-						console.log(">>> eliminarItemDelCarrito-Error: " + msj);
+						//console.log(">>> eliminarItemDelCarrito-Error: " + msj);
 					}
 				}
 			},
 			error: function(errorThrown) {
 				mostrarMensaje("Disculpe, existi&oacute; un problema al eliminar item del carrito", 2);
-				console.log(">>> eliminarItemDelCarrito-errorLanzado: " + JSON.stringify(errorThrown));
+				//console.log(">>> eliminarItemDelCarrito-errorLanzado: " + JSON.stringify(errorThrown));
 			}
 		});
 	}
@@ -371,7 +373,7 @@ var clsCarritoCompras = function() {
 			data: {'datos': jsonDataForm},
 			dataType: "json",
 			success: function(response){
-				console.log(">>> validarDatosBackend-response: " + JSON.stringify(response));
+				//console.log(">>> validarDatosBackend-response: " + JSON.stringify(response));
 				let tip = response.tip;
 				let msj = response.msj;
 				let val = response.val;
@@ -381,27 +383,27 @@ var clsCarritoCompras = function() {
 					//$('#divCarPedido').toggle('slow');
 					let datos = response.datos;
 					$('#' + refCls.divs.carCliente.id).toggle('hide');
-					$('#' + refCls.divs.carPedido.id).toggle('slow');
+					$('#' + refCls.divs.carDetPedido.id).toggle('slow');
 					refCls.mostrarDetallePedido(datos);
 				}else{
 					if(tip == "A"){
 						mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);
-						console.log(">>> registrarClienteCar-Validar: " + msj);
+						//console.log(">>> registrarClienteCar-Validar: " + msj);
 					}else if(tip == "E"){
 						mostrarMensaje("Mensaje Error: " + msj, 2);
-						console.log(">>> registrarClienteCar-Error: " + msj);
+						//console.log(">>> registrarClienteCar-Error: " + msj);
 					}
 				}
 			},
 			error: function(errorThrown) {
 				mostrarMensaje("Disculpe, existi&oacute; un problema al registrar cliente", 2);
-				console.log(">>> registrarClienteCar-errorLanzado: " + JSON.stringify(errorThrown));
+				//console.log(">>> registrarClienteCar-errorLanzado: " + JSON.stringify(errorThrown));
 			}
 		});
 	}
 
 	this.mostrarDetallePedido = function(datos){
-		console.log(">>> mostrarDetallePedido: " + JSON.stringify(datos));
+		//console.log(">>> mostrarDetallePedido: " + JSON.stringify(datos));
 		let refCls = this;
 		let datos_cliente   = datos.datos_cliente;
 		//let datos_productos = datos.car_detalle_producto;
@@ -412,14 +414,14 @@ var clsCarritoCompras = function() {
 		$("#txtDetalleDireccion").val(datos_cliente.direccion);
 
 		let items = datos.car_detalle_producto;
-		console.log(">>> mostrarDetallePedido-items: " + JSON.stringify(items));
+		//console.log(">>> mostrarDetallePedido-items: " + JSON.stringify(items));
 		let ruta_raiz 	= '/static/witper/';
 		let ruta_upload = 'apps/ecwitper/img/tiendavirtual/galeria/productos/upload/';
 		let importe_total = 0;
 		var index = 0; 
 		var listItems = Array();
 		for(let item of items){
-			console.log(">>> mostrarDetallePedido-itemx: " + JSON.stringify(item));
+			//console.log(">>> mostrarDetallePedido-itemx: " + JSON.stringify(item));
 			if(item.estado==0){
 				importe_total += parseFloat(item.precio_venta * item.cantidad);
 				let src_img = ruta_raiz + ruta_upload + item.img_dir + '/' + item.img_nom;
@@ -444,7 +446,21 @@ var clsCarritoCompras = function() {
 		let refCls = this;
 		// muestra ventana emergente para confirmar el registro de los datos
 		//mensajeConfirmarPedido(registrarCarPedido);
-		refCls.mensajeConfirmarPedido();
+		//refCls.mensajeConfirmarPedido();
+		MSG.showWAR({ 	titulo: "Advertencia", 
+						mensaje: "Por favor verifique detalladamente los datos ingresados a fin de continuar con su pedido, ya que, una vez registrado no podrá realizar modificaciones.",
+						fnSi: refCls.btnAceptarRegistrarPedido
+					});
+	};
+
+	this.btnAceptarRegistrarPedido = function () {
+		//let refCls = this;
+		//MSG.showINF({ mensaje: "¿Está seguro de grabar?"});
+		MSG.showCON({ 	titulo: "Confirmación", 
+						mensaje: "¿Está seguro de grabar?",
+						fnSi: obj.registrarCarDetPedido()
+					});
+		
 	};
 
 	// modal mensaje confirmacion
@@ -487,7 +503,7 @@ var clsCarritoCompras = function() {
 			$('#myModalConfirm').modal('hide');
 			// ejecuta la funcion que viene por parametro
 			//callback();
-			refCls.registrarCarPedido();
+			refCls.registrarCarDetPedido();
 		});
 		$("#dlgBtnNo").click(function(e){
 			$('#myModalConfirm').modal('hide');
@@ -496,22 +512,30 @@ var clsCarritoCompras = function() {
 	};
 
 	// 20260110 registrar pedido carrito
-	this.registrarCarPedido = function(){
+	this.registrarCarDetPedido = function(){
 		let refCls = this;
 		$.ajax({
 			type: "POST",
 			url: '../../../../cli/app/store/carrito/registrar-carrito-compras/registrar-carrito-pedido',
 			dataType: "json",
 			success: function(response){
-				console.log(">>> registrarCarPedido-response: " + JSON.stringify(response));
+				//console.log(">>> registrarCarDetPedido-response: " + JSON.stringify(response));
 				let tip = response.tip;
 				let msj = response.msj;
 				let val = response.val;
 				if(val){
 					//let nroPedido 	= datosDevuelto.nro_pedido;
 					let nroPedido 	= response.datos;
+					$('#' + refCls.divs.carDetPedido.id).toggle('hide');
+					$('#' + refCls.divs.carFinPedido.id).toggle('slow');
+					let htmMsjPedido = "";
+					htmMsjPedido =+ "<div>";
+					htmMsjPedido =+ "<p>Se registro correctamente su pedido. Su número de pedido es: <b>"+ nroPedido +"</b></p>"; 
+					htmMsjPedido =+ "<p>Recibirá un mensaje de correo electrónico con los detalles de su pedido.</p>";
+					htmMsjPedido =+ "</div>";
+					$("#divMsjPedido").html(htmMsjPedido);
 					$("#countCar").html("(0)");
-					let html =  "<div class='container'>";
+					/*let html =  "<div class='container'>";
 					html += "	<div class='col-md-8'>";
 					html += "		<h2 class='wpr-h2-e01'>Carrito :: Mensaje</h2>";
 					html += "		<h4 class='wpr-h4-e01'>Su número de pedido es: "+ nroPedido +"</h4>";
@@ -521,21 +545,22 @@ var clsCarritoCompras = function() {
 					html += "   	</div>";
 					html += "   </div>";
 					$("#panelPedido").html(html);
+					*/
 					//mostrarMensaje("¡Se ha creado su usuario con &eacute;xito! Gracias por registrarse.", 0);
 					refCls.limpiarForm();
 				}else{
 					if(tip == "A"){
 						mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);
-						console.log(">>> registrarCarPedido-Validar: " + msj);
+						//console.log(">>> registrarCarPedido-Validar: " + msj);
 					}else if(tip == "E"){
 						mostrarMensaje("Mensaje Error: " + msj, 2);
-						console.log(">>> registrarCarPedido-Error: " + msj);
+						//console.log(">>> registrarCarPedido-Error: " + msj);
 					}
 				}
 			},
 			error: function(errorThrown) {
 				mostrarMensaje("Disculpe, existi&oacute; un problema al registrar pedido", 2);
-				console.log(">>> registrarCarPedido-errorLanzado: " + JSON.stringify(errorThrown));
+				//console.log(">>> registrarCarPedido-errorLanzado: " + JSON.stringify(errorThrown));
 			}
 		});
 	}
@@ -653,7 +678,7 @@ var clsCarritoCompras = function() {
 	}
 
 	this.destruirDataTabla = function(nombreTabla){
-		console.log(">>> destruirDataTabla: " + nombreTabla);
+		//console.log(">>> destruirDataTabla: " + nombreTabla);
 		var oTable = $(nombreTabla).DataTable();				
 		oTable.clear(); //se limpia la tabla
 		oTable.destroy(); //se destruye la tabla //

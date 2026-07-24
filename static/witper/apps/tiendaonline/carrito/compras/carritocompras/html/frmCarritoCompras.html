@@ -166,7 +166,7 @@
 					<!-- Detalle Pedido -->
 					<div class="row">
 						<div class="col-xs-10 col-md-offset-1">
-							<div id="divCarPedido" class="panel panel-primary witper-box-hide">
+							<div id="divCarDetallePedido" class="panel panel-primary witper-box-hide">
 								<div class="panel-heading">
 									<h3 class="panel-title" style="font-weight:bold;">Detalle Pedido</h3>
 								</div> 
@@ -281,11 +281,38 @@
 							</div>
 						</div>
 					</div>
+					<!-- FinalizarPedido -->
 					<div class="row">
+						<div class="col-xs-10 col-md-offset-1">
+							<div id="divCarFinPedido" class="panel panel-primary">
+								<div class="panel-heading">
+									<h3 class="panel-title" style="font-weight:bold;">Mensaje Pedido</h3>
+								</div> 
+								<div class="panel-body">
+									<div class="row show-grid">
+										<div class="col-xs-12">
+											<div class="row">
+												<div class="col-xs-12">
+													<div id = "divMsjPedido"></div>
+												</div>
+											</div>
+											<div class="row text-center">
+												<div class="col-md-12 col-sm-12 col-xs-12">
+													<!-- button type="button" id="btnContinuarCar" class="btn btn-primary btn-lg" disabled>Continuar Pedido</button -->
+													<a href="javascript:cargarPagina('cpanel/store/commerce/menu-comercio-productos/opcion-inicio')" class='btn btn-primary btn-lg' role='button'>Ir a Tienda</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- div class="row">
 						<div class="col-xs-10 col-md-offset-1">
 							<div id = "divMensaje"></div>
 						</div>
-					</div>
+					</div -->
 				</div>
 			</div>
 		</div>
@@ -294,7 +321,7 @@
 	        <div class="modal-dialog">
 	            <div id="divPanelModal" class="panel panel-warning">
 	                <div id="divMsgTitulo" class="panel-heading"></div>
-	                <div id="divMsgContenido" class="panel-body">La informaci&oacute;n ingresa no es la correcta. Vuela a intentarlo ms tarde</div>
+	                <div id="divMsgContenido" class="panel-body">La informaci&oacute;n ingresa no es la correcta. Vuela a intentarlo mas tarde</div>
 	                <div class="panel-footer text-center">
 	                    <button type="button" id="btnCerrarModalMsg" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 	                </div>
