@@ -65,34 +65,23 @@ var MSG = {
 		return $("#divModalMsg");
 	},
 
-	fnGetModalSiNo: function () {
-		return $("#divModalMsgSiNo");
+	fnGetModalAdvertencia: function () {
+		return $("#divModalMsgAdvertencia");
 	},
 
-	showParent: function (msg) {
+	fnGetModalConfirmacion: function () {
+		return $("#divModalMsgConfirmacion");
+	},
 
-		if (msg.fnOk === undefined || msg.fnOk === null) {
-			UTIL.dialogResponse.Ok = function () {
-				$('#divModalMsg').modal('hide');
-			};
-		} else {
-			UTIL.dialogResponse.Ok = function () {
-				$('#divModalMsg').modal('hide');
-				msg.fnOk();
-			};
-		}
-
-		var div = MSG.fnGetModal();
-		$("#divMsgTitulo").html(msg.titulo);
-		$("#divMsgContenido").html(msg.mensaje);
-
-		var divPanel = $("#divPanelModal");
+	fnSetTipoMsg: function (tipo, panel) {
+		//var divPanel = $("#divPanelModal");
+		var divPanel = $("#" + panel);
 		divPanel.removeClass('panel-warning');
 		divPanel.removeClass('panel-danger');
 		divPanel.removeClass('panel-info');
 		divPanel.removeClass('panel-success');
 
-		switch (msg.tipo) {
+		switch (tipo) {
 			case MSG.Tipo.ERR:
 				divPanel.addClass('panel-danger');
 				break;
@@ -102,33 +91,99 @@ var MSG = {
 			case MSG.Tipo.WAR:
 				divPanel.addClass('panel-warning');
 				break;
+			case MSG.Tipo.CON:
+				divPanel.addClass('panel-warning');
+				break;
 			default:
 				divPanel.addClass('panel-success');
 		}
+	},
 
-		$("#btnCerrarModalMsg").unbind("click");
+	showParent: function (msg) {
+		//console.debug("GTP showParent()");
+		var div = MSG.fnGetModal();
+		if (msg.fnOk === undefined || msg.fnOk === null) {
+			UTIL.dialogResponse.Ok = function () {
+				//$('#divModalMsg').modal('hide');
+				div.modal('hide');
+			};
+		} else {
+			UTIL.dialogResponse.Ok = function () {
+				//$('#divModalMsg').modal('hide');
+				div.modal('hide');
+				msg.fnOk();
+			};
+		}
+		
+		MSG.fnSetTipoMsg(msg.tipo, 'divPanelModal');
+		$('#divModalMsgTitulo').html(msg.titulo);
+		$('#divModalMsgContenido').html(msg.mensaje);
 
-		$('#btnCerrarModalMsg').on('click', function (e) {
+		$('#btnModalMsgCerrar').unbind('click');
+		$('#btnModalMsgCerrar').on('click', function (e) {
 			e.preventDefault();
 			UTIL.dialogResponse.Ok();
 		});
 
-		$('#divModalMsg').modal({ backdrop: 'static', keyboard: false });
+		//$('#divModalMsg').modal({ backdrop: 'static', keyboard: false });
+		div.modal({ backdrop: 'static', keyboard: false });
 
 	},
 
-	showParentSiNo: function (msg) {
-		var div = MSG.fnGetModalSiNo();
-		//console.debug("GTP mostrarMensajeSiNo()");
+	showParentAdvertencia: function (msg) {
+		//console.debug("GTP showParentAdvertencia()");
+		var div = MSG.fnGetModalAdvertencia();
 		//console.debug(msg.titulo + ':' + msg.mensaje);
+		//console.debug("fnSi: " + msg.fnSi);
+		// Por defecto ambos botones cerraron el modal
+
+		if (msg.fnSi === undefined || msg.fnSi === null) {
+			UTIL.dialogResponse.Si = function (e) {
+				if (e !== undefined && e.preventDefault !== undefined) {
+					e.preventDefault();
+				}
+				//$('#divModalMsgSiNo').modal('hide');
+				div.modal('hide');
+			};
+		} else {
+			UTIL.dialogResponse.Si = function () {
+				//$('#divModalMsgSiNo').modal('hide');
+				//setTimeout(msg.fnSi, 600);
+				div.modal('hide');
+				msg.fnSi();
+			};
+		}
+
+		MSG.fnSetTipoMsg(msg.tipo, "divPanelModalAdv");
+
+		$("#btnModalMsgAdvAceptar").unbind("click");
+		$('#btnModalMsgAdvAceptar').on('click', function (e) {
+			e.preventDefault();
+			UTIL.dialogResponse.Si();
+		});
+
+		$("#divModalMsgAdvTitulo").html(msg.titulo);
+		$("#divModalMsgAdvContenido").html(msg.mensaje);
+		//$('#divModalMsgSiNo').modal({ backdrop: 'static', keyboard: false });
+		div.modal({ backdrop: 'static', keyboard: false });
+
+	},
+
+	showParentConfirmacion: function (msg) {
+		//console.debug("GTP showParentConfirmacion()");
+		var div = MSG.fnGetModalConfirmacion();
+		//console.debug(msg.titulo + ':' + msg.mensaje);
+		//console.debug("fnSi: " + msg.fnSi);
 		// Por defecto ambos botones cerraron el modal
 		if (msg.fnNo === undefined || msg.fnNo === null) {
 			UTIL.dialogResponse.No = function () {
-				$('#divModalMsgSiNo').modal('hide');
+				//$('#divModalMsgSiNo').modal('hide');
+				div.modal('hide');
 			};
 		} else {
 			UTIL.dialogResponse.No = function () {
-				$('#divModalMsgSiNo').modal('hide');
+				//$('#divModalMsgSiNo').modal('hide');
+				div.modal('hide');
 				setTimeout(msg.fnNo, 600);
 			};
 		}
@@ -138,18 +193,35 @@ var MSG = {
 				if (e !== undefined && e.preventDefault !== undefined) {
 					e.preventDefault();
 				}
-				$('#divModalMsgSiNo').modal('hide');
+				//$('#divModalMsgSiNo').modal('hide');
+				div.modal('hide');
 			};
 		} else {
 			UTIL.dialogResponse.Si = function () {
-				$('#divModalMsgSiNo').modal('hide');
-				setTimeout(msg.fnSi, 600);
+				//$('#divModalMsgSiNo').modal('hide');
+				//setTimeout(msg.fnSi, 600);
+				div.modal('hide');
+				// validamos si existe data
+				if (msg.data === undefined || msg.data === null) {
+					msg.fnSi();
+				}else{
+					msg.fnSi(msg.data);
+				}
 			};
 		}
 
-		$("#divMsgTituloSiNo").html(msg.titulo);
-		$("#divMsgContenidoSiNo").html(msg.mensaje);
-		$('#divModalMsgSiNo').modal({ backdrop: 'static', keyboard: false });
+		MSG.fnSetTipoMsg(msg.tipo, "divPanelModalConf");
+
+		$("#btnModalMsgConfSi").unbind("click");
+		$('#btnModalMsgConfSi').on('click', function (e) {
+			e.preventDefault();
+			UTIL.dialogResponse.Si();
+		});
+
+		$("#divModalMsgConfTitulo").html(msg.titulo);
+		$("#divModalMsgConfContenido").html(msg.mensaje);
+		//$('#btnModalMsgConfSi').modal({ backdrop: 'static', keyboard: false });
+		div.modal({ backdrop: 'static', keyboard: false });
 
 	},
 
@@ -163,12 +235,18 @@ var MSG = {
 			MSG.showParent(msg);
 		};
 
-		MODALDATA.mostrarMensajeSiNo = function (msg) {
-			MSG.showParentSiNo(msg);
+		MODALDATA.mostrarMensajeAdvertencia = function (msg) {
+			MSG.showParentAdvertencia(msg);
 		};
 
-		if (msg.tipo === MSG.Tipo.CON) {
-			MODALDATA.mostrarMensajeSiNo(msg);
+		MODALDATA.mostrarMensajeConfirmacion = function (msg) {
+			MSG.showParentConfirmacion(msg);
+		};
+
+		if (msg.tipo === MSG.Tipo.WAR) {
+			MODALDATA.mostrarMensajeAdvertencia(msg);
+		} else if (msg.tipo === MSG.Tipo.CON) {
+			MODALDATA.mostrarMensajeConfirmacion(msg);
 		} else {
 			MODALDATA.mostrarMensaje(msg);
 		}
@@ -198,12 +276,8 @@ var MSG = {
 		if (typeof msg === 'string') {
 			MSG.show({ titulo: 'Advertencia', mensaje: msg, tipo: MSG.Tipo.WAR });
 		} else {
-			//MSG.show({ titulo: msg.titulo || 'Advertencia', mensaje: msg.mensaje, tipo: MSG.Tipo.WAR });
-			if (msg.fnOk === undefined && msg.fnSi !== undefined) {
-				msg.fnOk = msg.fnSi;
-			}
 			msg.titulo = msg.titulo || 'Advertencia';
-			MSG.show({ titulo: msg.titulo, mensaje: msg.mensaje, tipo: MSG.Tipo.WAR, fnOk: msg.fnOk });
+			MSG.show({ titulo: msg.titulo, mensaje: msg.mensaje, tipo: MSG.Tipo.WAR, fnSi: msg.fnSi });
 		}
 	},
 
@@ -215,7 +289,6 @@ var MSG = {
 		if (msg.mensaje === undefined) {
 			msg.mensaje = "Confirmación";
 		}
-
 		msg.fnSi = msg.fnSi || undefined;
 
 		msg.titulo = msg.titulo || 'Confirmación';

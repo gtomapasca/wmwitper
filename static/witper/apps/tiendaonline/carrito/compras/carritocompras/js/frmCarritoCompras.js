@@ -91,7 +91,7 @@ var clsCarritoCompras = function() {
 								precio : item.precio_venta,
 								cantidad : item.cantidad,
 								subtotal : (item.precio_venta * item.cantidad).toFixed(2),
-								opcion : "<a href='javascript:obj.eliminarItemDelCarrito("+item.index+")'><i class='glyphicon glyphicon-trash'></i></a>"
+								opcion : "<a href='javascript:obj.confirmarEliminarItemDelCarrito("+item.index+")'><i class='glyphicon glyphicon-trash'></i></a>"
 							};
 							listItems.push(newItem);
 						}
@@ -106,15 +106,17 @@ var clsCarritoCompras = function() {
 						refCls.buildTablaItemsCarrito("", 0);
 						$("#" + refCls.botones.btnContinuarCar.id).prop("disabled", true);
 					}else if(tip == "E"){
-						mostrarMensaje("Mensaje Error: " + msj, 2);
+						//mostrarMensaje("Mensaje Error: " + msj, 2);
 						//console.log(">>> consultarListaCarrito-Error: " + msj);
+						MSG.showERR("Mensaje de Error: " + msj);
 					}
 					//$("#divMensaje").html("");
 				}
 			},
 			error: function(errorThrown) {
-				mostrarMensaje("Disculpe, existi&oacute; un problema al consultar carrito", 2);
+				//mostrarMensaje("Disculpe, existi&oacute; un problema al consultar carrito", 2);
 				//console.log(">>> consultarListaCarrito-errorLanzado: " + JSON.stringify(errorThrown));
+				MSG.showERR("Disculpe, existi&oacute; un problema al consultar carrito");
 			}
 		});
 		
@@ -281,20 +283,33 @@ var clsCarritoCompras = function() {
 					$("#hdCodUsuario").val(datos.cod_usuario);
 				}else{
 					if(tip == "A"){
-						mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);
+						//mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);
 						//console.log(">>> obtenerUsuarioAnonimo-Validar: " + msj);
+						MSG.showINF("Mensaje validaci&oacute;n: " + msj);
 					}else if(tip == "E"){
-						mostrarMensaje("Mensaje Error: " + msj, 2);
+						//mostrarMensaje("Mensaje Error: " + msj, 2);
 						//console.log(">>> obtenerUsuarioAnonimo-Error: " + msj);
+						MSG.showERR("Mensaje Error: " + msj);
 					}
 				}
 			},
 			error: function(errorThrown) {
-				mostrarMensaje("Disculpe, existi&oacute; un problema al obtener usuario", 2);
+				//mostrarMensaje("Disculpe, existi&oacute; un problema al obtener usuario", 2);
 				//console.log(">>> obtenerUsuarioAnonimo-errorLanzado: " + JSON.stringify(errorThrown));
+				MSG.showERR("Disculpe, existi&oacute; un problema al obtener usuario");
 			}
 		});
 	}
+
+	this.confirmarEliminarItemDelCarrito = function (index) {
+		let refCls = this;
+		MSG.showCON({ 	titulo: "Confirmación", 
+						mensaje: "¿Está seguro de eliminar el item del carrito?",
+						data: index,
+						fnSi: refCls.eliminarItemDelCarrito
+					});
+		
+	};
 
 	// 20260102 Degui: eliminar item del carrito
 	this.eliminarItemDelCarrito = function(index){
@@ -312,25 +327,26 @@ var clsCarritoCompras = function() {
 				//let cant_car = response.ncar;
 				//console.log(">>> eliminarItemDelCarrito-response: " + JSON.stringify(response));
 				if(val){
-					refCls.consultarListaCarrito();
+					obj.consultarListaCarrito();
 					$("#countCar").html(datos.nproductos);
-					//mostrarMensaje("Se elimino item del carrito de compras.", 1);
-					//$("#divMensaje").html("Se elimino item del carrito de compras.");
-					MSG.showINF({ mensaje: "Se elimino item del carrito de compras..."});
+					//MSG.showINF({ mensaje: "Se elimino item del carrito de compras..."});
 					//return false;
 				}else{
 					if(tip == "A"){
-						mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);
+						//mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);
 						//console.log(">>> eliminarItemDelCarrito-Validar: " + msj);
+						MSG.showINF("Mensaje validaci&oacute;n: " + msj);
 					}else if(tip == "E"){
-						mostrarMensaje("Mensaje Error: " + msj, 2);
+						//mostrarMensaje("Mensaje Error: " + msj, 2);
 						//console.log(">>> eliminarItemDelCarrito-Error: " + msj);
+						MSG.showERR("Mensaje Error: " + msj);
 					}
 				}
 			},
 			error: function(errorThrown) {
-				mostrarMensaje("Disculpe, existi&oacute; un problema al eliminar item del carrito", 2);
+				//mostrarMensaje("Disculpe, existi&oacute; un problema al eliminar item del carrito", 2);
 				//console.log(">>> eliminarItemDelCarrito-errorLanzado: " + JSON.stringify(errorThrown));
+				MSG.showERR("Disculpe, existi&oacute; un problema al eliminar item del carrito");
 			}
 		});
 	}
@@ -387,17 +403,20 @@ var clsCarritoCompras = function() {
 					refCls.mostrarDetallePedido(datos);
 				}else{
 					if(tip == "A"){
-						mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);
+						//mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);
 						//console.log(">>> registrarClienteCar-Validar: " + msj);
+						MSG.showINF("Mensaje validaci&oacute;n: " + msj);
 					}else if(tip == "E"){
-						mostrarMensaje("Mensaje Error: " + msj, 2);
+						//mostrarMensaje("Mensaje Error: " + msj, 2);
 						//console.log(">>> registrarClienteCar-Error: " + msj);
+						MSG.showERR("Mensaje Error: " + msj);
 					}
 				}
 			},
 			error: function(errorThrown) {
-				mostrarMensaje("Disculpe, existi&oacute; un problema al registrar cliente", 2);
+				//mostrarMensaje("Disculpe, existi&oacute; un problema al registrar cliente", 2);
 				//console.log(">>> registrarClienteCar-errorLanzado: " + JSON.stringify(errorThrown));
+				MSG.showERR("Error al registrar cliente: " + JSON.stringify(errorThrown));
 			}
 		});
 	}
@@ -444,9 +463,6 @@ var clsCarritoCompras = function() {
 
 	this.onClickBtnContinuarPedido = function () {
 		let refCls = this;
-		// muestra ventana emergente para confirmar el registro de los datos
-		//mensajeConfirmarPedido(registrarCarPedido);
-		//refCls.mensajeConfirmarPedido();
 		MSG.showWAR({ 	titulo: "Advertencia", 
 						mensaje: "Por favor verifique detalladamente los datos ingresados a fin de continuar con su pedido, ya que, una vez registrado no podrá realizar modificaciones.",
 						fnSi: refCls.btnAceptarRegistrarPedido
@@ -454,61 +470,12 @@ var clsCarritoCompras = function() {
 	};
 
 	this.btnAceptarRegistrarPedido = function () {
-		//let refCls = this;
-		//MSG.showINF({ mensaje: "¿Está seguro de grabar?"});
+		let refCls = this;
 		MSG.showCON({ 	titulo: "Confirmación", 
 						mensaje: "¿Está seguro de grabar?",
-						fnSi: obj.registrarCarDetPedido()
+						fnSi: obj.registrarCarDetPedido
 					});
 		
-	};
-
-	// modal mensaje confirmacion
-	this.mensajeConfirmarPedido = function(){
-		let refCls = this;
-		$("#myModalConfirm").remove();	
-		$("body").append(
-			'<div class="modal fade" id="myModalConfirm" role="dialog">'
-			+	'<div class="modal-dialog">'
-			+		'<div class="modal-content">'
-			+			'<div class="modal-header">'
-			+				'<button type="button" class="close" data-dismiss="modal">&times;</button>'
-			+				'<h4 class="modal-title">Mensaje</h4>'
-			+			'</div>'
-			+			'<div id ="dlgMensajeAfirmativo1" class="modal-body">'
-			+				'<p>Por favor verifique detalladamente los datos ingresados a fin de continuar con su registro, una vez registrada no podrá efectuar modificación.</p>'
-			+			'</div>'
-			+			'<div id ="dlgMensajeAfirmativo2" class="modal-footer">'
-			+				'<button type="button" class="btn btn-info" id="dlgBtnAceptarConfirm">Aceptar</button>'
-			+			'</div>'
-			+			'<div id ="dlgMensajeConfirma1" class="modal-body" style="display:none;">'
-			+				'<p>¿Está seguro de grabar?</p>'
-			+			'</div>'
-			+			'<div id ="dlgMensajeConfirma2" class="modal-footer" style="display:none;">'
-			+				'<button type="button" class="btn btn-basic" id="dlgBtnNo">No</button>'
-			+				'<button type="button" class="btn btn-primary" id="dlgBtnSi">Si</button>'
-			+			'</div>'
-			+		'</div>'
-			+	'</div>'
-			+'</div>'
-		);
-		$("#dlgBtnAceptarConfirm").click(function(e){
-			console.log(">>> dlgBtnAceptarConfirm...");
-			$('#dlgMensajeAfirmativo1').toggle('hide');
-			$('#dlgMensajeAfirmativo2').toggle('hide');
-			$('#dlgMensajeConfirma1').toggle('slow');
-			$('#dlgMensajeConfirma2').toggle('slow');
-		});
-		$("#dlgBtnSi").click(function(e){
-			$('#myModalConfirm').modal('hide');
-			// ejecuta la funcion que viene por parametro
-			//callback();
-			refCls.registrarCarDetPedido();
-		});
-		$("#dlgBtnNo").click(function(e){
-			$('#myModalConfirm').modal('hide');
-		});
-		$('#myModalConfirm').modal('show');
 	};
 
 	// 20260110 registrar pedido carrito
@@ -526,41 +493,32 @@ var clsCarritoCompras = function() {
 				if(val){
 					//let nroPedido 	= datosDevuelto.nro_pedido;
 					let nroPedido 	= response.datos;
-					$('#' + refCls.divs.carDetPedido.id).toggle('hide');
-					$('#' + refCls.divs.carFinPedido.id).toggle('slow');
+					$('#' + obj.divs.carDetPedido.id).toggle('hide');
+					$('#' + obj.divs.carFinPedido.id).toggle('slow');
 					let htmMsjPedido = "";
-					htmMsjPedido =+ "<div>";
-					htmMsjPedido =+ "<p>Se registro correctamente su pedido. Su número de pedido es: <b>"+ nroPedido +"</b></p>"; 
-					htmMsjPedido =+ "<p>Recibirá un mensaje de correo electrónico con los detalles de su pedido.</p>";
-					htmMsjPedido =+ "</div>";
+					htmMsjPedido += "<div>";
+					htmMsjPedido += "<p class='wpr-p-e01'>Se registro correctamente su pedido. Su número de pedido es: <b>"+ nroPedido +"</b></p>"; 
+					htmMsjPedido += "<p class='wpr-p-e01'>Recibirá un mensaje de correo electrónico con los detalles de su pedido.</p>";
+					htmMsjPedido += "</div>";
 					$("#divMsjPedido").html(htmMsjPedido);
 					$("#countCar").html("(0)");
-					/*let html =  "<div class='container'>";
-					html += "	<div class='col-md-8'>";
-					html += "		<h2 class='wpr-h2-e01'>Carrito :: Mensaje</h2>";
-					html += "		<h4 class='wpr-h4-e01'>Su número de pedido es: "+ nroPedido +"</h4>";
-					html += "<div>Se registro correctamente su pedido. Recibirá un mensaje de correo electrónico con los detalles de su pedido."
-					html += " Muy pronto un agente de ventas se pondrá en contacto con usted.</div>";
-					html += "<div><a href='javascript:cargarPagina(\"cpanel/store/commerce/menu-comercio-productos/opcion-inicio\")' class='btn btn-link' role='button'>Volver a tienda virtual</a></div>";
-					html += "   	</div>";
-					html += "   </div>";
-					$("#panelPedido").html(html);
-					*/
-					//mostrarMensaje("¡Se ha creado su usuario con &eacute;xito! Gracias por registrarse.", 0);
-					refCls.limpiarForm();
+					obj.limpiarForm();
 				}else{
 					if(tip == "A"){
-						mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);
+						//mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);
 						//console.log(">>> registrarCarPedido-Validar: " + msj);
+						MSG.showINF("Mensaje validaci&oacute;n: " + msj);
 					}else if(tip == "E"){
-						mostrarMensaje("Mensaje Error: " + msj, 2);
+						//mostrarMensaje("Mensaje Error: " + msj, 2);
 						//console.log(">>> registrarCarPedido-Error: " + msj);
+						MSG.showERR("Mensaje de Error: " + msj);
 					}
 				}
 			},
 			error: function(errorThrown) {
-				mostrarMensaje("Disculpe, existi&oacute; un problema al registrar pedido", 2);
+				//mostrarMensaje("Disculpe, existi&oacute; un problema al registrar pedido", 2);
 				//console.log(">>> registrarCarPedido-errorLanzado: " + JSON.stringify(errorThrown));
+				MSG.showERR("Error al registrar pedido: " + JSON.stringify(errorThrown));
 			}
 		});
 	}

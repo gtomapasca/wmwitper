@@ -286,14 +286,16 @@
 						<div class="col-xs-10 col-md-offset-1">
 							<div id="divCarFinPedido" class="panel panel-primary">
 								<div class="panel-heading">
-									<h3 class="panel-title" style="font-weight:bold;">Mensaje Pedido</h3>
+									<h3 class="panel-title" style="font-weight:bold;">Finalizar Pedido</h3>
 								</div> 
 								<div class="panel-body">
 									<div class="row show-grid">
 										<div class="col-xs-12">
 											<div class="row">
-												<div class="col-xs-12">
-													<div id = "divMsjPedido"></div>
+												<div class="col-md-12 col-sm-12 col-xs-12">
+													<div class="panel panel-default">
+														<div id = "divMsjPedido"></div>
+													</div>
 												</div>
 											</div>
 											<div class="row text-center">
@@ -308,34 +310,40 @@
 							</div>
 						</div>
 					</div>
-					<!-- div class="row">
-						<div class="col-xs-10 col-md-offset-1">
-							<div id = "divMensaje"></div>
-						</div>
-					</div -->
 				</div>
 			</div>
 		</div>
 		<!--INI PARTE COMUN-->
 	    <div id="divModalMsg" class="modal fade" role="dialog">
 	        <div class="modal-dialog">
-	            <div id="divPanelModal" class="panel panel-warning">
-	                <div id="divMsgTitulo" class="panel-heading"></div>
-	                <div id="divMsgContenido" class="panel-body">La informaci&oacute;n ingresa no es la correcta. Vuela a intentarlo mas tarde</div>
+	            <div id="divPanelModal" class="panel panel-info">
+	                <div id="divModalMsgTitulo" class="panel-heading"></div>
+	                <div id="divModalMsgContenido" class="panel-body"></div>
 	                <div class="panel-footer text-center">
-	                    <button type="button" id="btnCerrarModalMsg" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	                    <button type="button" id="btnModalMsgCerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 	                </div>
 	            </div>
 	        </div>
 	    </div>
-	    <div id="divModalMsgSiNo" class="modal fade">
+		<div id="divModalMsgAdvertencia" class="modal fade" role="dialog">
 	        <div class="modal-dialog">
-	            <div id="divPanelModalSiNo" class="panel panel-default">
-	                <div id="divMsgTituloSiNo" class="panel-heading"></div>
-	                <div id="divMsgContenidoSiNo" class="panel-body"></div>
+	            <div id="divPanelModalAdv" class="panel panel-warning">
+	                <div id="divModalMsgAdvTitulo" class="panel-heading"></div>
+	                <div id="divModalMsgAdvContenido" class="panel-body"></div>
 	                <div class="panel-footer text-center">
-	                    <button id="btnCerrarMensajeSiNoSi" type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-	                    <button id="btnCerrarMensajeSiNoNo" type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	                    <button type="button" id="btnModalMsgAdvAceptar" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div id="divModalMsgConfirmacion" class="modal fade">
+	        <div class="modal-dialog">
+	            <div id="divPanelModalConf" class="panel panel-default">
+	                <div id="divModalMsgConfTitulo" class="panel-heading"></div>
+	                <div id="divModalMsgConfContenido" class="panel-body"></div>
+	                <div class="panel-footer text-center">
+	                    <button id="btnModalMsgConfSi" type="button" class="btn btn-primary" data-dismiss="modal">Si</button>
+	                    <button id="btnModalMsgConfNo" type="button" class="btn btn-default" data-dismiss="modal">No</button>
 	                </div>
 	            </div>
 	        </div>
