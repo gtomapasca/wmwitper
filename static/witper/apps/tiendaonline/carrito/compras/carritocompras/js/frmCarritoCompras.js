@@ -32,7 +32,8 @@ var clsCarritoCompras = function() {
     this.botones = {
         btnContinuarCar : { id: 'btnContinuarCar' },
 		btnContinuarCli : { id: 'btnContinuarCli' },
-		btnContinuarPedido : { id: 'btnContinuarPedido' }
+		btnContinuarPedido : { id: 'btnContinuarPedido' },
+		btnExportarPDF : { id: 'btnExportarPDF' }
     };
 
     this.iniciarForm = function(){
@@ -49,6 +50,9 @@ var clsCarritoCompras = function() {
         });
 		$("#" + this.botones.btnContinuarPedido.id).click(function(){
             refCls.onClickBtnContinuarPedido();
+        });
+		$("#" + this.botones.btnExportarPDF.id).click(function(){
+            refCls.onClickBtnExportarPDF();
         });
 		this.consultarListaCarrito();
     };
@@ -424,13 +428,16 @@ var clsCarritoCompras = function() {
 	this.mostrarDetallePedido = function(datos){
 		//console.log(">>> mostrarDetallePedido: " + JSON.stringify(datos));
 		let refCls = this;
+		// Datos de Negocio
+		$("#divFechaActualCotiz").html(getFechaActual());
+		// Datos de Cliente
 		let datos_cliente   = datos.datos_cliente;
 		//let datos_productos = datos.car_detalle_producto;
-		$("#txtDetalleDNI").val(datos_cliente.dni);
-		$("#txtDetalleNombre").val(datos_cliente.nombre+ " " + datos_cliente.apePat +" "+ datos_cliente.apeMat);
-		$("#txtDetalleCel").val(datos_cliente.numCel);
-		$("#txtDetalleEmail").val(datos_cliente.email);
-		$("#txtDetalleDireccion").val(datos_cliente.direccion);
+		$("#txtDetalleDNI").html(datos_cliente.dni);
+		$("#txtDetalleNombre").html(datos_cliente.nombre+ " " + datos_cliente.apePat +" "+ datos_cliente.apeMat);
+		$("#txtDetalleCel").html(datos_cliente.numCel);
+		$("#txtDetalleEmail").html(datos_cliente.email);
+		$("#txtDetalleDireccion").html(datos_cliente.direccion);
 
 		let items = datos.car_detalle_producto;
 		//console.log(">>> mostrarDetallePedido-items: " + JSON.stringify(items));
@@ -645,6 +652,32 @@ var clsCarritoCompras = function() {
 	this.esNullOUndefined = function(valor) {
 		return valor == null || (typeof valor == "undefined");
 	}
+
+	this.onClickBtnExportarPDF = function () {
+		let refCls = this;
+		//console.log(">>> GTPX Exportar a PDF x4...");
+
+		/*const { jsPDF } = window.jspdf;
+		const doc = new jsPDF();
+		doc.text("Hello world!", 100, 100);
+		doc.save("newFile.pdf");*/
+        
+		const { jsPDF } = window.jspdf;
+		const doc = new jsPDF('p', 'mm', 'a4');
+		
+		const elemento = document.getElementById('contenido');
+
+		doc.html(elemento, {
+			callback: function (doc) {
+				doc.save('cotizacion.pdf');
+			},
+			x: 5,
+			y: 5,
+			width: 170, // Ancho en mm para ajustar a la página
+			windowWidth: 650 // Ancho de simulación para estilos CSS
+		});
+
+	};
 	
 }
 

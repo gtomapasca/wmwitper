@@ -80,21 +80,27 @@ class RegistrarCarritoComprasServiceImpl implements RegistrarCarritoComprasServi
 				// Registrar pedido
 				$sqlMapPedidoDAO = new SqlMapPedidoDAO();
 				//$dataPedidoReq["nro_pedido"] = strval($nro_pedido);
-				$dataPedidoReq["nro_pedido"] = 0;
+				//----------------------------------------
+				$anio = date("Y");
+				$mes = date("m");
+				$aleatorio = mt_rand(1,999999);
+				$formatNum = str_pad($aleatorio, 6, "0");
+				$nroPedido = $anio.$mes.$formatNum;
+				//----------------------------------------	
+				$dataPedidoReq["nro_pedido"] = $nroPedido;
 				$sqlMapPedidoDAO->insertPedidoCar($dataPedidoReq);
 
 				// Consultar ultimo pedido
 				//$sqlMapPedidoDAO = new SqlMapPedidoDAO();
 				$dataPedido = $sqlMapPedidoDAO->getLastPedido();
 				$id_last    = $dataPedido[0]["id_pedido"];
-				$id_pedido  = ($id_last != null && $id_last > 0 ? $id_last : 0);
-				//$id_pedido++;
-				$nro_pedido = $id_pedido != null ? $id_pedido + 1000 : 0;
+				//$id_pedido  = ($id_last != null && $id_last > 0 ? $id_last : 0);
+				//$nro_pedido = $id_pedido != null ? $id_pedido + 1000 : 0;
 
 				// Registrar detalle pedido
 				$sqlMapDetPedidoDAO = new SqlMapDetPedidoDAO();
-				$dataDetPedidoReq["id_pedido"] = $id_pedido;
-				$dataDetPedidoReq["nro_pedido"] = $nro_pedido;
+				$dataDetPedidoReq["id_pedido"] = $id_last;
+				$dataDetPedidoReq["nro_pedido"] = $nroPedido;
 				foreach($data_list_productos as $item){
 					if($item["estado"]==0){
 						$dataDetPedidoReq["item"] = $item;
