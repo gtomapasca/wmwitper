@@ -40,6 +40,7 @@ function mostrarOfertas(datos){
 		html += '	      <img src="'+src_img+'" class="img-thumbnail" style="border:0">';
 		html += '	   </a>';
 		html += '	   <div style="text-align:center;color:grase;font-size: 1em;font-weight:bold;text-transform: uppercase;">'+item.marca+'</div>';
+		html += '	   <div style="text-align:center;color:grase;font-size: 0.7em;margin:5px;"><span>Código: '+item.mini_codigo+'</span></div>';
 		html += '	   <p id="codProd" data-miniCodigo="'+item.mini_codigo+'" style="text-align:center;color:grase;text-transform: uppercase;">';
 		html += '	      <a href="javascript:cargarPagina(\'app/store/catalogo/CPModal-comercio-productos/cargar-producto-sel/?mc='+item.mini_codigo+'\')">'+item.producto+'</a>';
 		html += '	   </p>';

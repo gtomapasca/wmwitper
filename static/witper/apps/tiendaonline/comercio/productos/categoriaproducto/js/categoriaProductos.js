@@ -50,7 +50,7 @@ function mostrarProductosPorCategoria(datos){
 		html += '	      <img src="'+src_img+'" class="img-thumbnail" style="border:0">';
 		html += '	   </a>';
 		html += '	   <div style="text-align:center;color:grase;font-size: 1em;font-weight:bold;text-transform: uppercase;">'+item.marca+'</div>';
-		//html += '	   <p id="codProd" data-codProd="'+item.cod_producto+'" style="text-align:center;color:grase;text-transform: uppercase;">';
+		html += '	   <div style="text-align:center;color:grase;font-size: 0.7em;margin:5px;"><span>Código: '+item.mini_codigo+'</span></div>';
 		html += '	   <p id="codProd" data-miniCodigo="'+item.mini_codigo+'" style="text-align:center;color:grase;text-transform: uppercase;">';
 		//html += '	      <a href="javascript:cargarPagina(\'cli/principal/consultar/mostrar-producto-sel/?page=10502&id='+item.cod_producto+'\')">'+item.producto+'</a>';
 		html += '	      <a href="javascript:cargarPagina(\'app/store/catalogo/CPModal-comercio-productos/cargar-producto-sel/?mc='+item.mini_codigo+'\')">'+item.producto+'</a>';
