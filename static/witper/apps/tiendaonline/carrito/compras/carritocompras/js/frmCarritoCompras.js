@@ -662,6 +662,11 @@ var clsCarritoCompras = function() {
 		doc.text("Hello world!", 100, 100);
 		doc.save("newFile.pdf");*/
         
+		if (!window.jspdf || typeof window.jspdf.jsPDF !== "function") {
+			MSG.showERR("No se pudo cargar la librería para exportar a PDF. Recargue la página e inténtelo nuevamente.");
+			return;
+		}
+
 		const { jsPDF } = window.jspdf;
 		const doc = new jsPDF('p', 'mm', 'a4');
 		
