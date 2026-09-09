@@ -6,7 +6,7 @@ function initInterfaz(){
     let codCategoria = $("#codCategoria").attr("data-codCategoria");
 	let codSubCategoria = $("#codCategoria").attr("data-codSubCategoria");
     let filtro = {"cod_categoria": codCategoria, "cod_subcategoria":codSubCategoria};
-	console.log(">>> GTPX-lateral-initInterfaz-filtro: " + JSON.stringify(filtro));
+	//console.log(">>> GTPX-lateral-initInterfaz-filtro: " + JSON.stringify(filtro));
     obtenerProductosPorCategoria(filtro);
     //obtenerCantidadFabricantesPorCategoria(codCategoria);
 	obtenerCantidadFabricantesPorCategoria(filtro); // 20220919 GTP

@@ -26,7 +26,7 @@ var clsBuscadorPrincipal = function() {
 		$("#" + this.inputs.busqueda.id).keyup(function(e){
 			//console.log(">>> Buscador > presiono tecla: " + e.keyCode);
             if (e.keyCode === 13) {
-				console.log(">>> Buscador > presiono enter...");
+				//console.log(">>> Buscador > presiono enter...");
 				refCls.onClickBtnBuscar();
 			}else{
 				refCls.iniciarBusqueda(0);
@@ -42,7 +42,7 @@ var clsBuscadorPrincipal = function() {
     };
 
 	this.onClickBtnBuscar = function () {
-		console.log(">>> onClickBtnBuscar...");
+		//console.log(">>> onClickBtnBuscar...");
 		let refCls = this;
 		var isFormValido = $("#" + this.forms.formPrincipal.id).valid();
 		// validar formulario
@@ -71,7 +71,7 @@ var clsBuscadorPrincipal = function() {
 
 	// 20240704 iniciar búsqueda
 	this.iniciarBusqueda = function (op) {
-		console.log(">>> iniciarBusqueda-op: " + op);
+		//console.log(">>> iniciarBusqueda-op: " + op);
 		let refCls = this;
 		let jsonDataForm = this.getJsonDataForm();
 		//console.log(">>> iniciarBusqueda-jsonDataForm: " + JSON.stringify(jsonDataForm));
@@ -90,11 +90,11 @@ var clsBuscadorPrincipal = function() {
 			}else{
 				if(tip == "A"){
 					mostrarMensaje(msj, 2);
-					console.log(">>> utils_iniciarBusqueda-Advertencia: " + msj);
+					//console.log(">>> utils_iniciarBusqueda-Advertencia: " + msj);
 				}else if(tip == "E"){
 					$("#panelResultadoBusqueda").html('<div></div>');
 					mostrarMensaje("Disculpe, no tiene acceso a la cuenta, vuelva a intentarlo", 2);
-					console.log(">>> utils_iniciarBusqueda-Error: " + msj);
+					//console.log(">>> utils_iniciarBusqueda-Error: " + msj);
 				}else{
 					mostrarMensaje("Disculpe, no se pudo realizar la &uacute;ltima operaci&oacute;n. Consulte con el webmaster. ", 2);
 				}
@@ -104,7 +104,7 @@ var clsBuscadorPrincipal = function() {
 
 	// muestra el resultado en el mismo buscador
 	this.mostrarResuladoBusquedaWeb = function(datos){
-		console.log(">>> mostrarResuladoBusquedaWeb...");
+		//console.log(">>> mostrarResuladoBusquedaWeb...");
 		let html = '';
 		html += '<div style="position:absolute;background-color:#fff;width:510px;border:1px solid #ddd;z-index:100;">';
 		html += this.prepararResuladoBusquedaWeb(datos);
@@ -145,7 +145,7 @@ var clsBuscadorPrincipal = function() {
 	};
 
 	this.mostrarResuladoBusquedaTienda = function(datos){
-		console.log(">>> mostrarResuladoBusquedaTienda...");
+		//console.log(">>> mostrarResuladoBusquedaTienda...");
 		//console.log("datos: " + datos);
 		//let uri_wwwstore = '../../../../static/witper/';
 		// 20231025 Degui: Se cambia ruta de upload imagen

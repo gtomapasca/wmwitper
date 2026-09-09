@@ -115,7 +115,7 @@ class RegistrarCarritoComprasServiceImpl implements RegistrarCarritoComprasServi
 				$objRespuesta->tip = "I"; // Info
 				$objRespuesta->msj = "Se registro correctamente";
 				$objRespuesta->val = true;
-				$objRespuesta->datos = $nro_pedido;
+				$objRespuesta->datos = $nroPedido;
 				//Limpiar carrito y session
 				$_SESSION["carrito"] = null; // 20251228 GTP agregado
 				session_destroy();
