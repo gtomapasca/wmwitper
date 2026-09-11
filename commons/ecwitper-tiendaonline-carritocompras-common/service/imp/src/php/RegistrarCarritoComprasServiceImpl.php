@@ -35,88 +35,130 @@ class RegistrarCarritoComprasServiceImpl implements RegistrarCarritoComprasServi
 	}
 
 	// Degui 20191010: Agregar cliente al carrito
-	public function addClienteCar($dataRequest){
+	public function addClienteCar($jsonParams) {
 		// Se inicia la sesion
 		session_start();
-		$dataResponse = array();
-		if (isset($_SESSION["carrito"])){
-			// se agrega al carrito
-			$_SESSION["carrito"]->set_datos_cliente($dataRequest);
-			$car_detalle_pedido = $_SESSION["carrito"]->get_car_pedido();
-			// valores a retornar
-			$dataResponse["encontrado"] = true;
-			$dataResponse["mensaje"] = "Se registraron los datos del cliente al carrito";
-			$dataResponse["datos"] = $car_detalle_pedido;
-		}else{
-			//mensaje no existe sesión
-			$dataResponse["encontrado"] = false;
-			$dataResponse["mensaje"] = "No se registraron los datos del cliente al carrito";
-			$dataResponse["datos"] = array();
+		$objRespuesta = new stdClass();
+		try{			
+			if (isset($_SESSION["carrito"])){
+				// se agrega al carrito
+				$_SESSION["carrito"]->set_datos_cliente($jsonParams);
+				$car_detalle_pedido = $_SESSION["carrito"]->get_car_pedido();
+				// valores a retornar
+				$objRespuesta->tip = "I"; // Info
+				$objRespuesta->msj = "Se registraron los datos del cliente al carrito";
+				$objRespuesta->val = true;
+				$objRespuesta->datos = $car_detalle_pedido;
+				return $objRespuesta;
+			}else{
+				//mensaje no existe sesión
+				$dataResponse["encontrado"] = false;
+				$dataResponse["mensaje"] = "No se pudo agregar cliente al carrito porque no existe sesión";
+				$dataResponse["datos"] = null;
+			}
+		}catch (Exception $e) {
+			$objRespuesta->tip = "E"; // Error
+			$objRespuesta->msj = "(" . $e->getCode() .") ". $e->getMessage();
+			$objRespuesta->val = false;
+			return $objRespuesta;
 		}
-		return $dataResponse;
 	}
 
 	public function registrarCarritoPedido($data_carrito) {
 		try{
-			// setea data carrito
-			$dataPedidoReq["datos_cliente"] = $data_carrito["datos_cliente"];
-			$data_list_productos  		= $data_carrito["car_detalle_producto"];
-			// Consultar ultimo pedido
-			$sqlMapPedidoDAO = new SqlMapPedidoDAO();
-			$dataPedido = $sqlMapPedidoDAO->getLastPedido();
-			$id_last    = $dataPedido[0]["id_pedido"];
-			$id_pedido  = ($id_last != null && $id_last > 0 ? $id_last : 0);
-			$id_pedido++;
-			$nro_pedido = $id_pedido != null ? $id_pedido + 1000 : 0;
-			// Registrar pedido
-			$dataPedidoReq["nro_pedido"] = strval($nro_pedido);
-			$sqlMapPedidoDAO->insertPedidoCar($dataPedidoReq);
-			// Registrar detalle pedido
-			$sqlMapDetPedidoDAO = new SqlMapDetPedidoDAO();
-			$dataDetPedidoReq["id_pedido"] = $id_pedido;
-			foreach($data_list_productos as $item){
-			   if($item["estado"]==0){
-				$dataDetPedidoReq["item"] = $item;
-				$sqlMapDetPedidoDAO->insertDetallePedidoCar($dataDetPedidoReq);
-			   }
-			}
-			// Retornamos numero de pedido
-			$dataResponse = array("nro_pedido" => $nro_pedido, "encontrado" => true, "mensaje" => "Se registro correctamente");
-			//Limpiar carrito y session
-			if($dataResponse["encontrado"]){
-				session_start();
-				$_SESSION = array();
+			// Se inicia la sesion
+			//session_start();
+			//$dataResponse = array();
+			$objRespuesta = new stdClass();
+			if (isset($_SESSION["carrito"])){
+				// setear RUC del negocio
+				$dataPedidoReq["ruc_negocio"] = RUC_NEGOCIO;
+				// setea data carrito
+				$dataPedidoReq["datos_cliente"] = $data_carrito["datos_cliente"];
+				$data_list_productos = $data_carrito["car_detalle_producto"];
+				
+				// Registrar pedido
+				$sqlMapPedidoDAO = new SqlMapPedidoDAO();
+				//$dataPedidoReq["nro_pedido"] = strval($nro_pedido);
+				//----------------------------------------
+				$anio = date("Y");
+				$mes = date("m");
+				$aleatorio = mt_rand(1,999999);
+				$formatNum = str_pad($aleatorio, 6, "0");
+				$nroPedido = $anio.$mes.$formatNum;
+				//----------------------------------------	
+				$dataPedidoReq["nro_pedido"] = $nroPedido;
+				$sqlMapPedidoDAO->insertPedidoCar($dataPedidoReq);
+
+				// Consultar ultimo pedido
+				//$sqlMapPedidoDAO = new SqlMapPedidoDAO();
+				$dataPedido = $sqlMapPedidoDAO->getLastPedido();
+				$id_last    = $dataPedido[0]["id_pedido"];
+				//$id_pedido  = ($id_last != null && $id_last > 0 ? $id_last : 0);
+				//$nro_pedido = $id_pedido != null ? $id_pedido + 1000 : 0;
+
+				// Registrar detalle pedido
+				$sqlMapDetPedidoDAO = new SqlMapDetPedidoDAO();
+				$dataDetPedidoReq["id_pedido"] = $id_last;
+				$dataDetPedidoReq["nro_pedido"] = $nroPedido;
+				foreach($data_list_productos as $item){
+					if($item["estado"]==0){
+						$dataDetPedidoReq["item"] = $item;
+						$sqlMapDetPedidoDAO->insertDetallePedidoCar($dataDetPedidoReq);
+					}
+				}
+
+				// actualizar pedido
+
+				// Retornamos numero de pedido
+				//$dataResponse = array("nro_pedido" => $nro_pedido, "encontrado" => true, "mensaje" => "Se registro correctamente");
+				$objRespuesta->tip = "I"; // Info
+				$objRespuesta->msj = "Se registro correctamente";
+				$objRespuesta->val = true;
+				$objRespuesta->datos = $nroPedido;
+				//Limpiar carrito y session
+				$_SESSION["carrito"] = null; // 20251228 GTP agregado
 				session_destroy();
+			}else{
+				//mensaje no existe sesión
+				$objRespuesta->tip = "A"; // Advertencia
+				$objRespuesta->msj = "No se pudo registrar carrito porque no existe sesión";
+				$objRespuesta->val = false;
 			}
-			return $dataResponse;
+			return $objRespuesta;
 		}catch (Exception $e) {
-			$dataResponse["encontrado"] = false;
-			$dataResponse["codeErr"]    = "Código de Error: " . $e->getCode();
-			$dataResponse["mensaje"]    = "Mensaje de Error: " . $e->getMessage();
-			return $dataResponse;
+			$objRespuesta->tip = "E"; // Error
+			$objRespuesta->msj = "(" . $e->getCode() .") ". $e->getMessage();
+			$objRespuesta->val = false;
+			return $objRespuesta;
 		}
 	}
 
-	// Quitar producto pedido
-	public function delProductoCar($index){
+	// Quitar item del carrito
+	public function delProductoCar($index) {
 		session_start();
-		$dataResponse = array();
-		if (isset($_SESSION["carrito"])){
-			$data = $_SESSION["carrito"]->del_car_producto($index);
-			if($data){
-				//mensaje a retornar
-				$dataResponse["encontrado"] = true;
-				$dataResponse["mensaje"] = "Se quito producto del carrito";
-				$dataResponse["datos"]   = $data;
-				$dataResponse["ncar"]    = $_SESSION["carrito"]->get_car_nproductos();
+		$objRespuesta = new stdClass();
+		try{			
+			if (isset($_SESSION["carrito"])){
+				$data = $_SESSION["carrito"]->del_car_producto($index);
+				$objRespuesta->tip = "I"; // Info
+				$objRespuesta->msj = "Se retiro item del carrito";
+				$objRespuesta->val = true;
+				$objRespuesta->datos = $data;
+				//return $objRespuesta;
+			}else{
+				$objRespuesta->tip = "A"; // Advertencia
+				$objRespuesta->msj = "No se pudo elimnar item del carrito porque no existe sesión";
+				$objRespuesta->val = false;
+				//return $objRespuesta;
 			}
-		}else{
-			//mensaje no existe sesión
-			$dataResponse["encontrado"] = false;
-			$dataResponse["mensaje"]    = "No se registraron los datos del cliente al carrito";
-			$dataResponse["datos"]      = array();
+			return $objRespuesta;
+		}catch (Exception $e) {
+			$objRespuesta->tip = "E"; // Error
+			$objRespuesta->msj = "(" . $e->getCode() .") ". $e->getMessage();
+			$objRespuesta->val = false;
+			return $objRespuesta;
 		}
-		return $dataResponse;
 	}
 
 }

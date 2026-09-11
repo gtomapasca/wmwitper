@@ -18,8 +18,8 @@
 // ----------------------------------------------------------------------------
 
 require_once 'core/dblayer.php';
-require_once 'apps/ecwitper-site-tiendavirtual/modules/ecwitper-iniciotienda-mainmenu-modl/dao/ifz/src/php/AvisoDAO.php';
-require_once 'apps/ecwitper-site-tiendavirtual/modules/ecwitper-iniciotienda-mainmenu-modl/dao/model/src/php/Aviso.php';
+require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/ifz/src/php/AvisoDAO.php';
+require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/model/src/php/Aviso.php';
 
 /* Clase SqlMapAvisoDAO */
 class SqlMapAvisoDAO implements AvisoDAO{

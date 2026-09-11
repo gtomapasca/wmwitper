@@ -27,7 +27,16 @@ class SqlMapPedidoDAO implements PedidoDAO{
       public function getLastPedido(){
 		// Consultamos id_pedido para generar nro_pedido
 		$sql = "select id_pedido from wip_pedido where del = ? order by id_pedido desc limit 1";
-		$data = array('s', "0");
+		//$data = array('s', "0");
+		// [INI] Setear data
+		$values = ["0"]; 
+		$types = 's';
+		$values = array_values($values); 
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
 		$pedido = new Pedido();
 		$fields = $pedido->toArrayById();
 		return DBObject::ejecutar($sql, $data, $fields);
@@ -35,19 +44,31 @@ class SqlMapPedidoDAO implements PedidoDAO{
 
       // Registrar Pedido
       public function insertPedidoCar($dataRequest){
-		$ruc_negocio 	 = "10440440911";
-		$id_usuario 	 = 4;
-		$data_cliente	 = $dataRequest["datos_cliente"];
+		// 20251228 Degui: obtener ruc dinamicamente
+		$ruc_negocio 	 = $dataRequest["ruc_negocio"];
 		$nro_pedido 	 = $dataRequest["nro_pedido"];
-		$docnum 	 = $data_cliente["docnum"];
-		$telef	 	 = $data_cliente["telef"];
-		$email	 	 = $data_cliente["email"];
-		$direc	 	 = $data_cliente["direc"];
-		$nombre_completo = $data_cliente["nombre"]." ".$data_cliente["apepat"]." ".$data_cliente["apemat"];
+		$data_cliente	 = $dataRequest["datos_cliente"];
+		$jsonStrDataCliente = json_encode($data_cliente);
+		$jsonObjDataCliente = json_decode($jsonStrDataCliente);
+		$id_usuario  = $jsonObjDataCliente->idUsuario;
+		$cod_usuario = $jsonObjDataCliente->codUsuario;
+		$docnum 	 = $jsonObjDataCliente->dni;
+		$numCel 	 = $jsonObjDataCliente->numCel;
+		$email	 	 = $jsonObjDataCliente->email;
+		$direc	 	 = $jsonObjDataCliente->direccion;
+		$nombre_completo = $jsonObjDataCliente->nombre." ".$jsonObjDataCliente->apePat." ".$jsonObjDataCliente->apeMat;
 		/* Registramos datos del cliente */
-		$sql = "insert into wip_pedido (ruc_negocio, id_usuario, nro_pedido, carrito_nropedido, carrito_dni, carrito_cliente, carrito_celular, carrito_email, carrito_direccion, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
-		       ."values(?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
-		$data = array('sisssssss', "{$ruc_negocio}", "{$id_usuario}", "{$nro_pedido}", "{$nro_pedido}", "{$docnum}", "{$nombre_completo}", "{$telef}", "{$email}", "{$direc}");
+		$sql = "insert into wip_pedido (ruc_negocio, id_usuario, cod_usuario, nro_pedido, carrito_nropedido, carrito_dni, carrito_cliente, carrito_celular, carrito_email, carrito_direccion, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
+		       ."values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
+		// [INI] Setear data
+		$values = [$ruc_negocio, $id_usuario, $cod_usuario, $nro_pedido, $nro_pedido, $docnum, $nombre_completo, $numCel, $email, $direc]; 
+		$types = 'sissssssss';
+		$values = array_values($values); 
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
 		DBObject::ejecutar($sql, $data);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
 		//return $resp_temp;

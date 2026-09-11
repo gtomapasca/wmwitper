@@ -6,6 +6,7 @@ function initInterfaz(){
     let codCategoria = $("#codCategoria").attr("data-codCategoria");
 	let codSubCategoria = $("#codCategoria").attr("data-codSubCategoria");
     let filtro = {"cod_categoria": codCategoria, "cod_subcategoria":codSubCategoria};
+	//console.log(">>> GTPX-lateral-initInterfaz-filtro: " + JSON.stringify(filtro));
     obtenerProductosPorCategoria(filtro);
     //obtenerCantidadFabricantesPorCategoria(codCategoria);
 	obtenerCantidadFabricantesPorCategoria(filtro); // 20220919 GTP
@@ -25,7 +26,8 @@ function obtenerProductosPorCategoria(filtro){
 				mostrarMensaje(mensj, 2);
 			}
 		}else{
-			mostrarMensaje("Disculpe, existi&oacute; un problema al obtener productos por categoria", 2);
+			mostrarMensaje("Disculpe, existi&oacute; un problema al obtener productos por categoria lateral", 2);
+			console.log(">>> witper_obtenerProductosPorCategoria-lateral: " + JSON.stringify(errorLanzado));
 		}
     });
 }
@@ -48,7 +50,7 @@ function mostrarProductosPorCategoria(datos){
 		html += '	      <img src="'+src_img+'" class="img-thumbnail" style="border:0">';
 		html += '	   </a>';
 		html += '	   <div style="text-align:center;color:grase;font-size: 1em;font-weight:bold;text-transform: uppercase;">'+item.marca+'</div>';
-		//html += '	   <p id="codProd" data-codProd="'+item.cod_producto+'" style="text-align:center;color:grase;text-transform: uppercase;">';
+		html += '	   <div style="text-align:center;color:grase;font-size: 0.7em;margin:5px;"><span>Código: '+item.mini_codigo+'</span></div>';
 		html += '	   <p id="codProd" data-miniCodigo="'+item.mini_codigo+'" style="text-align:center;color:grase;text-transform: uppercase;">';
 		//html += '	      <a href="javascript:cargarPagina(\'cli/principal/consultar/mostrar-producto-sel/?page=10502&id='+item.cod_producto+'\')">'+item.producto+'</a>';
 		html += '	      <a href="javascript:cargarPagina(\'app/store/catalogo/CPModal-comercio-productos/cargar-producto-sel/?mc='+item.mini_codigo+'\')">'+item.producto+'</a>';
@@ -81,6 +83,7 @@ function obtenerCantidadFabricantesPorCategoria(filtro){
 			}
 		}else{
 			mostrarMensaje("Disculpe, existi&oacute; un problema al obtener cantidad de fabricantes por categoría", 2);
+			console.log(">>> witper_obtenerCantidadFabricantesPorCategoria-lateral: " + JSON.stringify(errorLanzado));
 		}
     });
 }

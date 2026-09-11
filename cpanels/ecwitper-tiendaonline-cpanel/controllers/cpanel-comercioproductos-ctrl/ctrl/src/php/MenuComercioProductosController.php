@@ -7,45 +7,51 @@ require_once 'apps/ecwitper-tiendaonline-webapp/controllers/publicador-paginas-c
 require_once 'apps/ecwitper-tiendaonline-webapp/controllers/carrito-compras-ctrl/ctrl/src/php/CPMenuCarritoComprasController.php';
 require_once 'apps/ecwitper-tiendaonline-webapp/controllers/cuenta-usuario-ctrl/ctrl/src/php/CPMenuCuentaUsuarioController.php';
 require_once 'apps/ecwitper-tiendaonline-webapp/controllers/publicador-articulos-ctrl/ctrl/src/php/CPMenuPublicadorArticulosController.php';
-
-//require_once 'apps/ecwitper-tiendaonline-webapp/controllers/comercio-productos-ctrl/ctrl/src/php/MenuCatalogoProductosController.php';
-//require_once 'apps/ecwitper-tiendaonline-webapp/controllers/publicador-articulos-ctrl/ctrl/src/php/MenuBlogTiendaController.php';
+require_once 'apps/ecwitper-tiendaonline-webapp/controllers/categoria-productos-ctrl/ctrl/src/php/CPMenuCategoriaProductosPrincipalController.php';
 
 class MenuComercioProductosController extends Controller{
 
 	public function opcionInicio() {
 		$control = new CPMenuPublicadorPaginasController();
-		$dataResponse = $control->cargarInicioTienda($dataRequest);
+		$dataResponse = $control->cargarInicioTienda();
+		echo json_encode($dataResponse);
+		exit();
+	}
+	
+	public function opcionCategorias() {
+		$dataRequest = "";
+		$control = new CPMenuCategoriaProductosPrincipalController();
+		$dataResponse = $control->cargarCategoriaProductos($dataRequest);
 		echo json_encode($dataResponse);
 		exit();
 	}
 
 	public function opcionOfertas() {
 		$control = new CPMenuPublicadorPaginasController();
-		$dataResponse = $control->cargarOfertaProductos($dataRequest);
+		$dataResponse = $control->cargarOfertaProductos();
 		echo json_encode($dataResponse);
 		exit();
 	}
 
-	// Observado!!
+	// Opciones del menu lateral cuenta usuario
 	public function opcionCuentaPerfil() {
 		$control = new CPMenuCuentaUsuarioController();
-		$dataResponse = $control->cargarCuentaPerfil($dataRequest);
+		$dataResponse = $control->cargarCuentaPerfil();
 		echo json_encode($dataResponse);
 		exit();
 	}
 
-	// Observado!!
+	// Opciones del menu lateral cuenta usuario
 	public function opcionCuentaCarrito() {
 		$control = new CPMenuCarritoComprasController();
-		$dataResponse = $control->cargarCuentaCarrito($dataRequest);
+		$dataResponse = $control->cargarCuentaCarrito();
 		echo json_encode($dataResponse);
 		exit();
 	}
 
 	public function opcionCarritoCompras() {
 		$control = new CPMenuCarritoComprasController();
-		$dataResponse = $control->cargarCarritoCompras($dataRequest);
+		$dataResponse = $control->cargarCarritoCompras();
 		echo json_encode($dataResponse);
 		exit();
 	}
@@ -53,7 +59,7 @@ class MenuComercioProductosController extends Controller{
 	// BLog
 	public function opcionBlog() {
 		$control = new CPMenuPublicadorArticulosController();
-		$dataResponse = $control->cargarBlog($dataRequest);
+		$dataResponse = $control->cargarBlog();
 		echo json_encode($dataResponse);
 		exit();
 	}
@@ -61,7 +67,7 @@ class MenuComercioProductosController extends Controller{
 	// Paginas tienda
 	public function opcionNosotros() {
 		$control = new CPMenuPublicadorPaginasController();
-		$dataResponse = $control->cargarNosotros($dataRequest);
+		$dataResponse = $control->cargarNosotros();
 		echo json_encode($dataResponse);
 		exit();
 	}
@@ -69,7 +75,7 @@ class MenuComercioProductosController extends Controller{
 	// suscribir
 	public function opcionSuscribete() {
 		$control = new CPMenuPublicadorPaginasController();
-		$dataResponse = $control->cargarSuscribir($dataRequest);
+		$dataResponse = $control->cargarSuscribir();
 		echo json_encode($dataResponse);
 		exit();
 	}
@@ -77,7 +83,7 @@ class MenuComercioProductosController extends Controller{
 	// contacto
 	public function opcionContacto() {
 		$control = new CPMenuPublicadorPaginasController();
-		$dataResponse = $control->cargarContacto($dataRequest);
+		$dataResponse = $control->cargarContacto();
 		echo json_encode($dataResponse);
 		exit();
 	}
@@ -85,7 +91,7 @@ class MenuComercioProductosController extends Controller{
 	// postulante
 	public function opcionPostulante() {
 		$control = new CPMenuPublicadorPaginasController();
-		$dataResponse = $control->cargarPostulante($dataRequest);
+		$dataResponse = $control->cargarPostulante();
 		echo json_encode($dataResponse);
 		exit();
 	}
@@ -93,7 +99,7 @@ class MenuComercioProductosController extends Controller{
 	// libro reclamo
 	public function opcionLibroReclamo() {
 		$control = new CPMenuPublicadorPaginasController();
-		$dataResponse = $control->cargarLibroReclamo($dataRequest);
+		$dataResponse = $control->cargarLibroReclamo();
 		echo json_encode($dataResponse);
 		exit();
 	}

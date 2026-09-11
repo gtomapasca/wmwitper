@@ -17,13 +17,18 @@ class ApplicationHandlerCli {
 		//echo '<p>total: '.count($arrayUri).'</p>';
 		//$pos = POS_INI;
 		$pos = 1;
+		$root = ""; 
+		$app  = "";
+		$ctrl = "";
+		$arg = "";
+		$modulo = "";
 		if($arrayUri[0] == "ofertas"){
 			// cargarPagina("app/store/publipages/CPModal-publicador-paginas/cargar-oferta-productos");
 			//$arrayUri = array("cli", "app", "store", "publipages", "CPModal-publicador-paginas", "cargar-oferta-productos");
 			$root = "page";
 			$app = "ofertas";
 			$ctrl = "";
-		}else{
+		}else if (count($arrayUri) >= 3){
 			$root = $arrayUri[0 + $pos]; 
 			$app  = $arrayUri[1 + $pos];
 			$ctrl = $arrayUri[2 + $pos];
@@ -43,7 +48,10 @@ class ApplicationHandlerCli {
 			// http://compuchiclayo.com/ecwitper-site-tiendavirtual/principal/consultar/listar-productos-catalogo		
 			if($app == 'store'){
 				//echo  "<p>entre store...";
-				if($ctrl == 'buscador'){
+				if($ctrl == 'categorias'){
+					$app 	= APP_MAIN_TIENDAONLINE;
+					$modulo = APP_MODULE_CATEGORIAPROD;
+				}else if($ctrl == 'buscador'){
 					$app 	= APP_MAIN_TIENDAONLINE;
 					$modulo = APP_MODULE_BUSCADORPROD;
 				}else if($ctrl == 'catalogo'){

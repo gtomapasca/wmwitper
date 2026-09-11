@@ -37,7 +37,6 @@ class ConsultarCatalogoProductosServiceImpl implements ConsultarCatalogoProducto
 			$jsondata["datos"] = "";
 		}
 		return $jsondata;
-		
 	}
 
 	function buscarProductoById($dataRequest) {
@@ -92,6 +91,7 @@ class ConsultarCatalogoProductosServiceImpl implements ConsultarCatalogoProducto
 	function buscarProductosByCategoria($dataRequest) {
 		$sqlMapProductoDAO = new SqlMapProductoDAO();
 		$dataResponse = $sqlMapProductoDAO->selectProductoByCategoria($dataRequest);
+		$jsondata = array();
 		if(count($dataResponse) > 0){
 			$jsondata["encontrado"] = true;
 			$jsondata["mensaje"] = "encontrado";
@@ -108,6 +108,7 @@ class ConsultarCatalogoProductosServiceImpl implements ConsultarCatalogoProducto
 	function obtenerCantidadFabricantesPorCategoria($dataRequest) {
 		$sqlMapProductoDAO = new SqlMapProductoDAO();
 		$dataResponse = $sqlMapProductoDAO->selectCountFabByCategoria($dataRequest);
+		$jsondata = array();
 		if(count($dataResponse) > 0){
 			$jsondata["encontrado"] = true;
 			$jsondata["mensaje"] = "encontrado";

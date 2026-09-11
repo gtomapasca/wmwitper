@@ -18,7 +18,7 @@
 // ----------------------------------------------------------------------------
 
 require_once 'core/dblayer.php';
-require_once 'apps/ecwitper-site-tiendavirtual/modules/ecwitper-iniciotienda-mainmenu-modl/dao/ifz/src/php/LibroReclamoDAO.php';
+require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/ifz/src/php/LibroReclamoDAO.php';
 
 /* Clase SqlMapLibroReclamoDAO */
 class SqlMapLibroReclamoDAO implements LibroReclamoDAO{

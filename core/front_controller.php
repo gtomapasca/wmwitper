@@ -14,7 +14,10 @@ class FrontController {
 		$arrayUri = explode('/', $uri);
 		array_shift($arrayUri);
 		$site = $arrayUri[0]; 
+		//$site = "inicio"; 
 		//echo "<p>front-site: ".$site;
+		$valido = false;
+		$msjErr = "Error:";
 		if($site == "" || $site == "cli" || $site == "inicio" || $site == "ofertas"){
 			list($valido, $msjErr, $root, $app, $modulo, $model, $recurso, $arg) = ApplicationHandlerCli::analizer();
 		}else if($site == "adm"){
@@ -22,7 +25,8 @@ class FrontController {
 		}else if($site == "vta"){
 			list($valido, $msjErr, $root, $app, $modulo, $model, $recurso, $arg) = ApplicationHandlerVta::analizer();
 		}else{
-			echo "<p>FrontController > Site no encontrado... site: " + $site;
+			//echo "<p>FrontController > Site no encontrado... site: " . $site;
+			$msjErr = "<p>Error: Site no encontrado...";
 		}
 						
 		if($valido){			
@@ -58,6 +62,7 @@ class FrontController {
 			}else if($site == "adm"){
 				if($root == "cpanels"){
 					$ruta = "{$root}/{$app}/controllers/{$modulo}/ctrl/src/php/{$cname}.php";
+					//echo $ruta;
 				}else{
 					$ruta = "{$root}/{$app}/controllers/{$modulo}/src/php/{$cname}.php";
 				}
@@ -74,7 +79,7 @@ class FrontController {
 			require_once $ruta;
 			$controller = new $cname($recurso, $arg);
 		}else{
-			echo $msjErr;		
+			echo 'ErrorG: ' . $msjErr;		
 		}
 		
 	}

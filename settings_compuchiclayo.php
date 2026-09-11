@@ -6,6 +6,8 @@
  * Dominio: compuchiclayo.com
  ***************************************
 */
+// RUC por defecto
+const RUC_NEGOCIO = "20608326481";
 // Rutas generales
 //const APP_DIR = '/';
 //const APP_DIR 				= '/sw201b/witper/witper-1.2.5/application.php';
@@ -65,6 +67,7 @@ const APP_MODULE_CARTIENDA      = 'carrito-compras-ctrl';
 const APP_MODULE_CUENTAUSUARIO  = 'cuenta-usuario-ctrl';
 const APP_MODULE_PUBLIPAGINAS   = 'publicador-paginas-ctrl';
 const APP_MODULE_BUSCADORPROD   = 'buscador-productos-ctrl';
+const APP_MODULE_CATEGORIAPROD  = 'categoria-productos-ctrl';
 
 const PVTA_CPANEL_INGCAJA       = "ecwitper-ingresocaja-ventaproducto-ctrl";
 
@@ -109,10 +112,10 @@ const SITEADM_HTML_TAG_FAVICON 		    = "SITEADM_FAVICON";
 //const SITEADM_HTML_DIR_FAVICON 		    = SITEADM_PATH_DIR_SKIN . "/img/principal/site/favicon_compucix.ico";
 const SITEADM_HTML_DIR_FAVICON 		    = "/apps/ecwitper/img/portaladmin/cpaneladmin/mainmenu/logo/favicon_compucix.ico";
 const SITEADM_CSS_TAG_LIB_BOOTSTRAP	    = "CSS_LIB_BOOTSTRAP";
-const SITEADM_CSS_DIR_LIB_BOOTSTRAP	    = "/libs/bootstrap/css/bootstrap.min.css";
+const SITEADM_CSS_DIR_LIB_BOOTSTRAP	    = "/libsExt/bootstrap/css/bootstrap.min.css";
 //const SITEADM_CSS_DIR_LIB_BOOTSTRAP	    = "/libs/bootstrap-4.6.1/css/bootstrap.min.css";
 const SITEADM_CSS_TAG_LIB_FONTAWESOME   = "CSS_LIB_FONTAWESOME";
-const SITEADM_CSS_DIR_LIB_FONTAWESOME 	= "/libs/font-awesome/css/font-awesome.min.css";
+const SITEADM_CSS_DIR_LIB_FONTAWESOME 	= "/libsExt/font-awesome/css/font-awesome.min.css";
 //const SITEADM_CSS_TAG_LIB_JQUERY_UI	    = "CSS_LIB_JQUERY_UI";
 //const SITEADM_CSS_DIR_LIB_JQUERY_UI	    = "/libs/jquery/ui/1.13.1/jquery-ui.min.css";
 const SITEADM_CSS_TAG_LIB_RESET  	    = "CSS_LIB_RESET";
@@ -124,20 +127,20 @@ const SITEADM_HTML_DIR_LOGO		        = "/apps/ecwitper/img/portaladmin/cpaneladm
 // Constantes de pie de pagina
 const SITEADM_JS_TAG_LIB_JQUERY		    = "JS_LIB_JQUERY";
 //const SITEADM_JS_DIR_LIB_JQUERY		    = "/libs/jquery/js/jquery-3.6.0.min.js";
-const SITEADM_JS_DIR_LIB_JQUERY		    = "/libs/jquery/js/jquery-3.3.1.min.js";
+const SITEADM_JS_DIR_LIB_JQUERY		    = "/libsExt/jquery/js/jquery-3.3.1.min.js";
 //const SITEADM_JS_TAG_LIB_JQUERY_UI	    = "JS_LIB_JQUERY_UI";
 //const SITEADM_JS_DIR_LIB_JQUERY_UI	    = "/libs/jquery/ui/1.13.1/jquery-ui.min.js";
 const SITEADM_JS_TAG_LIB_BSTRAP_JQ	    = "JS_LIB_BSTRAP_JQ";
-const SITEADM_JS_DIR_LIB_BSTRAP_JQ 	    = "/libs/bootstrap/js/jquery-1.12.1.min.js";
+const SITEADM_JS_DIR_LIB_BSTRAP_JQ 	    = "/libsExt/bootstrap/js/jquery-1.12.1.min.js";
 //const SITEADM_JS_DIR_LIB_BSTRAP_JQ 	    = "";
 const SITEADM_JS_TAG_LIB_BOOTSTRAP	    = "JS_LIB_BOOTSTRAP";
-const SITEADM_JS_DIR_LIB_BOOTSTRAP	    = "/libs/bootstrap/js/bootstrap.min.js";
+const SITEADM_JS_DIR_LIB_BOOTSTRAP	    = "/libsExt/bootstrap/js/bootstrap.min.js";
 //const SITEADM_JS_DIR_LIB_BOOTSTRAP	    = "/libs/bootstrap-4.6.1/js/bootstrap.min.js";
 const SITEADM_JS_TAG_LIB_WITPER_ADM 	= "JS_LIB_WITPER_ADM";		// Tag general
 //const SITEADM_JS_DIR_LIB_WITPER_ADM 	= "/libs/witper-adm/js/witper_adm-0.0.1.js";
 const SITEPADM_JS_DIR_LIB_WITPERPADM 	= "/libs/ecwitper/js/portaladmin/witper_padm-1.1.1.js";
 const SITEADM_HTML_TAG_COPYRIGHT	    = "SITEADM_COPYRIGHT";
-const SITEADM_HTML_DES_COPYRIGHT 	    = "Copyright ©2021 - 2025 Compuchiclayo.com. Todos los derechos reservados.";
+const SITEADM_HTML_DES_COPYRIGHT 	    = "Copyright ©2021 - 2026 Compuchiclayo.com. Todos los derechos reservados.";
 
 // Constantes de archivos html
 //const SITEADM_HTML_DIR_LOGIN			        = SITEADM_PATH_DIR_SKIN . "/html/principal/page_00001_login.html";
@@ -231,11 +234,11 @@ const SITECLI_HTML_TAG_FAVICON 		= "SITECLI_FAVICON";
 //const SITECLI_HTML_DIR_FAVICON 		= SITECLI_PATH_DIR_SKIN . "/img/principal/site/compuchiclayo.ico";
 const SITECLI_HTML_DIR_FAVICON 	= "/apps/ecwitper/img/tiendavirtual/iniciotienda/mainmenu/principal/logo/compuchiclayo.ico";
 const SITECLI_CSS_TAG_LIB_BOOTSTRAP	= "CSS_LIB_BOOTSTRAP";
-const SITECLI_CSS_DIR_LIB_BOOTSTRAP	= "/libs/bootstrap/css/bootstrap.min.css";
+const SITECLI_CSS_DIR_LIB_BOOTSTRAP	= "/libsExt/bootstrap/css/bootstrap.min.css";
 const SITECLI_CSS_TAG_LIB_FONTAWESOME   = "CSS_LIB_FONTAWESOME";
-const SITECLI_CSS_DIR_LIB_FONTAWESOME 	= "/libs/font-awesome/css/font-awesome.min.css";
+const SITECLI_CSS_DIR_LIB_FONTAWESOME 	= "/libsExt/font-awesome/css/font-awesome.min.css";
 const SITECLI_CSS_TAG_LIB_JQUERY_UI	= "CSS_LIB_JQUERY_UI";
-const SITECLI_CSS_DIR_LIB_JQUERY_UI	= "/libs/jquery/ui/1.13.1/jquery-ui.min.css";
+const SITECLI_CSS_DIR_LIB_JQUERY_UI	= "/libsExt/jquery/ui/1.13.1/jquery-ui.min.css";
 const SITECLI_CSS_TAG_LIB_RESET  	= "CSS_LIB_RESET";
 const SITECLI_CSS_DIR_LIB_RESET 	= "/utils/css/reset/reset.css";
 
@@ -250,18 +253,19 @@ const SITECLI_HTML_DES_CARITEMS 	= "0";
 
 // Constantes de pie de pagina
 const SITECLI_JS_TAG_LIB_JQUERY		= "JS_LIB_JQUERY";
-const SITECLI_JS_DIR_LIB_JQUERY		= "/libs/jquery/js/jquery-3.6.0.min.js";
+const SITECLI_JS_DIR_LIB_JQUERY		= "/libsExt/jquery/js/jquery-3.6.0.min.js";
 const SITECLI_JS_TAG_LIB_JQUERY_UI	= "JS_LIB_JQUERY_UI";
-const SITECLI_JS_DIR_LIB_JQUERY_UI	= "/libs/jquery/ui/1.13.1/jquery-ui.min.js";
+const SITECLI_JS_DIR_LIB_JQUERY_UI	= "/libsExt/jquery/ui/1.13.1/jquery-ui.min.js";
 const SITECLI_JS_TAG_LIB_BSTRAP_JQ	= "JS_LIB_BSTRAP_JQ";
-const SITECLI_JS_DIR_LIB_BSTRAP_JQ 	= "/libs/bootstrap/js/jquery-1.12.1.min.js";
+//const SITECLI_JS_DIR_LIB_BSTRAP_JQ 	= "/libsExt/bootstrap/js/jquery-1.12.1.min.js";
+const SITECLI_JS_DIR_LIB_BSTRAP_JQ 	= "/libsExt/jquery/1.11.2/jquery.min.js"; // 20260211 GTP
 const SITECLI_JS_TAG_LIB_BOOTSTRAP	= "JS_LIB_BOOTSTRAP";
-const SITECLI_JS_DIR_LIB_BOOTSTRAP	= "/libs/bootstrap/js/bootstrap.min.js";
+const SITECLI_JS_DIR_LIB_BOOTSTRAP	= "/libsExt/bootstrap/js/bootstrap.min.js";
 const SITECLI_JS_TAG_LIB_WITPER_CLI = "JS_LIB_WITPER_CLI";		// Tag general
 //const SITECLI_JS_DIR_LIB_WITPER_CLI = "/libs/witper-cli/js/witper_cli-0.0.1.js";
 const SITECLI_JS_DIR_LIB_WITPER_CLI = "/libs/ecwitper/js/tiendavirtual/witper_pcli-1.1.1.js";
 const SITECLI_HTML_TAG_COPYRIGHT	= "SITECLI_COPYRIGHT";
-const SITECLI_HTML_DES_COPYRIGHT 	= "Copyright ©2021 - 2025 Compuchiclayo.com. Todos los derechos reservados.";
+const SITECLI_HTML_DES_COPYRIGHT 	= "Copyright ©2021 - 2026 Compuchiclayo.com. Todos los derechos reservados.";
 
 
 /*
@@ -339,6 +343,7 @@ const SITECLI_HTML_DIR_CIXTELECOM   = "static/witper/apps/tiendaonline/publicado
 const SITECLI_HTML_DIR_CIXSERVERS   = "static/witper/apps/tiendaonline/publicador/paginas/servicios/html/cixservers.html";
 const SITECLI_HTML_DIR_SPPERFILUSUARIO		= "static/witper/apps/tiendaonline/cuenta/usuario/cuentaSesion/html/page_spCuenta.html";
 const SITECLI_HTML_DIR_SPCARRITO	= "static/witper/apps/tiendaonline/cuenta/usuario/carrito/html/page_spCarrito.html";
+const SITECLI_HTML_DIR_SPCATEGORIA_PRODUCTOS = "static/witper/apps/tiendaonline/menus/categorias/productos/html/categoriaProductosPrincipal.html";
 
 // 20241224
 //const TAG_PRINCIPAL_GENERAL_CSS	    = "PRINCIPAL_GENERAL_CSS";
@@ -378,10 +383,10 @@ const SITEPVTA_HTML_DES_SITEKEYWORDS    = "Computadora, Laptops, software";
 const SITEPVTA_HTML_TAG_FAVICON 		= "SITEPVTA_FAVICON";
 const SITEPVTA_HTML_DIR_FAVICON 		= "/apps/ecwitper/img/puntoventa/cpanelpvta/mainmenu/logo/favicon_compucix.ico";
 const SITEPVTA_CSS_TAG_LIB_BOOTSTRAP	= "CSS_LIB_BOOTSTRAP";
-const SITEPVTA_CSS_DIR_LIB_BOOTSTRAP	= "/libs/bootstrap/css/bootstrap.min.css";
+const SITEPVTA_CSS_DIR_LIB_BOOTSTRAP	= "/libsExt/bootstrap/css/bootstrap.min.css";
 //const SITEPVTA_CSS_DIR_LIB_BOOTSTRAP	= "/libs/bootstrap-4.6.1/css/bootstrap.min.css";
 const SITEPVTA_CSS_TAG_LIB_FONTAWESOME  = "CSS_LIB_FONTAWESOME";
-const SITEPVTA_CSS_DIR_LIB_FONTAWESOME 	= "/libs/font-awesome/css/font-awesome.min.css";
+const SITEPVTA_CSS_DIR_LIB_FONTAWESOME 	= "/libsExt/font-awesome/css/font-awesome.min.css";
 const SITEPVTA_CSS_TAG_LIB_RESET  	    = "CSS_LIB_RESET";
 const SITEPVTA_CSS_DIR_LIB_RESET 	    = "/utils/css/reset/reset.css";
 const SITEPVTA_HTML_TAG_LOGO		    = "SITE_LOGO";
@@ -390,15 +395,15 @@ const SITEPVTA_HTML_DIR_LOGO		    = "/apps/ecwitper/img/puntoventa/cpanelpvta/ma
 // Constantes de pie de pagina
 const SITEPVTA_JS_TAG_LIB_JQUERY		= "JS_LIB_JQUERY";
 //const SITEPVTA_JS_DIR_LIB_JQUERY	    = "/libs/jquery/js/jquery-3.6.0.min.js";
-const SITEPVTA_JS_DIR_LIB_JQUERY		= "/libs/jquery/js/jquery-3.3.1.min.js";
+const SITEPVTA_JS_DIR_LIB_JQUERY		= "/libsExt/jquery/js/jquery-3.3.1.min.js";
 const SITEPVTA_JS_TAG_LIB_BSTRAP_JQ	    = "JS_LIB_BSTRAP_JQ";
-const SITEPVTA_JS_DIR_LIB_BSTRAP_JQ 	= "/libs/bootstrap/js/jquery-1.12.1.min.js";
+const SITEPVTA_JS_DIR_LIB_BSTRAP_JQ 	= "/libsExt/bootstrap/js/jquery-1.12.1.min.js";
 const SITEPVTA_JS_TAG_LIB_BOOTSTRAP	    = "JS_LIB_BOOTSTRAP";
-const SITEPVTA_JS_DIR_LIB_BOOTSTRAP	    = "/libs/bootstrap/js/bootstrap.min.js";
+const SITEPVTA_JS_DIR_LIB_BOOTSTRAP	    = "/libsExt/bootstrap/js/bootstrap.min.js";
 const SITEPVTA_JS_TAG_LIB_WITPERPVTA 	= "JS_LIB_WITPERPVTA";
 const SITEPVTA_JS_DIR_LIB_WITPERPVTA 	= "/libs/ecwitper/js/puntoventa/witper_pvta-1.1.1.js";
 const SITEPVTA_HTML_TAG_COPYRIGHT	    = "SITE_COPYRIGHT";
-const SITEPVTA_HTML_DES_COPYRIGHT 	    = "Copyright ©2021 - 2025 Compuchiclayo.com. Todos los derechos reservados.";
+const SITEPVTA_HTML_DES_COPYRIGHT 	    = "Copyright ©2021 - 2026 Compuchiclayo.com. Todos los derechos reservados.";
 
 // Constantes de archivos html
 const SITEPVTA_HTML_DIR_LOGIN	        = "apps/ecwitper-site-puntoventa/views/ecwitper-cpanelpvta-mainmenu-view/src/html/login/loginpvta.html";

@@ -27,7 +27,7 @@ class MenuCuentaUsuarioController extends Controller{
 
     public function opcionCrearCuentaUsuario() {
         $control = new CPMenuCuentaUsuarioController();
-        $dataResponse = $control->cargarCrearCuentaUsuario($dataRequest);
+        $dataResponse = $control->cargarCrearCuentaUsuario();
         echo json_encode($dataResponse);
         exit();
     }

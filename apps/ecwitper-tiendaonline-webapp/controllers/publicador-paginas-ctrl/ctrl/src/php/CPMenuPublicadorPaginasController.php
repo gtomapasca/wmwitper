@@ -4,7 +4,7 @@
 class CPMenuPublicadorPaginasController {
 
 	// 20240627 Degui: carga página inicio tienda
-	public function cargarInicioTienda($dataRequest) {
+	public function cargarInicioTienda() {
 		$dicc = array();	// diccionario
 		$dicc[SITECLI_PATH_TAG_LARGE] = SITECLI_PATH_DIR_LARGE;
 		$dicc[SITECLI_PATH_TAG_STORE] = SITECLI_PATH_DIR_STORE;
@@ -12,7 +12,7 @@ class CPMenuPublicadorPaginasController {
 		return $dataResponse = $this->armarPagina($dicc, $file);
 	}
 
-	public function cargarNosotros($dataRequest) {
+	public function cargarNosotros() {
 		$dicc = array();	// diccionario
 		$dicc[SITECLI_PATH_TAG_LARGE] = SITECLI_PATH_DIR_LARGE;
 		$dicc[SITECLI_PATH_TAG_STORE] = SITECLI_PATH_DIR_STORE;
@@ -20,7 +20,7 @@ class CPMenuPublicadorPaginasController {
 		return $dataResponse = $this->armarPagina($dicc, $file);
 	}
 
-	public function cargarSuscribir($dataRequest) {
+	public function cargarSuscribir() {
 		$dicc = array();	// diccionario
 		$dicc[SITECLI_PATH_TAG_LARGE] = SITECLI_PATH_DIR_LARGE;
 		$dicc[SITECLI_PATH_TAG_STORE] = SITECLI_PATH_DIR_STORE;
@@ -28,7 +28,7 @@ class CPMenuPublicadorPaginasController {
 		return $dataResponse = $this->armarPagina($dicc, $file);
 	}
 
-	public function cargarContacto($dataRequest) {
+	public function cargarContacto() {
 		$dicc = array();	// diccionario
 		$dicc[SITECLI_PATH_TAG_LARGE] = SITECLI_PATH_DIR_LARGE;
 		$dicc[SITECLI_PATH_TAG_STORE] = SITECLI_PATH_DIR_STORE;
@@ -36,7 +36,7 @@ class CPMenuPublicadorPaginasController {
 		return $dataResponse = $this->armarPagina($dicc, $file);
 	}
 
-	public function cargarPostulante($dataRequest) {
+	public function cargarPostulante() {
 		$dicc = array();	// diccionario
 		$dicc[SITECLI_PATH_TAG_LARGE] = SITECLI_PATH_DIR_LARGE;
 		$dicc[SITECLI_PATH_TAG_STORE] = SITECLI_PATH_DIR_STORE;
@@ -44,7 +44,7 @@ class CPMenuPublicadorPaginasController {
 		return $dataResponse = $this->armarPagina($dicc, $file);
 	}
 
-	public function cargarLibroReclamo($dataRequest) {
+	public function cargarLibroReclamo() {
 		$dicc = array();	// diccionario
 		$dicc[SITECLI_PATH_TAG_LARGE] = SITECLI_PATH_DIR_LARGE;
 		$dicc[SITECLI_PATH_TAG_STORE] = SITECLI_PATH_DIR_STORE;
@@ -61,8 +61,7 @@ class CPMenuPublicadorPaginasController {
 	}
 
 	// 20240519 Degui: carga ofeta de productos
-	public function cargarOfertaProductos($dataRequest) {
-
+	public function cargarOfertaProductos() {
 		$file = "";
 		$dicc = array();	// diccionario
 		$dicc[SITECLI_PATH_TAG_LARGE] = SITECLI_PATH_DIR_LARGE;
@@ -100,7 +99,7 @@ class CPMenuPublicadorPaginasController {
 			$dataResponse["encontrado"] = false;
 			$dataResponse["mensaje"] = "no encontrado";
 			$dataResponse["datos"] = '';
-		}
+		}		
 		return $dataResponse;
 	}
 

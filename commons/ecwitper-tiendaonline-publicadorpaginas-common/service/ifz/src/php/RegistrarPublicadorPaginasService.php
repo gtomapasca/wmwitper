@@ -1,7 +1,8 @@
 <?php
 
-interface RegistrarPrincipalService{
-      public function registrarSuscripcion($email);
+interface RegistrarPublicadorPaginasService{
+      public function registrarSuscripcionMail($email);
+      public function validarContacto($dataRequest);
       public function registrarContacto($dataRequest);
       public function validarReclamo($dataRequest);
       public function registrarReclamo($dataRequest);

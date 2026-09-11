@@ -2,29 +2,28 @@
 
 require_once 'core/controller.php';
 require_once 'core/helpers/patterns.php';
-//require_once 'apps/ecwitper-site-tiendavirtual/modules/ecwitper-ventaselectronicas-carritocompras-modl/service/imp/src/php/ConsultarCarritoServiceImpl.php';
-//require_once 'apps/ecwitper-site-tiendavirtual/modules/ecwitper-ventaselectronicas-carritocompras-modl/service/imp/src/php/RegistrarCarritoServiceImpl.php';
 require_once 'commons/ecwitper-tiendaonline-carritocompras-common/service/imp/src/php/ConsultarCarritoComprasServiceImpl.php';
 require_once 'commons/ecwitper-tiendaonline-carritocompras-common/service/imp/src/php/RegistrarCarritoComprasServiceImpl.php';
 
 class RegistrarCarritoComprasController extends Controller {
 
     // Degui 20191010: registrar cliente
-    public function registrarClienteCarrito() {
-		$dataRequest = array(
-					"docnum" => $_POST["txtDNI"],
-		      		"nombre" => $_POST["txtNombre"],
-		      		"apepat" => $_POST["txtApePat"],
-		      		"apemat" => $_POST["txtApeMat"],
-		      		"telef"  => $_POST["txtCel"],
-		      		"email"  => $_POST["txtEmail"],
-		      		"direc"	 => $_POST["txtDireccion"]
-		   	      );
-		$service = new RegistrarCarritoComprasServiceImpl();
-		$dataResponse = $service->addClienteCar($dataRequest);
-    	echo json_encode($dataResponse);
-    	exit();
-   	}
+	public function registrarClienteCarrito() {
+		$objResponse = new stdClass();
+		if($_POST['datos']){ // si existe
+            $service = new RegistrarCarritoComprasServiceImpl();
+            //$jsonDataForm = json_decode($_POST['datos']);
+			$jsonDataForm = $_POST['datos'];
+            $objResponse = $service->addClienteCar($jsonDataForm);
+			//$objResponse = $jsonDataForm;
+        }else{
+            $objResponse->tip = "E"; // Error
+            $objResponse->msj = "Error: no se encontraron datos a validar";
+            $objResponse->val = false;
+        }
+        echo json_encode($objResponse);
+        exit();
+	}
 
 	// Degui 20191010: Registrar pedido
 	public function registrarCarritoPedido() {

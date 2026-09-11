@@ -4,7 +4,7 @@
 class CPMenuCuentaUsuarioController  {
 
 	// 20240519 Degui: carga formulario para crear cuenta de usuario
-	public function cargarCrearCuentaUsuario($dataRequest) {
+	public function cargarCrearCuentaUsuario() {
 
 		$file = "";
 		$dicc = array();	// diccionario
@@ -30,7 +30,7 @@ class CPMenuCuentaUsuarioController  {
 
 	}
 
-	public function cargarCuentaPerfil($dataRequest) {
+	public function cargarCuentaPerfil() {
 		$file = "";
 		$dicc = array();	// diccionario
 		$dicc[SITECLI_PATH_TAG_LARGE] = SITECLI_PATH_DIR_LARGE;

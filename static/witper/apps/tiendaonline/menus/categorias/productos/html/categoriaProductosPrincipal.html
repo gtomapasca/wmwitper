@@ -1,0 +1,220 @@
+<!DOCTYPE html">
+<html lang="ES">
+	<!-- page_20101_ProductoCat.html -->
+  <head>
+	<title>Producto por Categoria</title>
+	<!--link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/sitecli/skin/compuchiclayo/css/principal/page_inicio.css" /-->
+  </head>
+  <body>
+	<div id="cuerpo">
+	    <!-- seccion cuerpo -->
+      <section class="container-fluid">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: orangered;">Categoría de Productos</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Arma tu PC</span>
+                <ul style="list-style:none; display:inline;">
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T107&codsubcat=T10701&nomcat=Placas')">Placas</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T106&codsubcat=T10601&nomcat=Procesadores')">Procesadores</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T135&codsubcat=T13501&nomcat=Memorias RAM')">Memoria RAM</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T111&codsubcat=T11102&nomcat=Discos Solidos SSD')">Discos Solidos</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T111&codsubcat=T11101&nomcat=Discos Duros Internos')">Discos Mecánicos</a></li>										
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T108&codsubcat=T10801&nomcat=Tarjetas de Video')">Tarjeta gráfica</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T133&codsubcat=T13301&nomcat=Cargadores')">Cooler CPU</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T122&codsubcat=T12201&nomcat=Cases')">Cases</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T113&codsubcat=T11301&nomcat=Fuentes')">Fuentes</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T130&codsubcat=T13001&nomcat=Accesorios Arma tu PC')">Accesorios</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Computadoras</span>
+                <ul style="list-style:none; display:inline;">
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T101&codsubcat=T10101&nomcat=Computadoras')">Computadoras</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T101&codsubcat=T10103&nomcat=Computadoras All in One')">All in one</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T138&codsubcat=T13801&nomcat=Calculadoras Cientificas')">Calculadoras</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T129&codsubcat=T12901&nomcat=Proyectores')">Proyectores</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=N101&codsubcat=N10101&nomcat=Estabilizadores')">Estabilizadores</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=N102&codsubcat=N10202&nomcat=UPS')">UPS</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T130&codsubcat=T13006&nomcat=Refrigerantes')">Refrigerantes</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T130&codsubcat=T13007&nomcat=Herramientas')">Herramientas</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T121&codsubcat=T12101&nomcat=Enclosure')">Enclosure</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T130&codsubcat=T13002&nomcat=Accesorios de Computadora')">Accesorios</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Dispositivos</span>
+                <ul style="list-style:none; display:inline;">										
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T120&codsubcat=T12001&nomcat=Monitores')">Monitores</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T117&codsubcat=T11701&nomcat=Auriculares')">Auriculares</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T118&codsubcat=T11801&nomcat=Micrófonos')">Micrófonos</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T119&codsubcat=T11901&nomcat=Parlantes')">Parlantes</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T115&codsubcat=T11501&nomcat=Teclados')">Teclados</a></li>
+                  <!-- li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T115&codsubcat=T11502&nomcat=Teclados Inalámbricos')">Teclados s/c</a></li -->
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T114&codsubcat=T11401&nomcat=Mouse')">Mouses</a></li>
+                  <!-- li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T114&codsubcat=T11402&nomcat=Mouse Inalámbricos')">Mouse s/c</a></li -->
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T115&codsubcat=T11503&nomcat=Kit Teclados')">Combo teclados</a></li>
+                  <!-- li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T115&codsubcat=T11504&nomcat=Kit Teclados Inalámbricos')">Combo teclados s/c</a></li -->
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T116&codsubcat=T11601&nomcat=Cámaras Web')">Cámaras Web</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T130&codsubcat=T13003&nomcat=Accesorios de Dispositivos')">Accesorios</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Laptops</span>
+                <ul style="list-style:none; display:inline;">
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T103&codsubcat=T10301&nomcat=Laptos')">Laptops</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T103&codsubcat=T10303&nomcat=Laptops Gamer')">Laptops Gamer</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T109&codsubcat=T10902&nomcat=Placas Laptop')">Placas</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T109&codsubcat=T10907&nomcat=Cargadores Laptop')">Cargadores</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T109&codsubcat=T10906&nomcat=Baterias Laptop')">Baterias</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T109&codsubcat=T10903&nomcat=Pantallas Laptop')">Pantallas</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T109&codsubcat=T10904&nomcat=Teclados Laptop')">Teclados</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T135&codsubcat=T13502&nomcat=Memorias Laptop')">Memorias</a></li>
+                  <!-- li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T122&codsubcat=T12203&nomcat=Cases Disco Duro')">Cases Discos</a></li -->		
+                  <!-- li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T109&codsubcat=T10909&nomcat=Cooler para Laptop')">Cooler NB</a></li -->
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T133&codsubcat=T13303&nomcat=Cargadores')">Cooler Base</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T130&codsubcat=T13004&nomcat=Accesorios de Laptops')">Accesorios</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">PC Gamer</span>
+                <ul style="list-style:none; display:inline;">
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T101&codsubcat=T10102&nomcat=PC Gamer')">PC Gamer</a></li>										
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T120&codsubcat=T12021&nomcat=Monitores Gamer')">Monitores Gamer</a></li>										
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T114&codsubcat=T11403&nomcat=Mouse Gamer')">Mouse Gamer</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T115&codsubcat=T11505&nomcat=Teclados Gamer')">Teclados Gamer</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T115&codsubcat=T11507&nomcat=Combo Gamer')">Combo Gamer</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T108&codsubcat=T10802&nomcat=Tarjeta Gráfica')">Tarjeta Gráfica</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T133&codsubcat=T13302&nomcat=Cooler CPU Gamer')">Cooler CPU</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T122&codsubcat=T12202&nomcat=Case Gamer')">Case Gamer</a></li>										
+                </ul>
+              </div>
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Zona Gamer</span>
+                <ul style="list-style:none; display:inline;">
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T117&codsubcat=T11704&nomcat=Auriculasres')">Auriculares</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T118&codsubcat=T11802&nomcat=Micrófonos')">Micrófonos</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T119&codsubcat=T11902&nomcat=Parlantes')">Parlantes</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T303&codsubcat=T30302&nomcat=Game Pad')">Game Pad</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=M101&codsubcat=M10103&nomcat=Sillas Gamer')">Sillas Gamer</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T125&codsubcat=T12502&nomcat=Mouse Pad')">Mouse Pad</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T113&codsubcat=T11302&nomcat=Fuentes Gamer')">Fuentes Gamer</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T133&codsubcat=T13304&nomcat=Cooler Base Gamer')">Cooler Base</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T130&codsubcat=T13005&nomcat=Accesorios Gamer')">Accesorios</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Almacenamiento</span>
+                <ul style="list-style:none; display:inline;">
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T111&codsubcat=T11103&nomcat=Discos Duros Externos')">Discos Externos</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T111&codsubcat=T11104&nomcat=Memorias USB')">Memorias USB</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T111&codsubcat=T11105&nomcat=Memorias SD')">Memorias SD</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T111&codsubcat=T11107&nomcat=Cargadores')">Accesorios</a></li>
+                </ul>
+              </div>	
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Moviles</span>
+                <ul style="list-style:none; display:inline;">
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T104&codsubcat=T10401&nomcat=Tablets')">Tablets</a></li>
+                  <!-- li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=E101&codsubcat=E10101&nomcat=TV')">TV</a></li -->
+                  <!-- li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=E101&codsubcat=E10191&nomcat=Componentes TV')">Componentes TV</a></li -->
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T104&codsubcat=T10402&nomcat=Smartphone')">Smartphone</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T104&codsubcat=T10403&nomcat=SmartWatch')">SmartWatch</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T104&codsubcat=T10404&nomcat=Accesorios Moviles')">Accesorios</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Impresoras</span>
+                <ul style="list-style:none; display:inline;">
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T105&codsubcat=T10501&nomcat=Impresoras')">Impresoras</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T105&codsubcat=T10503&nomcat=Etiqueteras')">Etiqueteras</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T105&codsubcat=T10504&nomcat=Tintas para Impresoras')">Tintas</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T105&codsubcat=T10505&nomcat=Suministros para Impresoras')">Suministros</a></li>										
+                </ul>
+              </div>
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Redes</span>
+                <ul style="list-style:none; display:inline;">
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T601&codsubcat=T60101&nomcat=Enrutadores')">Enrutadores</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T602&codsubcat=T60201&nomcat=Antenas de Red')">Antenas</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T603&codsubcat=T60301&nomcat=Cables de Red')">Cables Red</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T629&codsubcat=T62991&nomcat=Accesorios de Red')">Accesorios</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Vigilancia</span>
+                <ul style="list-style:none; display:inline;">
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T401&codsubcat=T40101&nomcat=Cámaras de Vigilancia')">Cámaras Vig.</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T402&codsubcat=T40201&nomcat=Cámaras IP')">Cámaras IP</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T403&codsubcat=T40301&nomcat=Cargadores')">Almacenamiento</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T429&codsubcat=T42991&nomcat=Componentes Vigilancia')">Componentes</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Software</span>
+                <ul style="list-style:none; display:inline;">
+                  <!-- li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T503&codsubcat=T50301&nomcat=Sistemas Operativos')">Sistemas Operativos</a></li -->
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T504&codsubcat=T50401&nomcat=Sistemas Empresarial')">Empresarial</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T502&codsubcat=T50201&nomcat=Comercial')">Comercial</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T501&codsubcat=T50101&nomcat=Antivirus')">Antivirus</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Mochilas</span>
+                <ul style="list-style:none; display:inline;">
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T137&codsubcat=T13701&nomcat=Impresoras')">Mochilas</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T137&codsubcat=T13702&nomcat=Fundas')">Fundas</a></li>										
+                </ul>
+              </div>
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Baterias</span>
+                <ul style="list-style:none; display:inline;">
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T147&codsubcat=T14701&nomcat=Bateria Externa')">Bateria Ext</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T147&codsubcat=T14702&nomcat=Cargadores Externos')">Cargadores Ext</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T147&codsubcat=T14703&nomcat=Pilas')">Pilas</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Accesorios</span>
+                <ul style="list-style:none; display:inline;">										
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T125&codsubcat=T12501&nomcat=Mouse Pad')">Mouse Pad</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T130&codsubcat=T13008&nomcat=Protectores')">Protectores</a></li>
+                  
+                </ul>
+              </div>
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Adaptadores</span>
+                <ul style="list-style:none; display:inline;">
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T124&codsubcat=T12401&nomcat=Adaptadores')">Adaptadores</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T124&codsubcat=T12402&nomcat=Hubs')">Hubs</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T124&codsubcat=T12403&nomcat=Lectoras')">Lectoras</a></li>
+                </ul>
+              </div>
+            </div>    
+            <div class="row">
+              <div class="col-md-3 col-xs-12" style="padding:10px;border:px solid #000;">
+                <span style="font-family: Helvetica, Arial,serif; font-weight:bold; font-size:1.2em; color: #1E90FF;">Cables</span>
+                <ul style="list-style:none; display:inline;">
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T123&codsubcat=T12301&nomcat=Cables de Poder')">Cable Poder</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T123&codsubcat=T12302&nomcat=Cables de Video y Sonido')">Cable V&S</a></li>
+                  <li><a style="text-decoration:none; font-size:.9em; color: #34495E;" onclick="aMenuCategoria()" href="javascript:cargarPagina('app/store/catalogo/CPModal-comercio-productos/cargar-productos-por-categoria/?codcat=T123&codsubcat=T12303&nomcat=Cables Data')">Cable Data</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+      </section>
+	</div>
+   <!-- script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/comercio-productos-view/inter-cattegoriaproductos-web/src/js/categoriaProductos.js"></script -->
+   <!-- script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/comercio/productos/categoriaproducto/js/categoriaProductos.js"></script -->
+  </body>
+</html>

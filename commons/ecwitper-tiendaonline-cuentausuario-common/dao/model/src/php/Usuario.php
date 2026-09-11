@@ -21,6 +21,7 @@
 class Usuario{
     private $id_usuario;
     private $id_ctapersona;
+    private $cod_usuario;
     private $avatar;
     private $nick;
     private $email;
@@ -50,6 +51,12 @@ class Usuario{
     }
     public function set_id_ctapersona($id_ctapersona){
     	   $this->id_ctapersona=$id_ctapersona;
+    }
+    public function get_cod_usuario(){
+    	   return $this->cod_usuario;
+    }
+    public function set_cod_usuario($cod_usuario){
+    	   $this->cod_usuario=$cod_usuario;
     }
     public function get_cod_perfil(){
     	   return $this->cod_perfil;
@@ -161,39 +168,42 @@ class Usuario{
     }
     public function toArray(){
     	   return $data = array(
-	   	"id_usuario" 	=> $this->id_usuario,
+	   	    "id_usuario" 	=> $this->id_usuario,
     		"id_ctapersona" => $this->id_ctapersona,
+            "cod_usuario" => $this->cod_usuario,
     		"avatar" 	=> $this->avatar,
-		"nick" 		=> $this->nick,
+		    "nick" 		=> $this->nick,
     		"email" 	=> $this->email,
     		"cel" 		=> $this->cel,
     		"face" 		=> $this->face,
-		"cod_tipo_usu" 	=> $this->cod_tipo_usu,
-		"password" 	=> $this->password,
-		"estado" 	=> $this->estado,
+		    "cod_tipo_usu" 	=> $this->cod_tipo_usu,
+		    "password" 	=> $this->password,
+		    "estado" 	=> $this->estado,
 	        "del" 		=> $this->del,
-		"codusu_reg" 	=> $this->codusu_reg,
-		"fecha_reg" 	=> $this->fecha_reg,
-		"ip_reg" 	=> $this->ip_reg,
-		"host_reg" 	=> $this->host_reg,
-		"codusu_act" 	=> $this->codusu_act,
-		"fecha_act" 	=> $this->fecha_act,
-		"ip_act" 	=> $this->ip_act,
-		"host_act" 	=> $this->host_act
+		    "cod_usuario" 	=> $this->cod_usuario,
+		    "codusu_reg" 	=> $this->codusu_reg,
+		    "fecha_reg" 	=> $this->fecha_reg,
+		    "ip_reg" 	=> $this->ip_reg,
+		    "host_reg" 	=> $this->host_reg,
+		    "codusu_act" 	=> $this->codusu_act,
+		    "fecha_act" 	=> $this->fecha_act,
+		    "ip_act" 	=> $this->ip_act,
+		    "host_act" 	=> $this->host_act
 	   );
     }
     public function toArrayLogin(){
     	   return $data = array(
-	   	"id_usuario" 	=> $this->id_usuario,
+	   	    "id_usuario" 	=> $this->id_usuario,
     		"id_ctapersona" => $this->id_ctapersona,
+            "cod_usuario" => $this->cod_usuario,
     		"avatar" 	=> $this->avatar,
-		"nick" 		=> $this->nick,
+		    "nick" 		=> $this->nick,
     		"email" 	=> $this->email,
     		"cel" 		=> $this->cel,
     		"face" 		=> $this->face,
-		"cod_tipo_usu" 	=> $this->cod_tipo_usu,
-		"password" 	=> $this->password,
-		"estado" 	=> $this->estado
+		    "cod_tipo_usu" 	=> $this->cod_tipo_usu,
+		    "password" 	=> $this->password,
+		    "estado" 	=> $this->estado
 	   );
     }
 }

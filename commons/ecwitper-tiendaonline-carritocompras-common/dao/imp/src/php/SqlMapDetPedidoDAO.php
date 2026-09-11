@@ -26,12 +26,21 @@ class SqlMapDetPedidoDAO implements DetPedidoDAO{
       public function insertDetallePedidoCar($dataRequest){
 		$item 	   	= $dataRequest["item"];
 		$id_pedido 	= $dataRequest["id_pedido"];
+		$nro_pedido 	= $dataRequest["nro_pedido"];
 		$cod_producto 	= $item["cod_producto"];
 		$cantidad     	= intval($item["cantidad"]);
 		$precio_venta 	= intval($item["precio_venta"]);
-		$sql = "insert into wip_detalle_pedido (id_pedido, cod_producto, cantidad, preciou, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
-		       	."values(?, ?, ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
-		$data = array('isii', "{$id_pedido}", "{$cod_producto}", "{$cantidad}", "{$precio_venta}");
+		$sql = "insert into wip_detalle_pedido (id_pedido, nro_pedido, cod_producto, cantidad, preciou, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
+		       	."values(?, ?, ?, ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
+		// [INI] Setear data
+		$values = [$id_pedido, $nro_pedido, $cod_producto, $cantidad, $precio_venta]; 
+		$types = 'issii';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
 		DBObject::ejecutar($sql, $data);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
 		//return $resp_temp;

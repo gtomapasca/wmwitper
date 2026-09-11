@@ -3,7 +3,7 @@
 // Cargar Página Menú
 class CPMenuCarritoComprasController  {
 
-	public function cargarCuentaCarrito($dataRequest) {
+	public function cargarCuentaCarrito() {
 		$file = "";
 		$dicc = array();	// diccionario
 		$dicc[SITECLI_PATH_TAG_LARGE] = SITECLI_PATH_DIR_LARGE;
@@ -27,7 +27,7 @@ class CPMenuCarritoComprasController  {
 		return $dataResponse;
 	}
 
-	public function cargarCarritoCompras($dataRequest) {
+	public function cargarCarritoCompras() {
 		$file = "";
 		$dicc = array();	// diccionario
 		$dicc[SITECLI_PATH_TAG_LARGE] = SITECLI_PATH_DIR_LARGE;
