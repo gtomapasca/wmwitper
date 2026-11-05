@@ -25,14 +25,15 @@ class SqlMapSuscripcionDAO implements SuscripcionDAO{
       // Registrar suscripcion
 	  public function insertSuscripcion($jsonParams){
 		try{
-			$ruc_negocio = "20123456781"; // solo paa desa
-			// $ruc_negocio = "10440440911";
+			$ruc = $jsonParams->ruc_negocio;
+			$nombre = $jsonParams->nombre;
+			$celular = $jsonParams->celular;
 			$mail = $jsonParams->email;
-			$sql  = "insert into wip_suscripcion (ruc_negocio, email, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act, fk_idusuario) "
-		       	."values(?, ?, 0, 0, USER(), USER(), NOW(), NOW(), null)";
+			$sql  = "insert into wip_suscripcion (ruc_negocio, nombre, celular, email, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act, fk_idusuario) "
+		       	."values(?, ?, ?, ?, 0, 0, USER(), USER(), NOW(), NOW(), null)";
 			// [INI] Setear data
-			$values = [$ruc_negocio, $mail]; 
-			$types = 'ss';
+			$values = [$ruc, $nombre, $celular, $mail]; 
+			$types = 'ssss';
 			$values = array_values($values); 
 			$data[] = $types;
 			foreach ($values as $i => $v) {
@@ -40,8 +41,7 @@ class SqlMapSuscripcionDAO implements SuscripcionDAO{
 			}
 			// [FIN] Setear data
 			DBObject::ejecutar($sql, $data);
-			//$resp_temp = array ("sql" => $sql, "data" => $data);
-			//return $resp_temp;
+			//return array ("sql" => $sql, "data" => $data);
 		}catch (Exception $e) {
 			print "Error!: " . $e->getMessage() . "<br/>";
 		}	

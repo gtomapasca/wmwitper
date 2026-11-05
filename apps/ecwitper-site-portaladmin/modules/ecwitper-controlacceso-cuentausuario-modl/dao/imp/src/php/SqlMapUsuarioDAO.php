@@ -62,17 +62,28 @@ class SqlMapUsuarioDAO implements UsuarioDAO{
 
     // 20190830 GTP: Validar cuenta usuario
     public function selectCountUser($dataRequest){
-		$usuario = new Usuario();
 		$user = $dataRequest["user"];
 		$pass = $dataRequest["pass"];
 		$tipu = "UI";
 		$sql  = "select id_usuario, id_ctapersona, avatar, nick, email, cel, face, cod_tipo_usu, cod_nivel_usu, password, estado "
 			."from wip_usuario where cod_tipo_usu = ? and nick = ? and password = ?";
-		$data = array('sss', "{$tipu}", "{$user}", "{$pass}");
+		//$data = array('sss', "{$tipu}", "{$user}", "{$pass}");
+		//$fields = $usuario->toArrayLogin();
+		// [INI] Setear data
+		$values = [$tipu, $user, $pass]; 
+		$types = 'sss';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$usuario = new Usuario();
 		$fields = $usuario->toArrayLogin();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
 		//return $resp_temp;
+
     }
 
     // 20191209 GTP: obtener lista de usuarios

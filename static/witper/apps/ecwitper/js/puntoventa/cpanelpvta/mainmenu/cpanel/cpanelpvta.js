@@ -95,7 +95,8 @@ function cargarMenuPrincipalCpanel(){
 			mostrarMensaje("Disculpe, no se pudo realizar la última operación", 2);
 		   }
 		}else{
-			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar menú", 2);
+			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar menú principal", 2);
+			console.log(">>> pvta-cargarMenuPrincipalCpanel-errorLanzado: " + JSON.stringify(errorLanzado));
 		}
 	});
 }
@@ -119,7 +120,8 @@ function mostrarMenuLateral(op){
 			mostrarMensaje("Disculpe, no se pudo realizar la última operación", 2);
 		   }
 		}else{
-			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar menú", 2);
+			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar menú lateral", 2);
+			console.log(">>> pvta-mostrarMenuLateral-errorLanzado: " + JSON.stringify(errorLanzado));
 		}
 	});
 }
@@ -150,7 +152,8 @@ function mostrarOpcionesMenuLateral(item, n){
 			mostrarMensaje("Disculpe, no se pudo realizar la última operación", 2);
 		   }
 		}else{
-			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar menú", 2);
+			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar menú grupo", 2);
+			console.log(">>> pvta-mostrarOpcionesMenuLateral-errorLanzado: " + JSON.stringify(errorLanzado));
 		}
 	});
 }
@@ -159,14 +162,14 @@ function mostrarOpcionesMenuLateral(item, n){
 function obtenerPaginaId(codPage){
 	witper_getPageId(codPage, function(errorLanzado, datosDevuelto){
 		if(errorLanzado == null){
-			//console.log("response obtenerPaginaId: " + JSON.stringify(datosDevuelto));
+			//console.log(">>> obtenerPaginaId-datosDevuelto: " + JSON.stringify(datosDevuelto));
 			let exito = datosDevuelto.encontrado;
 			let mensj = datosDevuelto.mensaje;
 			let datos = datosDevuelto.datos;
 			if(exito && datos != 0){
 				let contex = "";
 				let codPageHtml = datos[0].cod_page;
-				let contexto = datos[0].contexto;
+				let contexto = datos[0].contexto.trim();
 				if(contexto == 'ecwitper-cpanelpvta-mainmenu-ctrl'){
 					contex = 'mainmenu';
 				}else if(contexto == 'ecwitper-ingresocaja-ventaproducto-ctrl'){
@@ -185,6 +188,7 @@ function obtenerPaginaId(codPage){
 		  	}
 		}else{
 			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar la página por código página.", 2);
+			console.log(">>> pvta-obtenerPaginaId-errorLanzado: " + JSON.stringify(errorLanzado));
 		}
 	});
 }

@@ -27,6 +27,8 @@ var clsSuscribirMail = function() {
 
 	this.getJsonDataForm = function(){
         return {
+			nombre		: 	"",
+			celular		: 	"",
 			email  		: 	$("#" + this.inputs.email.id).val()
 		};
     };

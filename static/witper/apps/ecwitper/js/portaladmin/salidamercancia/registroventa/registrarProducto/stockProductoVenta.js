@@ -37,7 +37,7 @@ function obtenerListaFabricantes(){
 			if(datos != 0){
 				cargarListaFabricantes(datos);
 			}else{
-				mostrarMensaje("No se obtuvieron resultados de la última búsqueda", 2);
+				mostrarMensaje("No se obtuvieron resultados de la última búsqueda por fabricante", 2);
 				return false;
 			}
 		   }else{
@@ -45,6 +45,7 @@ function obtenerListaFabricantes(){
 		   }
 		}else{
 			mostrarMensaje("Disculpe, existi&oacute; un problema al obtener lista fabricantes", 2);
+			console.log(">>> adm-obtenerListaFabricantes-errorLanzado: " + JSON.stringify(errorLanzado));
 		}
 	});
 }
@@ -74,17 +75,18 @@ function obtenerListaTipoCategoria(){
 		   let mensj = datosDevuelto.mensaje;
 		   let datos = datosDevuelto.datos;
 		   if(exito){
-			if(datos != 0){
-				cargarListaTipoCategoria(datos);
-			}else{
-				mostrarMensaje("No se obtuvieron resultados de la última búsqueda", 2);
-				return false;
-			}
+				if(datos != 0){
+					cargarListaTipoCategoria(datos);
+				}else{
+					mostrarMensaje("No se obtuvieron resultados de la última búsqueda por tipo de categoría", 2);
+					return false;
+				}
 		   }else{
 			mostrarMensaje("Disculpe, no se pudo realizar la última operación", 2);
 		   }
 		}else{
 			mostrarMensaje("Disculpe, existi&oacute; un problema al listar tipo categoría", 2);
+			console.log(">>> adm-obtenerListaTipoCategoria-errorLanzado: " + JSON.stringify(errorLanzado));
 		}
 	});
 }
@@ -119,7 +121,7 @@ function obtenerListaCategoriaSel(codigo, sel){
 				cargarListaSubCategoria("", "");
 				cargarListaCategoria(datos, sel);
 			}else{
-				mostrarMensaje("No se obtuvieron resultados de la última búsqueda", 2);
+				mostrarMensaje("No se obtuvieron resultados de la última búsqueda por categoría", 2);
 				return false;
 			}
 		   }else{
@@ -127,32 +129,10 @@ function obtenerListaCategoriaSel(codigo, sel){
 		   }
 		}else{
 			mostrarMensaje("Disculpe, existi&oacute; un problema al listar categoría por tipo", 2);
+			console.log(">>> adm-obtenerListaCategoriaSel-errorLanzado: " + JSON.stringify(errorLanzado));
 		}
 	});
 }
-
-// 20211229 cargar lista categoria de productos
-/*function obtenerListaCategoriaProductos(){
-	witper_obtenerListaCategoriaProductos(null, function(errorLanzado, datosDevuelto){
-		if(errorLanzado == null){
-		   let exito = datosDevuelto.encontrado;
-		   let mensj = datosDevuelto.mensaje;
-		   let datos = datosDevuelto.datos;
-		   if(exito){
-			if(datos != 0){
-				cargarListaCategoria(datos);
-			}else{
-				mostrarMensaje("No se obtuvieron resultados de la última búsqueda", 2);
-				return false;
-			}
-		   }else{
-			mostrarMensaje("Disculpe, no se pudo realizar la última operación", 2);
-		   }
-		}else{
-			mostrarMensaje("Disculpe, existi&oacute; un problema", 2);
-		}
-	});
-}*/
 
 function cargarListaCategoria(datos, sel){
 	let html1 = '<select id="cboCategoriaBusq" name="cboCategoriaBusq" class="form-control">';
@@ -184,7 +164,7 @@ function obtenerListaSubCategoriaSel(codigo, sel){
 			if(datos != 0){
 				cargarListaSubCategoria(datos, sel);
 			}else{
-				mostrarMensaje("No se obtuvieron resultados de la última búsqueda", 2);
+				mostrarMensaje("No se obtuvieron resultados de la última búsqueda por subcategoría", 2);
 				return false;
 			}
 		   }else{
@@ -192,6 +172,7 @@ function obtenerListaSubCategoriaSel(codigo, sel){
 		   }
 		}else{
 			mostrarMensaje("Disculpe, existi&oacute; un problema al listar subcategoría por código", 2);
+			console.log(">>> adm-obtenerListaSubCategoriaSel-errorLanzado: " + JSON.stringify(errorLanzado));
 		}
 	});
 }
@@ -434,7 +415,7 @@ function listarProductosTienda(datos){
 				cargarListaProductosTienda(datos);
 			}else{
 				limpiarBusq();
-				mostrarMensaje("No se obtuvieron resultados de la última búsqueda", 2);
+				mostrarMensaje("No se obtuvieron resultados de la última búsqueda por descripción de producto", 2);
 				//return false;
 			}
 		   }else{
@@ -442,6 +423,7 @@ function listarProductosTienda(datos){
 		   }
 		}else{
 			mostrarMensaje("Disculpe, existi&oacute; un problema al listar producto tienda", 2);
+			console.log(">>> adm-listarProductosTienda-errorLanzado: " + JSON.stringify(errorLanzado));
 		}
 	});
 }
@@ -457,6 +439,8 @@ $('#btnRegistrarBusq').click(function(){
 //------------------------------------------------------------------------
 // 20210523 degui: mostrar datos de productos
 function cargarListaProductosTienda(datos){
+	console.log(">>> stockProductoVenta-cargarListaProductosTienda: " + JSON.stringify(datos));
+
 	let ruta_raiz 	= '../../../../static/witper/';
 	let ruta_upload = 'apps/ecwitper/img/tiendavirtual/galeria/productos/upload/';
 
@@ -574,8 +558,6 @@ $('#btnAceptarReg').click(function(){
 				let mensj = datosDevuelto.mensaje;
 				let datos = datosDevuelto.datos;
 				if(exito && datos != 0){
-					//cargarPaginaSel("ecwitper-site-portaladmin/ecwitper-menu-principal-control/ver/menu/?page=41052");
-					//cargarPaginaSel("ecwitper-site-portaladmin/ecwitper-salidamercancia-registroventa-ctrl/ver/menu/?page=21013");
 					cargarPaginaSel("adm/app/salmerca/ver/menu/?page=21013");
 					mostrarMensaje("Se registro producto correctamente", 1);
 				}else{
@@ -583,6 +565,7 @@ $('#btnAceptarReg').click(function(){
 				}
 			}else{
 				mostrarMensaje("Disculpe, existi&oacute; un problema al tratar de registrar stock producto tienda", 2);
+				console.log(">>> adm-registrarNuevoProductoTienda-errorLanzado: " + JSON.stringify(errorLanzado));
 			}
 		});
        	}else{
@@ -593,6 +576,7 @@ $('#btnAceptarReg').click(function(){
 
 // 20210526 cargar datos para modificar producto
 function cargarDatosParaModificarItem(item){
+	console.log(">>> stockProductoVenta-cargarDatosParaModificarItem: " + JSON.stringify(item));
 	// cargar listas
 	obtenerListaCategoriaSel(item.cod_tipcategoria, item.cod_categoria);
 	obtenerListaSubCategoriaSel(item.cod_categoria, item.cod_subcategoria);
@@ -695,6 +679,7 @@ $('#btnAceptarMod').click(function(){
 			   	}
 			}else{
 				mostrarMensaje("Disculpe, existi&oacute; un problema al tratar de actualizar producto", 2);
+				console.log(">>> adm-modificarProductoTienda-errorLanzado: " + JSON.stringify(errorLanzado));
 			}
 		});
        	}else{

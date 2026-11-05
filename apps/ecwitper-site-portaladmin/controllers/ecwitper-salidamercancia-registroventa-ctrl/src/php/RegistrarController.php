@@ -10,25 +10,11 @@ class RegistrarController extends Controller {
     // Degui 20210528: Registrar Nuevo Producto Tienda
     public function registrarNuevoProductoTienda() {
 		$dataRequest = array(
-				//"codProd" 	=> $_POST["txtCodProd"],
-				//"miniCod" 	=> $_POST["txtMiniCodigo"],
 		      	"nomProd" 		=> $_POST["txtNomProd"],
-		      	//* "desProdCort" 	=> $_POST["txtDescProdCorta"],
-		      	//* "desProdLarg" 	=> $_POST["txtDescProdLarga"],
-				//"especifProd" 	=> $_POST["txtEspecifProd"],
-		      	//* "keyWord"   	=> $_POST["txtKeyWord"],
-		      	//"rutaImgSm"  	=> $_POST["txtRutaImgSm"],
-		      	//"rutaImgMd"  	=> $_POST["txtRutaImgMd"],
-		      	//"rutaImgLg"  	=> $_POST["txtRutaImgLg"],
-		      	//* "precioNormal" 	=> $_POST["txtPrecioNormal"],
-		      	//* "precioInter"  	=> $_POST["txtPrecioInter"],
-		      	//* "stock"  		=> $_POST["txtStock"],
 		      	"codTipCateg"  => $_POST["cboTipoCategoriaReg"],
 				"codCateg"  	=> $_POST["cboCategoriaReg"],
 				"codSubCateg"  	=> $_POST["cboSubCategoriaReg"],
 		      	"codMarca"  	=> $_POST["cboMarcaReg"],
-		      	//"codEstad"  	=> $_POST["cboCodEstado"]
-				//"codEstad"  	=> $_POST["hid_cboCodEstado"]
 				"codEstad"  	=> $_POST["hid_codEstadoProdReg"]
 		   	);
 		$obj = new RegistrarStockProductoVentaServiceImpl();
@@ -51,23 +37,32 @@ class RegistrarController extends Controller {
 		if(isset($_POST['chkDestacadoMod'])){
 			$isDestacado = 1; // 1: producto destacado
 		}
+
+		$rucProveedorMod = '';
+		if(isset($_POST['cboRucProveedorMod'])){
+			$rucProveedorMod =  $_POST["cboRucProveedorMod"];
+		}
+		$codEstadoAlmcMod = '';
+		if(isset($_POST['cboCodEstadoAlmcMod'])){
+			$codEstadoAlmcMod =  $_POST["cboCodEstadoAlmcMod"];
+		}
+		$cboCodEstadoPublicMod = '';
+		if(isset($_POST['cboCodEstadoPublicMod'])){
+			$cboCodEstadoPublicMod =  $_POST["cboCodEstadoPublicMod"];
+		}
+
 		$dataRequest = array(
 					"codProd" 		=> $_POST["hid_codProductoMod"],
 					"miniCod" 		=> $_POST["txtMiniCodigoMod"],
 		      		"nomProd" 		=> $_POST["txtNomProdMod"],
 		      		"desProdCort" 	=> $_POST["txtDescProdCortaMod"],
 		      		"desProdLarg" 	=> $_POST["txtDescProdLargaMod"],
-					//"especifProd" 	=> $_POST["txtEspecifProdMod"],
 					"indPubliEspec"		=> $_POST["cboIndEspecMod"],
 					"indPubliGaleria"	=> $_POST["cboIndGaleriaImgMod"],
 		      		"keyWord"   	=> $_POST["txtKeyWordMod"],
-		      		//"rutaImgSm"  	=> $_POST["txtRutaImgSmMod"],
-		      		//"rutaImgMd"  	=> $_POST["txtRutaImgMdMod"],
-		      		//"rutaImgLg"  	=> $_POST["txtRutaImgLgMod"],
 		      		"precioCompra" 	=> $_POST["txtPrecioCompraMod"],
 					"precioNormal" 	=> $_POST["txtPrecioNormalMod"],
 		      		"precioInter"  	=> $_POST["txtPrecioInterMod"],
-		      		//"stockProve"	=> $_POST["txtStockProveMod"],
 					"stockAlmacMod"	=> $_POST["txtStockAlmacMod"],
 					"precioDesc"	=> $_POST["txtPrecioDescMod"],
 					"fecIniDesc"  	=> $_POST["dpFecIniDescMod"] != '' ? $_POST["dpFecIniDescMod"] : '2001-01-01',
@@ -75,14 +70,14 @@ class RegistrarController extends Controller {
 					"isProdAlmac"	=> $isProdAlmac,
 					"isActivoAlmac"	=> $isActivoAlmac,
 					"codMarca"  	=> $_POST["cboMarcaMod"],
-					"rucProveedor" 	=> $_POST["cboRucProveedorMod"],
+					"rucProveedor" 	=> $rucProveedorMod,
 					"codProdProv" 	=> $_POST["txtCodProdProvMod"],
 		      		"codTipCateg"  	=> $_POST["cboTipoCategoriaMod"],
 					"codCateg"  	=> $_POST["cboCategoriaMod"],
 					"codSubCateg"  	=> $_POST["cboSubCategoriaMod"],
 		      		"codEstadProd" 	=> $_POST["cboCodEstadoProdMod"],
-					"codEstadAlmc" 	=> $_POST["cboCodEstadoAlmcMod"],
-					"codEstadPublic"=> $_POST["cboCodEstadoPublicMod"],
+					"codEstadAlmc" 	=> $codEstadoAlmcMod,
+					"codEstadPublic"=> $cboCodEstadoPublicMod,
 					"isDestacado"	=> $isDestacado
 		   	    );
 		$obj = new RegistrarStockProductoVentaServiceImpl();

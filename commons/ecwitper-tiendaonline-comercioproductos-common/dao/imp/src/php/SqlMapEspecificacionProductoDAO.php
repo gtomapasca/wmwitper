@@ -25,12 +25,20 @@ class SqlMapEspecificacionProductoDAO implements EspecificacionDAO{
 
     // 20220515: obtener tabla de especificacion de producto
     public function selectEspecificacionProductoByCodigo($dataRequest){
-		$especificacion = new Especificacion();
 		$codProd = $dataRequest["codProducto"];
-		$del = '0';
 		$sql  = "select id_especificacion, cod_producto, num_orden, clave, valor, estado, fecha_reg "
 				."from wip_especificacion_producto Where del = 0 and estado = 0 and cod_producto = ? order by num_orden asc";
-		$data = array('s', "{$codProd}");
+		//$data = array('s', "{$codProd}");
+		// [INI] Setear data
+		$values = [$codProd]; 
+		$types = 's';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$especificacion = new Especificacion();
 		$fields = $especificacion->toArrayEspecificacion();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);

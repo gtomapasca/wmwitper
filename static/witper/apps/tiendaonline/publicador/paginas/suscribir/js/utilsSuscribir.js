@@ -2,7 +2,7 @@
 * 20240413 UTILS
 */
 
-utils_valSuscribir = function(idForm, callback){
+/*utils_valSuscribir = function(idForm, callback){
     witper_valSuscribir(idForm, function(errorLanzado, datosDevuelto){
         if(errorLanzado == null){
            //console.log("response-valLibroReclamo: " + JSON.stringify(datosDevuelto));
@@ -12,10 +12,10 @@ utils_valSuscribir = function(idForm, callback){
             console.log(">>> witper_valSuscribir-errorLanzado: " + JSON.stringify(errorLanzado));
         }
     });
-};
+};*/
 
-utils_setSuscribir = function(idForm, callback){
-    witper_setSuscribir(idForm, function(errorLanzado, datosDevuelto){
+utils_setSuscribir = function(jsonDataForm, callback){
+    witper_setSuscribirMail(jsonDataForm, function(errorLanzado, datosDevuelto){
         if(errorLanzado == null){
            callback(datosDevuelto);
         }else{

@@ -27,7 +27,6 @@ require_once 'apps/ecwitper-site-portaladmin/modules/ecwitper-gestionmenu-admin-
 class SqlMapCabMenuDAO implements CabMenuDAO{
 	// 20200201 GTP: obtener menu principal
 	public function selectListCabMenu($dataRequest){
-		$cabMenu = new CabMenu();
 		$cod_user = $dataRequest["codUser"];
 		$sql  = "select  cod_mtgp, cod_tipo_cat, nro_meta_prog, nom_meta_prog, cod_tipo_prog, cod_nivel_prog, estado "
 				."from    wip_meta_gprog "
@@ -35,7 +34,17 @@ class SqlMapCabMenuDAO implements CabMenuDAO{
 				."        where cod_perfil = (select cod_perfil from wip_deta_usua_perf "
 				."        where id_usuario = ?)) "
 				."        and estado = 0 and del = 0";
-		$data = array('s', "{$cod_user}");
+		//$data = array('s', "{$cod_user}");
+		// [INI] Setear data
+		$values = [$cod_user]; 
+		$types = 's';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$cabMenu = new CabMenu();
 		$fields = $cabMenu->toArray();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
@@ -44,13 +53,22 @@ class SqlMapCabMenuDAO implements CabMenuDAO{
 
     // 20200201 GTP: obtener menu lateral
     public function selectListMenu($dataRequest){
-		$cabMenuGrup = new CabMenuGrup();
 		$cod_meta_grup_prog = $dataRequest["codMGProg"];
 		$sql  = "select   cod_gprog, cod_tipo_cat, nro_grup_prog, nom_grup_prog, cod_tipo_prog, cod_nivel_prog, estado "
 				."from    wip_grupo_prog "
 				."where   cod_gprog in (select cod_gprog from wip_deta_mtgp_gpro where cod_mtgp = ?) "
 				."        and estado = 0 and del = 0";
-		$data = array('s', "{$cod_meta_grup_prog}");
+		//$data = array('s', "{$cod_meta_grup_prog}");
+		// [INI] Setear data
+		$values = [$cod_meta_grup_prog]; 
+		$types = 's';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$cabMenuGrup = new CabMenuGrup();
 		$fields = $cabMenuGrup->toArray();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
@@ -59,13 +77,22 @@ class SqlMapCabMenuDAO implements CabMenuDAO{
 
     // 20200203 GTP: obtener opcion menu lateral
     public function selectListOpMenu($dataRequest){
-		$cabMenuOpcion = new CabMenuOpcion();
 		$cod_grup_prog = $dataRequest["codGProg"];
 		$sql  = "select  cod_programa, nro_prog, nom_prog, cod_page, nom_page, contexto, estado "
 				."from    wip_programa "
 				."where   cod_programa in (select cod_programa from wip_deta_gpro_prog "
 				."        where cod_gprog = ?) and estado = 0 and del = 0";
-		$data = array('s', "{$cod_grup_prog}");
+		//$data = array('s', "{$cod_grup_prog}");
+		// [INI] Setear data
+		$values = [$cod_grup_prog]; 
+		$types = 's';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$cabMenuOpcion = new CabMenuOpcion();
 		$fields = $cabMenuOpcion->toArray();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);

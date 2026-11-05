@@ -27,7 +27,6 @@ class SqlMapProductoDAO implements ProductoDAO{
     // 20200815 Consultar producto
     public function selectProductoById($dataRequest){
 		try{
-			$producto = new ProductoTienda();
 			$codProducto = $dataRequest["codProducto"];
 			$sql = "select 	pt.cod_producto, pt.mini_codigo, pt.cod_fabricante, fb.marca, pt.cod_categoria, cp.nom_categoria, pt.cod_subcategoria, scp.nom_subcategoria, pt.producto, pt.descrip_corta, pt.descrip_larga "
 				."			,pt.ind_especificaciones, pt.ind_galeriaImagenes, pt.nom_img, pt.dir_img, pt.ruta_img, pt.key_word, pt.precio_compra_final, pt.precio_venta_normal "
@@ -39,13 +38,21 @@ class SqlMapProductoDAO implements ProductoDAO{
 				."			inner join wip_fabricante fb on fb.cod_fabricante = pt.cod_fabricante "
 				."        	inner join wip_categoria_producto cp on cp.cod_categoria = pt.cod_categoria "
 				."        	inner join wip_subcategoria_producto scp on scp.cod_subcategoria = pt.cod_subcategoria "
-				//." where 	pt.del = '0' and pt.estado = '1' and pt.cod_producto = ?";
 				." where 	pt.del = '0' and pt.estado_prod = '03' and pt.public_est = '03' and pt.cod_producto = ?";
-			$data = array('s', "{$codProducto}");
+			//$data = array('s', "{$codProducto}");
+			// [INI] Setear data
+			$values = [$codProducto]; 
+			$types = 's';
+			$values = array_values($values);
+			$data[] = $types;
+			foreach ($values as $i => $v) {
+				$data[] = &$values[$i]; 
+			}
+			// [FIN] Setear data
+			$producto = new ProductoTienda();
 			$fields = $producto->toArrayProductoTienda();
 			return DBObject::ejecutar($sql, $data, $fields);
-			//$resp_temp = array ("sql" => $sql, "data" => $data);
-			//return $resp_temp;
+			//return array ("sql" => $sql, "data" => $data);
 		}catch (Exception $e) {
 			print "Error!: " . $e->getMessage() . "<br/>";
 		}
@@ -54,8 +61,7 @@ class SqlMapProductoDAO implements ProductoDAO{
     // 20210724 Consultar producto por mini código
     public function selectProductoByMinicodigo($dataRequest){
 		try{
-			//$producto = new ProductoTienda();
-			//$miniCodigo = $dataRequest["miniCodigo"];
+			$miniCodigo = $dataRequest["miniCodigo"];
 			$sql = "select 	pt.cod_producto, pt.mini_codigo, pt.cod_fabricante, fb.marca, pt.cod_categoria, cp.nom_categoria, pt.cod_subcategoria, scp.nom_subcategoria, pt.producto, pt.descrip_corta, pt.descrip_larga "
 				."			,pt.ind_especificaciones, pt.ind_galeriaImagenes, pt.nom_img, pt.dir_img, pt.ruta_img, pt.key_word, pt.precio_compra_final, pt.precio_venta_normal "
 				."			,pt.precio_venta_internet, pt.precio_venta_tarjeta, pt.stock, pt.puntaje, pt.estado, pt.fecha_reg "
@@ -68,8 +74,6 @@ class SqlMapProductoDAO implements ProductoDAO{
 				."        	inner join wip_subcategoria_producto scp on scp.cod_subcategoria = pt.cod_subcategoria "
 				//." where 	pt.del = '0' and pt.estado = '1' and pt.mini_codigo = ?";
 				." where 	pt.del = '0' and pt.estado_prod = '03' and pt.public_est = '03' and pt.mini_codigo = ?";
-			//$data = array('s', "{$miniCodigo}");
-			$miniCodigo = $dataRequest["miniCodigo"];
 			// [INI] Setear data
 			$values = [$miniCodigo]; 
 			$types = 's';
