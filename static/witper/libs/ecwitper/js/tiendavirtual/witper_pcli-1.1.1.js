@@ -101,7 +101,8 @@ function witper_buscarProducto(jsonDataForm, callback){
 function witper_valContactCli(idForm, callback){
 	$.ajax({
 	   type: "POST",
-	   url: PATH_SMALL + CLI + "/"+PRINCIPAL+"/consultar/validar-contacto",
+	   //url: PATH_SMALL + CLI + "/"+PRINCIPAL+"/consultar/validar-contacto",
+	   url: PATH_SMALL + APP + "/" + TIENDAONLINE_WEBAPP + "/" + PUBLICADOR_PAGINAS_CTRL + "/consultar-publicador-paginas/validar-contacto",
 	   data: $(idForm).serialize(),
 	   dataType: "json",
 	   success: function(response){callback(null, response);},
@@ -179,27 +180,32 @@ function witper_obtenerProductosPorFabricante(datos, callback){
 }
 
 // 20240416 validar suscripción
-function witper_valSuscribir(idForm, callback){
+// 20261022 Degui: validar suscripcion
+/*function witper_valSuscribir(idForm, callback){
 	$.ajax({
 	   type: "POST",
-	   url: PATH_SMALL + CLI + "/"+PRINCIPAL+"/consultar/validar-suscripcion",
+	   //url: PATH_SMALL + CLI + "/"+PRINCIPAL+"/consultar/validar-suscripcion",
+	   url: PATH_SMALL + APP + "/" + TIENDAONLINE_WEBAPP + "/" + PUBLICADOR_PAGINAS_CTRL + "/consultar-publicador-paginas/validar-suscripcion",
 	   data: $(idForm).serialize(),
 	   dataType: "json",
 	   success: function(response){callback(null, response);},
 	   error: function(errorThrown) {callback(errorThrown);}
   });
-}
+}*/
+
 // 20240416 registrar suscripción
-function witper_setSuscribir(idForm, callback){
+/*function witper_setSuscribir(idForm, callback){
     $.ajax({
 	     type: "POST",
-	     url: PATH_SMALL + CLI + "/"+PRINCIPAL+"/registrar/registrar-suscripcion",
+	     //url: PATH_SMALL + CLI + "/"+PRINCIPAL+"/registrar/registrar-suscripcion",
+		 url: PATH_SMALL + APP + "/" + TIENDAONLINE_WEBAPP + "/" + PUBLICADOR_PAGINAS_CTRL + "/registrar-publicador-paginas/registrar-suscripcion",
 	     data: $(idForm).serialize(),
 	     dataType: "json",
 	     success: function(response){callback(null, response);},
 	     error: function(errorThrown) {callback(errorThrown);}
 	});
-}
+}*/
+
 // 20240714 registrar suscripción mail
 function witper_setSuscribirMail(jsonDataForm, callback){
     $.ajax({
@@ -338,8 +344,17 @@ function witper_setCarPedido(datos, callback){
 function witper_getLastPost(datos, callback){
       $.ajax({
 	     type: "POST",
-	     //url: PATH_SMALL + CLI + "/"+PRINCIPAL+"/consultar/obtener-ultimas-publicaciones",
 		 url: PATH_SMALL + APP + "/" + TIENDAONLINE_WEBAPP + "/" + BLOG_TIENDA_CTRL + "/consultar-publicador-articulos/obtener-ultimas-publicaciones",
+	     dataType: "json",
+	     success: function(response){callback(null, response);},
+	     error: function(errorThrown) {callback(errorThrown);}
+	});
+}
+// 20261021 obtener post seleccionado
+function witper_getPostSeleccionado(codPost, callback){
+      $.ajax({
+	     type: "POST",
+		 url: PATH_SMALL + APP + "/" + TIENDAONLINE_WEBAPP + "/" + BLOG_TIENDA_CTRL + "/consultar-publicador-articulos/obtener-post-seleccionado/?id="+codPost,
 	     dataType: "json",
 	     success: function(response){callback(null, response);},
 	     error: function(errorThrown) {callback(errorThrown);}
@@ -349,7 +364,6 @@ function witper_getLastPost(datos, callback){
 function witper_getCommentPost(cod_post, callback){
     $.ajax({
 	     type: "POST",
-	     //url: PATH_SMALL + CLI + "/"+PRINCIPAL+"/consultar/obtener-comentarios-post/?id=" + cod_post,
 		 url: PATH_SMALL + APP + "/" + TIENDAONLINE_WEBAPP + "/" + BLOG_TIENDA_CTRL + "/consultar-publicador-articulos/obtener-comentarios-post/?id=" + cod_post,
 	     dataType: "json",
 	     success: function(response){callback(null, response);},
@@ -357,12 +371,12 @@ function witper_getCommentPost(cod_post, callback){
 	});
 }
 // 20210302 registrar comentario post
-function witper_setCommentPost(idForm, callback){
+function witper_setCommentPost(jsonDataForm, callback){
       $.ajax({
 	     type: "POST",
-	     //url: PATH_SMALL + CLI + "/"+PRINCIPAL+"/registrar/agregar-comentario-post",
 		 url: PATH_SMALL + APP + "/" + TIENDAONLINE_WEBAPP + "/" + BLOG_TIENDA_CTRL + "/registrar-publicador-articulos/agregar-comentario-post",
-	     data: $(idForm).serialize(),
+	     //data: $(idForm).serialize(),
+		 data: {'datos': JSON.stringify(jsonDataForm)},
 	     dataType: "json",
 	     success: function(response){callback(null, response);},
 	     error: function(errorThrown) {callback(errorThrown);}
@@ -375,9 +389,6 @@ function witper_setCommentPost(idForm, callback){
 function witper_iniciarSesion(jsonDataForm, callback){
 	$.ajax({
 	   type: "POST",
-	   //url: PATH_SMALL + CLI + "/"+CUENTA_USUARIO+"/consultar/validar-usuario",
-	   //url: PATH_SMALL + APPS + "/" + TIENDAONLINE_WEBAPP + "/" + CUENTA_USUARIO_CTRL + "/consultar-cuenta-usuario/validar-usuario",
-	   //url: PATH_SMALL + APP + "/" + TIENDAONLINE_WEBAPP + "/" + CATALOGO_PRODUCTOS_CTRL + "/consultar-cuenta-usuario/validar-usuario",
 	   url: PATH_SMALL + APP + "/" + TIENDAONLINE_WEBAPP + "/" + CUENTA_USUARIO_CTRL + "/consultar-cuenta-usuario/iniciar-sesion",
 	   //data: $(idForm).serialize(),
 	   data: {'datos': JSON.stringify(jsonDataForm)},
@@ -387,7 +398,7 @@ function witper_iniciarSesion(jsonDataForm, callback){
   });
 }
 // 20240615 validar usuario
-function witper_valCrearUsuario(jsonDataForm, callback){
+/*function witper_valCrearUsuario(jsonDataForm, callback){
 	$.ajax({
 	   type: "POST",
 	   url: PATH_SMALL + APP + "/" + TIENDAONLINE_WEBAPP + "/" + CUENTA_USUARIO_CTRL + "/consultar-cuenta-usuario/validar-form-nuevo-usuario",
@@ -397,9 +408,9 @@ function witper_valCrearUsuario(jsonDataForm, callback){
 	   success: function(response){callback(null, response);},
 	   error: function(errorThrown) {callback(errorThrown);}
   });
-}
+}*/
 // 20210303 crear usuario
-function witper_setCrearUsuario(jsonDataForm, callback){
+/*function witper_setCrearUsuario(jsonDataForm, callback){
       $.ajax({
 	     type: "POST",
 	     //url: PATH_SMALL + CLI + "/"+CUENTA_USUARIO+"/registrar/registrar-nuevo-usuario",
@@ -410,7 +421,7 @@ function witper_setCrearUsuario(jsonDataForm, callback){
 	     success: function(response){callback(null, response);},
 	     error: function(errorThrown) {callback(errorThrown);}
 	});
-}
+}*/
 //------------------------------------------------------------------------------
 // 20220328 ofertas
 function witper_obtenerOfertas(datos, callback){

@@ -26,10 +26,19 @@ class SqlMapFabricanteDAO implements FabricanteDAO{
 
     // 20211229 GTP: obtener lista de fabricantes
     public function selectListaFabricantes(){
-		$fabricante = new Fabricante();
 		$del = '0';
 		$sql  = "select cod_fabricante, fabricante, marca, pais, estado, del from wip_fabricante where del = ? order by fabricante asc";
-		$data = array('s', "{$del}");
+		//$data = array('s', "{$del}");
+		// [INI] Setear data
+		$values = [$del]; 
+		$types = 's';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$fabricante = new Fabricante();
 		$fields = $fabricante->toArrayFabricante();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//return $resp_temp = array ("sql" => $sql, "data" => $data);

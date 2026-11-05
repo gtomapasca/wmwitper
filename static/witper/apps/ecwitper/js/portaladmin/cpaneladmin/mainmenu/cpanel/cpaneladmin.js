@@ -108,13 +108,14 @@ function cargarMenuPrincipalCpanel(){
 			mostrarMensaje("Disculpe, no se pudo realizar la última operación", 2);
 		   }
 		}else{
-			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar menú", 2);
+			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar menú principal", 2);
 			console.log(">>> cargarMenuPrincipalCpanel-errorLanzado: " + JSON.stringify(errorLanzado));
 		}
 	});
 }
 //------------------------------------------------------------------------
 function mostrarMenuLateral(op){
+	//console.log(">>> mostrarMenuLateral-op: " + op);
 	witper_getMenuLateral(op, function(errorLanzado, datosDevuelto){
 		if(errorLanzado == null){
 		   //console.log("response menu-lateral: " + JSON.stringify(datosDevuelto));
@@ -133,14 +134,16 @@ function mostrarMenuLateral(op){
 			mostrarMensaje("Disculpe, no se pudo realizar la última operación", 2);
 		   }
 		}else{
-			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar menú", 2);
+			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar menú lateral", 2);
+			console.log(">>> adm-mostrarMenuLateral-errorLanzado: " + JSON.stringify(errorLanzado));
 		}
 	});
 }
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 function mostrarOpcionesMenuLateral(item, n){
-	let codGProg=item.cod_gprog;
+	let codGProg = item.cod_gprog;
+	//console.log(">>> mostrarOpcionesMenuLateral-codGProg: " + codGProg);
 	witper_getOpcionesMenuLateral(codGProg, function(errorLanzado, datosDevuelto){
 		if(errorLanzado == null){
 		   //console.log("response op-menu-lateral: " + JSON.stringify(datosDevuelto));
@@ -164,13 +167,15 @@ function mostrarOpcionesMenuLateral(item, n){
 			mostrarMensaje("Disculpe, no se pudo realizar la última operación", 2);
 		   }
 		}else{
-			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar menú", 2);
+			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar menú grupo", 2);
+			console.log(">>> adm-mostrarOpcionesMenuLateral-errorLanzado: " + JSON.stringify(errorLanzado));
 		}
 	});
 }
 //------------------------------------------------------------------------
 //------------------------------------------------------------------------
 function obtenerPaginaId(codPage){
+	//console.log(">>> obtenerPaginaId-codPage: " + codPage);
 	witper_getPageId(codPage, function(errorLanzado, datosDevuelto){
 		if(errorLanzado == null){
 			//console.log("response obtenerPaginaId: " + JSON.stringify(datosDevuelto));
@@ -205,6 +210,7 @@ function obtenerPaginaId(codPage){
 		  	}
 		}else{
 			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar la página por código página.", 2);
+			console.log(">>> adm-obtenerPaginaId-errorLanzado: " + JSON.stringify(errorLanzado));
 		}
 	});
 }

@@ -26,11 +26,20 @@ class SqlMapClienteDAO implements ClienteDAO{
 
     // 20191209 GTP: obtener lista de clientes
     public function listarClientesAll(){
-		$cliente = new Cliente();
 		$del = '0';
 		$sql  = "select id_ctapersona, tipo_usu, doc_tip, doc_num, fecha_nac, nombres, ape_pat, ape_mat, telefono, celular, email, direccion, estado, fecha_reg "
 			." from wip_cuenta_persona where del = ?";
-		$data = array('s', "{$del}");
+		//$data = array('s', "{$del}");
+		// [INI] Setear data
+		$values = [$del]; 
+		$types = 's';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$cliente = new Cliente();
 		$fields = $cliente->toArrayCliente();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);

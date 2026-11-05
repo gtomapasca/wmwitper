@@ -5,21 +5,23 @@ require_once 'commons/ecwitper-tiendaonline-publicadorarticulos-common/dao/imp/s
 
 class RegistrarBlogServiceImpl implements RegistrarBlogService{
 
-   public function registrarComentarioPost($dataRequest) {
-	try{
-	    $sqlMapPostDAO = new SqlMapPostDAO();
-	    $sqlMapPostDAO->insertComentPost($dataRequest);
-	    $dataResponse["mensaje"] = "Se registro correctamente";
-	    $dataResponse["encontrado"] = true;
-	    $dataResponse["datos"] = $dataRequest;
-	    return $dataResponse;
-	}catch (Exception $e) {
-	    $dataResponse["encontrado"] = false;
-	    $dataResponse["mensaje"] = "Error " . $e->getMessage();
-	    $dataResponse["datos"] = null;
-	    return $dataResponse;
+   // 20261021 registra comentario de publicacion
+   public function registrarComentarioPost($jsonParams) {
+		$objRespuesta = new stdClass();
+		try{			
+			$sqlMapPostDAO = new SqlMapPostDAO();
+			$sqlMapPostDAO->insertComentPost($jsonParams);
+			$objRespuesta->tip = "I"; // Info
+			$objRespuesta->msj = "Comentario creado correctamente";
+			$objRespuesta->val = true;
+			return $objRespuesta;
+		}catch (Exception $e) {
+			$objRespuesta->tip = "E"; // Error
+			$objRespuesta->msj = "(" . $e->getCode() .") ". $e->getMessage();
+			$objRespuesta->val = false;
+			return $objRespuesta;
+		}
 	}
-   }
 
 
 }

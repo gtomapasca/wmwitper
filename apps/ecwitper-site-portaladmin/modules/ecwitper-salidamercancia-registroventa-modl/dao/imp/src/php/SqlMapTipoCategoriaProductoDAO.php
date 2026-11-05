@@ -26,10 +26,19 @@ class SqlMapTipoCategoriaProductoDAO implements TipoCategoriaProductoDAO{
 
     // 20211230 degui: obtener lista de tipo categoria productos
     public function selectListaTipoCategoriaProd(){
-		$tipoCategoriaProducto = new TipoCategoriaProducto();
 		$del = '0';
 		$sql  = "select cod_tipo, nom_tipo, des_tipo, estado, del from wip_tipo_categoria where del = ? order by nom_tipo asc";
-		$data = array('s', "{$del}");
+		//$data = array('s', "{$del}");
+		// [INI] Setear data
+		$values = [$del]; 
+		$types = 's';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$tipoCategoriaProducto = new TipoCategoriaProducto();
 		$fields = $tipoCategoriaProducto->toArrayTipoCategoria();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);

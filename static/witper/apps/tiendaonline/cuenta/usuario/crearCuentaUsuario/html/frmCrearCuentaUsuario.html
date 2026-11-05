@@ -2,8 +2,7 @@
 <html lang="ES">
 	<head>
 		<title>New User</title>
-		<!--link rel="stylesheet" type="text/css" href="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/cuenta-usuario-view/inter-crearCuentaUsuario-web/src/css/frmCrearUsuario.css" /-->
-		<link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/tiendaonline/cuenta/usuario/crearCuentaUsuario/css/frmCrearUsuario.css" />
+		<link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/tiendaonline/cuenta/usuario/crearCuentaUsuario/css/frmCrearCuentaUsuario.css" />
 	</head>
 	<body>
 		<div class="container show-top-margin separate-rows tall-rows">
@@ -12,15 +11,15 @@
 				<div class="panel-body">
 					<div id="divRegUser" class="row">
 						<div class="col-md-6">
-							<h2 class="wpr-h2-e01">Crear Usuario</h2>
-							<p class="wpr-p-e01">Tener su propia cuenta personal le permite recibir información destacada de los productos, ofertas y descuentos.</p>
+							<h2 class="wpr-h2-e01">Crear cuenta de usuario</h2>
+							<p class="wpr-p-e01">Tener su propia cuenta de usuario le permite recibir información destacada de los productos, ofertas y descuentos.</p>
 							<p class="wpr-p-e01">Registrese completando sus datos en el formulario y compruebelo usted mismo.</p>
 						</div>
 						<div class="col-md-6">
 							<form id="frmNewUser" role="form">
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										<h3 class="panel-title wpr-title-e01">CREAR USUARIO</h3>
+										<h3 class="panel-title wpr-title-e01">CREAR CUENTA DE USUARIO</h3>
 									</div>
 									<div class="panel-body wpr-body-e01">
 										<div class="row">
@@ -57,8 +56,9 @@
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-12 col-sm-12 col-xs-12 wpr-button-e01 wpr-esp-e02">
-											<button type="button" id="btnGrabar" class="btn btn-primary btn-lg">Crear Usuario</button>
+										<div class="col-md-4 col-sm-6 col-xs-12"></div>
+										<div class="col-md-8 col-sm-6 col-xs-12 wpr-button-e01 wpr-esp-e02">
+											<button type="button" id="btnGrabar" class="btn btn-primary btn-lg">Crear cuenta de usuario</button>
 										</div>
 									</div>
 									<div class="row">
@@ -73,22 +73,68 @@
 					<div id="divMjsResultadoFrmCrearUsuario" class="row">
 						<div class="col-md-12">
 							<h1 class="wpr-h2-e01">Felicitaciones!!!</h1>
-							<p class="wpr-p-e01">Ya eres un usuario registrado. Se ha creado correctamente tu usuario... ya puede ingresar con tu usuario y contraseña.</p>
+							<p class="wpr-p-e01">Ya eres un usuario registrado. Se ha creado correctamente tu cuenta de usuario... ya puede ingresar con tu cuenta de usuario y contraseña.</p>
 						</div>
 					</div>
 					
 				</div>
 			</div>
 		</div>
-		<!--script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script>
-		<script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/cuenta-usuario-view/inter-crearCuentaUsuario-web/src/js/utilsCrearUsuario.js"></script>
-		<script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/cuenta-usuario-view/inter-crearCuentaUsuario-web/src/js/frmCrearUsuario.js"></script>
-		<script type="text/javascript" src="{PATH_STORE}/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script-->
-
-		<script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script>
-		<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/cuenta/usuario/crearCuentaUsuario/js/utilsCrearUsuario.js"></script>
-		<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/cuenta/usuario/crearCuentaUsuario/js/frmCrearUsuario.js"></script>
-		<!-- script type="text/javascript" src="{PATH_STORE}/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script -->
+		<!--INI VENTANAS EMERGENTES-->
+	    <div id="divModalMsg" class="modal fade" role="dialog">
+	        <div class="modal-dialog">
+	            <div id="divPanelModal" class="panel panel-info">
+	                <div id="divModalMsgTitulo" class="panel-heading"></div>
+	                <div id="divModalMsgContenido" class="panel-body"></div>
+	                <div class="panel-footer text-center">
+	                    <button type="button" id="btnModalMsgCerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+		<div id="divModalMsgAdvertencia" class="modal fade" role="dialog">
+	        <div class="modal-dialog">
+	            <div id="divPanelModalAdv" class="panel panel-warning">
+	                <div id="divModalMsgAdvTitulo" class="panel-heading"></div>
+	                <div id="divModalMsgAdvContenido" class="panel-body"></div>
+	                <div class="panel-footer text-center">
+	                    <button type="button" id="btnModalMsgAdvAceptar" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div id="divModalMsgConfirmacion" class="modal fade">
+	        <div class="modal-dialog">
+	            <div id="divPanelModalConf" class="panel panel-default">
+	                <div id="divModalMsgConfTitulo" class="panel-heading"></div>
+	                <div id="divModalMsgConfContenido" class="panel-body"></div>
+	                <div class="panel-footer text-center">
+	                    <button id="btnModalMsgConfSi" type="button" class="btn btn-primary" data-dismiss="modal">Si</button>
+	                    <button id="btnModalMsgConfNo" type="button" class="btn btn-default" data-dismiss="modal">No</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <div id="divModalProcesando" class="modal fade" role="dialog">
+	        <div class="modal-dialog modal-sm">
+	            <div id="divPanelModalProcesando" class="panel panel-default">
+	                <div id="divProcesandoContenido" class="panel-body">
+	                    <div class="row">
+	                        <div class="col-sm-5">
+	                            <img src="/a/imagenes/wait-big.gif" />
+	                        </div>
+	                        <div class="col-sm-7">
+	                            <p>Procesando...</p>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <!--FIN VENTANAS EMERGENTES-->
+		
+		<script type="text/javascript" src="{PATH_LARGE}/apps/utils/js/tiendaonline/utils.js"></script>
+		<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/cuenta/usuario/crearCuentaUsuario/js/frmCrearCuentaUsuario.js"></script>
 
 		<script language="javascript" type="text/javascript">
 			// desplazar hacía arriba de la pagina

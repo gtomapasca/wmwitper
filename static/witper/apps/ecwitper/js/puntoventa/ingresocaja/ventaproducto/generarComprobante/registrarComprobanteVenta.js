@@ -181,7 +181,8 @@ var clsRegistrarComprobanteVenta = function() {
                     mostrarMensaje("Disculpe, no se pudo realizar la última operación", 2);
                 }
             }else{
-                mostrarMensaje("Disculpe, existi&oacute; un problema", 2);
+                mostrarMensaje("Disculpe, existi&oacute; un problema al consultar comprobante de venta.", 2);
+                console.log(">>> vta-consultarComprobanteVentas-errorLanzado: " + JSON.stringify(errorLanzado));
             }
         });
     };
@@ -414,6 +415,7 @@ var clsRegistrarComprobanteVenta = function() {
             }
             }else{
                 mostrarMensaje("Disculpe, existi&oacute; un problema al obtener secuencia comprobante", 2);
+                console.log(">>> vta-obtenerVistaDetalleVenta-errorLanzado: " + JSON.stringify(errorLanzado));
             }
         });
     };
@@ -575,7 +577,8 @@ var clsRegistrarComprobanteVenta = function() {
                 mostrarMensaje("Disculpe, no se pudo realizar la última operación", 2);
                }
             }else{
-                mostrarMensaje("Disculpe, existi&oacute; un problema", 2);
+                mostrarMensaje("Disculpe, existi&oacute; un problema al obtener datos del producto.", 2);
+                console.log(">>> vta-obtenerDatosProducto-errorLanzado: " + JSON.stringify(errorLanzado));
             }
         });
     };
@@ -1001,6 +1004,7 @@ var clsRegistrarComprobanteVenta = function() {
             }
             }else{
                 mostrarMensaje("Disculpe, existi&oacute; un problema al obtener secuencia comprobante", 2);
+                console.log(">>> vta-obtenerCorrelativoComprobanteVenta-errorLanzado: " + JSON.stringify(errorLanzado));
             }
         });
     };
@@ -1092,6 +1096,7 @@ var clsRegistrarComprobanteVenta = function() {
             }
             }else{
                 mostrarMensaje("Disculpe, existi&oacute; un problema al registrar venta", 2);
+                console.log(">>> vta-registrarComprobanteVenta-errorLanzado: " + JSON.stringify(errorLanzado));
             }
         });
     };
@@ -1117,6 +1122,7 @@ var clsRegistrarComprobanteVenta = function() {
             }
             }else{
                 mostrarMensaje("Disculpe, existi&oacute; un problema al obtener secuencia comprobante", 2);
+                console.log(">>> vta-obtenerIdComprobanteVenta-errorLanzado: " + JSON.stringify(errorLanzado));
             }
         });
     };
@@ -1153,6 +1159,7 @@ var clsRegistrarComprobanteVenta = function() {
             }
             }else{
                 mostrarMensaje("Disculpe, existi&oacute; un problema al registrar detalle venta", 2);
+                console.log(">>> vta-registrarDetalleVenta-errorLanzado: " + JSON.stringify(errorLanzado));
             }
         });
     };

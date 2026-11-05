@@ -34,7 +34,16 @@ class SqlMapGaleriaProductoTiendaDAO implements GaleriaProductoTIendaDAO{
 		$rutaTotalImg 	= $dataRequest["rutaTotalImg"];
 		$sql  = "update wip_producto_tienda set codusu_act = USER(), fecha_act = NOW(), nom_img = ?, dir_img = ?, ruta_img = ?, imagen_lg = ? "
 				." where cod_producto = ?";
-		$data = array('sssss', "{$nombreImagen}", "{$nombreCarpeta}", "{$rutaSubidaImg}", "{$rutaTotalImg}", "{$codProducto}");
+		//$data = array('sssss', "{$nombreImagen}", "{$nombreCarpeta}", "{$rutaSubidaImg}", "{$rutaTotalImg}", "{$codProducto}");
+		// [INI] Setear data
+		$values = [$nombreImagen, $nombreCarpeta, $rutaSubidaImg, $rutaTotalImg, $codProducto]; 
+		$types = 'sssss';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
 		DBObject::ejecutar($sql, $data);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
 		//return $resp_temp;
@@ -45,7 +54,16 @@ class SqlMapGaleriaProductoTiendaDAO implements GaleriaProductoTIendaDAO{
 		$productoTienda = new ProductoTienda();
 		$codProd = $dataRequest["codProducto"];
 		$sql  = "select cod_producto, nom_img, dir_img from wip_producto_tienda where cod_producto = ? and del = 0 ";
-		$data = array('s', "{$codProd}");
+		//$data = array('s', "{$codProd}");
+		// [INI] Setear data
+		$values = [$codProd]; 
+		$types = 's';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
 		$fields = $productoTienda->toArrayImagenProductoTienda();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
@@ -71,7 +89,16 @@ class SqlMapGaleriaProductoTiendaDAO implements GaleriaProductoTIendaDAO{
 		$sql  = "insert into wip_galeria_producto_tienda (cod_producto, fecha_creacion, num_orden, cod_item, nombre, "
 				." dir_img, formato, ruta, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
 				." values(?, NOW(), ?, ?, ?, ?, ?, ?, ?, 0, USER(), USER(), NOW(), NOW())";
-		$data = array('sissssss', "{$codProd}", "{$numOrden}", "{$codItem}", "{$nombre}", "{$dirImg}", "{$formato}", "{$rutaImg}", "{$estado}");
+		//$data = array('sissssss', "{$codProd}", "{$numOrden}", "{$codItem}", "{$nombre}", "{$dirImg}", "{$formato}", "{$rutaImg}", "{$estado}");
+		// [INI] Setear data
+		$values = [$codProd, $numOrden, $codItem, $nombre, $dirImg, $formato, $rutaImg, $estado]; 
+		$types = 'sissssss';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
 		DBObject::ejecutar($sql, $data);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
 		//return $resp_temp;
@@ -79,11 +106,20 @@ class SqlMapGaleriaProductoTiendaDAO implements GaleriaProductoTIendaDAO{
 
 	// 20220522 degui: obtener galería de imagenes productos
 	public function selectGaleriaImagenProducto($dataRequest){
-		$obj = new GaleriaProductoTienda();
 		$codProd = $dataRequest["codProducto"];
 		$sql  = "select id_galeria, cod_producto, fecha_creacion, num_orden, cod_item, nombre, dir_img, ruta, formato, dimensiones, estado, fecha_act "
 				." from wip_galeria_producto_tienda where cod_producto = ? and del = 0 order by num_orden asc";
-		$data = array('s', "{$codProd}");
+		//$data = array('s', "{$codProd}");
+		// [INI] Setear data
+		$values = [$codProd]; 
+		$types = 's';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$obj = new GaleriaProductoTienda();
 		$fields = $obj->toArrayGaleriaProd();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
@@ -102,17 +138,32 @@ class SqlMapGaleriaProductoTiendaDAO implements GaleriaProductoTIendaDAO{
 		$formato 	= $dataRequest["extension"];
 		$estado 	= $dataRequest["estado"];
 		$rutaImg 	= $dataRequest["rutaImgagen"];
+		$arrayValues = array();
+		$sTypes = '';
 		if($rutaImg != ''){
 			$sql  = "update wip_galeria_producto_tienda set num_orden = ?, cod_item = ?, nombre = ?, dir_img = ?, formato = ?, "
 					." ruta = ?, estado = ?, del = 0, codusu_act = USER(), fecha_act = NOW() "
 					." where id_galeria = ? and cod_producto = ? ";
-			$data = array('issssssss', "{$numOrden}", "{$codItem}", "{$nombre}", "{$dirImg}", "{$formato}", "{$rutaImg}", "{$estado}", "{$idGaleria}", "{$codProd}");
+			//$data = array('issssssss', "{$numOrden}", "{$codItem}", "{$nombre}", "{$dirImg}", "{$formato}", "{$rutaImg}", "{$estado}", "{$idGaleria}", "{$codProd}");
+			$arrayValues = [$numOrden, $codItem, $nombre, $dirImg, $formato, $rutaImg, $estado, $idGaleria, $codProd]; 
+			$sTypes = 'issssssss';
 		}else{
 			$sql  = "update wip_galeria_producto_tienda set num_orden = ?, nombre = ?, dir_img = ?, "
 					." estado = ?, del = 0, codusu_act = USER(), fecha_act = NOW() "
 					." where id_galeria = ? and cod_producto = ? ";
-			$data = array('isssss', "{$numOrden}", "{$nombre}", "{$dirImg}", "{$estado}", "{$idGaleria}", "{$codProd}");
+			//$data = array('isssss', "{$numOrden}", "{$nombre}", "{$dirImg}", "{$estado}", "{$idGaleria}", "{$codProd}");
+			$arrayValues = [$numOrden, $nombre, $dirImg, $estado, $idGaleria, $codProd];
+			$sTypes = 'isssss';
 		}
+		// [INI] Setear data
+		$values = $arrayValues; 
+		$types = $sTypes;
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
 		DBObject::ejecutar($sql, $data);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
 		//return $resp_temp;

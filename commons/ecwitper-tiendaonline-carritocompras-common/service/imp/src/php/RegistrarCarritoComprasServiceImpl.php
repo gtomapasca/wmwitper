@@ -92,7 +92,7 @@ class RegistrarCarritoComprasServiceImpl implements RegistrarCarritoComprasServi
 
 				// Consultar ultimo pedido
 				//$sqlMapPedidoDAO = new SqlMapPedidoDAO();
-				$dataPedido = $sqlMapPedidoDAO->getLastPedido();
+				$dataPedido = $sqlMapPedidoDAO->getLastPedido($dataPedidoReq);
 				$id_last    = $dataPedido[0]["id_pedido"];
 				//$id_pedido  = ($id_last != null && $id_last > 0 ? $id_last : 0);
 				//$nro_pedido = $id_pedido != null ? $id_pedido + 1000 : 0;

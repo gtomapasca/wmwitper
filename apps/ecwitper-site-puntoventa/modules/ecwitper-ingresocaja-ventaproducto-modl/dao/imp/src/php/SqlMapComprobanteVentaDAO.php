@@ -25,128 +25,186 @@ require_once 'apps/ecwitper-site-puntoventa/modules/ecwitper-ingresocaja-ventapr
 class SqlMapComprobanteVentaDAO implements ComprobanteVentaDAO{
 
 	public function selectComprobanteVentas($dataRequest){
-		$comprobanteVenta = new ComprobanteVenta();
-		$n = 0;
-		//$ordenar = $dataRequest["ordenar"];
-		$where = " where del = 0 ";
-		foreach($dataRequest as $clave=>$valor){
-			$encontrado = false;
-			// rango de fecha
-			if($clave == "fecIniBusq" || $clave == "fecFinBusq"){
-				$encontrado = true;
-				if($clave == "fecFinBusq"){
-					$data[0] .= "ss"; 
-					$data[++$n] = $dataRequest["fecIniBusq"] . ' 23:59:59';
-					$data[++$n] = $dataRequest["fecFinBusq"] . ' 23:59:59';
-					$where .= (" and fecha_emision between ? and ? ");
-					
+		try{
+			//$n = 0;
+			//$ordenar = $dataRequest["ordenar"];
+			$arrayValues = array();
+			$sTypes = '';
+			$where = " where del = 0 ";
+			foreach($dataRequest as $clave=>$valor){
+				$encontrado = false;
+				// rango de fecha
+				if($clave == "fecIniBusq" || $clave == "fecFinBusq"){
+					$encontrado = true;
+					if($clave == "fecFinBusq"){
+						//$data[0] .= "ss"; 
+						//$data[++$n] = $dataRequest["fecIniBusq"] . ' 23:59:59';
+						//$data[++$n] = $dataRequest["fecFinBusq"] . ' 23:59:59';
+						$sTypes .= 'ss';
+						$arrayValues[] = $dataRequest["fecIniBusq"] . ' 00:00:00';
+						$arrayValues[] = $dataRequest["fecFinBusq"] . ' 23:59:59';
+						$where .= (" and fecha_emision between ? and ? ");
+						
+					}
+				}
+				// Estado comprobante: emitido, generado, etc.
+				else if($clave == "estado"){
+					$encontrado = true;
+					$sTypes .= 's';
+					$arrayValues[] = $dataRequest["estado"];
+					$where .= (" and estado = ? ");
+				}
+				// tipo comprobante: boleta factura
+				else if($clave == "cod_tipcom"){
+					$encontrado = true;
+					$sTypes .= 's';
+					$arrayValues[] = $dataRequest["cod_tipcom"];
+					$where .= (" and cod_tipcom = ? ");
+				}
+				// serie comprobante: B001/F001
+				else if($clave == "nro_serie"){
+					$encontrado = true;
+					$sTypes .= 's';
+					$arrayValues[] = $dataRequest["nro_serie"];
+					$where .= (" and nro_serie = ? ");
+				}
+				// numero comprobante: 001, 002, 003
+				else if($clave == "nro_correlativo"){
+					$encontrado = true;
+					$sTypes .= 's';
+					$arrayValues[] = $dataRequest["nro_correlativo"];
+					$where .= (" and nro_correlativo = ? ");
+				}
+				// documento: ruc, dni
+				else if($clave == "cod_tipdoc"){
+					$encontrado = true;
+					$sTypes .= 'ss';
+					$arrayValues[] = $dataRequest["cod_tipdoc"];
+					$arrayValues[] = $dataRequest["num_docume"];
+					$where .= (" and cod_tipdoc = ? and num_docume = ? ");
 				}
 			}
-			// Estado comprobante: emitido, generado, etc.
-			else if($clave == "estado"){
-				$encontrado = true;
-				$data[0] .= "s"; 
-				$data[++$n] = $dataRequest["estado"];
-				$where .= (" and estado = ? ");
-			}
-			// tipo comprobante: boleta factura
-			else if($clave == "cod_tipcom"){
-				$encontrado = true;
-				$data[0] .= "s"; 
-				$data[++$n] = $dataRequest["cod_tipcom"];
-				$where .= (" and cod_tipcom = ? ");
-			}
-			// serie comprobante: B001/F001
-			else if($clave == "nro_serie"){
-				$encontrado = true;
-				$data[0] .= "s"; 
-				$data[++$n] = $dataRequest["nro_serie"];
-				$where .= (" and nro_serie = ? ");
-			}
-			// numero comprobante: 001, 002, 003
-			else if($clave == "nro_correlativo"){
-				$encontrado = true;
-				$data[0] .= "s"; 
-				$data[++$n] = $dataRequest["nro_correlativo"];
-				$where .= (" and nro_correlativo = ? ");
-			}
-			// documento: ruc, dni
-			else if($clave == "cod_tipdoc"){
-				$encontrado = true;
-				$data[0] .= "ss"; 
-				$data[++$n] = $dataRequest["cod_tipdoc"];
-				$data[++$n] = $dataRequest["num_docume"];
-				$where .= (" and cod_tipdoc = ? and num_docume = ? ");
-			}
-		}
 
-		$sql  = "select 	id_venta, ruc_negocio, fecha_emision, cod_mediopago, cod_tipomoneda, pago_total, pago_monto, pago_vuelto "
-				."			, envio_codest, id_mediopago, nro_serie, nro_correlativo, cod_tipcom "
-				."			, cod_tipdoc, num_docume, nom_cli, observacion_cambest, fk_idusuario, estado, del, codusu_reg, fecha_reg "
-				."from 		wip_venta ";
-		$sql .= $where . " order by fecha_emision asc ";
-		$fields = $comprobanteVenta->toArrayComprobanteVenta();
-		return DBObject::ejecutar($sql, $data, $fields);
-		//return $resp_temp = array ("parametros" => $dataRequest, "sql" => $sql, "data" => $data);
+			$sql  = "select 	id_venta, ruc_negocio, fecha_emision, cod_mediopago, cod_tipomoneda, pago_total, pago_monto, pago_vuelto "
+					."			, envio_codest, id_mediopago, nro_serie, nro_correlativo, cod_tipcom "
+					."			, cod_tipdoc, num_docume, nom_cli, observacion_cambest, fk_idusuario, estado, del, codusu_reg, fecha_reg "
+					."from 		wip_venta ";
+			$sql .= $where . " order by fecha_emision asc ";
+			// [INI] Setear data
+			$values = $arrayValues; 
+			$types = $sTypes;
+			$values = array_values($values); 
+			$data[] = $types;
+			foreach ($values as $i => $v) {
+				$data[] = &$values[$i]; 
+			}
+			// [FIN] Setear data
+			$comprobanteVenta = new ComprobanteVenta();
+			$fields = $comprobanteVenta->toArrayComprobanteVenta();
+			return DBObject::ejecutar($sql, $data, $fields);
+			//return $resp_temp = array ("parametros" => $dataRequest, "sql" => $sql, "data" => $data);
+		}catch (Exception $e) {
+			print "Error!: " . $e->getMessage() . "<br/>";
+		}
     }
 
 	public function selectCorreComprobanteVenta($dataRequest){
-		$comprobanteVenta = new ComprobanteVenta();
-		$tipComprob = $dataRequest["tipComprob"];
-		// 20260309 se adecua para registar ventas al superar los 1000 registros
-		// $sql  = "select nro_correlativo from wip_venta where cod_tipcom = ? and del = 0 order by nro_correlativo desc limit 1";
-		$sql  = "select nro_correlativo from wip_venta where cod_tipcom = ? and del = 0 order by cast(nro_correlativo as signed) desc limit 1";
-		$data = array('s', "{$tipComprob}");
-		$fields = $comprobanteVenta->toArrayCorreComprobanteVenta();
-		return DBObject::ejecutar($sql, $data, $fields);
-		//return $resp_temp = array ("parametros" => $dataRequest, "sql" => $sql, "data" => $data);
+		try{
+			$tipComprob = $dataRequest["tipComprob"];
+			// 20260309 se adecua para registar ventas al superar los 1000 registros
+			// $sql  = "select nro_correlativo from wip_venta where cod_tipcom = ? and del = 0 order by nro_correlativo desc limit 1";
+			$sql  = "select nro_correlativo from wip_venta where cod_tipcom = ? and del = 0 order by cast(nro_correlativo as signed) desc limit 1";
+			//$data = array('s', "{$tipComprob}");
+			// [INI] Setear data
+			$values = [$tipComprob]; 
+			$types = 's';
+			$values = array_values($values); 
+			$data[] = $types;
+			foreach ($values as $i => $v) {
+				$data[] = &$values[$i]; 
+			}
+			// [FIN] Setear data
+			$comprobanteVenta = new ComprobanteVenta();
+			$fields = $comprobanteVenta->toArrayCorreComprobanteVenta();
+			return DBObject::ejecutar($sql, $data, $fields);
+			//return $resp_temp = array ("parametros" => $dataRequest, "sql" => $sql, "data" => $data);
+		}catch (Exception $e) {
+			print "Error!: " . $e->getMessage() . "<br/>";
+		}
     }
 
 	public function selectIdComprobanteVenta($dataRequest){
-		$comprobanteVenta = new ComprobanteVenta();
-		$serieComprob = $dataRequest["serieComprob"];
-		$nroComprob = $dataRequest["nroComprob"];
-		$sql  = "select id_venta from wip_venta where nro_serie = ? and nro_correlativo = ? and del = 0";
-		$data = array('ss', "{$serieComprob}", "{$nroComprob}");
-		$fields = $comprobanteVenta->toArrayIdComprobanteVenta();
-		return DBObject::ejecutar($sql, $data, $fields);
-		//return $resp_temp = array ("parametros" => $dataRequest, "sql" => $sql, "data" => $data);
+		try{
+			$serieComprob = $dataRequest["serieComprob"];
+			$nroComprob = $dataRequest["nroComprob"];
+			$sql  = "select id_venta from wip_venta where nro_serie = ? and nro_correlativo = ? and del = 0";
+			//$data = array('ss', "{$serieComprob}", "{$nroComprob}");
+			// [INI] Setear data
+			$values = [$serieComprob, $nroComprob]; 
+			$types = 'ss';
+			$values = array_values($values); 
+			$data[] = $types;
+			foreach ($values as $i => $v) {
+				$data[] = &$values[$i]; 
+			}
+			// [FIN] Setear data
+			$comprobanteVenta = new ComprobanteVenta();
+			$fields = $comprobanteVenta->toArrayIdComprobanteVenta();
+			return DBObject::ejecutar($sql, $data, $fields);
+			//return $resp_temp = array ("parametros" => $dataRequest, "sql" => $sql, "data" => $data);
+		}catch (Exception $e) {
+			print "Error!: " . $e->getMessage() . "<br/>";
+		}
     }
 
 	// 20230305 Registrar comprobante de venta
     public function insertComprobanteVenta($dataRequest){
+		try{
+			// -----------------------------------------------
+			// 1. Registrar Cabecera Venta
+			// -----------------------------------------------
+			$nroSerie 		= $dataRequest["nroSerieVenta"];
+			$nroComprob 	= $dataRequest["nroCorreVenta"];
+			$rucNegocio 	= $dataRequest["rucNegocio"];
+			//$codUsu 		= $dataRequest["correUsuCLi"];		
+			$tipComprob 	= $dataRequest["codTipComprob"];
+			$fechaEmision 	= $dataRequest["fechaEmision"];
+			$tipDocu 		= $dataRequest["codTipDocu"];
+			$numDocu 		= $dataRequest["desNumDocu"];
+			$nombreCli 		= $dataRequest["nombreCli"];
+			$tipMoneda 		= $dataRequest["codTipMoneda"];
+			$tipPago 		= $dataRequest["codTipPago"];
+			$pagoTotal 		= $dataRequest["pagoTotal"];
+			$pagoMonto 		= $dataRequest["pagoMonto"];
+			$pagoVuelto 	= $dataRequest["pagoVuelto"];
+			$ventaEnvio 	= $dataRequest["ventaEnvio"];
+			$codVendedor 	= $dataRequest["correUsuVent"];
+			$codEstado 		= $dataRequest["CodEstado"];
+			$observacion	= $dataRequest["observacion"];
 
-		// -----------------------------------------------
-		// 1. Registrar Cabecera Venta
-		// -----------------------------------------------
-		$nroSerie 		= $dataRequest["nroSerieVenta"];
-		$nroComprob 	= $dataRequest["nroCorreVenta"];
-		$rucNegocio 	= $dataRequest["rucNegocio"];
-		//$codUsu 		= $dataRequest["correUsuCLi"];		
-		$tipComprob 	= $dataRequest["codTipComprob"];
-		$fechaEmision 	= $dataRequest["fechaEmision"];
-		$tipDocu 		= $dataRequest["codTipDocu"];
-		$numDocu 		= $dataRequest["desNumDocu"];
-		$nombreCli 		= $dataRequest["nombreCli"];
-		$tipMoneda 		= $dataRequest["codTipMoneda"];
-		$tipPago 		= $dataRequest["codTipPago"];
-		$pagoTotal 		= $dataRequest["pagoTotal"];
-		$pagoMonto 		= $dataRequest["pagoMonto"];
-		$pagoVuelto 	= $dataRequest["pagoVuelto"];
-		$ventaEnvio 	= $dataRequest["ventaEnvio"];
-		$codVendedor 	= $dataRequest["correUsuVent"];
-		$codEstado 		= $dataRequest["CodEstado"];
-		$observacion	= $dataRequest["observacion"];
-
-		$sql  = "insert into wip_venta (ruc_negocio, cod_mediopago, cod_tipomoneda, pago_total, pago_monto, pago_vuelto, envio_codest "
-				.", id_mediopago, nro_serie, nro_correlativo, cod_tipcom, cod_tipdoc, num_docume, nom_cli, observacion_cambest "
-				.", fecha_emision, fk_idusuario, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act)  "
-				." values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, USER(), USER(), NOW(), NOW()) ";
-		$data = array('sssdddssssssssssss', "{$rucNegocio}", "{$tipPago}", "{$tipMoneda}", "{$pagoTotal}", "{$pagoMonto}", "{$pagoVuelto}", "{$ventaEnvio}"
-										, "{$tipPago}", "{$nroSerie}", "{$nroComprob}", "{$tipComprob}", "{$tipDocu}"
-										, "{$numDocu}", "{$nombreCli}", "{$observacion}", "{$fechaEmision}", "{$codVendedor}", "{$codEstado}");
-		DBObject::ejecutar($sql, $data);
-		//return $resp_temp = array ("sql" => $sql, "data" => $data);
+			$sql  = "insert into wip_venta (ruc_negocio, cod_mediopago, cod_tipomoneda, pago_total, pago_monto, pago_vuelto, envio_codest "
+					.", id_mediopago, nro_serie, nro_correlativo, cod_tipcom, cod_tipdoc, num_docume, nom_cli, observacion_cambest "
+					.", fecha_emision, fk_idusuario, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act)  "
+					." values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, USER(), USER(), NOW(), NOW()) ";
+			/*$data = array('sssdddssssssssssss', "{$rucNegocio}", "{$tipPago}", "{$tipMoneda}", "{$pagoTotal}", "{$pagoMonto}", "{$pagoVuelto}", "{$ventaEnvio}"
+											, "{$tipPago}", "{$nroSerie}", "{$nroComprob}", "{$tipComprob}", "{$tipDocu}"
+											, "{$numDocu}", "{$nombreCli}", "{$observacion}", "{$fechaEmision}", "{$codVendedor}", "{$codEstado}");*/
+			// [INI] Setear data
+			$values = [$rucNegocio, $tipPago, $tipMoneda, $pagoTotal, $pagoMonto, $pagoVuelto, $ventaEnvio
+						, $tipPago, $nroSerie, $nroComprob, $tipComprob, $tipDocu
+						, $numDocu, $nombreCli, $observacion, $fechaEmision, $codVendedor, $codEstado]; 
+			$types = 'sssdddssssssssssss';
+			$values = array_values($values); 
+			$data[] = $types;
+			foreach ($values as $i => $v) {
+				$data[] = &$values[$i]; 
+			}
+			// [FIN] Setear data
+			DBObject::ejecutar($sql, $data);
+			//return $resp_temp = array ("sql" => $sql, "data" => $data);
+		}catch (Exception $e) {
+			print "Error!: " . $e->getMessage() . "<br/>";
+		}
     }
       	
 }

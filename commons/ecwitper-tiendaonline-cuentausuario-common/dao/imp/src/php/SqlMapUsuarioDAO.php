@@ -28,18 +28,18 @@ class SqlMapUsuarioDAO implements UsuarioDAO{
     // 20190830 GTP: Registrar nuevo usuario
     public function insertUsuario($jsonParams){
 		try{
-			$cta_per = "1";
-			//$perfil = "PF02";
+			//$cta_per = "1";
+			$secCuenta = $jsonParams->secuencia;
 			$nick = $jsonParams->nick;
 			$cel  = $jsonParams->numCel;
 			$mail = $jsonParams->email;
 			$pass = $jsonParams->password;
-			$sql  = "insert into wip_usuario (id_ctapersona, nick, cel, email, password, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
-					."values (?, ?, ?, ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
-			//$data = array('sssss', "{$cta_per}", "{$nick}", "{$cel}", "{$mail}", "{$pass}");
+			$tipCuenta = $jsonParams->tipCuenta;
+			$sql  = "insert into wip_usuario (id_ctapersona, nick, cel, email, password, cod_tipo_usu, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
+					."values (?, ?, ?, ?, ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
 			// [INI] Setear data
-			$values = [$cta_per, $nick, $cel, $mail, $pass]; 
-			$types = 'sssss';
+			$values = [$secCuenta, $nick, $cel, $mail, $pass, $tipCuenta]; 
+			$types = 'isssss';
 			$values = array_values($values); 
 			$data[] = $types;
 			foreach ($values as $i => $v) {

@@ -19,10 +19,10 @@
 
 /* Interfaz PostDAO */
 interface PostDAO {
-	public function selectLastPost();
+	public function selectLastPost($dataRequest);
 	public function selectPostById($dataRequest);
 	public function selectComentPostById($dataRequest);
-	public function insertComentPost($dataRequest);
+	public function insertComentPost($jsonParams);
 }
 
 ?>

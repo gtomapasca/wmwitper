@@ -26,11 +26,20 @@ class SqlMapGaleriaProductoTiendaDAO implements GaleriaProductoTiendaDAO{
 
 	// 20220522 degui: obtener galería de imagenes productos
 	public function selectGaleriaImagenProducto($dataRequest){
-		$obj = new GaleriaProductoTienda();
 		$codProd = $dataRequest["codProducto"];
 		$sql  = "select id_galeria, cod_producto, fecha_creacion, num_orden, cod_item, nombre, dir_img, ruta, formato, dimensiones, estado, fecha_act "
 				." from wip_galeria_producto_tienda where del = 0 and estado = 0 and cod_producto = ? order by num_orden asc limit 4";
-		$data = array('s', "{$codProd}");
+		//$data = array('s', "{$codProd}");
+		// [INI] Setear data
+		$values = [$codProd]; 
+		$types = 's';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$obj = new GaleriaProductoTienda();
 		$fields = $obj->toArrayGaleriaProd();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);

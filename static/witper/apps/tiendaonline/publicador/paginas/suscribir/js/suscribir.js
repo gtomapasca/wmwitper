@@ -28,19 +28,21 @@ var clsRegistrarSuscripcion = function() {
     };
 
 	this.onClickBtnGrabar = function () {
+		let refCls = this;
 		var isFormValido = $("#frmSuscribir").valid();
 		// validar formulario
 		if(isFormValido){
 			// valiadar datos ingresados
 			if(this.validarDatosFormEnd()){
 				// validar datos backend
-				this.validarDatosBackend();
+				//this.validarDatosBackend();
+				refCls.grabarSuscripcion();
 			}
 		}
 	};
 
 	// 20240302 validar reclamo
-	this.validarDatosBackend = function(){
+	/*this.validarDatosBackend = function(){
 		let refCls = this;
 		utils_valSuscribir("#frmSuscribir", function(datosDevuelto){
 			//console.log("utils_valContactCli-response: " + JSON.stringify(datosDevuelto));
@@ -59,19 +61,29 @@ var clsRegistrarSuscripcion = function() {
 				}
 			}
 		});
-	};
+	};*/
+
+	this.getJsonDataForm = function(){
+        return {
+			nombre		: 	$("#" + this.inputs.nomCli.id).val(),
+			celular		: 	$("#" + this.inputs.numCel.id).val(),
+			email  		: 	$("#" + this.inputs.email.id).val()
+		};
+    };
 
 	// 20240412 registrar contacto
-	this.grabarConctacto = function () {
+	this.grabarSuscripcion = function () {
+		console.log(">>> GTPX-grabarSuscripcion...");
 		let refCls = this;
-		utils_setSuscribir("#frmSuscribir", function(datosDevuelto){
-			console.log("utils_setSuscribir-response: " + JSON.stringify(datosDevuelto));
-			let tip = datosDevuelto.tipo;
+		let jsonDataForm = this.getJsonDataForm();
+		utils_setSuscribir(jsonDataForm, function(datosDevuelto){
+			//console.log("utils_setSuscribir-response: " + JSON.stringify(datosDevuelto));
+			let tip = datosDevuelto.tip;
 			let msj = datosDevuelto.msj;
-			let val = datosDevuelto.exito;
+			let val = datosDevuelto.val;
 			if(val){
 				refCls.limpiarForm();
-				mostrarMensaje("Se ha enviado correctamente su mensaje, muy pronto nos pondrémos en contacto con usted.", 0);
+				mostrarMensaje("Gracias por suscribirse. Se ha suscrito correctamente.", 0);
 			}else{
 				if(tip == "A"){
 					mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);

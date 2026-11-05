@@ -110,17 +110,13 @@ var clsCarritoCompras = function() {
 						refCls.buildTablaItemsCarrito("", 0);
 						$("#" + refCls.botones.btnContinuarCar.id).prop("disabled", true);
 					}else if(tip == "E"){
-						//mostrarMensaje("Mensaje Error: " + msj, 2);
-						//console.log(">>> consultarListaCarrito-Error: " + msj);
 						MSG.showERR("Mensaje de Error: " + msj);
 					}
 					//$("#divMensaje").html("");
 				}
 			},
 			error: function(errorThrown) {
-				//mostrarMensaje("Disculpe, existi&oacute; un problema al consultar carrito", 2);
-				//console.log(">>> consultarListaCarrito-errorLanzado: " + JSON.stringify(errorThrown));
-				MSG.showERR("Disculpe, existi&oacute; un problema al consultar carrito");
+				MSG.showERR("Error al consultar carrito: " + JSON.stringify(errorThrown));
 			}
 		});
 		
@@ -281,8 +277,6 @@ var clsCarritoCompras = function() {
 				if(val){
 					let datos = response.datos;
 					//console.log(">>> obtenerUsuarioAnonimo-datos: " + JSON.stringify(datos));
-					//console.log(">>> obtenerUsuarioAnonimo-id_usuario: " + datos.id_usuario);
-					//console.log(">>> obtenerUsuarioAnonimo-cod_usuario: " + datos.cod_usuario);
 					$("#hdIdUsuario").val(datos.id_usuario);
 					$("#hdCodUsuario").val(datos.cod_usuario);
 				}else{
@@ -298,9 +292,7 @@ var clsCarritoCompras = function() {
 				}
 			},
 			error: function(errorThrown) {
-				//mostrarMensaje("Disculpe, existi&oacute; un problema al obtener usuario", 2);
-				//console.log(">>> obtenerUsuarioAnonimo-errorLanzado: " + JSON.stringify(errorThrown));
-				MSG.showERR("Disculpe, existi&oacute; un problema al obtener usuario");
+				MSG.showERR("Error al obtener usuario: " + JSON.stringify(errorThrown));
 			}
 		});
 	}
@@ -348,9 +340,7 @@ var clsCarritoCompras = function() {
 				}
 			},
 			error: function(errorThrown) {
-				//mostrarMensaje("Disculpe, existi&oacute; un problema al eliminar item del carrito", 2);
-				//console.log(">>> eliminarItemDelCarrito-errorLanzado: " + JSON.stringify(errorThrown));
-				MSG.showERR("Disculpe, existi&oacute; un problema al eliminar item del carrito");
+				MSG.showERR("Error al eliminar item del carrito: " + JSON.stringify(errorThrown));
 			}
 		});
 	}
@@ -434,9 +424,10 @@ var clsCarritoCompras = function() {
 		let datos_cliente   = datos.datos_cliente;
 		//let datos_productos = datos.car_detalle_producto;
 		$("#txtDetalleDNI").html(datos_cliente.dni);
-		$("#txtDetalleNombre").html(datos_cliente.nombre+ " " + datos_cliente.apePat +" "+ datos_cliente.apeMat);
+		//$("#txtDetalleNombre").html(datos_cliente.nombre+ " " + datos_cliente.apePat +" "+ datos_cliente.apeMat);
+		$("#txtDetalleNombre").html(datos_cliente.nombre);
 		$("#txtDetalleCel").html(datos_cliente.numCel);
-		$("#txtDetalleEmail").html(datos_cliente.email);
+		//$("#txtDetalleEmail").html(datos_cliente.email);
 		$("#txtDetalleDireccion").html(datos_cliente.direccion);
 
 		let items = datos.car_detalle_producto;
@@ -542,7 +533,7 @@ var clsCarritoCompras = function() {
 			$("#" + this.inputs.nombre.id).focus();
 			return false;
 		}
-		if(jsonDataForm.apePat.length < 1){
+		/*if(jsonDataForm.apePat.length < 1){
 			mostrarMensaje("Ingrese apellido paterno", 2);
 			$("#" + this.inputs.apePat.id).focus();
 			return false;
@@ -551,20 +542,20 @@ var clsCarritoCompras = function() {
 			mostrarMensaje("Ingrese apellido materno", 2);
 			$("#" + this.inputs.apeMat.id).focus();
 			return false;
-		}
+		}*/
 		if(jsonDataForm.numCel.length < 1){
 			mostrarMensaje("Ingrese n&uacute;mero celular", 2);
 			$("#" + this.inputs.numCel.id).focus();
 			return false;
 		}
-		if (jsonDataForm.email.length < 1) {
+		/*if (jsonDataForm.email.length < 1) {
 			mostrarMensaje("El correo electr&oacute;nico es obligatorio", 2);
 			return false;
 		}	
 		if (jsonDataForm.email != "" && !validarExpresion(jsonDataForm.email, regExpCorreo) ) {
 			mostrarMensaje("El correo electr&oacute;nico no es v&aacute;lido, verificar", 2);
 			return false;
-		}
+		}*/
 		if(jsonDataForm.direccion.length < 1){
 			mostrarMensaje("Ingrese dirección", 2);
 			$("#" + this.inputs.direccion.id).focus();
@@ -587,57 +578,57 @@ var clsCarritoCompras = function() {
 		let refCls = this;
 		this.destruirDataTabla(tableID);
 		var oTabla = $(tableID).dataTable({
-											data: tableData,
-											iDisplayLength: refCls.esNullOUndefined( config.iCantFilas )? 5 : config.iCantFilas,
-											pageLength: refCls.esNullOUndefined( config.iCantFilas )? 5 : config.iCantFilas,
-											ordering: refCls.esNullOUndefined( config.bOrdenar )? false : config.bOrdenar,
-											searching: refCls.esNullOUndefined( config.bBuscar )? false : config.bBuscar,
-											responsive: refCls.esNullOUndefined( config.bResponsive )? true : config.bResponsive,
-											paging: refCls.esNullOUndefined( config.bPaginar )? true : config.bPaginar,
-											bScrollAutoCss: true,
-											bStateSave: false,
-											bAutoWidth: false,
-											bScrollCollapse: false,
-											pagingType: "simple_numbers",
-											bLengthChange: false,
-											fnDrawCallback: function(oSettings) {
-												if (oSettings.fnRecordsTotal() == 0) {
-													$( tableID + '_info').hide();
-													$( tableID + '_paginate').hide();
-												} else {
-													$( tableID + '_info').show();
-													$( tableID + '_paginate').show();
-												}
-											},
-											fnCreatedRow: function( nRow, aData, iDataIndex ) {
-												//$(nRow).attr('id', 'id-'+aData.idFormulario);
-											},
-											language: {
-														"sProcessing":     "Procesando...",
-														"sLengthMenu":     "Mostrar _MENU_ registros",
-														"sZeroRecords":    "No se encontraron resultados",
-														"sEmptyTable":     "No se encontraron requisitos para los par&aacute;metros ingresados",
-														"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-														"sInfoEmpty":      "Registros del 0 al 0 de un total de 0 registros",
-														"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-														"sInfoPostFix":    "",
-														"sSearch":         "Buscar:",
-														"sUrl":            "",
-														"sInfoThousands":  ",",
-														"sLoadingRecords": "Cargando...",
-														"oPaginate": {
-															"sFirst":    "Primero",
-															"sLast":     "Último",
-															"sNext":     "Siguiente >",
-															"sPrevious": "< Anterior"
-														},
-														"oAria": {
-															"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-															"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-														}
-											},
-											columnDefs: columnDefsParams
-										});
+						data: tableData,
+						iDisplayLength: refCls.esNullOUndefined( config.iCantFilas )? 5 : config.iCantFilas,
+						pageLength: refCls.esNullOUndefined( config.iCantFilas )? 5 : config.iCantFilas,
+						ordering: refCls.esNullOUndefined( config.bOrdenar )? false : config.bOrdenar,
+						searching: refCls.esNullOUndefined( config.bBuscar )? false : config.bBuscar,
+						responsive: refCls.esNullOUndefined( config.bResponsive )? true : config.bResponsive,
+						paging: refCls.esNullOUndefined( config.bPaginar )? true : config.bPaginar,
+						bScrollAutoCss: true,
+						bStateSave: false,
+						bAutoWidth: false,
+						bScrollCollapse: false,
+						pagingType: "simple_numbers",
+						bLengthChange: false,
+						fnDrawCallback: function(oSettings) {
+							if (oSettings.fnRecordsTotal() == 0) {
+								$( tableID + '_info').hide();
+								$( tableID + '_paginate').hide();
+							} else {
+								$( tableID + '_info').show();
+								$( tableID + '_paginate').show();
+							}
+						},
+						fnCreatedRow: function( nRow, aData, iDataIndex ) {
+							//$(nRow).attr('id', 'id-'+aData.idFormulario);
+						},
+						language: {
+									"sProcessing":     "Procesando...",
+									"sLengthMenu":     "Mostrar _MENU_ registros",
+									"sZeroRecords":    "No se encontraron resultados",
+									"sEmptyTable":     "No se encontraron requisitos para los par&aacute;metros ingresados",
+									"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+									"sInfoEmpty":      "Registros del 0 al 0 de un total de 0 registros",
+									"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+									"sInfoPostFix":    "",
+									"sSearch":         "Buscar:",
+									"sUrl":            "",
+									"sInfoThousands":  ",",
+									"sLoadingRecords": "Cargando...",
+									"oPaginate": {
+										"sFirst":    "Primero",
+										"sLast":     "Último",
+										"sNext":     "Siguiente >",
+										"sPrevious": "< Anterior"
+									},
+									"oAria": {
+										"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+										"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+									}
+						},
+						columnDefs: columnDefsParams
+					});
 		oTabla.fnDraw();
 		return oTabla;
 	}
@@ -654,14 +645,6 @@ var clsCarritoCompras = function() {
 	}
 
 	this.onClickBtnExportarPDF = function () {
-		let refCls = this;
-		//console.log(">>> GTPX Exportar a PDF x4...");
-
-		/*const { jsPDF } = window.jspdf;
-		const doc = new jsPDF();
-		doc.text("Hello world!", 100, 100);
-		doc.save("newFile.pdf");*/
-        
 		if (!window.jspdf || typeof window.jspdf.jsPDF !== "function") {
 			MSG.showERR("No se pudo cargar la librería para exportar a PDF. Recargue la página e inténtelo nuevamente.");
 			return;
@@ -669,7 +652,6 @@ var clsCarritoCompras = function() {
 
 		const { jsPDF } = window.jspdf;
 		const doc = new jsPDF('p', 'mm', 'a4');
-		
 		const elemento = document.getElementById('contenido');
 
 		doc.html(elemento, {

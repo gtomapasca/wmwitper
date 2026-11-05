@@ -25,95 +25,93 @@ require_once 'apps/ecwitper-site-portaladmin/modules/ecwitper-salidamercancia-re
 class SqlMapProductoTiendaDAO implements ProductoTiendaDAO{
     // 20191209 GTP: obtener lista de productos tienda
     public function obtenerListaProductosTienda($dataRequest){
-		$productoTienda = new ProductoTienda();
-		//$fecIniBusq = $dataRequest["fecIniBusq"];
-		//$fecFinBusq = $dataRequest["fecFinBusq"];
 		$n = 0;
-		$ordenar = $dataRequest["ordenar"];
+		$arrayTypes = '';
+		$arrayValues = array();
+		$data = array(); 
+		$ordenar = "";
+		if (array_key_exists('ordenar', $dataRequest)) {
+    		$ordenar = $dataRequest["ordenar"];
+		}
 		$where = " where pt.del = 0 ";
 		foreach($dataRequest as $clave=>$valor){
 			$encontrado = false;
-			//if($valor != ''){
-				//$data[0] .= "s"; 
-				if($clave == "fecIniBusq" || $clave == "fecFinBusq"){
-					$encontrado = true;
-					if($clave == "fecFinBusq"){
-						$data[0] .= "ss"; 
-						$data[++$n] = $dataRequest["fecIniBusq"] . ' 23:59:59';
-						$data[++$n] = $dataRequest["fecFinBusq"] . ' 23:59:59';
-						$where .= (" and pt.fecha_act between ? and ? ");
-						
-					}
+			if($clave == "fecIniBusq" || $clave == "fecFinBusq"){
+				$encontrado = true;
+				if($clave == "fecFinBusq"){
+					$arrayTypes .= "ss"; 
+					$arrayValues[] = $dataRequest["fecIniBusq"] . ' 00:00:00';
+					$arrayValues[] = $dataRequest["fecFinBusq"] . ' 23:59:59';
+					$where .= (" and pt.fecha_act between ? and ? ");
+					
 				}
-				else if($clave == "producto" && $valor){
-					$data[0] .= "s"; 
-					$data[++$n] = "%" . "{$valor}" . "%";
-					$where .= (" and pt." . $clave . " like ? ");
-					$encontrado = true;
+			}
+			else if($clave == "producto" && $valor){
+				$arrayTypes .= "s";
+				$arrayValues[] = "%" . "{$valor}" . "%";
+				$where .= (" and pt." . $clave . " like ? ");
+				$encontrado = true;
+			}
+			// producto ingreso a almacen
+			else if($clave == "isProdAlm"){
+				if($valor){
+					$arrayTypes .= "s";
+					$arrayValues[] = "1";
+					$where .= (" and pt.almacen_ind = ? ");
+				}else{
+					$arrayTypes .= "s";
+					$arrayValues[] = "0";
+					$where .= (" and pt.almacen_ind = ? ");
 				}
-				// producto ingreso a almacen
-				else if($clave == "isProdAlm"){
-					if($valor){
-						$data[0] .= "s"; 
-						$data[++$n] = "1";
-						$where .= (" and pt.almacen_ind = ? ");
-					}else{
-						$data[0] .= "s"; 
-						$data[++$n] = "0";
-						$where .= (" and pt.almacen_ind = ? ");
-					}
-					$encontrado = true;
+				$encontrado = true;
+			}
+			// vigencia de producto para reposicion
+			/*else if($clave == "isActivoAlm"){
+				if($valor){
+					//$data[0] .= "s"; 
+					//$data[++$n] = "1";
+					$where .= (" and pt.almacen_del = 1 ");
 				}
-				// vigencia de producto para reposicion
-				/*else if($clave == "isActivoAlm"){
-					if($valor){
-						//$data[0] .= "s"; 
-						//$data[++$n] = "1";
-						$where .= (" and pt.almacen_del = 1 ");
-					}
-					$encontrado = true;
-				}*/
-				// stock de producto
-				else if($clave == "isStockAlm"){
-					if($valor){
-						$data[0] .= "s"; 
-						$data[++$n] = "0";
-						$where .= (" and pt.almacen_stock > ? ");
-					}else{
-						$data[0] .= "s"; 
-						$data[++$n] = "0";
-						$where .= (" and pt.almacen_stock = ? ");
-					}
-					$encontrado = true;
+				$encontrado = true;
+			}*/
+			// stock de producto
+			else if($clave == "isStockAlm"){
+				if($valor){
+					$arrayTypes .= "s";
+					$arrayValues[] = "0";
+					$where .= (" and pt.almacen_stock > ? ");
+				}else{
+					$arrayTypes .= "s";
+					$arrayValues[] = "0";
+					$where .= (" and pt.almacen_stock = ? ");
 				}
-				else if($clave == "isDestacado"){
-					if($valor){
-						//$data[0] .= "s"; 
-						//$data[++$n] = "1";
-						$where .= (" and pt.destacado_ind = 1 ");
-					}
-					$encontrado = true;
+				$encontrado = true;
+			}
+			else if($clave == "isDestacado"){
+				if($valor){
+					$where .= (" and pt.destacado_ind = 1 ");
 				}
-				else if($clave == "isDescuento"){
-					if($valor){
-						$data[0] .= "s"; 
-						$ahora = date("Y-m-d H:i:s");
-						$data[++$n] = $ahora;
-						$where .= (" and ? between pt.descuento_fecini and pt.descuento_fecfin ");
-					}
-					$encontrado = true;
+				$encontrado = true;
+			}
+			else if($clave == "isDescuento"){
+				if($valor){
+					$ahora = date("Y-m-d H:i:s");
+					$arrayTypes .= "s";
+					$arrayValues[] = $ahora;
+					$where .= (" and ? between pt.descuento_fecini and pt.descuento_fecfin ");
 				}
-				else if($clave == "ordenar"){
-					$encontrado = true;
+				$encontrado = true;
+			}
+			else if($clave == "ordenar"){
+				$encontrado = true;
+			}
+			else{
+				if(!$encontrado && $valor != ''){
+					$arrayTypes .= "s";
+					$arrayValues[] = "{$valor}";
+					$where .= (" and pt." . $clave . " = ? ");
 				}
-				else{
-					if(!$encontrado && $valor != ''){
-						$data[0] .= "s"; 
-						$data[++$n] = "{$valor}";
-						$where .= (" and pt." . $clave . " = ? ");
-					}
-				}
-			//}
+			}
 		}
 
 		$sql  = "select pt.cod_producto, pt.mini_codigo, pt.cod_fabricante, fb.marca, pt.cod_tipcategoria, pt.cod_categoria, pt.cod_subcategoria, pt.producto, pt.descrip_corta, pt.descrip_larga "
@@ -127,6 +125,16 @@ class SqlMapProductoTiendaDAO implements ProductoTiendaDAO{
 		if($ordenar != ""){
 			$sql .= $ordenar;
 		}
+		// [INI] Setear data
+		$values = $arrayValues; 
+		$types = $arrayTypes;
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$productoTienda = new ProductoTienda();
 		$fields = $productoTienda->toArrayProductoTienda();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//return $resp_temp = array ("parametros" => $dataRequest, "sql" => $sql, "data" => $data);
@@ -157,8 +165,16 @@ class SqlMapProductoTiendaDAO implements ProductoTiendaDAO{
 				."	stock, "
 				."  del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
 				." values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
-		$data = array('ssssssssss', "{$codProd}", "{$miniCod}", "{$codMarca}", "{$codTipCateg}", "{$codCateg}", "{$codSubCateg}",
-				"{$nomProd}", "{$ind_especifi}", "{$ind_galeria}", "{$codEstad}");
+		//$data = array('ssssssssss', "{$codProd}", "{$miniCod}", "{$codMarca}", "{$codTipCateg}", "{$codCateg}", "{$codSubCateg}", "{$nomProd}", "{$ind_especifi}", "{$ind_galeria}", "{$codEstad}");
+		// [INI] Setear data
+		$values = [$codProd, $miniCod, $codMarca, $codTipCateg, $codCateg, $codSubCateg, $nomProd, $ind_especifi, $ind_galeria, $codEstad]; 
+		$types = 'ssssssssss';
+		$values = array_values($values); 
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
 		DBObject::ejecutar($sql, $data);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
 		//return $resp_temp;
@@ -171,17 +187,12 @@ class SqlMapProductoTiendaDAO implements ProductoTiendaDAO{
 		$nomProd  	= $dataRequest["nomProd"];
 		$desProdCort 	= $dataRequest["desProdCort"];
 		$desProdLarg  	= $dataRequest["desProdLarg"];
-		//$especifProd   	= $dataRequest["especifProd"];
 		$ind_especif   	= $dataRequest["indPubliEspec"];
 		$ind_galeria   	= $dataRequest["indPubliGaleria"];
 		$keyWord  		= $dataRequest["keyWord"];
-		//$rutaImgSm 	= $dataRequest["rutaImgSm"];
-		//$rutaImgMd 	= $dataRequest["rutaImgMd"];
-		//$rutaImgLg 	= $dataRequest["rutaImgLg"];
 		$precioCompra 	= $dataRequest["precioCompra"];
 		$precioNormal 	= $dataRequest["precioNormal"];
 		$precioInter 	= $dataRequest["precioInter"];
-		//$stockProve		= $dataRequest["stockProve"];
 		$stockAlmacMod	= $dataRequest["stockAlmacMod"];
 		$precioDesc		= $dataRequest["precioDesc"];
 		$fecIniDesc		= $dataRequest["fecIniDesc"];
@@ -198,17 +209,6 @@ class SqlMapProductoTiendaDAO implements ProductoTiendaDAO{
 		$codEstadAlmc	= $dataRequest["codEstadAlmc"];
 		$codEstadPublic	= $dataRequest["codEstadPublic"];
 		$isDestacado	= $dataRequest["isDestacado"];
-
-		/*$sql  = "update wip_producto_tienda set mini_codigo=?, producto=?, descrip_corta=?, descrip_larga=?, ind_especificaciones=?, key_word=? "
-					.",	precio_compra_final=?, precio_venta_normal=?, precio_venta_internet=?, stock=?, ind_galeriaImagenes=? "
-					.", almacen_ind=?, almacen_del=?, almacen_stock=?, estado=?, cod_fabricante=?, cod_categoria=? "
-					.", destacado_ind=?, descuento_precio=?, descuento_fecini=?, descuento_fecfin=?, proveedor_ruc=?, proveedor_codprod=? "
-					.", fecha_act = NOW() "
-					." where cod_producto=?";
-		$data = array('ssssssdddisssissssdsssss', "{$miniCod}", "{$nomProd}", "{$desProdCort}", "{$desProdLarg}", "{$ind_especif}", "{$keyWord}"  
-						, "{$precioCompra}", "{$precioNormal}", "{$precioInter}", "{$stockProve}", "{$ind_galeria}"
-						, "{$isProdAlmac}", "{$isActivoAlmac}", "{$stockAlmacMod}", "{$codEstad}", "{$codFabri}", "{$codCateg}" 
-						, "{$isDestacado}", "{$precioDesc}", "{$fecIniDesc}", "{$fecFinDesc}", "{$rucProveedor}", "{$codProdProv}", "{$codProd}");*/
 		
 		$sql  = "update wip_producto_tienda set mini_codigo=?, producto=?, descrip_corta=?, descrip_larga=?, ind_especificaciones=?, key_word=? "
 						.",	precio_compra_final=?, precio_venta_normal=?, precio_venta_internet=?, ind_galeriaImagenes=? "
@@ -217,10 +217,22 @@ class SqlMapProductoTiendaDAO implements ProductoTiendaDAO{
 						.", destacado_ind=?, descuento_precio=?, descuento_fecini=?, descuento_fecfin=?, proveedor_ruc=?, proveedor_codprod=? "
 						.", fecha_act = NOW() "
 						." where cod_producto=?";
-		$data = array('ssssssdddississsssssidsssss', "{$miniCod}", "{$nomProd}", "{$desProdCort}", "{$desProdLarg}", "{$ind_especif}", "{$keyWord}"  
+		/*$data = array('ssssssdddississsssssidsssss', "{$miniCod}", "{$nomProd}", "{$desProdCort}", "{$desProdLarg}", "{$ind_especif}", "{$keyWord}"  
 							, "{$precioCompra}", "{$precioNormal}", "{$precioInter}", "{$ind_galeria}", "{$isProdAlmac}", "{$isActivoAlmac}", "{$stockAlmacMod}"
 							, "{$codEstadProd}", "{$codEstadAlmc}", "{$codEstadPublic}", "{$codMarca}", "{$codTipCateg}", "{$codCateg}", "{$codSubCateg}"   
-							, "{$isDestacado}", "{$precioDesc}", "{$fecIniDesc}", "{$fecFinDesc}", "{$rucProveedor}", "{$codProdProv}", "{$codProd}");
+							, "{$isDestacado}", "{$precioDesc}", "{$fecIniDesc}", "{$fecFinDesc}", "{$rucProveedor}", "{$codProdProv}", "{$codProd}");*/
+		// [INI] Setear data
+		$values = [$miniCod, $nomProd, $desProdCort, $desProdLarg, $ind_especif, $keyWord  
+					, $precioCompra, $precioNormal, $precioInter, $ind_galeria, $isProdAlmac, $isActivoAlmac, $stockAlmacMod
+					, $codEstadProd, $codEstadAlmc, $codEstadPublic, $codMarca, $codTipCateg, $codCateg, $codSubCateg   
+					, $isDestacado, $precioDesc, $fecIniDesc, $fecFinDesc, $rucProveedor, $codProdProv, $codProd]; 
+		$types = 'ssssssdddississsssssidsssss';
+		$values = array_values($values); 
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
 		DBObject::ejecutar($sql, $data);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
 		//return $resp_temp;

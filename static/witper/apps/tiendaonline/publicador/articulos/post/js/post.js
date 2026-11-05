@@ -4,21 +4,56 @@ $(document).ready(function () {
 
 function initInterfaz(){
     let cod_post = $("#codpost").attr("data-codpost");
-    obtenerComentariosPost(cod_post);
+    obtenerPostSeleccionado(cod_post);
+	obtenerComentariosPost(cod_post);
 };
-//-------------------------------------------------------------------------------------
+
+// 20261021 obtener post seleccionado
+function obtenerPostSeleccionado(codPost){
+	witper_getPostSeleccionado(codPost, function(errorLanzado, datosDevuelto){
+		if(errorLanzado == null){
+			//console.log("obtenerPostSeleccionado-response: " + JSON.stringify(datosDevuelto));
+			let exito = datosDevuelto.encontrado;
+			let mensj = datosDevuelto.mensaje;
+			let datos = datosDevuelto.datos;
+			if(exito && datos != 0){
+				mostrarResultadoPost(datos);
+			}else{
+				mostrarMensaje(mensj, 2);
+			}
+		}else{
+			mostrarMensaje("Disculpe, existi&oacute; un problema al obtener post seleccionado", 2);
+			console.log(">>> cli-obtenerPostSeleccionado-errorLanzado: " + JSON.stringify(errorLanzado));
+		}
+	});
+}
+
+function mostrarResultadoPost(datos){		
+	let item = datos[0];
+	let html =  '<article id="contenidopost">';
+	html += '   <h1 style="padding:5px; color:003366;">' + item.titulo + '</h1>';
+	html += '   <p><img src="' + item.imagen_xl + '" class="img-responsive"></p>';
+	html += '   <p><b>Por:</b> ' + item.nombres + ' ' + item.ape_pat + ' ' + item.ape_mat + '</p>';
+	html += '   <p><b>Fecha:</b> ' + item.fecha_creacion + '</p>';
+	html += '   <h5>' + item.contenido + '</h5>';
+	html += '   </article>';
+	$("#panelPost").html(html);
+};
+
 // 20210302 obtener comentarios de publicacion
 function obtenerComentariosPost(cod_post){
     witper_getCommentPost(cod_post, function(errorLanzado, datosDevuelto){
 	if(errorLanzado == null){
-		console.log("obtenerComentariosPost-response: " + JSON.stringify(datosDevuelto));
+		//console.log("obtenerComentariosPost-response: " + JSON.stringify(datosDevuelto));
 		let exito = datosDevuelto.encontrado;
-		if (exito){
+		let datos = datosDevuelto.datos;
+		if(exito && datos != 0){
 		   let datos = datosDevuelto.datos;
 		   mostrarComentarios(datos);
 		}
 	}else{
 		mostrarMensaje("Disculpe, existi&oacute; un problema al obtener comentarios post", 2);
+		console.log(">>> cli-obtenerComentariosPost-errorLanzado: " + JSON.stringify(errorLanzado));
 	}
     });
 }
@@ -52,20 +87,20 @@ function mostrarComentarios(datos){
 //-------------------------------------------------------------------------------------
 // Grabar comentarios
 $('#btnComentar').click(function() {
-   let nick = $("#txtNick").val();
-   let comentario = $("#txtComentario").val();
-   if(nick.trim().length <= 0){
-	mostrarMensaje("Ingrese nick", 0);
-	return false;
-   }else
-   if(comentario.trim().length <= 0){
-	mostrarMensaje("Ingrese su comentario", 0);
-	return false;
-   }
-   else{
-	grabarComentario();
-	return false;
-   }
+   	let nick = $("#txtNick").val();
+  	let comentario = $("#txtComentario").val();
+  	if(nick.trim().length <= 0){
+		mostrarMensaje("Ingrese nick", 0);
+		return false;
+   	}else
+   	if(comentario.trim().length <= 0){
+		mostrarMensaje("Ingrese su comentario", 0);
+		return false;
+   	}
+   	else{
+		grabarComentario();
+		return false;
+   	}
 });
 
 function limpiar(){
@@ -75,23 +110,40 @@ function limpiar(){
 
 // 20210302 grabar comentario de publicacion
 function grabarComentario(){
-    witper_setCommentPost("#frmComentarioPost", function(errorLanzado, datosDevuelto){
+	let jsonDataForm = getJsonDataForm();
+    witper_setCommentPost(jsonDataForm, function(errorLanzado, datosDevuelto){
 	if(errorLanzado == null){
-	   //console.log("grabarComentario-response: " + JSON.stringify(datosDevuelto));
-	   let exito = datosDevuelto.encontrado;
-	   let mensj = datosDevuelto.mensaje;
-	   let datos = datosDevuelto.datos;
-	   if(exito){
-		limpiar();
-		obtenerComentariosPost(datos.codPost);
-	   }else{
-		mostrarMensaje("Disculpe, no se pudo realizar la última operación", 2);
-	   }
+	   	//console.log("grabarComentario-response: " + JSON.stringify(datosDevuelto));
+	   	let tip = datosDevuelto.tip;
+		let msj = datosDevuelto.msj;
+		let val = datosDevuelto.val;
+	   	if(val){
+			limpiar();
+			obtenerComentariosPost(jsonDataForm.codPost);
+		}else{
+			if(tip == "A"){
+				mostrarMensaje(datosDevuelto.msj, 2);
+				console.log(">>> validarDatosBackend-Validar: " + msj);
+			}else if(tip == "E"){
+				mostrarMensaje("Error: " + datosDevuelto.msj, 2);
+				console.log(">>> validarDatosBackend-Error: " + msj);
+			}
+	   	}
 	}else{
 		mostrarMensaje("Disculpe, existi&oacute; un problema grabar comentario", 2);
+		console.log(">>> cli-grabarComentario-errorLanzado: " + JSON.stringify(errorLanzado));
 	}
     });
 }
+
+function getJsonDataForm(){
+        return {
+			codUsuario  : 	'24',
+			codPost  	: 	$("#hdCodPost").val(),
+			nick  		: 	$("#txtNick").val(),
+			comentario 	: 	$("#txtComentario").val()
+		};
+    };
 //-------------------------------------------------------------------------------------
 // 20220502 para desplazar hacía arriba
 window.scroll(0,0);

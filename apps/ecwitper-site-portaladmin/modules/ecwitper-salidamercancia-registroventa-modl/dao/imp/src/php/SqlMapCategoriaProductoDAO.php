@@ -26,10 +26,19 @@ class SqlMapCategoriaProductoDAO implements CategoriaProductoDAO{
 
     // 20211230 degui: obtener lista de categoria productos
     public function selectListaCategoriaProd(){
-		$categoriaProducto = new CategoriaProducto();
 		$del = '0';
 		$sql  = "select cod_tipo, cod_categoria, nom_categoria, des_categoria, estado, del from wip_categoria_producto where del = ? order by nom_categoria asc";
-		$data = array('s', "{$del}");
+		//$data = array('s', "{$del}");
+		// [INI] Setear data
+		$values = [$del]; 
+		$types = 's';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$categoriaProducto = new CategoriaProducto();
 		$fields = $categoriaProducto->toArrayCategoria();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
@@ -38,12 +47,21 @@ class SqlMapCategoriaProductoDAO implements CategoriaProductoDAO{
 
 	// 20220814 degui: obtener lista de categoria productos por categoria 
     public function selectListaCategoriaByTipoCat($dataRequest){
-		$categoriaProducto = new CategoriaProducto();
 		$codTipo = $dataRequest["codTipoCat"];
 		$del = '0';
 		$sql  = "select cod_tipo, cod_categoria, nom_categoria, des_categoria, estado, del from wip_categoria_producto "
 				." where del = ? and cod_tipo = ? order by nom_categoria asc";
-		$data = array('ss', "{$del}", "{$codTipo}");
+		//$data = array('ss', "{$del}", "{$codTipo}");
+		// [INI] Setear data
+		$values = [$del, $codTipo]; 
+		$types = 'ss';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$categoriaProducto = new CategoriaProducto();
 		$fields = $categoriaProducto->toArrayCategoria();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
