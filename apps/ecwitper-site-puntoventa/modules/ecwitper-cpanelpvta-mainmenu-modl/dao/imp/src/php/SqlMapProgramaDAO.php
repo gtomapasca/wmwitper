@@ -25,14 +25,23 @@ require_once 'apps/ecwitper-site-puntoventa/modules/ecwitper-cpanelpvta-mainmenu
 class SqlMapProgramaDAO implements ProgramaDAO{
     // 09/02/2020 GTP: get page
     public function selectProgramaByCod($dataRequest){
-		$programa = new Programa();
 		$cod_page = $dataRequest["codPage"];
 		$sql  = "select  cod_programa, cod_meta_prog, nro_prog, nom_prog, cod_page, nom_page, dir_page, "
 				."        contexto, vigencia_ini, vigencia_fin, estado, del, codusu_reg, fecha_reg, "
 				."        ip_reg, host_reg, codusu_act, fecha_act, ip_act, host_act "
 				."from    wip_programa "
 				."where   cod_programa = ? and estado = 0 and del = 0";
-		$data = array('s', "{$cod_page}");
+		//$data = array('s', "{$cod_page}");
+		// [INI] Setear data
+		$values = [$cod_page]; 
+		$types = 's';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$programa = new Programa();
 		$fields = $programa->toArray();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);

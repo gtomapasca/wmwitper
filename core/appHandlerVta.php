@@ -15,10 +15,25 @@ class ApplicationHandlerVta {
 		// ini-URI
 		//echo '<p>dato[0]: '.$arrayUri[0].'</p>';
 		//echo '<p>total: '.count($arrayUri).'</p>';
-		$pos = POS_INI;
+		/*$pos = POS_INI;
 		$root = $arrayUri[0 + $pos]; 
 		$app = $arrayUri[1 + $pos];
-		$ctrl = $arrayUri[2 + $pos];
+		$ctrl = $arrayUri[2 + $pos];*/
+		$pos = 0;
+		$root = ""; 
+		$app  = "";
+		$ctrl = "";
+		$arg = "";
+		$modulo = "";
+		if($arrayUri[0] == "ofertas"){
+			$root = "page";
+			$app = "ofertas";
+			$ctrl = "";
+		}else if (count($arrayUri) >= 3){
+			$root = $arrayUri[0 + $pos]; 
+			$app  = $arrayUri[1 + $pos];
+			$ctrl = $arrayUri[2 + $pos];
+		}
 		//echo "root: " . $root;
 		//echo "<p>app: " . $app;
 		if ($app == "app"){ 

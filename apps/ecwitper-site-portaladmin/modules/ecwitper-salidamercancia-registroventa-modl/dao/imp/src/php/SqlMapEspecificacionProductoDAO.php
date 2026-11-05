@@ -33,7 +33,16 @@ class SqlMapEspecificacionProductoDAO implements EspecificacionDAO{
 		$estado		= $dataRequest["txtEstado"];
 		$sql  = "insert into wip_especificacion_producto (cod_producto, clave, valor, num_orden, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
 				." values (?, ?, ?, ?, ?, 0, USER(), USER(), NOW(), NOW())";
-		$data = array('sssss', "{$codProd}", "{$clave}", "{$valor}", "{$num_orden}", "{$estado}");
+		//$data = array('sssss', "{$codProd}", "{$clave}", "{$valor}", "{$num_orden}", "{$estado}");
+		// [INI] Setear data
+		$values = [$codProd, $clave, $valor, $num_orden, $estado]; 
+		$types = 'sssss';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
 		DBObject::ejecutar($sql, $data);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
 		//return $resp_temp;
@@ -49,7 +58,16 @@ class SqlMapEspecificacionProductoDAO implements EspecificacionDAO{
 		$estado		= $dataRequest["txtEstado"];
 		$sql  = "update wip_especificacion_producto set clave = ?, valor = ?, num_orden = ?, estado = ?, del = ?, codusu_act = USER(), fecha_act = NOW() "
 				." where cod_producto = ? and id_especificacion = ?";
-		$data = array('sssssss', "{$clave}", "{$valor}", "{$num_orden}", "{$estado}", "0", "{$codProd}", "{$id_especif}");
+		//$data = array('sssssss', "{$clave}", "{$valor}", "{$num_orden}", "{$estado}", "0", "{$codProd}", "{$id_especif}");
+		// [INI] Setear data
+		$values = [$clave, $valor, $num_orden, $estado, '0', $codProd, $id_especif]; 
+		$types = 'sssssss';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
 		DBObject::ejecutar($sql, $data);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
 		//return $resp_temp;
@@ -57,12 +75,20 @@ class SqlMapEspecificacionProductoDAO implements EspecificacionDAO{
 
     // 20220505: obtener tabla de especificacion de producto
     public function selectEspecificacionDeProducto($dataRequest){
-		$especificacion = new Especificacion();
 		$codProd = $dataRequest["codProducto"];
-		$del = '0';
 		$sql  = "select id_especificacion, cod_producto, num_orden, clave, valor, estado, fecha_reg "
 				."from wip_especificacion_producto Where del = 0 and cod_producto = ? order by num_orden asc";
-		$data = array('s', "{$codProd}");
+		//$data = array('s', "{$codProd}");
+		// [INI] Setear data
+		$values = [$codProd]; 
+		$types = 's';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$especificacion = new Especificacion();
 		$fields = $especificacion->toArrayEspecificacion();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);

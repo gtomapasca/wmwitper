@@ -24,16 +24,29 @@ require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/ifz/src
 class SqlMapBuzonDAO implements BuzonDAO{
       // Registrar buzon
       public function insertBuzon($dataRequest){
-		$ruc 	 = "10440440911"; // ruc de negocio (defaul)
-		$nom 	 = $dataRequest["nombre"];
-		$cel 	 = $dataRequest["cel"];
-		$mail 	 = $dataRequest["email"];
-		$asunto	 = $dataRequest["asunto"];
-		$mensaje = $dataRequest["mensaje"];
-		$sql  = "insert into wip_buzon (ruc_negocio, nombre, celular, email, asunto, mensaje, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
-		       ."values (?, ?, ?, ?,  ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
-		$data = array('ssssss', "{$ruc}", "{$nom}", "{$cel}", "{$mail}", "{$asunto}", "{$mensaje}");
-		DBObject::ejecutar($sql, $data);
+		try{
+			$ruc 	 = "10440440911"; // ruc de negocio (defaul)
+			$nom 	 = $dataRequest["nombre"];
+			$cel 	 = $dataRequest["cel"];
+			$mail 	 = $dataRequest["email"];
+			$asunto	 = $dataRequest["asunto"];
+			$mensaje = $dataRequest["mensaje"];
+			$sql  = "insert into wip_buzon (ruc_negocio, nombre, celular, email, asunto, mensaje, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
+				."values (?, ?, ?, ?,  ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
+			//$data = array('ssssss', "{$ruc}", "{$nom}", "{$cel}", "{$mail}", "{$asunto}", "{$mensaje}");
+			// [INI] Setear data
+			$values = [$ruc, $nom, $cel, $mail, $asunto, $mensaje]; 
+			$types = 'ssssss';
+			$values = array_values($values);
+			$data[] = $types;
+			foreach ($values as $i => $v) {
+				$data[] = &$values[$i]; 
+			}
+			// [FIN] Setear data
+			DBObject::ejecutar($sql, $data);
+		}catch (Exception $e) {
+			print "Error!: " . $e->getMessage() . "<br/>";
+		}
       }
       	
 }

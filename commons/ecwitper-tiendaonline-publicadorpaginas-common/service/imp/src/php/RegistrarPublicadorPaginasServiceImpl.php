@@ -13,6 +13,7 @@ class RegistrarPublicadorPaginasServiceImpl implements RegistrarPublicadorPagina
 	public function registrarSuscripcionMail($jsonParams) {
 		$objRespuesta = new stdClass();
 		try{			
+			$jsonParams->ruc_negocio = RUC_NEGOCIO;
 			$sqlMapSuscripcionDAO = new SqlMapSuscripcionDAO();
 			$sqlMapSuscripcionDAO->insertSuscripcion($jsonParams);
 			$objRespuesta->tip = "I"; // Info

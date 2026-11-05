@@ -5,6 +5,7 @@ require_once 'apps/ecwitper-site-portaladmin/modules/ecwitper-controlacceso-cuen
 
 class ConsultarCuentaServiceImpl implements ConsultarCuentaService{
    // 20210502 validar cuenta usuario
+   // 20260922 actualizando conexiones
    public function validarUsuarioAdm($dataRequest) {
 	try{
 	    $sqlMapUsuarioDAO = new SqlMapUsuarioDAO();

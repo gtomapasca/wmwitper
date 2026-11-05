@@ -20,7 +20,7 @@
 /* Interfaz PedidoDAO */
 interface PedidoDAO{
       // Consultar ultimo pedido
-      public function getLastPedido();
+      public function getLastPedido($dataRequest);
       // 20210201 Registrar pedido
       public function insertPedidoCar($dataRequest);
 }

@@ -26,49 +26,72 @@ class SqlMapDetalleVentaDAO implements DetalleVentaDAO{
 
 	// 20230313 Registrar detalle venta
     public function insertDetalleVenta($dataRequest){
+		try{
+			// -----------------------------------------------
+			// 2. Registrar Detalle de venta
+			// -----------------------------------------------
+			$correVenta 	= $dataRequest["correVenta"];
+			$codProducto 	= $dataRequest["codProd"];
+			$cant 			= $dataRequest["cant"];
+			$precio 		= $dataRequest["precProd"];
+			$tipo 			= $dataRequest["tipo"];
+			$codMoneda 		= $dataRequest["codMoneda"];
+			$codUniMedida 	= $dataRequest["codUniMedida"];
+			$codDescuento	= $dataRequest["codDescuento"]; 	
+			$precioDescto 	= $dataRequest["precioDescto"];
+			$valorUnit 		= $dataRequest["valorUnit"];
+			$igv 			= $dataRequest["igv"];
+			$montoIGV 		= $dataRequest["montoIGV"];
+			$importe 		= $dataRequest["importe"];
+			$importeIGV 	= $dataRequest["importeIGV"];
+			$importeTotal	= $dataRequest["importeTotal"];
 
-		// -----------------------------------------------
-		// 2. Registrar Detalle de venta
-		// -----------------------------------------------
-		$correVenta 	= $dataRequest["correVenta"];
-		$codProducto 	= $dataRequest["codProd"];
-		$cant 			= $dataRequest["cant"];
-		$precio 		= $dataRequest["precProd"];
-		$tipo 			= $dataRequest["tipo"];
-		$codMoneda 		= $dataRequest["codMoneda"];
-		$codUniMedida 	= $dataRequest["codUniMedida"];
-		$codDescuento	= $dataRequest["codDescuento"]; 	
-		$precioDescto 	= $dataRequest["precioDescto"];
-		$valorUnit 		= $dataRequest["valorUnit"];
-		$igv 			= $dataRequest["igv"];
-		$montoIGV 		= $dataRequest["montoIGV"];
-		$importe 		= $dataRequest["importe"];
-		$importeIGV 	= $dataRequest["importeIGV"];
-		$importeTotal	= $dataRequest["importeTotal"];
-
-		$sql  = "insert into wip_detalle_venta (id_venta, cod_producto, tipo, cod_moneda, cod_umedida, cantidad, preciou, cod_desc, precio_desc "
-				.", valor_unit, igv, monto_igv, importe, importe_igv, importe_total, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
-				." values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
-		$data = array('sssssssssssssss', "{$correVenta}", "{$codProducto}", "{$tipo}", "{$codMoneda}", "{$codUniMedida}", "{$cant}", "{$precio}"
-								, "{$codDescuento}", "{$precioDescto}", "{$valorUnit}", "{$igv}", "{$montoIGV}", "{$importe}", "{$importeIGV}", "{$importeTotal}");
-		DBObject::ejecutar($sql, $data);
-		//$resp_temp = array ("sql" => $sql, "data" => $data);
-		//return $resp_temp;
+			$sql  = "insert into wip_detalle_venta (id_venta, cod_producto, tipo, cod_moneda, cod_umedida, cantidad, preciou, cod_desc, precio_desc "
+					.", valor_unit, igv, monto_igv, importe, importe_igv, importe_total, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
+					." values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
+			/*$data = array('sssssssssssssss', "{$correVenta}", "{$codProducto}", "{$tipo}", "{$codMoneda}", "{$codUniMedida}", "{$cant}", "{$precio}"
+									, "{$codDescuento}", "{$precioDescto}", "{$valorUnit}", "{$igv}", "{$montoIGV}", "{$importe}", "{$importeIGV}", "{$importeTotal}");*/
+			// [INI] Setear data
+			$values = [$correVenta, $codProducto, $tipo, $codMoneda, $codUniMedida, $cant, $precio, $codDescuento, $precioDescto, $valorUnit, $igv, $montoIGV, $importe, $importeIGV, $importeTotal]; 
+			$types = 'sssssssssssssss';
+			$values = array_values($values); 
+			$data[] = $types;
+			foreach ($values as $i => $v) {
+				$data[] = &$values[$i]; 
+			}
+			// [FIN] Setear data
+			DBObject::ejecutar($sql, $data);
+		}catch (Exception $e) {
+			print "Error!: " . $e->getMessage() . "<br/>";
+		}
 
     }
 
 	public function selectListDetalleVentaById($dataRequest){
-		$id = $dataRequest["idVenta"];
-		$sql  = "  select 	dv.id_venta, dv.cod_producto, pt.mini_codigo, pt.producto, dv.tipo, dv.cod_moneda, dv.cod_umedida, dv.cantidad, dv.preciou "
-				.", dv.cod_desc, dv.precio_desc, dv.valor_unit, dv.igv, dv.monto_igv, dv.importe, dv.importe_igv, dv.importe_total "
-				.", dv.estado, dv.del, dv.fecha_reg, dv.fecha_act "
-				." from 	wip_detalle_venta dv inner join wip_producto_tienda pt on dv.cod_producto = pt.cod_producto "
-				." where 	dv.id_venta = ? and dv.del = 0";
-		$data = array('s', "{$id}");
-		$detalleVenta = new DetalleVenta();
-		$fields = $detalleVenta->toArrayDetalle();
-		return DBObject::ejecutar($sql, $data, $fields);
-		//return $resp_temp = array ("parametros" => $dataRequest, "sql" => $sql, "data" => $data);
+		try{
+			$id = $dataRequest["idVenta"];
+			$sql  = "  select 	dv.id_venta, dv.cod_producto, pt.mini_codigo, pt.producto, dv.tipo, dv.cod_moneda, dv.cod_umedida, dv.cantidad, dv.preciou "
+					.", dv.cod_desc, dv.precio_desc, dv.valor_unit, dv.igv, dv.monto_igv, dv.importe, dv.importe_igv, dv.importe_total "
+					.", dv.estado, dv.del, dv.fecha_reg, dv.fecha_act "
+					." from 	wip_detalle_venta dv inner join wip_producto_tienda pt on dv.cod_producto = pt.cod_producto "
+					." where 	dv.id_venta = ? and dv.del = 0";
+			//$data = array('s', "{$id}");
+			// [INI] Setear data
+			$values = [$id]; 
+			$types = 's';
+			$values = array_values($values); 
+			$data[] = $types;
+			foreach ($values as $i => $v) {
+				$data[] = &$values[$i]; 
+			}
+			// [FIN] Setear data
+			$detalleVenta = new DetalleVenta();
+			$fields = $detalleVenta->toArrayDetalle();
+			return DBObject::ejecutar($sql, $data, $fields);
+			//return $resp_temp = array ("parametros" => $dataRequest, "sql" => $sql, "data" => $data);
+		}catch (Exception $e) {
+			print "Error!: " . $e->getMessage() . "<br/>";
+		}
     }
       	
 }

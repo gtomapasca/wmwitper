@@ -7,8 +7,9 @@ class ConsultarBlogServiceImpl implements ConsultarBlogService {
 
 	public function obtenerUltimasPublicaciones() {
 		try{
+			$dataRequest["ruc_negocio"] = RUC_NEGOCIO;
 			$sqlMapPostDAO = new SqlMapPostDAO();
-			$data = $sqlMapPostDAO->selectLastPost();
+			$data = $sqlMapPostDAO->selectLastPost($dataRequest);
 			if($data != null && count($data) > 0){
 				$dataResponse["encontrado"] = true;
 				$dataResponse["mensaje"]    = "encontrado";
@@ -27,11 +28,10 @@ class ConsultarBlogServiceImpl implements ConsultarBlogService {
 		}
 	}
 
-	public function buscarPostById($dataRequest) {
+	public function obtenerPostSeleccionadoById($dataRequest) {
 		try{
 			$sqlMapPostDAO = new SqlMapPostDAO();
 			$data = $sqlMapPostDAO->selectPostById($dataRequest);
-			$data = $data[0];
 			if($data != null && count($data) > 0){
 				$dataResponse["encontrado"] = true;
 				$dataResponse["mensaje"]    = "encontrado";

@@ -7,7 +7,7 @@ require_once 'apps/ecwitper-site-portaladmin/modules/ecwitper-gestionmenu-admin-
 //require_once 'apps/ecwitper-site-portaladmin/modules/ecwitper-registro-venta-modl/service/imp/src/php/ConsultarVentasServiceImpl.php';
 
 class ConsultarMenuServiceImpl implements ConsultarMenuService{
-   	// 20210503 Cargar menú principal
+   	// 20210503 Cargar menú principal 
    	public function cargarMenuPrincipal($dataRequest) {
 		try{
 			$sqlMapCabMenuDAO = new SqlMapCabMenuDAO();

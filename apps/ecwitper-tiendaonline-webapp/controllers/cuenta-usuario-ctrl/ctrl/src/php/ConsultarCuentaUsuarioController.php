@@ -35,28 +35,28 @@ class ConsultarCuentaUsuarioController extends Controller{
 	public function validarFormNuevoUsuario() {
         $objResponse = new stdClass();
 		if($_POST['datos']){ // si existe
-            $datos = json_decode($_POST['datos']);
-            if($datos->nick == null){
+            $jsonDataForm = json_decode($_POST['datos']);
+            if($jsonDataForm->nick == null){
                 $objResponse->tip = "A"; // Advertencia
                 $objResponse->msj = "no se ha enviado el nick";
                 $objResponse->val = false;
-            }else if($datos->nick != null && strlen($datos->nick) < 5){
+            }else if($jsonDataForm->nick != null && strlen($jsonDataForm->nick) < 5){
                 $objResponse->tip = "A"; // Advertencia
                 $objResponse->msj = "El nick debe tener como m&iacute;nimo 5 caracteres";
                 $objResponse->val = false;
-            }else if($datos->email == null){
+            }else if($jsonDataForm->email == null){
                 $objResponse->tip = "A"; // Advertencia
                 $objResponse->msj = "no se ha enviado el correo electr&oacute;nico";
                 $objResponse->val = false;
-            }else if($datos->numCel != null && strlen($datos->numCel) < 9){
+            }else if($jsonDataForm->numCel != null && strlen($jsonDataForm->numCel) < 9){
                 $objResponse->tip = "A";
                 $objResponse->msj = "El n&uacute;mero de celular debe tener 9 d&iacute;gitos";
                 $objResponse->val = false;
-            }else if($datos->password == null){
+            }else if($jsonDataForm->password == null){
                 $objResponse->tip = "A"; // Advertencia
                 $objResponse->msj = "Debe ingresar una contraseña";
                 $objResponse->val = false;
-            }else if($datos->password != null && strlen($datos->password) < 6){
+            }else if($jsonDataForm->password != null && strlen($jsonDataForm->password) < 6){
                 $objResponse->tip = "A"; // Advertencia
                 $objResponse->msj = "La contraseña debe tener como m&iacute;nimo 6 caracteres";
                 $objResponse->val = false;

@@ -39,18 +39,6 @@ class Carrito{
 	public function set_datos_cliente($jsonParams){
 		//$nick = $jsonParams->nick;
 		$this->datos_cliente = $jsonParams;
-		/*$this->datos_cliente = array (
-				"idusu" => $data["idusu"],
-				"codusu" => $data["codusu"],
-				"doctip" => $data["doctip"],
-				"docnum" => $data["docnum"],
-				"nombre" => $data["nombre"],
-				"apepat" => $data["apepat"],
-				"apemat" => $data["apemat"],
-				"telef"  => $data["telef"],
-				"email"  => $data["email"],
-				"direc"  => $data["direc"]
-			);*/
 	}
 	public function get_car_detalle_producto(){
 		return $this->car_detalle_producto;

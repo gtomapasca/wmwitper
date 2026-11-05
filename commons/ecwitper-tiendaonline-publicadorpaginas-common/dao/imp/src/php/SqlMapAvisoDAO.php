@@ -30,7 +30,7 @@ class SqlMapAvisoDAO implements AvisoDAO{
 					." destinatario, des_aviso, rpt_aviso, estado, del, codusu_reg, fecha_reg, codusu_act,  fecha_act) "
 					." values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, user(), now(), user(), now())";
 
-			$data = array('iiisssssss'
+			/*$data = array('iiisssssss'
 					, "{$params->get_num_secaviso()}"
 					, "{$params->get_num_asocaviso()}"
 					, "{$params->get_num_servicio()}"
@@ -41,8 +41,25 @@ class SqlMapAvisoDAO implements AvisoDAO{
 					, "{$params->get_des_aviso()}"
 					, "{$params->get_rpt_aviso()}"
 					, "{$params->get_estado()}"
-				);
-
+			);*/
+			// [INI] Setear data
+			$values = [$params->get_num_secaviso()
+					, $params->get_num_asocaviso()
+					, $params->get_num_servicio()
+					, $params->get_nom_plantilla()
+					, $params->get_cod_tipaviso()
+					, $params->get_remitente()
+					, $params->get_destinatario()
+					, $params->get_des_aviso()
+					, $params->get_rpt_aviso()
+					, $params->get_estado()]; 
+			$types = 'iiisssssss';
+			$values = array_values($values);
+			$data[] = $types;
+			foreach ($values as $i => $v) {
+				$data[] = &$values[$i]; 
+			}
+			// [FIN] Setear data
 			DBObject::ejecutar($sql, $data);
 			//$resp_temp = array ("sql" => $sql, "data" => $data);
 			//return $resp_temp;
@@ -59,9 +76,16 @@ class SqlMapAvisoDAO implements AvisoDAO{
 				."	from 	wip_aviso "
 				."	where 	num_asocaviso = ? and estado = 0 and del = 0 ";
 			
-			$data = array('i'
-					, "{$params->get_num_asocaviso()}"
-				);
+			//$data = array('i', "{$params->get_num_asocaviso()}");
+			// [INI] Setear data
+			$values = [$params->get_num_asocaviso()]; 
+			$types = 'i';
+			$values = array_values($values);
+			$data[] = $types;
+			foreach ($values as $i => $v) {
+				$data[] = &$values[$i]; 
+			}
+			// [FIN] Setear data
 			$aviso = new Aviso();
 			$fields = $aviso->toArrayAviso();
 			return DBObject::ejecutar($sql, $data, $fields);
@@ -75,12 +99,24 @@ class SqlMapAvisoDAO implements AvisoDAO{
 	public function updateAvisoByPK($params){
 		try{
 			$sql = "update wip_aviso set estado = ?, rpt_aviso = ?, err_aviso = ?, codusu_act = user(), fecha_act = now() where num_asocaviso = ?";
-			$data = array('sssi'
+			/*$data = array('sssi'
 					, "{$params->get_estado()}"
 					, "{$params->get_rpt_aviso()}"
 					, "{$params->get_err_aviso()}"
 					, "{$params->get_num_asocaviso()}"
-				);
+				);*/
+			// [INI] Setear data
+			$values = [$params->get_estado()
+					, $params->get_rpt_aviso()
+					, $params->get_err_aviso()
+					, $params->get_num_asocaviso()]; 
+			$types = 'sssi';
+			$values = array_values($values);
+			$data[] = $types;
+			foreach ($values as $i => $v) {
+				$data[] = &$values[$i]; 
+			}
+			// [FIN] Setear data
 			return DBObject::ejecutar($sql, $data);
 			//return array ("sql" => $sql, "data" => $data);
 		}catch (Exception $e) {

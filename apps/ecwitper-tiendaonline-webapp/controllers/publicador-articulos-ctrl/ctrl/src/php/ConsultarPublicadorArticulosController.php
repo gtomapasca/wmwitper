@@ -15,43 +15,14 @@ class ConsultarPublicadorArticulosController extends Controller {
 		exit();
 	}
 
-	/*public function mostrarArticuloSel() {
-		//$dataRequest["page"] = $_GET["page"];
+	// 20261021 Degui: obtener post seleccionado
+	public function obtenerPostSeleccionado() {
 		$dataRequest["codPost"] = $_GET["id"];
-		// Consultamos los datos del articulo
 		$service = new ConsultarBlogServiceImpl();
-		//$dataRequest["data"] = $service->buscarPostById($dataRequest);
-		$data = $service->buscarPostById($dataRequest);
-		$datos = $data["datos"];
-		// ---------------------------
-		$file = "";
-		$dicc = array();
-		
-		$datos[APP_PATH_LOCALHOST_TAG] = APP_PATH_LOCALHOST_DIR;
-
-		$dicc = $datos;
-
-		$file = SITECLI_HTML_DIR_POST;
-		
-		// renderizar paginas
-		$html = file_get_contents($file);
-		$tmpl = new Template($html);
-		$pagina = $tmpl->render($dicc);
-
-		// preparar datos a retornar
-		if($pagina){
-			$dataResponse["encontrado"] = true;
-			$dataResponse["mensaje"] = "pagina encontrado";
-			$dataResponse["datos"] = $pagina;
-		}else{
-			$dataResponse["encontrado"] = false;
-			$dataResponse["mensaje"] = "no encontrado";
-			$dataResponse["datos"] = '';
-		}
-		//return $dataResponse;
+		$dataResponse = $service->obtenerPostSeleccionadoById($dataRequest);
 		echo json_encode($dataResponse);
 		exit();
-	}*/
+	}
 	
 	// 20210210 obtener comentarios post
 	public function obtenerComentariosPost() {

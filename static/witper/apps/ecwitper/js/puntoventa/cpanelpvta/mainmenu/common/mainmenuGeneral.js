@@ -62,6 +62,7 @@ function cargarPaginaSel(uri){
 		   }
 		}else{
 			mostrarMensaje("Disculpe, existi&oacute; un problema al cargar la opción seleccionada.", 2);
+			console.log(">>> pvta-cargarPaginaSel-errorLanzado: " + JSON.stringify(errorLanzado));
 		}
 	});
 }

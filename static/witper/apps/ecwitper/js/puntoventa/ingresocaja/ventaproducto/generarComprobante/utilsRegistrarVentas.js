@@ -6,6 +6,7 @@ consultarDatosCliente = function(tipDoc, numDoc, callback){
            callback(datosDevuelto);
         }else{
             mostrarMensaje("Disculpe, existi&oacute; un problema al consultar datos del cliente", 2);
+            console.log(">>> vta-obtenerDatosCliente-errorLanzado: " + JSON.stringify(errorLanzado));
         }
     });
 };
@@ -16,7 +17,8 @@ registrarNuevoClienteVta = function(idForm, callback){
            //console.log("response-registrarNuevoCliente: " + JSON.stringify(datosDevuelto));
            callback(datosDevuelto);
         }else{
-            mostrarMensaje("Disculpe, existi&oacute; un problema", 2);
+            mostrarMensaje("Disculpe, existi&oacute; un problema al registrar nuevo cliente", 2);
+            console.log(">>> vta-registrarNuevoClienteParaVenta-errorLanzado: " + JSON.stringify(errorLanzado));
         }
     });
 };

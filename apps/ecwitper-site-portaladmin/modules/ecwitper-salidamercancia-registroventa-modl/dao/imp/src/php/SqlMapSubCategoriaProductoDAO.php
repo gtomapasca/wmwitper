@@ -26,10 +26,19 @@ class SqlMapSubCategoriaProductoDAO implements SubCategoriaProductoDAO{
 
     // 20211230 degui: obtener lista de sub ategoria productos
     public function selectListaSubCategoriaProd(){
-		$subCategoriaProducto = new SubCategoriaProducto();
 		$del = '0';
 		$sql  = "select cod_categoria, cod_subcategoria, nom_subcategoria, des_subcategoria, estado, del from wip_subcategoria_producto where del = ? order by nom_subcategoria asc";
-		$data = array('s', "{$del}");
+		//$data = array('s', "{$del}");
+		// [INI] Setear data
+		$values = [$del]; 
+		$types = 's';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$subCategoriaProducto = new SubCategoriaProducto();
 		$fields = $subCategoriaProducto->toArraySubCategoria();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);
@@ -38,12 +47,21 @@ class SqlMapSubCategoriaProductoDAO implements SubCategoriaProductoDAO{
 
 	// 20220814 degui: obtener lista de sub ategoria productos por codigo categoria
     public function selectListaSubCategoriaByCodCat($dataRequest){
-		$subCategoriaProducto = new SubCategoriaProducto();
 		$codCat = $dataRequest["codCat"];
 		$del = '0';
 		$sql  = "select cod_categoria, cod_subcategoria, nom_subcategoria, des_subcategoria, estado, del from wip_subcategoria_producto "
 				." where del = ? and cod_categoria = ? order by nom_subcategoria asc";
-		$data = array('ss', "{$del}", "{$codCat}");
+		//$data = array('ss', "{$del}", "{$codCat}");
+		// [INI] Setear data
+		$values = [$del, $codCat]; 
+		$types = 'ss';
+		$values = array_values($values);
+		$data[] = $types;
+		foreach ($values as $i => $v) {
+			$data[] = &$values[$i]; 
+		}
+		// [FIN] Setear data
+		$subCategoriaProducto = new SubCategoriaProducto();
 		$fields = $subCategoriaProducto->toArraySubCategoria();
 		return DBObject::ejecutar($sql, $data, $fields);
 		//$resp_temp = array ("sql" => $sql, "data" => $data);

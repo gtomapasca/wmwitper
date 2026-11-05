@@ -92,21 +92,60 @@
 		</div>
 	</div>
 
-	<!--
-	<script type="text/javascript" src="{PATH_LARGE}/utils/js/tiendavirtual/utils.js"></script>
-	<script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/tiendavirtual/iniciotienda/mainmenu/forms/utilsContacto.js"></script>
-	<script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/tiendavirtual/iniciotienda/mainmenu/forms/frmContacto.js"></script>
-	<script type="text/javascript" src="/static/witper/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVMnzmc1Nl_3e_VvtH6dbuFuNp37crTWE&callback=myMap"></script>
-	-->
-	<!--
-	<script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script>
-	<script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/publicador-paginas-view/inter-contacto-web/src/js/utilsContacto.js"></script>
-	<script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/publicador-paginas-view/inter-contacto-web/src/js/contacto.js"></script>
-	<script type="text/javascript" src="{PATH_STORE}/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVMnzmc1Nl_3e_VvtH6dbuFuNp37crTWE&callback=myMap"></script>
-	-->
-	<script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script>
+	<!--INI VENTANAS EMERGENTES-->
+	<div id="divModalMsg" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div id="divPanelModal" class="panel panel-info">
+				<div id="divModalMsgTitulo" class="panel-heading"></div>
+				<div id="divModalMsgContenido" class="panel-body"></div>
+				<div class="panel-footer text-center">
+					<button type="button" id="btnModalMsgCerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="divModalMsgAdvertencia" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div id="divPanelModalAdv" class="panel panel-warning">
+				<div id="divModalMsgAdvTitulo" class="panel-heading"></div>
+				<div id="divModalMsgAdvContenido" class="panel-body"></div>
+				<div class="panel-footer text-center">
+					<button type="button" id="btnModalMsgAdvAceptar" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="divModalMsgConfirmacion" class="modal fade">
+		<div class="modal-dialog">
+			<div id="divPanelModalConf" class="panel panel-default">
+				<div id="divModalMsgConfTitulo" class="panel-heading"></div>
+				<div id="divModalMsgConfContenido" class="panel-body"></div>
+				<div class="panel-footer text-center">
+					<button id="btnModalMsgConfSi" type="button" class="btn btn-primary" data-dismiss="modal">Si</button>
+					<button id="btnModalMsgConfNo" type="button" class="btn btn-default" data-dismiss="modal">No</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="divModalProcesando" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div id="divPanelModalProcesando" class="panel panel-default">
+				<div id="divProcesandoContenido" class="panel-body">
+					<div class="row">
+						<div class="col-sm-5">
+							<img src="/a/imagenes/wait-big.gif" />
+						</div>
+						<div class="col-sm-7">
+							<p>Procesando...</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--FIN VENTANAS EMERGENTES-->
+
+	<script type="text/javascript" src="{PATH_LARGE}/apps/utils/js/tiendaonline/utils.js"></script>
 	<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/publicador/paginas/contacto/js/utilsContacto.js"></script>
 	<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/publicador/paginas/contacto/js/contacto.js"></script>
 	<!-- script type="text/javascript" src="{PATH_STORE}/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script -->
@@ -115,13 +154,6 @@
 	<script language="javascript" type="text/javascript">
 		// desplazar hacía arriba de la pagina
 		window.scroll(0,0);
-
-		// importaciones js
-		/*var registrarContacto;
-		$(document).ready(function() {
-			 registrarContacto = new clsRegistrarContacto();
-			 registrarContacto.iniciarForm();
-		});*/
 		
 		// google maps
 		function myMap() {
