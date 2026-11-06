@@ -25,7 +25,7 @@ require_once 'apps/ecwitper-site-puntoventa/modules/ecwitper-controlacceso-cuent
 class SqlMapUsuarioDAO implements UsuarioDAO{
     // 20190830 GTP: Registrar nuevo usuario
     public function insertUsuario($dataRequest){
-		$cta_per = "2";	// 2: Anonimo (230130 GTP: se debe registrar la cuenta para obtener el código de cuenta)
+		$cta_per = "6";	// 6: Invitado (230130 GTP: se debe registrar la cuenta para obtener el código de cuenta)
 		$avatar= $dataRequest["avatar"];
 		$nick  = $dataRequest["nick"];
 		$email = $dataRequest["email"];
@@ -64,13 +64,14 @@ class SqlMapUsuarioDAO implements UsuarioDAO{
     public function selectCountUser($dataRequest){
 		$user = $dataRequest["user"];
 		$pass = $dataRequest["pass"];
-		$tipu = "UI";
+		//$tipu = "UX"; // se cambio de UI a UX 20261105 GTP
 		$sql  = "select id_usuario, id_ctapersona, avatar, nick, email, cel, face, cod_tipo_usu, cod_nivel_usu, password, estado "
-			."from wip_usuario where cod_tipo_usu = ? and nick = ? and password = ?";
+			."from wip_usuario where nick = ? and password = ?";
+			// ."from wip_usuario where cod_tipo_usu = ? and nick = ? and password = ?";
 		//$data = array('sss', "{$tipu}", "{$user}", "{$pass}");
 		// [INI] Setear data
-		$values = [$tipu, $user, $pass]; 
-		$types = 'sss';
+		$values = [$user, $pass]; 
+		$types = 'ss';
 		$values = array_values($values);
 		$data[] = $types;
 		foreach ($values as $i => $v) {

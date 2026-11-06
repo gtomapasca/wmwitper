@@ -7,16 +7,17 @@ class ConsultarCuentaServiceImpl implements ConsultarCuentaService{
    // 20210502 validar cuenta usuario
    public function validarUsuarioAdm($dataRequest) {
 	try{
+		$dataResponse["encontrado"] = false;
 	    $sqlMapUsuarioDAO = new SqlMapUsuarioDAO();
 	    $data = $sqlMapUsuarioDAO->selectCountUser($dataRequest);
 	    if($data != null && count($data) > 0){
-		$dataResponse["encontrado"] = true;
-		$dataResponse["mensaje"]    = "encontrado";
-		$dataResponse["datos"] 	    = $data;
+			$dataResponse["encontrado"] = true;
+			$dataResponse["mensaje"]    = "encontrado";
+			$dataResponse["datos"] 	    = $data;
 	    }else{
-		$dataResponse["encontrado"] = true;
-		$dataResponse["mensaje"]    = "no se obtuvieron resultados";
-		$dataResponse["datos"] 	    = 0;
+			$dataResponse["encontrado"] = true;
+			$dataResponse["mensaje"]    = "no se obtuvieron resultados";
+			$dataResponse["datos"] 	    = 0;
 	    }
 	    return $dataResponse;
 	}catch (Exception $e) {
