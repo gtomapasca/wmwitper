@@ -25,7 +25,7 @@ require_once 'apps/ecwitper-site-portaladmin/modules/ecwitper-controlacceso-cuen
 class SqlMapUsuarioDAO implements UsuarioDAO{
     // 20190830 GTP: Registrar nuevo usuario
     public function insertUsuario($dataRequest){
-		$cta_per = "2";	// 2: Anonimo (230130 GTP: se debe registrar la cuenta para obtener el código de cuenta)
+		$cta_per = "6";	// 2: Anonimo (230130 GTP: se debe registrar la cuenta para obtener el código de cuenta)
 		$avatar= $dataRequest["avatar"];
 		$nick  = $dataRequest["nick"];
 		$email = $dataRequest["email"];
@@ -64,14 +64,15 @@ class SqlMapUsuarioDAO implements UsuarioDAO{
     public function selectCountUser($dataRequest){
 		$user = $dataRequest["user"];
 		$pass = $dataRequest["pass"];
-		$tipu = "UI";
+		//$tipu = "UX"; // se cambio de UI a UX 20261105 GTP
 		$sql  = "select id_usuario, id_ctapersona, avatar, nick, email, cel, face, cod_tipo_usu, cod_nivel_usu, password, estado "
-			."from wip_usuario where cod_tipo_usu = ? and nick = ? and password = ?";
+			."from wip_usuario where nick = ? and password = ?";
+			// ."from wip_usuario where cod_tipo_usu = ? and nick = ? and password = ?";
 		//$data = array('sss', "{$tipu}", "{$user}", "{$pass}");
 		//$fields = $usuario->toArrayLogin();
 		// [INI] Setear data
-		$values = [$tipu, $user, $pass]; 
-		$types = 'sss';
+		$values = [$user, $pass]; 
+		$types = 'ss';
 		$values = array_values($values);
 		$data[] = $types;
 		foreach ($values as $i => $v) {
@@ -103,13 +104,6 @@ class SqlMapUsuarioDAO implements UsuarioDAO{
     // 20210519 GTP: eliminar usuario
     public function deleteUsuario($dataRequest){
 		$id_usu= $dataRequest["id_usuario"];
-		/*$avatar= $dataRequest["avatar"];
-		$nick  = $dataRequest["nick"];
-		$email = $dataRequest["email"];
-		$pass  = $dataRequest["pass"];
-		$cel   = $dataRequest["cel"];
-		$tipo  = $dataRequest["tipo"];
-		$nivel = $dataRequest["nivel"];*/
 		$del   = '1'; // eliminación lógica
 		$sql  = "update wip_usuario set del=? where id_usuario=?";
 		$data = array('ss', "{$del}", "{$id_usu}");
