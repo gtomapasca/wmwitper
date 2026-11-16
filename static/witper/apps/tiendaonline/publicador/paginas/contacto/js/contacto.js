@@ -18,11 +18,15 @@ var clsRegistrarContacto = function() {
         btnGrabar : { id: 'btnGrabar' }
     };
 
+	this.divs = {
+		msjObligatorio  	: 	{ id: 'divMsgDatoObligatorio' }
+    };
+
     this.iniciarForm = function(){
         var refCls = this;
 		$("#txtContadorCaracteres").html("Caracteres restantes : "+ MAX_LENGHT_TEXTAREA);
     	$("#" + this.inputs.msjContacto.id).attr('maxlength', (MAX_LENGHT_TEXTAREA + 50));
-		$("#divMsgDatoObligatorio").hide();
+		$("#" + this.divs.msjObligatorio.id).hide();
 		$("#" + this.inputs.msjContacto.id).keyup(function(){
 			refCls.onKeyupContadorCaracteres();
 	   	});
@@ -46,68 +50,93 @@ var clsRegistrarContacto = function() {
 		}
 	};
 
+	this.getJsonDataForm = function(){
+        return {
+			nomCli  	: 	$("#" + this.inputs.nomCli.id).val(),
+			numCel  	: 	$("#" + this.inputs.numCel.id).val(),
+			email  		: 	$("#" + this.inputs.email.id).val(),
+			asunto  	: 	$("#" + this.inputs.asunto.id).val(),
+			cuerpoMsj  	: 	$("#" + this.inputs.msjContacto.id).val()
+		};
+    };
+
 	// 20240302 validar reclamo
 	this.validarDatosBackend = function(){
 		let refCls = this;
-		utils_valContactCli("#frmContactenos", function(datosDevuelto){
-			//console.log("utils_valContactCli-response: " + JSON.stringify(datosDevuelto));
-			let tip = datosDevuelto.tipo;
-			let msj = datosDevuelto.msj;
-			let val = datosDevuelto.exito;
-			if(val){
-				refCls.grabarConctacto();
-			}else{
-				if(tip == "A"){
-					mostrarMensaje("Mensaje validaci&oacute;n: " + datosDevuelto.msj, 2);
-					console.log(">>> validarDatosBackend-Validar: " + msj);
-				}else if(tip == "E"){
-					mostrarMensaje("Mensaje Error: " + datosDevuelto.msj, 2);
-					console.log(">>> validarDatosBackend-Error: " + msj);
+		let jsonDataForm = this.getJsonDataForm();
+		$.ajax({
+			type: "POST",
+			url: '../../../../cli/app/store/publipages/consultar-publicador-paginas/validar-contacto',
+			data: {'datos': JSON.stringify(jsonDataForm)},
+	   		dataType: "json",
+			success: function(response){
+				//console.log(">>> contacto-validarDatosBackend-response: " + JSON.stringify(response));
+				let tip = response.tip;
+				let msj = response.msj;
+				let val = response.val;
+				if(val){
+					refCls.grabarConctacto();
+				}else{
+					if(tip == "A"){
+						MSG.showINF("Mensaje validaci&oacute;n: " + msj);
+					}else if(tip == "E"){
+						MSG.showERR("Mensaje Error: " + msj);
+					}
 				}
+			},
+			error: function(errorThrown) {
+				MSG.showERR("Error al validar datos de usuario: " + JSON.stringify(errorThrown));
 			}
 		});
-	};
+	}
 
 	// 20240412 registrar contacto
-	this.grabarConctacto = function () {
+	this.grabarConctacto = function(){
 		let refCls = this;
-		utils_setContactCli("#frmContactenos", function(datosDevuelto){
-			console.log("utils_setLibroReclamo-response: " + JSON.stringify(datosDevuelto));
-			let tip = datosDevuelto.tipo;
-			let msj = datosDevuelto.msj;
-			let val = datosDevuelto.exito;
-			//let numeroReclamo = datosDevuelto.data;
-			//let email = $('#txtEmail').val();
-			if(val){
-				refCls.limpiarForm();
-				mostrarMensaje("Se ha enviado correctamente su mensaje, muy pronto nos pondrémos en contacto con usted.", 0);
-			}else{
-				if(tip == "A"){
-					mostrarMensaje("Mensaje validaci&oacute;n: " + msj, 2);
-					console.log(">>> utils_setContactCli-Validar: " + msj);
-				}else if(tip == "E"){
-					mostrarMensaje("Mensaje Error: " + msj, 2);
-					console.log(">>> utils_setContactCli-Error: " + msj);
+		let jsonDataForm = this.getJsonDataForm();
+		$.ajax({
+			type: "POST",
+			url: '../../../../cli/app/store/publipages/registrar-publicador-paginas/registrar-contacto',
+			data: {'datos': JSON.stringify(jsonDataForm)},
+	   		dataType: "json",
+			success: function(response){
+				//console.log(">>> contacto-grabarConctacto-response: " + JSON.stringify(response));
+				let tip = response.tip;
+				let msj = response.msj;
+				let val = response.val;
+				if(val){
+					refCls.limpiarForm();
+					let msj = "Se ha enviado correctamente su mensaje, muy pronto nos pondrémos en contacto con usted.";
+					MSG.showINF(msj);
+				}else{
+					if(tip == "A"){
+						MSG.showINF("Mensaje validaci&oacute;n: " + msj);
+					}else if(tip == "E"){
+						MSG.showERR("Mensaje Error: " + msj);
+					}
 				}
+			},
+			error: function(errorThrown) {
+				MSG.showERR("Error al validar datos de usuario: " + JSON.stringify(errorThrown));
 			}
 		});
-	};
+	}
 
 	this.validarDatosFormEnd = function () {
 		// validar e-mail
 		var email =  $("#" + this.inputs.email.id).val().trim();
 		if (email == "") {
-			mostrarMensaje("El correo electr&oacute;nico es obligatorio", 2);
+			MSG.showERR("El correo electr&oacute;nico es obligatorio");
 			return false;
 		}	
 		if (email != "" && !validarExpresion(email, regExpCorreo) ) {
-			mostrarMensaje("El correo electr&oacute;nico no es v&aacute;lido, verificar", 2);
+			MSG.showERR("El correo electr&oacute;nico no es v&aacute;lido, verificar");
 			return false;
 		}		
 		// validar mensaje de contacto
 		var msjContacto =  $("#" + this.inputs.msjContacto.id).val().trim();
 		if(msjContacto.length < 10){
-			mostrarMensaje("Ingrese un mensaje de contácto que sea mayor de 10 caracteres", 2);
+			MSG.showERR("Ingrese un mensaje de contácto que sea mayor de 10 caracteres");
 			return false;
 		}
 		return true;
@@ -125,7 +154,6 @@ var clsRegistrarContacto = function() {
 	this.onKeyupContadorCaracteres = function(){
 		var strLength = $("#" + this.inputs.msjContacto.id).val().length
 		var caracterRestante = (MAX_LENGHT_TEXTAREA - strLength);
-		
 		if(caracterRestante < 0){
 			$("#txtContadorCaracteres").html('<span style="color: red;">Has excedido el limite de '+MAX_LENGHT_TEXTAREA+' caracteres</span>');
 		}else{
@@ -134,7 +162,7 @@ var clsRegistrarContacto = function() {
 	};
 
 
-	this.requeridoinputfunc = function(value, element, param) {
+	/*this.requeridoinputfunc = function(value, element, param) {
 		if (value.trim() != "") {
 			$("#" + param.id).removeClass("wpr-input-invalid");
 			return true;
@@ -142,7 +170,7 @@ var clsRegistrarContacto = function() {
 			$("#" + param.id).addClass("wpr-input-invalid");
 			return false; 
 		}
-	};
+	};*/
 	
 	//$.validator.addMethod("requeridoinput", this.requeridoinputfunc, " * Ingrese dato obligatorio");
 	// 20241210 degui: se comenta temporalmente	
@@ -179,7 +207,8 @@ var clsRegistrarContacto = function() {
 	
 }
 
+var obj;
 $(document).ready(function() {
-	var registrarContacto = new clsRegistrarContacto();
-	registrarContacto.iniciarForm();
+	obj = new clsRegistrarContacto();
+	obj.iniciarForm();
 });

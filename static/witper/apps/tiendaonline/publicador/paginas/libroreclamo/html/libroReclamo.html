@@ -2,8 +2,6 @@
 <html lang="ES">
   <head>
 	<title>Libro Reclamaciones</title>
-	<!-- link rel="stylesheet" type="text/css" href="/static/witper/apps/ecwitper/css/tiendavirtual/iniciotienda/mainmenu/forms/frmLibroReclamo.css" / -->
-	<!--link rel="stylesheet" type="text/css" href="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/publicador-paginas-view/inter-libroreclamo-web/src/css/libroReclamo.css" /-->
 	<link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/tiendaonline/publicador/paginas/libroreclamo/css/libroReclamo.css" />
   </head>
   <body>
@@ -27,8 +25,8 @@
 										</div>
 										<div class="col-md-9 col-sm-6 col-xs-12">
 											<select id="cboTipDocu" name="cboTipDocu" class="form-control wpr-input-e01" requeridosel>
-												<option value="0" selected>DNI</option>
-												<option value="1">RUC</option>
+												<option value="3" selected>DNI</option>
+												<option value="4">RUC</option>
 											</select>
 										</div>
 									</div>
@@ -45,7 +43,7 @@
 											<label class="wpr-label-e01" for="txtNombre">Nombre / Raz. Social<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
 										</div>
 										<div class="col-md-9 col-sm-6 col-xs-12">
-											<input type="text" id="txtNombre" name="txtNombre" maxlength="50" class="form-control wpr-input-e01 wpr-upercase" requeridoinput>
+											<input type="text" id="txtNombre" name="txtNombre" maxlength="50" class="form-control wpr-input-e01" requeridoinput>
 										</div>
 									</div>
 									<div class="row">
@@ -117,14 +115,6 @@
 											<input type="text" id="txtDomicilio" name="txtDomicilio" class="form-control wpr-input-e01" maxlength="65">
 										</div>
 									</div>
-									<!--div class="row">
-										<div class="col-md-3 col-sm-6 col-xs-12">
-											<label class="wpr-label-e01" for="txtTelf">Teléfono Fijo:</label>
-										</div>
-										<div class="col-md-9 col-sm-6 col-xs-12">
-											<input type="text" id="txtTelf" name="txtTelf" maxlength="10" class="form-control wpr-input-e01" onkeydown="soloNumeros('txtTelf')">
-										</div>
-									</div -->
 								</div>
 							</div>
 							<div class="panel panel-default">
@@ -132,16 +122,6 @@
 									<h3 class="panel-title wpr-title-e01">DATOS DE LA COMPRA</h3>
 								</div>
 								<div class="panel-body wpr-body-e01">
-									<!--div class="row">
-										<div class="col-md-3 col-sm-6 col-xs-12"></div>
-										<div class="col-md-9 col-sm-6 col-xs-12">
-											<fieldset>
-												<legend>¿Tienes carné de conducir?<abbr title="Este campo es obligatorio" aria-label="required">*</abbr></legend>
-												<input type="radio" required name="driver" id="r1" value="yes"><label for="r1">Sí</label>
-												<input type="radio" required name="driver" id="r2" value="no"><label for="r2">No</label>
-											</fieldset>
-										</div>
-									</div-->
 									<div class="row">
 										<div class="col-md-3 col-sm-6 col-xs-12">
 											<label class="wpr-label-e01" for="cboMotivo">Motivo<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
@@ -159,8 +139,8 @@
 										</div>
 										<div class="col-md-9 col-sm-6 col-xs-12">
 											<select id="cboTipoComprob" name="cboTipoComprob" class="form-control wpr-input-e01">
-												<option value="B" selected>Boleta</option>
-												<option value="F">Factura</option>
+												<option value="3" selected>Boleta</option>
+												<option value="4">Factura</option>
 											</select>
 										</div>
 									</div>
@@ -169,20 +149,15 @@
 											<label class="wpr-label-e01" for="txtNroComprob">Número de comprobante<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
 										</div>
 										<div class="col-md-9 col-sm-6 col-xs-12">
-											<input type="text" id="txtNroComprob" name="txtNroComprob" maxlength="15" class="form-control wpr-input-e01" requeridoinput>
+											<input type="text" id="txtNroComprob" name="txtNroComprob" maxlength="15" class="form-control wpr-input-e01 wpr-upercase" requeridoinput>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-3 col-sm-6 col-xs-12">
-											<label class="wpr-label-e01" for="txtFecComprob">Fecha de Comprobante<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+											 <label class="wpr-label-e01" for="dpFecComprob">Fecha de Comprobante<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
 										</div>
-										<div class='col-md-9 col-sm-6 col-xs-12' id="divtxtFecComprob">
-											<div class='input-group date' id='dtpComprob'>
-												<input type='text' class="form-control" id="txtFecComprob" name="txtFecComprob" readonly />
-												<span class="input-group-addon">
-													<span class="glyphicon glyphicon-calendar"></span>
-												</span>
-											</div>
+										<div class='col-md-9 col-sm-6 col-xs-12'>
+											<input type="text" id="dpFecComprob" name="dpFecComprob" class="form-control wpr-input-e01" readonly />
 										</div>
 									</div>
 									<div class="row">
@@ -195,7 +170,7 @@
 									</div>
 									<div class="row">
 										<div class="col-md-3 col-sm-6 col-xs-12">
-											<label class="wpr-label-e01" for="txtDesProd">Nombre de producto<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
+											<label class="wpr-label-e01" for="txtDesProd">Descripci&oacute;n de producto<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
 										</div>
 										<div class="col-md-9 col-sm-6 col-xs-12">
 											<input type="text" id="txtDesProd" name="txtDesProd" maxlength="65" class="form-control wpr-input-e01" requeridoinput>
@@ -206,7 +181,6 @@
 											<label class="wpr-label-e01" for="txtCantProd">Cantidad de producto<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
 										</div>
 										<div class="col-md-9 col-sm-6 col-xs-12">
-											<!-- input type="text" id="txtCanProd" name="txtCanProd" maxlength="3" class="form-control wpr-input-e01" onkeydown="soloNumeros('txtCanProd')" -->
 											<input type="number" id="txtCantProd" name="txtCantProd" class="form-control wpr-input-e01" value="1" min="1" max="999" onkeydown="soloNumeros('txtCantProd')" requeridoinput>
 										</div>
 									</div>
@@ -215,7 +189,6 @@
 											<label class="wpr-label-e01" for="txtPrecioProd">Monto de Reclamo (S/)<abbr title="Este campo es obligatorio" ria-label="required" class="wpr-asterix-e01"> *</abbr></label>
 										</div>
 										<div class="col-md-9 col-sm-6 col-xs-12">
-											<!-- input type="text" id="txtPreProd" name="txtPreProd" class="form-control wpr-input-e01" onkeydown="soloNumeros('txtPreProd')" -->
 											<input type="number" id="txtPrecioProd" name="txtPrecioProd" class="form-control wpr-input-e01" value="0" min="1" max="99999" onkeydown="soloNumeros('txtPrecioProd')" requeridoinput>
 										</div>
 									</div>
@@ -228,14 +201,6 @@
 											<span id="txtContadorCaracteres" class="wpr-texto-e11"></span>
 										</div>
 									</div>
-									<!--div class="row">
-										<div class="col-md-3 col-sm-6 col-xs-12">
-											<label class="wpr-label-e01" for="txtDetPedido">Pedido de cliente:</label>
-										</div>
-										<div class="col-md-9 col-sm-6 col-xs-12">
-											<textarea id="txtDetPedido" name="txtDetPedido" class="form-control wpr-input-e01" rows="4" maxlength="500" required></textarea>
-										</div>
-									</div-->
 								</div>
 							</div>
 							<div class="row">
@@ -255,12 +220,8 @@
 					<div class="col-xs-12">
 						<h1 class="wpr-h2-e01">Libro de Reclamaciones</h1>
 						<p class="wpr-p-e01"></p>
-						<!-- p class="wpr-p-e01">Su reclamo ha sido registrado con el código: <span id="lblNumReclamo" class="wpr-texto-e05"></span>. Se ha enviado una notificación ha su correo electronico.</P -->
 						<p class="wpr-p-e01">
-							Su reclamo ha sido registrado con &eacute;xito. 
-						</P>
-						<p class="wpr-p-e01">
-							Se ha generado y envi&aacute;do el n&uacute;mero de reclamo a su correo electr&oacute;nico: <span id="lblemail" class="wpr-texto-e05"></span>.
+							Su reclamo ha sido registrado con &eacute;xito. Se ha generado y envi&aacute;do el n&uacute;mero de reclamo a su correo electr&oacute;nico: <span id="lblemail" class="wpr-texto-e05"></span>.
 						</P>
 						<p class="wpr-p-e01">
 							Muy pronto nos pondremos en contacto con usted.
@@ -270,36 +231,66 @@
 			</div>
 		</div>
   	</div>
-	<!--
-	<script type="text/javascript" src="{PATH_LARGE}/utils/js/tiendavirtual/utils.js"></script>
-	<script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/tiendavirtual/iniciotienda/mainmenu/forms/utilsLibroReclamo.js"></script>
-	<script type="text/javascript" src="{PATH_LARGE}/apps/ecwitper/js/tiendavirtual/iniciotienda/mainmenu/forms/frmLibroReclamo.js"></script>
-	<script type="text/javascript" src="/static/witper/libs/bootstrap-datetimepicker-3.1.3/js/moment-with-locales.js"></script>
-	<script type="text/javascript" src="/static/witper/libs/bootstrap-datetimepicker-3.1.3/js/bootstrap-datetimepicker.min.js"></script>
-	<script type="text/javascript" src="/static/witper/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
-	-->
-	<!--
-	<script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script>
-	<script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/publicador-paginas-view/inter-libroreclamo-web/src/js/utilsLibroReclamo.js"></script>
-	<script type="text/javascript" src="{APP_PATH_LOCALHOST}/apps/ecwitper-tiendaonline-webapp/views/publicador-paginas-view/inter-libroreclamo-web/src/js/libroReclamo.js"></script>
-	<script type="text/javascript" src="{PATH_STORE}/libs/bootstrap-datetimepicker-3.1.3/js/moment-with-locales.js"></script>
-	<script type="text/javascript" src="{PATH_STORE}/libs/bootstrap-datetimepicker-3.1.3/js/bootstrap-datetimepicker.min.js"></script>
-	<script type="text/javascript" src="{PATH_STORE}/libs/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
-	-->
-	<!--script type="text/javascript" src="{PATH_STORE}/utils/js/tiendavirtual/utils.js"></script-->
+
+	<!--INI VENTANAS EMERGENTES-->
+	<div id="divModalMsg" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div id="divPanelModal" class="panel panel-info">
+				<div id="divModalMsgTitulo" class="panel-heading"></div>
+				<div id="divModalMsgContenido" class="panel-body"></div>
+				<div class="panel-footer text-center">
+					<button type="button" id="btnModalMsgCerrar" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="divModalMsgAdvertencia" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div id="divPanelModalAdv" class="panel panel-warning">
+				<div id="divModalMsgAdvTitulo" class="panel-heading"></div>
+				<div id="divModalMsgAdvContenido" class="panel-body"></div>
+				<div class="panel-footer text-center">
+					<button type="button" id="btnModalMsgAdvAceptar" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="divModalMsgConfirmacion" class="modal fade">
+		<div class="modal-dialog">
+			<div id="divPanelModalConf" class="panel panel-default">
+				<div id="divModalMsgConfTitulo" class="panel-heading"></div>
+				<div id="divModalMsgConfContenido" class="panel-body"></div>
+				<div class="panel-footer text-center">
+					<button id="btnModalMsgConfSi" type="button" class="btn btn-primary" data-dismiss="modal">Si</button>
+					<button id="btnModalMsgConfNo" type="button" class="btn btn-default" data-dismiss="modal">No</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="divModalProcesando" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div id="divPanelModalProcesando" class="panel panel-default">
+				<div id="divProcesandoContenido" class="panel-body">
+					<div class="row">
+						<div class="col-sm-5">
+							<img src="/a/imagenes/wait-big.gif" />
+						</div>
+						<div class="col-sm-7">
+							<p>Procesando...</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--FIN VENTANAS EMERGENTES-->
+
 	<script type="text/javascript" src="{PATH_LARGE}/apps/utils/js/tiendaonline/utils.js"></script>
-	<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/publicador/paginas/libroreclamo/js/utilsLibroReclamo.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/libsExt/jquery/ui/1.13.1/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="{PATH_LARGE}/libsExt/jquery/ui/1.13.1/jquery.ui.datepicker-es.js"></script>
 	<script type="text/javascript" src="{PATH_LARGE}/apps/tiendaonline/publicador/paginas/libroreclamo/js/libroReclamo.js"></script>
-	<script type="text/javascript" src="{PATH_STORE}/libsExt/bootstrap-datetimepicker-3.1.3/js/moment-with-locales.js"></script>
-	<script type="text/javascript" src="{PATH_STORE}/libsExt/bootstrap-datetimepicker-3.1.3/js/bootstrap-datetimepicker.min.js"></script>
-	<script type="text/javascript" src="{PATH_STORE}/libsExt/plugins/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
 
 	<script language="javascript" type="text/javascript">
-		/*var registrarLibroReclamo;
-		$(document).ready(function() {
-			 registrarLibroReclamo = new clsRegistrarLibroReclamo();
-			 registrarLibroReclamo.iniciarForm();
-		});*/
 		// desplazar hacía arriba de la pagina
 	 	window.scroll(0,0);
 	</script>

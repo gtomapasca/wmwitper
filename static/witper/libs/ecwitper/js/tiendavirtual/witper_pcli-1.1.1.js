@@ -98,7 +98,7 @@ function witper_buscarProducto(jsonDataForm, callback){
 	});
 }
 // 20240412 validar contacto
-function witper_valContactCli(idForm, callback){
+/*function witper_valContactCli(idForm, callback){
 	$.ajax({
 	   type: "POST",
 	   //url: PATH_SMALL + CLI + "/"+PRINCIPAL+"/consultar/validar-contacto",
@@ -108,9 +108,10 @@ function witper_valContactCli(idForm, callback){
 	   success: function(response){callback(null, response);},
 	   error: function(errorThrown) {callback(errorThrown);}
   });
-}
+}*/
+
 // 20210302 registrar contacto
-function witper_setContactCli(idForm, callback){
+/*function witper_setContactCli(idForm, callback){
       $.ajax({
 	     type: "POST",
 	     url: PATH_SMALL + CLI + "/"+PRINCIPAL+"/registrar/registrar-contacto",
@@ -119,9 +120,10 @@ function witper_setContactCli(idForm, callback){
 	     success: function(response){callback(null, response);},
 	     error: function(errorThrown) {callback(errorThrown);}
 	});
-}
+}*/
+
 // 20240302 validar libro reclamo
-function witper_valLibroReclamo(idForm, callback){
+/*function witper_valLibroReclamo(idForm, callback){
       $.ajax({
 	     type: "POST",
 	     url: PATH_SMALL + CLI + "/"+PRINCIPAL+"/registrar/validar-reclamo",
@@ -141,7 +143,7 @@ function witper_setLibroReclamo(idForm, callback){
 	   success: function(response){callback(null, response);},
 	   error: function(errorThrown) {callback(errorThrown);}
   });
-}
+}*/
 // 20210321 obtener productos por categoria
 function witper_obtenerProductosPorCategoria(datos, callback){
       $.ajax({
@@ -438,7 +440,7 @@ function witper_obtenerOfertas(datos, callback){
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 // 20240406 ENVIAR AVISO RECLAMO
-function witper_enviarAvisoReclamo(numAvisoAsoc){
+/*function witper_enviarAvisoReclamo(numAvisoAsoc){
 	$.ajax({
 	   type: "POST",
 	   url: PATH_SMALL + CLI + "/"+PRINCIPAL+"/registrar/enviar-aviso-reclamo/?numAvisoAsoc="+numAvisoAsoc,
@@ -446,22 +448,4 @@ function witper_enviarAvisoReclamo(numAvisoAsoc){
 	   success: function(response){},
 	   error: function(errorThrown) {}
   	});
-}
-/*
-function witper_enviarAvisoReclamo(numAvisoAsoc, callback){
-	$.ajax({
-	   type: "POST",
-	   url: PATH_SMALL + CLI + "/"+PRINCIPAL+"/registrar/enviar-aviso-reclamo/?numAvisoAsoc="+numAvisoAsoc,
-	   dataType: "json",
-	   success: function(response){callback(null, response);},
-	   error: function(errorThrown) {callback(errorThrown);}
-  	});
-}
-*/
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
+}*/

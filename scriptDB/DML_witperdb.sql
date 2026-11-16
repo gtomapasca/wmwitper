@@ -10,19 +10,21 @@ use witperdb;
 insert into wip_cuenta_negocio (ruc_negocio, razon_social, fec_inivig, fec_finvig, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act)
 values ('20608326481', 'COMPUCHICLAYO E.I.R.L.', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW());
 -- select * from wip_cuenta_persona;
-insert into wip_cuenta_persona (id_ctapersona, ruc_negocio, tipo_usu, doc_tip, doc_num, fecha_nac, nombres, fec_inivig, fec_finvig, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act)
-values ('1', '20608326481', '0', '99', '99190001', '2020-01-01', 'Sys Admin', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
-('2', '20608326481', '0', '99', '99190002', '2020-01-01', 'Admin', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
-('3', '20608326481', '0', '99', '99190003', '2020-01-01', 'Operador', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
-('4', '20608326481', '0', '99', '99190004', '2020-01-01', 'Invitado', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW());
+insert into wip_cuenta_persona (id_ctapersona, ruc_negocio, tipo_cuenta, doc_tip, doc_num, fecha_nac, nombres, fec_inivig, fec_finvig, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act)
+values (1, '20608326481', '0', '99', '99190001', '2020-01-01', 'SysAdmin', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
+(2, '20608326481', '0', '99', '99190002', '2020-01-01', 'Gerente', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
+(3, '20608326481', '0', '99', '99190002', '2020-01-01', 'Admin', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
+(4, '20608326481', '0', '99', '99190002', '2020-01-01', 'Supervisor', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
+(5, '20608326481', '0', '99', '99190003', '2020-01-01', 'Operador', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
+(6, '20608326481', '0', '99', '99190004', '2020-01-01', 'Invitado', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW());
 -- select * from wip_usuario;
-insert into wip_usuario (id_ctapersona, cod_usuario, nick, email, password, cod_tipo_usu, cod_nivel_usu, fec_inivig, fec_finvig, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act)
-values ('1', '99190001', 'sysadmin', 'sysadmin@mail.com', '12345678', 'UX', '0', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
-('2', '99190002', 'gerente', 'admin@mail.com', '12345678', 'UI', '1', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
-('2', '99190002', 'admin', 'admin@mail.com', '12345678', 'UI', '2', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
-('3', '99190003', 'supervisor', 'operador@mail.com', '12345678', 'UI', '3','2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
-('3', '99190003', 'operador', 'operador@mail.com', '12345678', 'UI', '4','2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
-('4', '99190004', 'invitado', 'invitado@mail.com', '12345678', 'UE', '5', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW());
+insert into wip_usuario (id_usuario, id_ctapersona, cod_usuario, nick, email, password, cod_tipo_usu, cod_nivel_usu, fec_inivig, fec_finvig, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act)
+values (1, 1, '99190001', 'sysadmin', 'sysadmin@mail.com', '12345678', 'UX', '0', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
+(2, 2, '99190002', 'gerente', 'admin@mail.com', '12345678', 'UI', '1', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
+(3, 3, '99190002', 'admin', 'admin@mail.com', '12345678', 'UI', '2', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
+(4, 4, '99190003', 'supervisor', 'operador@mail.com', '12345678', 'UI', '3','2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
+(5, 5, '99190003', 'operador', 'operador@mail.com', '12345678', 'UI', '4','2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW()),
+(6, 6, '99190004', 'invitado', 'invitado@mail.com', '12345678', 'UE', '5', '2020-01-01', '2099-12-30', 0, 0, USER(), USER(), NOW(), NOW());
 
 --
 -- REGISTRAR OPCIONES DE MENU
@@ -102,7 +104,7 @@ values('Informatica', 0, 0);
 -- select * from wip_articulo;
 insert into wip_articulo(cod_articulo, ruc_negocio, id_usuario, fecha_creacion, titulo, subtitulo, imagen_sm, imagen_md, imagen_xl
 , resumen, contenido, key_word, cant_comen, fk_idtipo, fk_idcategoria, estado, del, codusu_reg, fecha_reg, codusu_act, fecha_act)
-values ('POST000001', '20608326481', 21, '2020-01-01', 'POST #01: Titulo Principal del Post', 'Subtitulo del Post'
+values ('POST000001', '20608326481', 1, '2020-01-01', 'POST #01: Titulo Principal del Post', 'Subtitulo del Post'
 , 'https://via.placeholder.com/300x200', 'https://via.placeholder.com/500x250', 'https://via.placeholder.com/800x300'
 , 'Resumen publicacion', 'Contenido publicacion', 'post', 1, 4, 2, 0, 0, USER(), NOW(), USER(), NOW() );
 -- select * from wip_publicacion_articulo;

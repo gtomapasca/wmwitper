@@ -23,17 +23,17 @@ require_once 'commons/ecwitper-tiendaonline-publicadorpaginas-common/dao/ifz/src
 /* Clase SqlMapBuzonDAO */
 class SqlMapBuzonDAO implements BuzonDAO{
       // Registrar buzon
-      public function insertBuzon($dataRequest){
+      public function insertBuzon($jsonParams){
 		try{
-			$ruc 	 = "10440440911"; // ruc de negocio (defaul)
-			$nom 	 = $dataRequest["nombre"];
-			$cel 	 = $dataRequest["cel"];
-			$mail 	 = $dataRequest["email"];
-			$asunto	 = $dataRequest["asunto"];
-			$mensaje = $dataRequest["mensaje"];
+			//$ruc 	 = "10440440911"; // ruc de negocio (defaul)
+			$ruc	 = $jsonParams->ruc_negocio;
+			$nom 	 = $jsonParams->nomCli;
+			$cel 	 = $jsonParams->numCel;
+			$mail 	 = $jsonParams->email;
+			$asunto	 = $jsonParams->asunto;
+			$mensaje = $jsonParams->cuerpoMsj;
 			$sql  = "insert into wip_buzon (ruc_negocio, nombre, celular, email, asunto, mensaje, estado, del, codusu_reg, codusu_act, fecha_reg, fecha_act) "
 				."values (?, ?, ?, ?,  ?, ?, 0, 0, USER(), USER(), NOW(), NOW())";
-			//$data = array('ssssss', "{$ruc}", "{$nom}", "{$cel}", "{$mail}", "{$asunto}", "{$mensaje}");
 			// [INI] Setear data
 			$values = [$ruc, $nom, $cel, $mail, $asunto, $mensaje]; 
 			$types = 'ssssss';

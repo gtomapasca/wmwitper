@@ -439,7 +439,7 @@ $('#btnRegistrarBusq').click(function(){
 //------------------------------------------------------------------------
 // 20210523 degui: mostrar datos de productos
 function cargarListaProductosTienda(datos){
-	console.log(">>> stockProductoVenta-cargarListaProductosTienda: " + JSON.stringify(datos));
+	//console.log(">>> stockProductoVenta-cargarListaProductosTienda: " + JSON.stringify(datos));
 
 	let ruta_raiz 	= '../../../../static/witper/';
 	let ruta_upload = 'apps/ecwitper/img/tiendavirtual/galeria/productos/upload/';
@@ -576,7 +576,7 @@ $('#btnAceptarReg').click(function(){
 
 // 20210526 cargar datos para modificar producto
 function cargarDatosParaModificarItem(item){
-	console.log(">>> stockProductoVenta-cargarDatosParaModificarItem: " + JSON.stringify(item));
+	//console.log(">>> stockProductoVenta-cargarDatosParaModificarItem: " + JSON.stringify(item));
 	// cargar listas
 	obtenerListaCategoriaSel(item.cod_tipcategoria, item.cod_categoria);
 	obtenerListaSubCategoriaSel(item.cod_categoria, item.cod_subcategoria);
@@ -591,7 +591,7 @@ function cargarDatosParaModificarItem(item){
 	let ruta_raiz 	= '../../../../static/witper/';
 	let ruta_upload = 'apps/ecwitper/img/tiendavirtual/galeria/productos/upload/';
 	let uri_store 	= ruta_raiz + ruta_upload + item.dir_img + '/' + item.nom_img;
-	console.log(">>> GTPX-cargarDatosParaModificarItem-uri_store: " + uri_store);
+	//console.log(">>> GTPX-cargarDatosParaModificarItem-uri_store: " + uri_store);
 	if(item.nom_img != null){
 		$("#imgProd2Mod").attr("src", uri_store);
 	}else{

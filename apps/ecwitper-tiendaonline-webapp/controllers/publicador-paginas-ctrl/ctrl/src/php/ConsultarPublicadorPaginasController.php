@@ -16,7 +16,6 @@ class ConsultarPublicadorPaginasController extends Controller{
 	}
 
 	// 20240413: validar contacto
-	// 20240416: validar suscipcion
 	public function validarContacto() {
         $objResponse = new stdClass();
 		if($_POST['datos']){ // si existe
@@ -25,13 +24,40 @@ class ConsultarPublicadorPaginasController extends Controller{
                 $objResponse->tip = "A"; // Advertencia
                 $objResponse->msj = "no se ha enviado el correo electrónico";
                 $objResponse->val = false;
-            }else if(strlen($jsonDataForm->mensaje) < 1){
+            }else if(strlen($jsonDataForm->cuerpoMsj) < 1){
                 $objResponse->tip = "A";
-                $objResponse->msj = "no se ha enviado mensaje";
+                $objResponse->msj = "no se ha enviado cuerpo de mensaje";
                 $objResponse->val = false;
             }else {
                 $objResponse->tip = "I"; // Info
-                $objResponse->msj = "se valido correctamente";
+                $objResponse->msj = "se valido correctamente los datos de contacto";
+                $objResponse->val = true;
+            }
+        }else{
+            $objResponse->tip = "E"; // Error
+            $objResponse->msj = "Error: no se encontraron datos a validar";
+            $objResponse->val = false;
+        }
+		echo json_encode($objResponse);
+		exit();
+	}
+
+    // 20261108: validar Reclamo
+	public function validarReclamo() {
+        $objResponse = new stdClass();
+		if($_POST['datos']){ // si existe
+            $jsonDataForm = json_decode($_POST['datos']);
+            if(strlen($jsonDataForm->email) < 1){
+                $objResponse->tip = "A"; // Advertencia
+                $objResponse->msj = "no se ha enviado el correo electrónico";
+                $objResponse->val = false;
+            }else if(strlen($jsonDataForm->descMotivo) < 1){
+                $objResponse->tip = "A";
+                $objResponse->msj = "no se ha enviado el motivo del reclamo";
+                $objResponse->val = false;
+            }else {
+                $objResponse->tip = "I"; // Info
+                $objResponse->msj = "se valido correctamente los datos de reclamo";
                 $objResponse->val = true;
             }
         }else{

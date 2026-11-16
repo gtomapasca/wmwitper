@@ -156,7 +156,7 @@ var clsCrearCuentaUsuario = function() {
 		$("#" + this.inputs.password.id).val("");
 	};
 	
-	this.requeridoinputfunc = function(value, element, param) {
+	/*this.requeridoinputfunc = function(value, element, param) {
 		if (value.trim() != "") {
 			$("#" + param.id).removeClass("wpr-input-invalid");
 			return true;
@@ -164,7 +164,7 @@ var clsCrearCuentaUsuario = function() {
 			$("#" + param.id).addClass("wpr-input-invalid");
 			return false; 
 		}
-	};
+	};*/
 	
 	//$.validator.addMethod("requeridoinput", this.requeridoinputfunc, " * Ingrese dato obligatorio");
 	// 20241210 degui: se comenta temporalmente	

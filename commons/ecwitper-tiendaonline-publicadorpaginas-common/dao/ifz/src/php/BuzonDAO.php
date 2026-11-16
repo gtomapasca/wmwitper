@@ -19,7 +19,7 @@
 
 /* Interfaz BuzonDAO */
 interface BuzonDAO{
-      public function insertBuzon($dataRequest);
+      public function insertBuzon($jsonParams);
 }
 
 ?>
