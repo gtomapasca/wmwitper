@@ -1,9 +1,10 @@
--- MySQL dump 10.19  Distrib 10.3.39-MariaDB, for debian-linux-gnu (x86_64)
---
+-- ------------------------------------------------------
 -- Host: localhost    Database: witperdb
 -- ------------------------------------------------------
 -- Server version	10.3.39-MariaDB-0+deb10u2
-
+-- ------------------------------------------------------
+-- Ultima Fecha: 20261124
+-- ------------------------------------------------------
 DROP DATABASE IF EXISTS witperdb;
 CREATE DATABASE witperdb;
 USE witperdb;
@@ -61,7 +62,7 @@ DROP TABLE IF EXISTS `wip_cuenta_persona`;
 CREATE TABLE `wip_cuenta_persona` (
   `id_ctapersona` bigint(20) NOT NULL AUTO_INCREMENT,
   `ruc_negocio` varchar(11) NOT NULL,
-  `tipo_usu` char(1) NOT NULL,
+  `tipo_cuenta` char(2) DEFAULT NULL COMMENT 'tipo de cuenta',
   `doc_tip` char(2) DEFAULT NULL,
   `doc_num` varchar(15) DEFAULT NULL,
   `fecha_nac` datetime DEFAULT NULL,
@@ -96,7 +97,7 @@ CREATE TABLE `wip_cuenta_persona` (
   PRIMARY KEY (`id_ctapersona`),
   KEY `ruc_negocio` (`ruc_negocio`),
   CONSTRAINT `wip_cuenta_persona_ibfk_1` FOREIGN KEY (`ruc_negocio`) REFERENCES `wip_cuenta_negocio` (`ruc_negocio`)
-) ENGINE=InnoDB AUTO_INCREMENT=1433 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1698 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1270,7 +1271,7 @@ CREATE TABLE `wip_pedido` (
   `medio_pago` varchar(25) DEFAULT NULL,
   `comentario` varchar(50) DEFAULT NULL,
   `carrito_nropedido` varchar(15) DEFAULT NULL,
-  `carrito_dni` varchar(8) DEFAULT NULL,
+  `carrito_docu` varchar(15) DEFAULT NULL COMMENT 'nro de documento',
   `carrito_cliente` varchar(100) DEFAULT NULL,
   `carrito_celular` varchar(15) DEFAULT NULL,
   `carrito_email` varchar(50) DEFAULT NULL,
@@ -1293,7 +1294,7 @@ CREATE TABLE `wip_pedido` (
   KEY `ruc_negocio` (`ruc_negocio`),
   CONSTRAINT `wip_pedido_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `wip_usuario` (`id_usuario`),
   CONSTRAINT `wip_pedido_ibfk_2` FOREIGN KEY (`ruc_negocio`) REFERENCES `wip_cuenta_negocio` (`ruc_negocio`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1569,7 +1570,7 @@ CREATE TABLE `wip_venta` (
   KEY `fk_idusuario` (`fk_idusuario`),
   CONSTRAINT `wip_venta_ibfk_1` FOREIGN KEY (`ruc_negocio`) REFERENCES `wip_cuenta_negocio` (`ruc_negocio`),
   CONSTRAINT `wip_venta_ibfk_4` FOREIGN KEY (`fk_idusuario`) REFERENCES `wip_usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3219 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3724 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1638,7 +1639,7 @@ CREATE TABLE `wip_especificacion_producto` (
   PRIMARY KEY (`id_especificacion`),
   KEY `cod_producto` (`cod_producto`),
   CONSTRAINT `wip_especificacion_producto_ibfk_1` FOREIGN KEY (`cod_producto`) REFERENCES `wip_producto_tienda` (`cod_producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=3819 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3861 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -1872,7 +1873,7 @@ CREATE TABLE `wip_galeria_producto_tienda` (
   PRIMARY KEY (`id_galeria`),
   KEY `cod_producto` (`cod_producto`),
   CONSTRAINT `wip_galeria_producto_tienda_ibfk_1` FOREIGN KEY (`cod_producto`) REFERENCES `wip_producto_tienda` (`cod_producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=900 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=909 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1885,11 +1886,9 @@ DROP TABLE IF EXISTS `wip_libro_reclamo`;
 CREATE TABLE `wip_libro_reclamo` (
   `id_libro` bigint(20) NOT NULL AUTO_INCREMENT,
   `ruc_negocio` varchar(11) NOT NULL,
-  `id_usuario` bigint(20) NOT NULL,
   `num_reclamo` varchar(10) NOT NULL,
   `cod_tipdoc` char(1) DEFAULT NULL,
   `num_tipdoc` varchar(20) DEFAULT NULL,
-  `cli_dni` char(8) NOT NULL,
   `cli_nombre` varchar(50) NOT NULL,
   `cli_telf` varchar(15) DEFAULT NULL,
   `cli_cel` varchar(15) NOT NULL,
@@ -1898,7 +1897,6 @@ CREATE TABLE `wip_libro_reclamo` (
   `cli_departamento` varchar(50) DEFAULT NULL,
   `cli_provincia` varchar(50) DEFAULT NULL,
   `cli_distrito` varchar(50) DEFAULT NULL,
-  `cli_pedido` varchar(500) NOT NULL,
   `cod_tipcomp` char(1) DEFAULT NULL,
   `nro_compra` varchar(15) NOT NULL,
   `fec_compra` varchar(15) DEFAULT NULL,
@@ -1919,9 +1917,7 @@ CREATE TABLE `wip_libro_reclamo` (
   `ip_act` varchar(40) DEFAULT NULL,
   `host_act` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_libro`),
-  KEY `id_usuario` (`id_usuario`),
   KEY `ruc_negocio` (`ruc_negocio`),
-  CONSTRAINT `wip_libro_reclamo_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `wip_usuario` (`id_usuario`),
   CONSTRAINT `wip_libro_reclamo_ibfk_2` FOREIGN KEY (`ruc_negocio`) REFERENCES `wip_cuenta_negocio` (`ruc_negocio`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2143,7 +2139,7 @@ CREATE TABLE `wip_suscripcion` (
   KEY `fk_idusuario` (`fk_idusuario`),
   CONSTRAINT `wip_suscripcion_ibfk_1` FOREIGN KEY (`ruc_negocio`) REFERENCES `wip_cuenta_negocio` (`ruc_negocio`),
   CONSTRAINT `wip_suscripcion_ibfk_2` FOREIGN KEY (`fk_idusuario`) REFERENCES `wip_usuario` (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=164 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=223 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2176,4 +2172,18 @@ CREATE TABLE `wip_tipovalor` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
--- Dump completed on 2026-09-13 19:31:33
+--
+-- Table structure for table `wip_contador_secuencia`
+--
+
+DROP TABLE IF EXISTS `wip_contador_secuencia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `wip_contador_secuencia` (
+  `nombre` varchar(50) NOT NULL,
+  `valor` int(11) NOT NULL,
+  PRIMARY KEY (`nombre`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- Dump completed on 2026-11-24  1:37:07
