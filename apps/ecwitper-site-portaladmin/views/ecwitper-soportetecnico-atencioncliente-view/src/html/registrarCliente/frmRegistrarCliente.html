@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrmRegistrarCliente</title>
+    <!-- Enlace dinámico al CSS respetando el estándar de tu arquitectura -->
+    <link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/ecwitper/css/portaladmin/soportetecnico/atencioncliente/registrarCliente/registrarCliente.css" />
+</head>
+<body>
+
+<div class="modal-backup" id="modalCliente" style="width: 100%; box-sizing: border-box; display: block; position: relative; background: none; z-index: auto;">
+    <div class="modal-content-custom" style="width: 100%; max-width: 450px; margin: 0 auto; overflow: hidden; box-sizing: border-box;">
+        <div class="modal-header-custom" style="overflow: hidden; display: flex; justify-content: space-between; align-items: center;">
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: bold;">Registrar Nuevo Cliente</span>
+            <button type="button" class="close-modal" id="btn_cerrar_modal_cliente" style="flex-shrink: 0;">&times;</button>
+        </div>
+        <form id="form_nuevo_cliente" style="width: 100%; box-sizing: border-box;">
+            <div class="modal-body-custom" style="width: 100%; box-sizing: border-box;">
+                
+                <div class="mb-3" style="width: 100%; display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 0.85rem; font-weight: 500;">DNI / RUC:</label>
+                    <input type="text" id="modal_dni" name="dni_ruc" class="form-control" readonly style="width: 100%; box-sizing: border-box;">
+                </div>
+                
+                <div class="mb-3" style="width: 100%; display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 0.85rem; font-weight: 500;">Nombre Completo / Razón Social:</label>
+                    <input type="text" name="nombre" class="form-control" maxlength="150" required style="width: 100%; box-sizing: border-box; text-overflow: ellipsis !important; white-space: nowrap !important; overflow: hidden !important;">
+                </div>
+                <div class="mb-3" style="width: 100%; display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 0.85rem; font-weight: 500;">Teléfono Celular:</label>
+                    <input type="text" name="telefono" class="form-control" maxlength="20" style="width: 100%; box-sizing: border-box;">
+                </div>
+                
+                <div class="mb-3" style="width: 100%; display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 0.85rem; font-weight: 500;">Correo Electrónico:</label>
+                    <input type="email" name="correo" class="form-control" maxlength="100" style="width: 100%; box-sizing: border-box;">
+                </div>
+                
+                <div class="mb-3" style="width: 100%; display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 0.85rem; font-weight: 500;">Dirección Legal:</label>
+                    <input type="text" name="direccion" class="form-control" maxlength="250" style="width: 100%; box-sizing: border-box; text-overflow: ellipsis !important; white-space: nowrap !important; overflow: hidden !important;">
+                </div>
+            </div>
+            
+            <div class="modal-footer-custom" style="width: 100%; display: flex; justify-content: flex-end; gap: 10px; box-sizing: border-box;">
+                <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_cliente" style="flex-shrink: 0;">Cancelar</button>
+                <button type="submit" class="btn btn-success" style="flex-shrink: 0;">Guardar Cliente</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

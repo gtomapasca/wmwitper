@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrmBandejaSoporte</title>
+    <!-- Enlace dinámico al CSS respetando el estándar de tu arquitectura -->
+    <link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/ecwitper/css/portaladmin/soportetecnico/atencioncliente/bandejaSoporte/bandejaSoporte.css" />
+</head>
+<body>
+
+<div class="container-fluid" style="width: 100%; max-width: 1250px; box-sizing: border-box; overflow: hidden;">
+    <div class="main-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Bandeja de Órdenes Técnicas</div>
+    <div class="card" style="width: 100%; box-sizing: border-box; overflow: hidden;">
+        <div class="card-header" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Criterios de Búsqueda y Filtros</div>
+        <div class="card-body" style="width: 100%; box-sizing: border-box; overflow: hidden;">
+            <form id="form_filtros_historial">
+                
+                <!-- FILA SUPERIOR: SELECTOR MAESTRO DE COMPROBANTE -->
+                <div class="row-form" style="margin-bottom: 20px; border-bottom: 1px dashed #dee2e6; padding-bottom: 15px; width: 100%; display: flex; flex-wrap: wrap;">
+                    <div class="field-group" style="width: 100%; overflow: hidden;">
+                        <span class="label-left" style="white-space: nowrap;">Comprobante:</span>
+                        <select id="filtro_comprobante" name="comprobante" class="form-control" style="width: 220px; max-width: 220px;">
+                            <option value="SERVICIO">SERVICIOS</option>
+                            <option value="COTIZACION">COTIZACIONES</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- FILA 1: PARÁMETROS DE FECHAS (INICIO Y FIN) -->
+                <div class="row-form" style="width: 100%; display: flex; flex-wrap: wrap;">
+                    <div class="field-group" style="width: 50%; max-width: 50%; overflow: hidden;">
+                        <span class="label-left" style="white-space: nowrap;">Fecha Inicio:</span>
+                        <input type="date" id="filtro_fecha_inicio" name="fecha_inicio" class="form-control" style="width: 220px; max-width: 220px;">
+                    </div>
+                    <div class="field-group" style="width: 50%; max-width: 50%; padding-left: 20px; overflow: hidden;">
+                        <span class="label-left" style="width: 100px; white-space: nowrap;">Fecha Final:</span>
+                        <input type="date" id="filtro_fecha_final" name="fecha_final" class="form-control" style="width: 220px; max-width: 220px;">
+                    </div>
+                </div>
+                <!-- FILA 2: CODIGO DE ORDEN Y SELECCIÓN DE ESTADOS CONMUTABLES -->
+                <div class="row-form" style="margin-top: 5px; width: 100%; display: flex; flex-wrap: wrap;">
+                    <div class="field-group" style="width: 50%; max-width: 50%; overflow: hidden;">
+                        <span class="label-left" style="white-space: nowrap;">Código Ficha:</span>
+                        <input type="text" id="filtro_codigo" name="codigo_servicio" class="form-control" placeholder="Ej. 00012" maxlength="20" style="width: 220px; max-width: 220px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
+                    </div>
+                    
+                    <div class="field-group" style="width: 50%; max-width: 50%; padding-left: 20px; overflow: hidden;">
+                        <!-- Contenedor Estado Equipo (Visible por defecto) -->
+                        <div id="contenedor_estado_servicio" style="display: flex; align-items: center; width: 100%; overflow: hidden;">
+                            <span class="label-left" style="width: 100px; white-space: nowrap;">Estado Equipo:</span>
+                            <select id="filtro_estado" name="estado" class="form-control" style="width: 220px; max-width: 220px;">
+                                <option value="">-- Todos los Estados --</option>
+                                <option value="GENERADO">GENERADO</option>
+                                <option value="PENDIENTE">PENDIENTE</option>
+                                <option value="EN EVALUACION">EN EVALUACION</option>
+                                <option value="OBSERVADO">OBSERVADO</option>
+                                <option value="ATENDIDO">ATENDIDO</option>
+                                <option value="ENTREGADO">ENTREGADO</option>
+                                <option value="ANULADO">ANULADO</option>
+                            </select>
+                        </div>
+
+                        <!-- Contenedor Estado Cotización (Oculto por defecto - Alineación Exacta) -->
+                        <div id="contenedor_estado_cotizacion" style="display: flex; align-items: center; width: 100%; display: none; overflow: hidden;">
+                            <span class="label-left" style="width: 100px; white-space: nowrap;">Estado Cotiz.:</span>
+                            <select id="filtro_estado_cotizacion" name="estado_cotizacion" class="form-control" style="width: 220px; max-width: 220px;">
+                                <option value="ABIERTO">ABIERTO</option>
+                                <option value="CERRADO">CERRADO</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FILA 3: BOTONES DE ACCIÓN (LIMPIAR, BUSCAR, NUEVO) -->
+                <div class="row-form" style="justify-content: flex-start; padding-left: 120px; gap: 15px; margin-top: 25px; border-top: 1px dashed #dee2e6; padding-top: 20px; width: 100%;">
+                    <button type="button" class="btn btn-secondary" id="btn_limpiar_filtros" style="flex-shrink: 0;">Limpiar</button>
+                    <button type="submit" class="btn btn-primary" style="flex-shrink: 0;">Buscar</button>
+                    <!-- Modificado para control dinámico en la misma ventana -->
+                    <button type="button" class="btn btn-success" id="btn_ir_nuevo" style="flex-shrink: 0;">Nuevo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- LA GRILLA DE DETALLE: ÓRDENES TÉCNICAS RECIENTES -->
+    <div class="table-responsive" style="width: 100%; box-sizing: border-box;">
+        <h3 style="font-size: 1rem; font-weight: bold; color: #2b74b9; margin-bottom: 12px; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Órdenes Técnicas Recientes y Resultados de Consulta</h3>
+        <table class="table-custom" style="table-layout: fixed !important; width: 100% !important; border-collapse: collapse; overflow: hidden;">
+            <thead>
+                <tr>
+                    <th style="width: 8%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Código</th>
+                    <th style="width: 14%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Fecha Ingreso</th>
+                    <th style="width: 14%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">N° Serie</th>
+                    <th style="width: 23%; text-align: left; padding-left: 15px; word-break: break-word; white-space: normal;">Nombre del Cliente</th>
+                    <th style="width: 21%; text-align: left; padding-left: 15px; word-break: break-word; white-space: normal;">Equipo / Dispositivo</th>
+                    <th style="width: 12%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Estado Actual</th>
+                    <th style="width: 8%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Acción</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpo_tabla_bandeja_servicios">
+                <tr id="fila_vacia_bandeja">
+                    <td colspan="7" style="padding: 25px; color: #999; font-style: italic; text-align: center; white-space: normal;">
+                        Cargando historial de servicios desde el servidor...
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

@@ -47,6 +47,7 @@ const PADM_CPANELADMIN_SALMERCA     = "ecwitper-salidamercancia-registroventa-ct
 const PADM_CPANELADMIN_CTRLACCESO   = "ecwitper-controlacceso-cuentausuario-ctrl";
 const PADM_CPANELADMIN_ATENCIONCLI	= "ecwitper-atencioncliente-recepcioncli-ctrl";
 const PADM_CPANELADMIN_INGMERCA 	= "ecwitper-ingresomercancia-registrocompra-ctrl";
+const PADM_CPANELADMIN_CTRLSERVTEC 	= "ecwitper-soportetecnico-atencioncliente-ctrl";
 
 
 // constantes vta
@@ -175,7 +176,9 @@ const SITEADM_ID_FRM_REGISTRAR_CONTACTO         = "41055";
 const SITEADM_PATH_FRM_REGISTRAR_CONTACTO       = "apps/ecwitper-site-portaladmin/views/ecwitper-atencioncliente-recepcioncli-view/src/html/registroContacto/frmRegistrarContacto.html";
 const SITEADM_ID_FRM_ATENDER_LIBRO_RECLAMO      = "41056";
 const SITEADM_PATH_FRM_ATENDER_LIBRO_RECLAMO    = "apps/ecwitper-site-portaladmin/views/ecwitper-atencioncliente-recepcioncli-view/src/html/registroLibroReclamo/frmAtenderLibroReclamo.html";
-
+// HGT Se agrega opciòn de servicio técnico
+const SITEADM_ID_FRM_REGISTRAR_SERVTEC        = "21016";
+const SITEADM_PATH_FRM_REGISTRAR_SERVTEC      = "apps/ecwitper-site-portaladmin/views/ecwitper-soportetecnico-atencioncliente-view/src/html/registrarServicio/frmRegistrarServicioTecnico.html";
 
 /*
  ***************************************

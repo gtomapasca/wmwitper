@@ -1,0 +1,145 @@
+/* ==========================================================================
+   ESTILOS CONTROLADOS PARA MODAL DE NUEVO DISPOSITIVO (RÍGIDOS CONTRA DESBORDE)
+   ========================================================================== */
+
+/* Fondo oscurecido del modal */
+.modal-backup {
+    display: none; /* Controlado dinámicamente por JavaScript */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* Caja de contenido del modal */
+.modal-content-custom {
+    background: #fff;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 450px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid #2b74b9;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabecera del modal */
+.modal-header-custom {
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2b74b9;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.modal-header-custom span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Botón de cierre en X */
+.close-modal {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+/* Cuerpo del formulario interno */
+.modal-body-custom {
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Agrupador de campos individuales */
+.mb-3 {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.mb-3 label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #444;
+    white-space: nowrap;
+}
+
+/* Inputs y Selects de control estricto */
+.modal-body-custom .form-control {
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    outline: none;
+    box-sizing: border-box;
+    background-color: #fff;
+    height: 34px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.modal-body-custom select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://w3.org' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px 10px;
+    padding-right: 30px;
+}
+
+/* Pie del modal */
+.modal-footer-custom {
+    padding: 12px 20px;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    background: #f8f9fa;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* Botones adaptados */
+.modal-footer-custom .btn {
+    height: 34px;
+    padding: 6px 18px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.88rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.modal-footer-custom .btn-primary { background-color: #2b74b9; color: #fff; }
+.modal-footer-custom .btn-secondary { background-color: #6c757d; color: #fff; }

@@ -196,6 +196,9 @@ function obtenerPaginaId(codPage){
 					contex = 'salmerca';
 				}else if(contexto == 'ecwitper-atencioncliente-recepcioncli-ctrl'){
 					contex = 'atencioncli';
+				} // HFT 2026-G1-02: Se agrega contexto
+				else if(contexto == 'ecwitper-serviciotecnico-atencioncliente-ctrl'){
+					contex = 'atencionserv';
 				}
 				//console.log(">>> cpaneladmin-obtenerPaginaId-contexto: " + contexto);
 				//console.log(">>> cpaneladmin-obtenerPaginaId-contex: " + contex);
@@ -203,7 +206,7 @@ function obtenerPaginaId(codPage){
 				//let uri = "ecwitper-site-portaladmin/" + contexto + "/ver/menu/?page="+codPageHtml;
 				//let uri = "adm/app/salmerca/ver/menu/?page="+codPageHtml;
 				let uri = "adm/app/"+contex+"/ver/menu/?page="+codPageHtml;
-				//console.log(">>> cpaneladmin-obtenerPaginaId-uri: " + uri);
+				console.log(">>> cpaneladmin-obtenerPaginaId-uri: " + uri);
 				cargarPaginaSel(uri);
 		   	}else{
 				mostrarMensaje("Disculpe, no se pudo realizar la última operación", 2);

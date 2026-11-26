@@ -64,7 +64,13 @@ class ApplicationHandlerAdm {
 			}else if($ctrl == 'atencioncli'){
 				$app 	= APP_SITE_PORTALADMIN;
 				$modulo = PADM_CPANELADMIN_ATENCIONCLI;
-			}else{
+			} // INI-HFT 2026-G1-02: Se agrega contexto
+			else if($ctrl == 'atencionserv'){
+				$app 	= APP_SITE_PORTALADMIN;
+				$modulo = PADM_CPANELADMIN_CTRLSERVTEC;
+			}
+			// FIN-HFT
+			else{
 				$app 	= $arrayUri[1 + $pos];
 				$modulo = $arrayUri[2 + $pos];
 			}

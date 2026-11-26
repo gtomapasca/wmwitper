@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrmRegistrarEquipo</title>
+    <!-- Enlace dinámico al CSS respetando el estándar de tu arquitectura -->
+    <link rel="stylesheet" type="text/css" href="{PATH_LARGE}/apps/ecwitper/css/portaladmin/soportetecnico/atencioncliente/registrarEquipo/registrarEquipo.css" />
+</head>
+<body>
+
+<div class="modal-backup" id="modalEquipo" style="width: 100%; box-sizing: border-box; display: block; position: relative; background: none; z-index: auto;">
+    <div class="modal-content-custom" style="width: 100%; max-width: 450px; margin: 0 auto; overflow: hidden; box-sizing: border-box;">
+        <div class="modal-header-custom" style="overflow: hidden; display: flex; justify-content: space-between; align-items: center;">
+            <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: bold;">Agregar Nuevo Dispositivo</span>
+            <button type="button" class="close-modal" id="btn_cerrar_modal_equipo" style="flex-shrink: 0;">&times;</button>
+        </div>
+        <form id="form_nuevo_equipo" style="width: 100%; box-sizing: border-box;">
+            <div class="modal-body-custom" style="width: 100%; box-sizing: border-box;">
+                
+                <!-- ID de cliente asociado oculto por simetría con tu lógica -->
+                <input type="hidden" id="modal_equipo_id_cliente" name="id_cliente">
+                
+                <div class="mb-3" style="width: 100%; display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 0.85rem; font-weight: 500;">Tipo de Dispositivo:</label>
+                    <select name="tipo_equipo" class="form-control" required style="width: 100%; box-sizing: border-box;">
+                        <option value="">-- Seleccione tipo --</option>
+                        <option value="Laptop">Laptop</option>
+                        <option value="PC">PC de Escritorio</option>
+                        <option value="Impresora">Impresora</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3" style="width: 100%; display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 0.85rem; font-weight: 500;">Marca de Fábrica:</label>
+                    <input type="text" name="marca" class="form-control" maxlength="50" required style="width: 100%; box-sizing: border-box;">
+                </div>
+                <div class="mb-3" style="width: 100%; display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 0.85rem; font-weight: 500;">Modelo Técnico:</label>
+                    <input type="text" name="modelo" class="form-control" maxlength="50" style="width: 100%; box-sizing: border-box; text-overflow: ellipsis !important; white-space: nowrap !important; overflow: hidden !important;">
+                </div>
+                
+                <div class="mb-3" style="width: 100%; display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 0.85rem; font-weight: 500;">Número de Serie (S/N):</label>
+                    <input type="text" name="numero_serie" class="form-control" maxlength="50" style="width: 100%; box-sizing: border-box; text-overflow: ellipsis !important; white-space: nowrap !important; overflow: hidden !important;">
+                </div>
+                
+                <div class="mb-3" style="width: 100%; display: flex; flex-direction: column; gap: 5px;">
+                    <label style="font-size: 0.85rem; font-weight: 500;">Especificaciones Técnicas:</label>
+                    <input type="text" name="caracteristicas" class="form-control" maxlength="250" style="width: 100%; box-sizing: border-box; text-overflow: ellipsis !important; white-space: nowrap !important; overflow: hidden !important;">
+                </div>
+            </div>
+            
+            <div class="modal-footer-custom" style="width: 100%; display: flex; justify-content: flex-end; gap: 10px; box-sizing: border-box;">
+                <button type="button" class="btn btn-secondary" id="btn_cancelar_modal_equipo" style="flex-shrink: 0;">Cancelar</button>
+                <button type="submit" class="btn btn-primary" style="flex-shrink: 0;">Guardar Equipo</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
